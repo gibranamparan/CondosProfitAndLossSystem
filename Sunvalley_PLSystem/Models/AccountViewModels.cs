@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Sunvalley_PLSystem.Models
@@ -64,10 +65,67 @@ namespace Sunvalley_PLSystem.Models
 
     public class RegisterViewModel
     {
+        //Yo lo cree Rangel
+//***************************************************************************
+        [Required]
+        [Display(Name = "First Name")]
+        public string firstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string lastName { get; set; }
+
+        [Display(Name = "Create At")]
+        public DateTime createAt { get; set; }
+
+        [Display(Name = "Company")]
+        public string company { get; set; }
+
+        [Display(Name = "Adress1")]
+        public string adress1 { get; set; }
+
+        [Display(Name = "Adress2")]
+        public string adress2 { get; set; }
+
+        [Display(Name = "City")]
+        public string city { get; set; }
+
+        [Display(Name = "Country")]
+        public string country { get; set; }
+
+        [Display(Name = "State")]
+        public string state { get; set; }
+
+        [Display(Name = "Postal Code")]
+        public int postalCode { get; set; }
+
+        [Display(Name = "Home Phone")]
+        public string homePhone { get; set; }
+
+        [Display(Name = "Business Phone")]
+        public string businessPhone { get; set; }
+
+        [Display(Name = "Business Fax")]
+        public string businesFax { get; set; }
+
+        [Display(Name = "Mobile Phone")]
+        public string mobilePhone { get; set; }
+
+
+        //***************************************************************************
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+
+        [EmailAddress]
+        [Display(Name = "AddEmail#1")]
+        public string Email1 { get; set; }
+
+        [EmailAddress]
+        [Display(Name = "AddEmail#2")]
+        public string Email2 { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
