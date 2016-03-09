@@ -28,7 +28,7 @@ namespace Sunvalley_PLSystem.Models
         [Display(Name = "Balance")]
         public decimal balance { get; set; }
 
-
+        public virtual House house { get; set; }
         public virtual RegisterViewModel uruario { get; set; }
 
 
