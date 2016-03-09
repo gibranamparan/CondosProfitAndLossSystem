@@ -65,7 +65,7 @@ namespace Sunvalley_PLSystem.Models
 
     public class RegisterViewModel
     {
-        //Yo lo cree Rangel
+        //Yo lo cree Rangel el joto
 //***************************************************************************
         [Required]
         [Display(Name = "First Name")]
@@ -119,11 +119,11 @@ namespace Sunvalley_PLSystem.Models
         public string Email { get; set; }
 
 
-        [EmailAddress]
+       
         [Display(Name = "AddEmail#1")]
         public string Email1 { get; set; }
 
-        [EmailAddress]
+        
         [Display(Name = "AddEmail#2")]
         public string Email2 { get; set; }
 
