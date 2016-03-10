@@ -12,6 +12,12 @@
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
+    //roles de usuarios
+    <div class="form-group">
+        <label style="margin-left: 108px;margin-right: 17px;">Role of user</label>
+        @Html.DropDownList("UserRoles")
+
+    </div>
 
     // first name
     <div class="form-group">

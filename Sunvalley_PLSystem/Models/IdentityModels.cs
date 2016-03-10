@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 
 namespace Sunvalley_PLSystem.Models
 {
@@ -16,12 +17,29 @@ namespace Sunvalley_PLSystem.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public DateTime createAt { get; set; }
+        public string company { get; set; }
+        public string adress1 { get; set; }
+        public string adress2 { get; set; }
+        public string city { get; set; }
+        public string country { get; set; }
+        public string state { get; set; }
+        public int postalCode { get; set; }
+        public string homePhone { get; set; }
+        public string businessPhone { get; set; }
+        public string businesFax { get; set; }
+        public string mobilePhone { get; set; }
+        public string Email1 { get; set; }
+        public string Email2 { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ConexionSunValley", throwIfV1Schema: false)
         {
         }
 

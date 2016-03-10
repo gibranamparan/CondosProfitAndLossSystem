@@ -139,6 +139,11 @@ namespace Sunvalley_PLSystem.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+
+            ApplicationDbContext dbRol = new ApplicationDbContext();
+            SelectList lista = new SelectList(dbRol.Roles,"Id","Name");
+
+            ViewBag.UserRoles= lista;
             return View();
         }
 
@@ -151,16 +156,16 @@ namespace Sunvalley_PLSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.firstName, Email = model.Email, };
+                var user = new ApplicationUser { UserName = model.firstName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
-              ////// aqui se utiliza el rol que recive  USER ROLES en el constructor y se hace una condicion que si es uno es admin.
+                //////// aqui se utiliza el rol que recive  USER ROLES en el constructor y se hace una condicion que si es uno es admin.
                 if (UserRoles == "1")
                 {
-                    UserManager.AddToRole(user.Id, "Administrador");
+                    UserManager.AddToRole(user.Id, "admin");
                 }
                 else {
-                    UserManager.AddToRole(user.Id, "Capturista");
+                    UserManager.AddToRole(user.Id, "cliente");
                 }
 
 
