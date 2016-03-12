@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sunvalley_PLSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace Sunvalley_PLSystem.DAL
 
         }
 
+        public DbSet<House> Houses { get; set; }
+        public DbSet<Movement> Movements { get; set; }
 
     }
 }

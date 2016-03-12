@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Sunvalley_PLSystem.Models
 {
@@ -34,6 +36,12 @@ namespace Sunvalley_PLSystem.Models
         public string mobilePhone { get; set; }
         public string Email1 { get; set; }
         public string Email2 { get; set; }
+
+        public virtual ICollection<Movement> movimientos { get; set; }
+        public virtual ICollection<House> Houses { get; set; }
+
+
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
