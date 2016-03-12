@@ -29,7 +29,7 @@ namespace Sunvalley_PLSystem.Models
         public decimal balance { get; set; }
 
         public virtual House house { get; set; }
-        public virtual RegisterViewModel uruario { get; set; }
+        public virtual ApplicationUser usuario { get; set; }
 
 
     }
