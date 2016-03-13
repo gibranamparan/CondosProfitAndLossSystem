@@ -28,8 +28,13 @@ namespace Sunvalley_PLSystem.Models
         [Display(Name = "Balance")]
         public decimal balance { get; set; }
 
+        //To one movement correspond one house
+        public int houseID { get; set; }
         public virtual House house { get; set; }
-        public virtual ApplicationUser usuario { get; set; }
+
+        //To one movement correspond one user
+        public virtual String UserID { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
 
     }
