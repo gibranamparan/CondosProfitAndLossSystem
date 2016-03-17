@@ -15,6 +15,7 @@ namespace Sunvalley_PLSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Movements
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             var movements = db.Movements.Include(m => m.house);
@@ -22,6 +23,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Movements/Details/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Movements/Create
+        [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             ViewBag.houseID = new SelectList(db.Houses, "houseID", "name");
@@ -47,7 +50,9 @@ namespace Sunvalley_PLSystem.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
+
         public ActionResult Create([Bind(Include = "movementID,createBy,transactionDate,code,description,value,qty,amount,balance,houseID,UserID")] Movement movement)
         {
             if (ModelState.IsValid)
@@ -62,6 +67,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Movements/Edit/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,6 +87,7 @@ namespace Sunvalley_PLSystem.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "movementID,createBy,transactionDate,code,description,value,qty,amount,balance,houseID,UserID")] Movement movement)
         {
@@ -95,6 +102,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Movements/Delete/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,6 +119,7 @@ namespace Sunvalley_PLSystem.Controllers
 
         // POST: Movements/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
