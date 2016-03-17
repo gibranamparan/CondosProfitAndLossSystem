@@ -29,9 +29,8 @@ namespace Sunvalley_PLSystem.Models
         [Display(Name = "Postal Code")]
         public int postalCode { get; set; }
 
-        public virtual string ProviderKey { get; set; }
-        public virtual ApplicationUser user{ get; set; }
-
+        public virtual String UserID { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
         public virtual ICollection<Movement> movimientos { get; set; }
     }

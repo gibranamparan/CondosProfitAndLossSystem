@@ -41,7 +41,6 @@ namespace Sunvalley_PLSystem.Models
         public virtual ICollection<House> Houses { get; set; }
 
 
-
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -55,5 +54,11 @@ namespace Sunvalley_PLSystem.Models
         {
             return new ApplicationDbContext();
         }
+
+
+        //Entidades definidas para atender requerimientos de logica de negocio
+        public DbSet<House> Houses { get; set; }
+        public DbSet<Movement> Movements { get; set; }
+
     }
 }

@@ -1,0 +1,99 @@
+﻿@model Sunvalley_PLSystem.Models.House
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>House</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cityArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cityArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stateProvince)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stateProvince)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.houseID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
