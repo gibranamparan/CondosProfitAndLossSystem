@@ -15,14 +15,14 @@ namespace Sunvalley_PLSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         
         // GET: Houses
-        [Authorize(Roles = "Administrador")]
+        //[Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             return View(db.Houses.ToList());
         }
 
         // GET: Houses/Details/5
-        [Authorize(Roles = "Administrador")]
+        //[Authorize(Roles = "Administrador")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,7 +38,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Houses/Create
-        [Authorize(Roles = "Administrador")]
+        //[Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             return View();
@@ -48,7 +48,7 @@ namespace Sunvalley_PLSystem.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "Administrador")]
+        //[Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "houseID,name,status,created,area,adress,cityArea,country,stateProvince,postalCode,UserID")] House house)
         {
@@ -63,7 +63,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Houses/Edit/5
-        [Authorize(Roles = "Administrador")]
+        //[Authorize(Roles = "Administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,7 +82,7 @@ namespace Sunvalley_PLSystem.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "Administrador")]
+        //[Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "houseID,name,status,created,area,adress,cityArea,country,stateProvince,postalCode,UserID")] House house)
         {
@@ -96,7 +96,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Houses/Delete/5
-        [Authorize(Roles = "Administrador")]
+        //[Authorize(Roles = "Administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,7 +114,7 @@ namespace Sunvalley_PLSystem.Controllers
         // POST: Houses/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        [Authorize(Roles = "Administrador")]
+        //[Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
