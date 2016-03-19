@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Sunvalley_PLSystem.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Sunvalley_PLSystem.Controllers
 {
@@ -18,7 +19,17 @@ namespace Sunvalley_PLSystem.Controllers
         //[Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
-            return View(db.Houses.ToList());
+            if (User.IsInRole("Admninistrador"))
+            {
+                return View(db.Houses.ToList());
+            }
+
+            String userID = User.Identity.GetUserId();
+            ApplicationUser us = new ApplicationDbContext().Users.Find(userID);
+
+            var Casas = from usu in db.Houses where usu.name == us.firstName select usu;
+            return View(Casas.ToList());
+
         }
 
         // GET: Houses/Details/5
