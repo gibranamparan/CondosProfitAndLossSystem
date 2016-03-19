@@ -13,7 +13,7 @@ namespace Sunvalley_PLSystem.Controllers
     public class HousesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        
         // GET: Houses
         [Authorize(Roles = "Administrador")]
         public ActionResult Index()

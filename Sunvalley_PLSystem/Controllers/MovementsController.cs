@@ -18,6 +18,7 @@ namespace Sunvalley_PLSystem.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
+            
             var movements = db.Movements.Include(m => m.house);
             return View(movements.ToList());
         }
