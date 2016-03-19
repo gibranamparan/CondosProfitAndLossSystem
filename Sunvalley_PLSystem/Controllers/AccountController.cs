@@ -159,7 +159,7 @@ namespace Sunvalley_PLSystem.Controllers
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, firstName=model.firstName,lastName=model.lastName,createAt=DateTime.Today,
                 company=model.company,adress1=model.adress1,adress2=model.adress2,city=model.city,country=model.country,state=model.state,postalCode=model.postalCode,homePhone=model.homePhone,businesFax=model.businesFax,businessPhone=model.businessPhone,
                 Email1=model.Email1,Email2=model.Email2};
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = await UserManager.CreateAsync(user);
 
                 //////// aqui se utiliza el rol que recive  USER ROLES en el constructor y se hace una condicion que si es uno es admin.
                 if (UserRoles == "1")
