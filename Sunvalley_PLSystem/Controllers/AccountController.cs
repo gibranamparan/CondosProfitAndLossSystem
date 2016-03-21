@@ -161,7 +161,7 @@ namespace Sunvalley_PLSystem.Controllers
                 Email1=model.Email1,Email2=model.Email2};
                 var result = await UserManager.CreateAsync(user);
 
-                //////// aqui se utiliza el rol que recive  USER ROLES en el constructor y se hace una condicion que si es uno es admin.
+                ////// aqui se utiliza el rol que recive  USER ROLES en el constructor y se hace una condicion que si es uno es admin.
                 if (UserRoles == "1")
                 {
                     UserManager.AddToRole(user.Id, "Administrador");
