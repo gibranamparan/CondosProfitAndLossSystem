@@ -9,12 +9,14 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Sunvalley_PLSystem.Models;
+using System.Collections.Generic;
 
 namespace Sunvalley_PLSystem.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -159,16 +161,9 @@ namespace Sunvalley_PLSystem.Controllers
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, firstName=model.firstName,lastName=model.lastName,createAt=DateTime.Today,
                 company=model.company,adress1=model.adress1,adress2=model.adress2,city=model.city,country=model.country,state=model.state,postalCode=model.postalCode,
                 homePhone=model.homePhone,businesFax=model.businesFax,businessPhone=model.businessPhone, Email1=model.Email1,Email2=model.Email2};
-                var result = await UserManager.CreateAsync(user,model.Password);
+                var result = await UserManager.CreateAsync(user, model.Password);
 
-                ////// aqui se utiliza el rol que recive  USER ROLES en el constructor y se hace una condicion que si es uno es admin.
-                if (UserRoles == "1")
-                {
-                    UserManager.AddToRole(user.Id, "Administrador");
-                }
-                else {
-                    UserManager.AddToRole(user.Id, "Cliente");
-                }
+                
 
 
                 if (result.Succeeded)
@@ -182,13 +177,31 @@ namespace Sunvalley_PLSystem.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    ////// aqui se utiliza el rol que recive  USER ROLES en el constructor y se hace una condicion que si es uno es admin.
+                    if (UserRoles == "1")
+                    {
+                        UserManager.AddToRole(user.Id, "Administrador");
+                    }
+                    else {
+                        UserManager.AddToRole(user.Id, "Cliente");
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
+            //ModelState.AddModelError("", "very weak password please try another.");
+
+            List<SelectListItem> lista = new List<SelectListItem>();
+            foreach (var r in db.Roles)
+            {
+                lista.Add(new SelectListItem
+                {
+                    Text = r.Name
+                });
+            }
+            ViewBag.Roles = lista;
             return View(model);
         }
 

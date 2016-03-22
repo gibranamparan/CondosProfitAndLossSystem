@@ -15,7 +15,10 @@
     //roles de usuarios
     <div class="form-group">
         <label style="margin-left: 108px;margin-right: 17px;">Role of user</label>
-        @Html.DropDownList("UserRoles")
+        @*@Html.DropDownList("UserRoles")*@
+        @Html.DropDownList("UserRoles",
+                   (IEnumerable<SelectListItem>)ViewBag.Roles,
+                   "Select Roles")
 
     </div>
     
