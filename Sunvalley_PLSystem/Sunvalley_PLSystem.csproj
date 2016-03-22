@@ -248,6 +248,11 @@
     <Content Include="Views\Movements\Details.cshtml" />
     <Content Include="Views\Movements\Edit.cshtml" />
     <Content Include="Views\Movements\Index.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
