@@ -3,32 +3,7 @@
     ViewBag.Title = "Register";
 }
 
-<script>
-    (function () {
-        $('#UserRoles').change(function () {
 
-            var value = $(this).val();
-            if (value == '1')
-
-            {
-                $("#Administrador").show();
-            }
-            else {
-                $("#Administrador").hide();
-            }
-
-            if (value == '2') {
-                $("#Cliente").show();
-            }
-            else {
-                $("#Cliente").hide();
-            }
-        });
-    });
-
-
-
-</script>
 
 <h2>@ViewBag.Title.</h2>
 
@@ -204,6 +179,29 @@
 
         @section Scripts {
             @Scripts.Render("~/bundles/jqueryval")
+
+
+            <script>
+                $('#UserRoles').change(function () {
+
+                    var value = $(this).val();
+                    if (value == '1') {
+                        $("#Administrador").fadeIn();
+                    }
+                    else {
+                        $("#Administrador").fadeOut();
+                    }
+
+                    if (value == '2') {
+                        $("#Cliente").fadeIn();
+                    }
+                    else {
+                        $("#Cliente").fadeOut();
+                    }
+                });
+
+            </script>
+
 
           
         }

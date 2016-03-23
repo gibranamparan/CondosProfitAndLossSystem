@@ -13,7 +13,6 @@ using System.Collections.Generic;
 
 namespace Sunvalley_PLSystem.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -52,6 +51,13 @@ namespace Sunvalley_PLSystem.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        // GET: Users
+        [Authorize(Roles = "Administrador")]
+        public ActionResult Index()
+        {
+                return View(UserManager.Users.ToList());
         }
 
         //
@@ -138,7 +144,7 @@ namespace Sunvalley_PLSystem.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrador")]
         public ActionResult Register()
         {
 
@@ -152,7 +158,7 @@ namespace Sunvalley_PLSystem.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model,string UserRoles)
         {

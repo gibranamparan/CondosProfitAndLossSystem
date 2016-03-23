@@ -13,7 +13,7 @@ namespace Sunvalley_PLSystem.Models
 
         [Display(Name = "Create By")]
         public string createBy { get; set; }
-        [Display(Name = "Tranzaction Date")]
+        [Display(Name = "Transaction Date")]
         public DateTime transactionDate { get; set; }
         [Display(Name = "Code")]
         public string code { get; set; }
