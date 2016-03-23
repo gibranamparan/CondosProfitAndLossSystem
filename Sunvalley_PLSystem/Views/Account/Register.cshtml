@@ -19,8 +19,7 @@
         <label style="margin-left: 108px;margin-right: 17px;">Role of user</label>
         @*@Html.DropDownList("UserRoles")*@
         @Html.DropDownList("UserRoles",
-                   (IEnumerable<SelectListItem>)ViewBag.Roles,
-                   "Select Roles")
+                   (IEnumerable<SelectListItem>)ViewBag.Roles)
 
     </div>
     <div id="Administrador">
@@ -149,11 +148,25 @@
                 @Html.TextBoxFor(m => m.homePhone, new { @class = "form-control" })
             </div>
         </div>
-      
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
 
-
-
-    
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Email1, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
