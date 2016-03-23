@@ -39,9 +39,9 @@
         <th>
             @Html.DisplayNameFor(model => model.balance)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.UserID)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -74,9 +74,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.balance)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.UserID)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.movementID }) |
             @Html.ActionLink("Details", "Details", new { id=item.movementID }) |
