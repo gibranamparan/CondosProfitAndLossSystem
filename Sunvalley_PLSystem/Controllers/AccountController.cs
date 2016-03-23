@@ -57,7 +57,8 @@ namespace Sunvalley_PLSystem.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
-                return View(UserManager.Users.ToList());
+            ApplicationUser user = UserManager.FindById<ApplicationUser, String>("dsdsds");
+            return View(UserManager.Users.ToList());
         }
 
         //
