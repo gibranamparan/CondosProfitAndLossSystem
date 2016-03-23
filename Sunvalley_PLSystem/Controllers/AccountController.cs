@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Sunvalley_PLSystem.Models;
 using System.Collections.Generic;
+using System.Net;
+using System.Data.Entity;
 
 namespace Sunvalley_PLSystem.Controllers
 {
@@ -61,6 +63,81 @@ namespace Sunvalley_PLSystem.Controllers
             return View(UserManager.Users.ToList());
         }
 
+        // GET: Houses/Delete/5
+        [Authorize(Roles = "Administrador")]
+        public ActionResult Delete(String id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser user = UserManager.FindById(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        // POST: Houses/Delete/5
+
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrador")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(String id)
+        {
+            ApplicationUser user = UserManager.FindById(id);
+            UserManager.Delete(user);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        // GET: Houses/Edit/5
+        [Authorize(Roles = "Administrador")]
+        public ActionResult Edit(String id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser user = UserManager.FindById(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        // POST: Houses/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [Authorize(Roles = "Administrador")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ApplicationUser user)
+        {
+            if (ModelState.IsValid)
+            {
+                UserManager.Update(user);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(user);
+        }
+        // GET: Houses/Details/5
+        [Authorize(Roles = "Administrador")]
+        public ActionResult Details(String id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser user = UserManager.FindById(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
         //
         // GET: /Account/Login
         [AllowAnonymous]
