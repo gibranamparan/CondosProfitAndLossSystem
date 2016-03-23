@@ -195,6 +195,11 @@
 
 
             <script>
+
+                $().ready(function () {
+
+                $("#Administrador").show();
+                })
                 $('#UserRoles').change(function () {
 
                     var value = $(this).val();
@@ -212,9 +217,9 @@
                         $("#Cliente").fadeOut();
                     }
                 });
-
+        
             </script>
 
 
-          
+
         }
