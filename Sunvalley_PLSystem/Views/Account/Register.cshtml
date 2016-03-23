@@ -195,31 +195,35 @@
 
 
             <script>
-
                 $().ready(function () {
-
-                $("#Administrador").show();
+                    registerScreen(1);
                 })
+
                 $('#UserRoles').change(function () {
 
                     var value = $(this).val();
-                    if (value == '1') {
+                    registerScreen(value)
+                });
+
+                function registerScreen(mode){
+                    
+                    if (mode == '1') {
                         $("#Administrador").fadeIn();
                     }
                     else {
                         $("#Administrador").fadeOut();
                     }
 
-                    if (value == '2') {
+                    if (mode == '2') {
                         $("#Cliente").fadeIn();
                     }
                     else {
                         $("#Cliente").fadeOut();
                     }
-                });
-        
+                }
+
             </script>
 
 
-
+          
         }

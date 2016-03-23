@@ -59,7 +59,8 @@ namespace Sunvalley_PLSystem.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
-                return View(UserManager.Users.ToList());
+            ApplicationUser user = UserManager.FindById<ApplicationUser, String>("dsdsds");
+            return View(UserManager.Users.ToList());
         }
 
         // GET: Houses/Delete/5
@@ -277,11 +278,14 @@ namespace Sunvalley_PLSystem.Controllers
             //ModelState.AddModelError("", "very weak password please try another.");
 
             List<SelectListItem> lista = new List<SelectListItem>();
+            bool sel = false;
             foreach (var r in db.Roles)
             {
+                sel = r.Name == "Administrador" ? true : false;
                 lista.Add(new SelectListItem
                 {
-                    Text = r.Name
+                    Text = r.Name,
+                    Selected = sel
                 });
             }
             ViewBag.Roles = lista;
