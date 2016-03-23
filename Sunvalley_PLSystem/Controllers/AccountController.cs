@@ -278,11 +278,14 @@ namespace Sunvalley_PLSystem.Controllers
             //ModelState.AddModelError("", "very weak password please try another.");
 
             List<SelectListItem> lista = new List<SelectListItem>();
+            bool sel = false;
             foreach (var r in db.Roles)
             {
+                sel = r.Name == "Administrador" ? true : false;
                 lista.Add(new SelectListItem
                 {
-                    Text = r.Name
+                    Text = r.Name,
+                    Selected = sel
                 });
             }
             ViewBag.Roles = lista;
