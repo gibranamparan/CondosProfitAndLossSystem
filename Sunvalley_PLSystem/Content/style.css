@@ -40,10 +40,10 @@ body
 #hor-minimalist-b
 {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-	font-size: 12px;
+	font-size: 16px;
 	background: #fff;
 	margin: 45px;
-	width: 480px;
+	/*width: 480px;*/
 	border-collapse: collapse;
 	text-align: left;
 }
