@@ -4,13 +4,14 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
 
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table  id="tabla" class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.name)
