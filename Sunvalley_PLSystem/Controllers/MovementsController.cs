@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Sunvalley_PLSystem.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Sunvalley_PLSystem.Controllers
 {
@@ -47,6 +48,15 @@ namespace Sunvalley_PLSystem.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Index(DateTime fechaInicio, DateTime fechaFin)
+        {
+            var Movimientos = from movement in db.Movements
+                              where (movement.transactionDate >= fechaInicio && movement.transactionDate <= fechaFin)
+                              select movement;
+            return View(Movimientos.ToList());
+        }
+
         // POST: Movements/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -58,6 +68,9 @@ namespace Sunvalley_PLSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                movement.createBy = User.Identity.GetUserName();
+                movement.UserID = User.Identity.GetUserId(); ;
+                movement.transactionDate = DateTime.Today;
                 db.Movements.Add(movement);
                 db.SaveChanges();
                 return RedirectToAction("Index");

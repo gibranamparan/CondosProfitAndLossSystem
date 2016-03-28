@@ -4,13 +4,29 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
 
 <h2>Index</h2>
-
+<link href="@Url.Content("~/Content/Estilos.css")" rel="stylesheet" type="text/css" />
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<br>
+
+<div style="text-align:right;">
+
+@using (Html.BeginForm("Index","Movements","POST"))
+{
+    @Html.Label("Del")
+    <input type="date" name="fechaInicio">
+    @Html.Label("Al")
+    <input type="date" name="fechaFin">
+    <input type="submit" value="Mostrar"/>
+}
+
+
+</div>
+<table   class="table1" style="margin-top:20px;" id="tableMovements">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.house.name)
@@ -18,30 +34,24 @@
         <th>
             @Html.DisplayNameFor(model => model.createBy)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.transactionDate)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.code)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
+      
         <th>
             @Html.DisplayNameFor(model => model.value)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.qty)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.amount)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.balance)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.UserID)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -53,30 +63,24 @@
         <td>
             @Html.DisplayFor(modelItem => item.createBy)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.transactionDate)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.code)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.value)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.qty)
-        </td>
+      
         <td>
             @Html.DisplayFor(modelItem => item.amount)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.balance)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.UserID)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.movementID }) |
             @Html.ActionLink("Details", "Details", new { id=item.movementID }) |
@@ -86,3 +90,18 @@
 }
 
 </table>
+<div style="text-align:right;">
+    <button type="button" class="btn btn-success" onclick="javascript: printMovement('printMovement')" style="text-align:right;margin-top:20px">Imprimir</button>
+    </div>
+    @section Scripts {
+        <script>
+            function printMovement() {
+                var tablePrint = document.getElementById('tableMovements');
+                newWin = window.open("");
+                newWin.document.write(tablePrint.innerHTML);
+                newWin.print();
+                newWin.close();
+            }
+
+        </script>
+    }

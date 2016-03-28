@@ -4,13 +4,14 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
 
 <h2>Index</h2>
-
+<link href="@Url.Content("~/Content/Estilos.css")" rel="stylesheet" type="text/css" />
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table  class="table1">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.name)
@@ -18,9 +19,7 @@
         <th>
             @Html.DisplayNameFor(model => model.status)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.created)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.area)
         </th>
@@ -33,15 +32,11 @@
         <th>
             @Html.DisplayNameFor(model => model.country)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.stateProvince)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.postalCode)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>
+       
         <th></th>
     </tr>
 
@@ -53,9 +48,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.status)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.created)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.area)
         </td>
@@ -68,15 +61,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.country)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.stateProvince)
-        </td>
+        @*  *@
         <td>
             @Html.DisplayFor(modelItem => item.postalCode)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserID)
-        </td>
+       
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.houseID }) |
             @Html.ActionLink("Details", "Details", new { id=item.houseID }) |

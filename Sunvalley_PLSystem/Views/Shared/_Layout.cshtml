@@ -8,6 +8,7 @@
     <link rel="icon" href="http://sunvalleyservicesrockypoint.com/wp-content/uploads/2016/03/cropped-SunLogo-192x192.png" sizes="192x192">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 
 </head>
 <body>
@@ -47,9 +48,14 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-
+   @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').DataTable();
+        });
+
+    </script>
 </body>
 </html>
