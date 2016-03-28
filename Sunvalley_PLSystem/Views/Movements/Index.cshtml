@@ -26,7 +26,7 @@
 
 
 </div>
-<table   class="table1" style="margin-top:20px;">
+<table   class="table1" style="margin-top:20px;" id="tableMovements">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.house.name)
@@ -90,3 +90,18 @@
 }
 
 </table>
+<div style="text-align:right;">
+    <button type="button" class="btn btn-success" onclick="javascript: printMovement('printMovement')" style="text-align:right;margin-top:20px">Imprimir</button>
+    </div>
+    @section Scripts {
+        <script>
+            function printMovement() {
+                var tablePrint = document.getElementById('tableMovements');
+                newWin = window.open("");
+                newWin.document.write(tablePrint.innerHTML);
+                newWin.print();
+                newWin.close();
+            }
+
+        </script>
+    }
