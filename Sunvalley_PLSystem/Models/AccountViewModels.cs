@@ -102,7 +102,7 @@ namespace Sunvalley_PLSystem.Models
         public string state { get; set; }
 
         [Display(Name = "Postal Code")]
-        public int postalCode { get; set; }
+        public string postalCode { get; set; }
 
         [Display(Name = "Home Phone")]
         public string homePhone { get; set; }
@@ -140,7 +140,7 @@ namespace Sunvalley_PLSystem.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
 

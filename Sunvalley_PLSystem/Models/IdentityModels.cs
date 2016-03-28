@@ -29,7 +29,7 @@ namespace Sunvalley_PLSystem.Models
         public string city { get; set; }
         public string country { get; set; }
         public string state { get; set; }
-        public int postalCode { get; set; }
+        public string postalCode { get; set; }
         public string homePhone { get; set; }
         public string businessPhone { get; set; }
         public string businesFax { get; set; }
