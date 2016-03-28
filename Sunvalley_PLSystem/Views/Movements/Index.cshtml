@@ -6,7 +6,7 @@
 }
 <script src="~/Scripts/jquery.dataTables.min.js"></script>
 
-<h2>Index</h2>
+<h2 class="no-imprimir">Index</h2>
 <link href="@Url.Content("~/Content/Estilos.css")" rel="stylesheet" type="text/css" />
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -26,7 +26,7 @@
 
 
 </div>
-<table   class="table1" style="margin-top:20px;" id="tableMovements">
+<table class="imprimible table-striped co l-md-12" style="margin-top:20px;" id="tableMovements">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.house.name)
@@ -34,15 +34,15 @@
         <th>
             @Html.DisplayNameFor(model => model.createBy)
         </th>
-       
+
         <th>
             @Html.DisplayNameFor(model => model.code)
         </th>
-      
+
         <th>
             @Html.DisplayNameFor(model => model.value)
         </th>
-        
+
         <th>
             @Html.DisplayNameFor(model => model.amount)
         </th>
@@ -50,44 +50,45 @@
             @Html.DisplayNameFor(model => model.balance)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>*@
+                @Html.DisplayNameFor(model => model.UserID)
+            </th>*@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.house.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createBy)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.code)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.value)
-        </td>
-      
-        <td>
-            @Html.DisplayFor(modelItem => item.amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.balance)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.UserID)
-        </td>*@
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.movementID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.movementID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.movementID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.house.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.createBy)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.code)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.value)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.balance)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.movementID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.movementID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.movementID })
+            </td>
+        </tr>
+    }
 
 </table>
 <div style="text-align:right;">
@@ -96,11 +97,11 @@
     @section Scripts {
         <script>
             function printMovement() {
-                var tablePrint = document.getElementById('tableMovements');
+               /* var tablePrint = document.getElementById('tableMovements');
                 newWin = window.open("");
                 newWin.document.write(tablePrint.innerHTML);
                 newWin.print();
-                newWin.close();
+                newWin.close();*/
             }
 
         </script>

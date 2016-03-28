@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+@media print{
+    *:not(table){
+        display:none;
+    }
+
+    /*table.imprimible{
+        display: !important;
+    }*/
+}
