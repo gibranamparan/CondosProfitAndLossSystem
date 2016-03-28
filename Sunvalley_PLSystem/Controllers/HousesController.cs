@@ -65,6 +65,8 @@ namespace Sunvalley_PLSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                house.created = DateTime.Today;
+                house.UserID = User.Identity.GetUserId();
                 db.Houses.Add(house);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -11,7 +11,22 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table   class="table1">
+<br>
+
+<div style="text-align:right;">
+
+@using (Html.BeginForm("Index","Movements","POST"))
+{
+    @Html.Label("Del")
+    <input type="date" name="fechaInicio">
+    @Html.Label("Al")
+    <input type="date" name="fechaFin">
+    <input type="submit" value="Mostrar"/>
+}
+
+
+</div>
+<table   class="table1" style="margin-top:20px;">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.house.name)
