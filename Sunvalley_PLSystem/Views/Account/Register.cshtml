@@ -22,7 +22,7 @@
                    (IEnumerable<SelectListItem>)ViewBag.Roles)
 
     </div>
-    <div id="Administrador">
+    
 
         <div class="form-group">
             @Html.LabelFor(m => m.firstName, new { @class = "col-md-2 control-label" })
@@ -57,11 +57,11 @@
             </div>
         </div>
 
-    </div>
+    
 
     <div id="Cliente">
        
-        <div class="form-group col-md-6">
+        @*<div class="form-group col-md-6">
             @Html.LabelFor(m => m.firstName, new { @class = "col-md-4 control-label" })
             <div class="col-md-8">
                 @Html.TextBoxFor(m => m.firstName, new { @class = "form-control" })
@@ -73,7 +73,7 @@
             <div class="col-md-8">
                 @Html.TextBoxFor(m => m.lastName, new { @class = "form-control" })
             </div>
-        </div>
+        </div>*@
 
      
         @*<div class="form-group">
@@ -162,14 +162,14 @@
                 @Html.TextBoxFor(m => m.homePhone, new { @class = "form-control" })
             </div>
         </div>*@
-        <div class="form-group col-md-6">
+        @*<div class="form-group col-md-6">
             @Html.LabelFor(m => m.Email, new { @class = "col-md-4 control-label" })
             <div class="col-md-8">
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group col-md-6">
+        @*<div class="form-group col-md-6">
             @Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })
             <div class="col-md-8">
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
@@ -180,7 +180,7 @@
             <div class="col-md-8">
                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
             </div>
-        </div>
+        </div>*@
         <div class="form-group col-md-6">
             @Html.LabelFor(m => m.Email1, new { @class = "col-md-4 control-label" })
             <div class="col-md-8">

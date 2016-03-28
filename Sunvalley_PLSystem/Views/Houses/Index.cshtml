@@ -63,12 +63,26 @@
         <td>
             @Html.DisplayFor(modelItem => item.postalCode)
         </td>
-       
+       @if (Request.IsAuthenticated)
+       {
+           if (User.IsInRole("Administrador"))
+           {
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.houseID }) |
-            @Html.ActionLink("Movements", "Details", new { id=item.houseID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.houseID })
+
+            @Html.ActionLink("Edit", "Edit", new { id = item.houseID }) |
+            @Html.ActionLink("Movements", "Details", new { id = item.houseID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.houseID })
         </td>
+
+           }
+           if (User.IsInRole("Cliente"))
+           {
+               <td>
+                   @Html.ActionLink("Movements", "Details", new { id = item.houseID })
+               </td>  
+
+           }
+       }
     </tr>
 }
 

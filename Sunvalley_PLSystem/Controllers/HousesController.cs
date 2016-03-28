@@ -18,20 +18,20 @@ namespace Sunvalley_PLSystem.Controllers
         // GET: Houses
         public ActionResult Index()
         {
-            if (User.IsInRole("Administrador"))
+
+            if (User.IsInRole("Adminitrador"))
             {
                 return View(db.Houses.ToList());
             }
-            else {
-                String userID = User.Identity.GetUserId();
-                var Casas = from usu in db.Houses where usu.UserID == userID select usu;
-                return View(Casas.ToList());
-            }
+            String userID = User.Identity.GetUserId();
+            var Casas = from usu in db.Houses where usu.UserID == userID select usu;
+            return View(Casas.ToList());
+
 
         }
 
         // GET: Houses/Details/5
-        [Authorize(Roles = "Administrador")]
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
