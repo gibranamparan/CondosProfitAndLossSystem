@@ -8,9 +8,9 @@
 
 <h2>Index</h2>
 <link href="@Url.Content("~/Content/Estilos.css")" rel="stylesheet" type="text/css" />
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table  class="table1">
     <tr>
         <th>
@@ -36,8 +36,7 @@
         <th>
             @Html.DisplayNameFor(model => model.postalCode)
         </th>
-       
-        <th></th>
+
     </tr>
 
 @foreach (var item in Model) {
@@ -61,14 +60,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.country)
         </td>
-        @*  *@
         <td>
             @Html.DisplayFor(modelItem => item.postalCode)
         </td>
        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.houseID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.houseID }) |
+            @Html.ActionLink("Movements", "Details", new { id=item.houseID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.houseID })
         </td>
     </tr>

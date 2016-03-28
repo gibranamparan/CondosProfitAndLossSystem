@@ -16,19 +16,17 @@ namespace Sunvalley_PLSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Houses
-        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
-            if (User.IsInRole("Admninistrador"))
+            if (User.IsInRole("Administrador"))
             {
                 return View(db.Houses.ToList());
             }
-
-            String userID = User.Identity.GetUserId();
-            ApplicationUser us = new ApplicationDbContext().Users.Find(userID);
-
-            var Casas = from usu in db.Houses where usu.name == us.firstName select usu;
-            return View(Casas.ToList());
+            else {
+                String userID = User.Identity.GetUserId();
+                var Casas = from usu in db.Houses where usu.UserID == userID select usu;
+                return View(Casas.ToList());
+            }
 
         }
 
@@ -41,6 +39,7 @@ namespace Sunvalley_PLSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             House house = db.Houses.Find(id);
+
             if (house == null)
             {
                 return HttpNotFound();
@@ -50,8 +49,9 @@ namespace Sunvalley_PLSystem.Controllers
 
         // GET: Houses/Create
         [Authorize(Roles = "Administrador")]
-        public ActionResult Create()
+        public ActionResult Create(String id)
         {
+            ViewBag.UserID =id;
             return View();
         }
 
@@ -61,12 +61,11 @@ namespace Sunvalley_PLSystem.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "houseID,name,status,created,area,adress,cityArea,country,stateProvince,postalCode,UserID")] House house)
+        public ActionResult Create(House house)
         {
             if (ModelState.IsValid)
             {
                 house.created = DateTime.Today;
-                house.UserID = User.Identity.GetUserId();
                 db.Houses.Add(house);
                 db.SaveChanges();
                 return RedirectToAction("Index");
