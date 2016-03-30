@@ -85,28 +85,36 @@
             @Html.DisplayFor(model => model.postalCode)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.UserID)
-        </dt>
+        </dt>*@
 
-        <dd>
+        @*<dd>
             @Html.DisplayFor(model => model.UserID)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.houseID }) |
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.houseID }) |*@
     @Html.ActionLink("Back to List", "Index")
 </p>
+@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Administrador"))
+    {
+        @Html.ActionLink("Create new Movement", "Create", "Movements", new { id = Model.houseID })
+    }
+}
+
 
 <div>
 
     <table class="imprimible table-striped col-md-12" style="margin-top:20px;" id="tableMovements">
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayName("Name of house")
-            </th>
+            </th>*@
             <th>
                @Html.DisplayName("Created By")
             </th>
@@ -158,11 +166,20 @@
                 @*<td>
                         @Html.DisplayFor(modelItem => item.UserID)
                     </td>*@
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.movementID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.movementID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.movementID })
-                </td>
+
+         
+        @if (Request.IsAuthenticated)
+            {
+              if (User.IsInRole("Administrador"))
+                 {
+
+                      <td>
+                          @Html.ActionLink("Edit", "Edit", new { id = item.movementID }) |
+                          @Html.ActionLink("Details", "Details", new { id = item.movementID }) |
+                          @Html.ActionLink("Delete", "Delete", new { id = item.movementID })
+                     </td>
+                 }
+            }
             </tr>
         }
 

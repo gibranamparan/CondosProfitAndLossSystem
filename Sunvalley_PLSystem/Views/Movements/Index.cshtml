@@ -8,9 +8,9 @@
 
 <h2 class="no-imprimir">Index</h2>
 <link href="@Url.Content("~/Content/Estilos.css")" rel="stylesheet" type="text/css" />
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <br>
 
 <div style="text-align:right;">
@@ -82,11 +82,11 @@
             @*<td>
                     @Html.DisplayFor(modelItem => item.UserID)
                 </td>*@
-            <td>
+            @*<td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.movementID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.movementID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.movementID })
-            </td>
+            </td>*@
         </tr>
     }
 
