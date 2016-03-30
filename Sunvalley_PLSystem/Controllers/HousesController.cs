@@ -40,7 +40,7 @@ namespace Sunvalley_PLSystem.Controllers
             }
             House house = db.Houses.Find(id);
             var movements = from movement in db.Movements where movement.houseID == id select movement;
-            ViewBag.movements = movements;
+            ViewBag.movements = movements.ToList();
             if (house == null)
             {
                 return HttpNotFound();
