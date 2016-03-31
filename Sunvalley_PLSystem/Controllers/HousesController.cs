@@ -24,7 +24,7 @@ namespace Sunvalley_PLSystem.Controllers
                 return View(db.Houses.ToList());
             }
             String userID = User.Identity.GetUserId();
-            var Casas = from usu in db.Houses where usu.UserID == userID select usu;
+            var Casas = from usu in db.Houses where usu.Id == userID select usu;
             return View(Casas.ToList());
 
 

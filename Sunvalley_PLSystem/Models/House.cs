@@ -29,7 +29,7 @@ namespace Sunvalley_PLSystem.Models
         [Display(Name = "Postal Code")]
         public int postalCode { get; set; }
 
-        public virtual String UserID { get; set; }
+        public String Id { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public virtual ICollection<Movement> movimientos { get; set; }

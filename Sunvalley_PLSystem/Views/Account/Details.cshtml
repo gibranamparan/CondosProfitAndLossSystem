@@ -72,9 +72,6 @@
                         </th>
                     </tr>
 
-                    </div>
-
-            <div class="panel-body">
                     <tr>
                         <td>
                             @Html.DisplayFor(model => model.firstName)
@@ -309,14 +306,13 @@
                                 </th>*@
                             <th></th>
                         </tr>
-                        </div>
-                <div class="panel-body">
+
                     @foreach (var item in Model.Houses)
                     {
                         <tr>
                             @*<td>
-                        @Html.DisplayFor(modelItem => item.name)
-                    </td>*@
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(model => item.name)
                             </td>
@@ -348,14 +344,14 @@
                                 @Html.DisplayFor(modelItem => item.postalCode)
                             </td>
                             @*<td>
-                        @Html.DisplayFor(modelItem => item.UserID)
-                    </td>*@
+                                    @Html.DisplayFor(modelItem => item.UserID)
+                                </td>*@
 
 
                             @if (Request.IsAuthenticated)
-                {
-                    if (User.IsInRole("Administrador"))
-                    {
+                            {
+                                if (User.IsInRole("Administrador"))
+                                {
 
                                     <td>
                                         <span class="glyphicon glyphicon-edit"></span>@Html.ActionLink("Edit", "Edit", new { id = item.houseID }) |

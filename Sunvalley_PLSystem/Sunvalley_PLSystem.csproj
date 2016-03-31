@@ -177,6 +177,14 @@
     <Compile Include="Migrations\201603282155194_InitialCreate.Designer.cs">
       <DependentUpon>201603282155194_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603312135460_House_cambioTipo_UserID.cs" />
+    <Compile Include="Migrations\201603312135460_House_cambioTipo_UserID.Designer.cs">
+      <DependentUpon>201603312135460_House_cambioTipo_UserID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603312142160_House_cambioNombre_UserIDAId.cs" />
+    <Compile Include="Migrations\201603312142160_House_cambioNombre_UserIDAId.Designer.cs">
+      <DependentUpon>201603312142160_House_cambioNombre_UserIDAId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\House.cs" />
@@ -278,6 +286,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603282155194_InitialCreate.resx">
       <DependentUpon>201603282155194_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603312135460_House_cambioTipo_UserID.resx">
+      <DependentUpon>201603312135460_House_cambioTipo_UserID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603312142160_House_cambioNombre_UserIDAId.resx">
+      <DependentUpon>201603312142160_House_cambioNombre_UserIDAId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
