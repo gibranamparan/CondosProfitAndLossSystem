@@ -10,328 +10,365 @@
 <div>
     <h4>ApplicationUser</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.firstName)
-        </dt>
+    <div class="container">
+        <div class="panel panel-warning" style="width:100%">
+            <div class="panel-heading">
+                <table class="table table-striped table-hover col-md-12" style="margin-top:20px"width="100%"">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.firstName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.lastName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.createAt)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.company)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.adress1)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.adress2)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.city)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.country)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.state)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.postalCode)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.homePhone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.businessPhone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.businesFax)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.mobilePhone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email1)
+                        </th>
+                        
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </th>
+                    </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.firstName)
-        </dd>
+                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lastName)
-        </dt>
+            <div class="panel-body">
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => model.firstName)
+                        </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.lastName)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.createAt)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.createAt)
-        </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.lastName)
+                        </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.company)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.company)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.adress1)
-        </dt>
+                        <td>
+                            @Html.DisplayFor(model => model.createAt)
+                        </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.adress1)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.adress2)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.adress2)
-        </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.company)
+                        </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.city)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.city)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.country)
-        </dt>
+                        <td>
+                            @Html.DisplayFor(model => model.adress1)
+                        </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.country)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.state)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.state)
-        </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.adress2)
+                        </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.postalCode)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.postalCode)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.homePhone)
-        </dt>
+                        <td>
+                            @Html.DisplayFor(model => model.city)
+                        </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.homePhone)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.businessPhone)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.businessPhone)
-        </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.country)
+                        </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.businesFax)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.businesFax)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.mobilePhone)
-        </dt>
+                        <td>
+                            @Html.DisplayFor(model => model.state)
+                        </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.mobilePhone)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email1)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email1)
-        </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.postalCode)
+                        </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email2)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email2)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                        <td>
+                            @Html.DisplayFor(model => model.homePhone)
+                        </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.EmailConfirmed)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmailConfirmed)
-        </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.businessPhone)
+                        </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PasswordHash)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SecurityStamp)
-        </dt>
+                        <td>
+                            @Html.DisplayFor(model => model.businesFax)
+                        </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.SecurityStamp)
-        </dd>*@
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.mobilePhone)
+                        </td>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-        </dt>
+                        @*<td>
+                            @Html.DisplayFor(model => model.Email1)
+                        </td>*@
 
-        <dd>
-            @Html.DisplayFor(model => model.TwoFactorEnabled)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LockoutEndDateUtc)
-        </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.Email2)
+                        </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LockoutEnabled)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LockoutEnabled)
-        </dd>*@
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </dt>
+                        <td>
+                            @Html.DisplayFor(model => model.Email)
+                        </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.AccessFailedCount)
-        </dd>*@
+                        @*<dt>
+                                @Html.DisplayNameFor(model => model.EmailConfirmed)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.EmailConfirmed)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.PasswordHash)
+                            </dt>
 
-    </dl>
-</div>
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                            <dd>
+                                @Html.DisplayFor(model => model.PasswordHash)
+                            </dd>
 
-<div>
-    @Html.ActionLink("Create new house", "Create", "Houses", new { id = Model.Id }, null)
-    <table class="imprimible table-striped col-md-12" style="margin-top:20px;" id="tableMovements">
-        <tr>
-            @*<th>
-                    @Html.DisplayName("Name of house")
-                </th>*@
-            <th>
-                @Html.DisplayName("Name")
-            </th>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.SecurityStamp)
+                            </dt>
 
-            <th>
-                @Html.DisplayName("Status")
-            </th>
+                            <dd>
+                                @Html.DisplayFor(model => model.SecurityStamp)
+                            </dd>*@
 
-            <th>
-                @Html.DisplayName("Created")
-            </th>
 
-            <th>
-                @Html.DisplayName("Area")
-            </th>
-            <th>
-                @Html.DisplayName("Adress")
-            </th>
-            <th>
-                @Html.DisplayName("City/Area")
-            </th>
-            <th>
-                @Html.DisplayName("Country")
-            </th>
-            <th>
-                @Html.DisplayName("State Province")
-            </th>
-            <th>
-                @Html.DisplayName("Postal Code")
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.UserID)
-                </th>*@
-            <th></th>
-        </tr>
 
-        @foreach (var item in Model.Houses)
-        {
-            <tr>
-                @*<td>
+                        <td>
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </td>
+
+                        @*<dt>
+                                @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.TwoFactorEnabled)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.LockoutEndDateUtc)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.LockoutEnabled)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.LockoutEnabled)
+                            </dd>*@
+
+                        @*<dt>
+                                @Html.DisplayNameFor(model => model.AccessFailedCount)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.AccessFailedCount)
+                            </dd>*@
+
+
+
+                        <td>
+                            @Html.DisplayFor(model => model.UserName)
+                        </td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+        </div>
+            <p>
+                @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+                <span class="glyphicon glyphicon-plus-sign"></span>@Html.ActionLink("Back to List", "Index")
+            </p>
+
+    
+        @Html.ActionLink("Create new house", "Create", "Houses", new { id = Model.Id }, null)
+
+
+
+        <div class="container">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <table class="table table-striped table-hover col-md-12" style="margin-top:20px;">
+                        <tr>
+                            @*<th>
+                                    @Html.DisplayName("Name of house")
+                                </th>*@
+                            <th>
+                                @Html.DisplayName("Name")
+                            </th>
+
+                            <th>
+                                @Html.DisplayName("Status")
+                            </th>
+
+                            <th>
+                                @Html.DisplayName("Created")
+                            </th>
+
+                            <th>
+                                @Html.DisplayName("Area")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Adress")
+                            </th>
+                            <th>
+                                @Html.DisplayName("City/Area")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Country")
+                            </th>
+                            <th>
+                                @Html.DisplayName("State Province")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Postal Code")
+                            </th>
+                            @*<th>
+                                    @Html.DisplayNameFor(model => model.UserID)
+                                </th>*@
+                            <th></th>
+                        </tr>
+                        </div>
+                <div class="panel-body">
+                    @foreach (var item in Model.Houses)
+                    {
+                        <tr>
+                            @*<td>
                         @Html.DisplayFor(modelItem => item.name)
                     </td>*@
-                <td>
-                    @Html.DisplayFor(model => item.name)
-                </td>
+                            <td>
+                                @Html.DisplayFor(model => item.name)
+                            </td>
 
-                <td>
-                    @Html.DisplayFor(model => item.status)
-                </td>
+                            <td>
+                                @Html.DisplayFor(model => item.status)
+                            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.created)
-                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.created)
+                            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.area)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.adress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cityArea)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.country)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.stateProvince)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.postalCode)
-                </td>
-                @*<td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.area)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.adress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cityArea)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.country)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.stateProvince)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.postalCode)
+                            </td>
+                            @*<td>
                         @Html.DisplayFor(modelItem => item.UserID)
                     </td>*@
 
 
-                @if (Request.IsAuthenticated)
+                            @if (Request.IsAuthenticated)
                 {
                     if (User.IsInRole("Administrador"))
                     {
 
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.houseID }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.houseID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.houseID })
-                        </td>
+                                    <td>
+                                        <span class="glyphicon glyphicon-edit"></span>@Html.ActionLink("Edit", "Edit", new { id = item.houseID }) |
+                                        <span class="glyphicon glyphicon-info-sign"></span>@Html.ActionLink("Details", "Details", new { id = item.houseID }) |
+                                        <span class="glyphicon glyphicon-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.houseID })
+                                    </td>
+                                }
+                            }
+                        </tr>
                     }
-                }
-            </tr>
-        }
 
-    </table>
-</div>
+                    </table>
+                </div>
+
+                </div>
+            </div>
