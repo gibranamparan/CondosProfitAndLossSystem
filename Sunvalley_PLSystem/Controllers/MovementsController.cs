@@ -45,7 +45,7 @@ namespace Sunvalley_PLSystem.Controllers
         public ActionResult Create(int id)
         {
             ViewBag.houseID = new SelectList(db.Houses, "houseID", "name");
-            ViewBag.idHouse = id;
+            ViewBag.houseID = id;
             return View();
         }
 
@@ -74,7 +74,8 @@ namespace Sunvalley_PLSystem.Controllers
                 movement.transactionDate = DateTime.Today;
                 db.Movements.Add(movement);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                int id = movement.houseID;
+                return RedirectToAction("Details","Houses", id);
             }
 
             ViewBag.houseID = new SelectList(db.Houses, "houseID", "name", movement.houseID);
