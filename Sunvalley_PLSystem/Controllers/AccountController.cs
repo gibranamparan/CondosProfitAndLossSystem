@@ -269,7 +269,7 @@ namespace Sunvalley_PLSystem.Controllers
                     else {
                         UserManager.AddToRole(user.Id, "Cliente");
                     }
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Account");
                 }
                 AddErrors(result);
             }

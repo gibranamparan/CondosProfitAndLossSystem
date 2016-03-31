@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int houseID = ViewBag.houseID;
 }
 
 <h2>Create</h2>
@@ -79,14 +80,14 @@
                 @Html.ValidationMessageFor(model => model.balance, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
+        @Html.Hidden("houseID", houseID)
+        @*<div class="form-group">
             @Html.LabelFor(model => model.houseID, "houseID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("houseID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.houseID, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })

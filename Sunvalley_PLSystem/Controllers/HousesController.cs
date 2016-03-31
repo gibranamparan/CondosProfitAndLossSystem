@@ -18,20 +18,20 @@ namespace Sunvalley_PLSystem.Controllers
         // GET: Houses
         public ActionResult Index()
         {
+
             if (User.IsInRole("Administrador"))
             {
                 return View(db.Houses.ToList());
             }
-            else {
-                String userID = User.Identity.GetUserId();
-                var Casas = from usu in db.Houses where usu.UserID == userID select usu;
-                return View(Casas.ToList());
-            }
+            String userID = User.Identity.GetUserId();
+            var Casas = from usu in db.Houses where usu.UserID == userID select usu;
+            return View(Casas.ToList());
+
 
         }
 
         // GET: Houses/Details/5
-        [Authorize(Roles = "Administrador")]
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,7 +39,8 @@ namespace Sunvalley_PLSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             House house = db.Houses.Find(id);
-
+            var movements = from movement in db.Movements where movement.houseID == id select movement;
+            ViewBag.movements = movements.ToList();
             if (house == null)
             {
                 return HttpNotFound();
