@@ -12,176 +12,208 @@
 <div>
     <h4>Houses</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
+    <div class="container">
+        
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <table class="table  table-striped table-hover ">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.status)
+                        </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
+                        <th>
+                            @Html.DisplayNameFor(model => model.created)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.area)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.adress)
+                        </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.created)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.created)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.area)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.area)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.adress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.adress)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.cityArea)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.cityArea)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.country)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.country)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.stateProvince)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.stateProvince)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.postalCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.postalCode)
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.UserID)
-        </dt>*@
-
-        @*<dd>
-            @Html.DisplayFor(model => model.UserID)
-        </dd>*@
-
-    </dl>
-</div>
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.houseID }) |*@
-    @Html.ActionLink("Back to List", "Index")
-</p>
-@if (Request.IsAuthenticated)
-{
-    if (User.IsInRole("Administrador"))
-    {
-        @Html.ActionLink("Create new Movement", "Create", "Movements", new { id = Model.houseID })
-    }
-}
-
-
-<div>
-
-    <table class="imprimible table-striped col-md-12" style="margin-top:20px;" id="tableMovements">
-        <tr>
-            @*<th>
-                @Html.DisplayName("Name of house")
-            </th>*@
-            <th>
-               @Html.DisplayName("Created By")
-            </th>
-
-            <th>
-                @Html.DisplayName("Code")
-            </th>
-
-            <th>
-               @Html.DisplayName("Value")
-            </th>
-
-            <th>
-                @Html.DisplayName("Amount")
-            </th>
-            <th>
-               @Html.DisplayName("Balance")
-            </th>
-            @*<th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.cityArea)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.country)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.stateProvince)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.postalCode)
+                        </th>
+                        @*<th>
                     @Html.DisplayNameFor(model => model.UserID)
                 </th>*@
-            <th></th>
-        </tr>
+                    </tr>
+                   
+</div>
+            <div class="panel-body">
+               
+                <tr>
 
-        @foreach (var item in Model.movimientos)
-        {
-            <tr>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.name)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.createBy)
-                </td>
+                    <td>
+                        @Html.DisplayFor(model => model.name)
+                    </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.code)
-                </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.value)
-                </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.amount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.balance)
-                </td>
-                @*<td>
+                    <td>
+                        @Html.DisplayFor(model => model.status)
+                    </td>
+
+
+
+                    <td>
+                        @Html.DisplayFor(model => model.created)
+                    </td>
+
+
+
+                    <td>
+                        @Html.DisplayFor(model => model.area)
+                    </td>
+
+
+
+                    <td>
+                        @Html.DisplayFor(model => model.adress)
+                    </td>
+
+
+
+                    <td>
+                        @Html.DisplayFor(model => model.cityArea)
+                    </td>
+
+
+
+                    <td>
+                        @Html.DisplayFor(model => model.country)
+                    </td>
+
+
+
+                    <td>
+                        @Html.DisplayFor(model => model.stateProvince)
+                    </td>
+
+
+
+                    <td>
+                        @Html.DisplayFor(model => model.postalCode)
+                    </td>
+
+
+
+                    @*<td>
+                @Html.DisplayFor(model => model.UserID)
+            </td>*@
+                </tr>
+
+                </table>
+            </div>
+            
+        </div>
+    </div>
+   
+    
+
+       
+
+       
+    
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.houseID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+
+<div class="container">
+    <h2>Movements of House</h2>
+    <div class="panel-group">    
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <table class="table table-striped table-hover col-md-12" style="margin-top:20px"">
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Name of house")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Created By")
+                        </th>
+
+                        <th>
+                            @Html.DisplayName("Code")
+                        </th>
+
+                        <th>
+                            @Html.DisplayName("Value")
+                        </th>
+
+                        <th>
+                            @Html.DisplayName("Amount")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Balance")
+                        </th>
+                        @*<th>
+                    @Html.DisplayNameFor(model => model.UserID)
+                </th>*@
+                        <th></th>
+                    </tr>
+</div>
+            <div class="panel-body">
+                
+
+                    @foreach (var item in Model.movimientos)
+                    {
+                        <tr>
+                            @*<td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.createBy)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.code)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.value)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.balance)
+                            </td>
+                            @*<td>
                         @Html.DisplayFor(modelItem => item.UserID)
                     </td>*@
+                            <td>
+                                <span class="glyphicon glyphicon-edit"></span>@Html.ActionLink("Edit", "Edit", new { id = item.movementID }) |
+                               |
+                                <span class="glyphicon glyphicon-trash"></span> @Html.ActionLink("Delete", "Delete", new { id = item.movementID })
+                            </td>
+                        </tr>
+                    }
 
-         
-        @if (Request.IsAuthenticated)
-            {
-              if (User.IsInRole("Administrador"))
-                 {
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
 
-                      <td>
-                          @Html.ActionLink("Edit", "Edit", new { id = item.movementID }) |
-                          @Html.ActionLink("Details", "Details", new { id = item.movementID }) |
-                          @Html.ActionLink("Delete", "Delete", new { id = item.movementID })
-                     </td>
-                 }
-            }
-            </tr>
-        }
-
-    </table>
+   
 </div>
