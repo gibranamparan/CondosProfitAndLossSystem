@@ -9,6 +9,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    @using Microsoft.AspNet.Identity
 
 </head>
 <body>
@@ -30,6 +31,10 @@
                         {
                             <li>@Html.ActionLink("Movements", "Index", "Movements")</li>
                             <li>@Html.ActionLink("Users", "Index", "Account")</li>
+                        }
+                        if (User.IsInRole("Cliente"))
+                        {
+                        <li>@Html.ActionLink("My Account", "Edit", "Account",new { id = User.Identity.GetUserId() },null)</li>
                         }
                     }
 @if (Request.IsAuthenticated)
