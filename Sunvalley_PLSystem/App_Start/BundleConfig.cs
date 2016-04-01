@@ -27,6 +27,22 @@ namespace Sunvalley_PLSystem
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            /*Plantilla*/
+                /*Estilos*/
+            bundles.Add(new StyleBundle("~/app").Include(
+                      "~/app/css/bootstrap.css"));
+
+
+            bundles.Add(new StyleBundle("~/vendor").Include(
+                      ""));
+
+            /*Scripts*/
+            bundles.Add(new ScriptBundle("~/app").Include(
+                      ""));
+            bundles.Add(new ScriptBundle("~/vendor").Include(
+                      ""));
+
         }
     }
 }

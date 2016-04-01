@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunvalley - Profit and Loss System</title>
+    <link rel="icon" href="http://sunvalleyservicesrockypoint.com/wp-content/uploads/2016/03/cropped-SunLogo-32x32.png" sizes="32x32">
+    <link rel="icon" href="http://sunvalleyservicesrockypoint.com/wp-content/uploads/2016/03/cropped-SunLogo-192x192.png" sizes="192x192">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @using Microsoft.AspNet.Identity
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Sun Valley", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Administrador"))
+                        {
+                            <li>@Html.ActionLink("Movements", "Index", "Movements")</li>
+                            <li>@Html.ActionLink("Users", "Index", "Account")</li>
+                        }
+                        if (User.IsInRole("Cliente"))
+                        {
+                        <li>@Html.ActionLink("My Account", "Edit", "Account",new { id = User.Identity.GetUserId() },null)</li>
+                        }
+                    }
+@if (Request.IsAuthenticated)
+{
+                    <li>@Html.ActionLink("Houses", "Index", "Houses")</li>
+}
+                    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>Laguna Shore Resorts&copy; @DateTime.Now.Year - Developed By <a href="htpp://netcodesolutions.net">Developed by Netcode Solutions</a></p>
+        </footer>
+    </div>
+
+   @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').DataTable();
+        });
+
+    </script>
+</body>
+</html>
