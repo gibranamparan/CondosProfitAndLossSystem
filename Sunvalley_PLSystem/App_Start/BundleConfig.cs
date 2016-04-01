@@ -34,14 +34,14 @@ namespace Sunvalley_PLSystem
                       "~/app/css/bootstrap.css"));
 
 
-            bundles.Add(new StyleBundle("~/vendor").Include(
-                      ""));
+            //bundles.Add(new StyleBundle("~/vendor").Include(
+            //          ""));
 
-            /*Scripts*/
-            bundles.Add(new ScriptBundle("~/app").Include(
-                      ""));
-            bundles.Add(new ScriptBundle("~/vendor").Include(
-                      ""));
+            ///*Scripts*/
+            //bundles.Add(new ScriptBundle("~/app").Include(
+            //          ""));
+            //bundles.Add(new ScriptBundle("~/vendor").Include(
+            //          ""));
 
         }
     }

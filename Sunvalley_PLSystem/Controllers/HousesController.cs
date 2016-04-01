@@ -56,6 +56,7 @@ namespace Sunvalley_PLSystem.Controllers
             return View();
         }
 
+
         // POST: Houses/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -74,7 +75,19 @@ namespace Sunvalley_PLSystem.Controllers
 
             return View(house);
         }
+        // GET: Houses/Create
+        [Authorize(Roles = "Administrador")]
+        public ActionResult CreateReportForHouse(int id)
+        {
+            Decimal totalBalance = 0;
 
+            House house = db.Houses.Find(id);
+            foreach (Movement mov in house.movimientos)
+            {
+                totalBalance = totalBalance + mov.balance;
+            }
+            return View();
+        }
         // GET: Houses/Edit/5
         [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int? id)
