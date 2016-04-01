@@ -73,6 +73,7 @@ namespace Sunvalley_PLSystem.Controllers
                 movement.UserID = User.Identity.GetUserId(); ;
                 movement.transactionDate = DateTime.Today;
 
+                movement.amount = movement.qty * movement.value;
 
                 decimal balanceAnterior = db.Movements.OrderBy(mov => mov.transactionDate).First().balance;
                 if (movement.amount >= 0)
