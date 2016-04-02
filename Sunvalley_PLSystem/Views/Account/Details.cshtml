@@ -251,7 +251,7 @@
                     </tr>
                 </table>
                 @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
-                <span class="glyphicon glyphicon-arrow-left"></span>@Html.ActionLink("Back to List", "Index")
+                <span class="fa fa-mail-reply"></span>@Html.ActionLink("Back to List", "Index")
                 </div>
             </div>
         </div>
@@ -356,9 +356,9 @@
                                 {
 
                                     <td>
-                                        <span class="glyphicon glyphicon-edit"></span>@Html.ActionLink("Edit", "Edit", new { id = item.houseID }) |
-                                        <span class="glyphicon glyphicon-info-sign"></span>@Html.ActionLink("Details", "Details", new { id = item.houseID }) |
-                                        <span class="glyphicon glyphicon-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.houseID })
+                                        <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = item.houseID }) |
+                                        <span class="fa fa-reorder"></span>@Html.ActionLink("Details", "Details", new { id = item.houseID }) |
+                                        <span class="fa fa-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.houseID })
                                     </td>
                                 }
                             }

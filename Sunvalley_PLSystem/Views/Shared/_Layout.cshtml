@@ -24,6 +24,8 @@
     @Styles.Render("~/vendor")
     @Scripts.Render("~/appS")
     @Scripts.Render("~/vendorS")
+    @Scripts.Render("~/bundles/bootstrap")
+   
 
    
    <!-- Vendor CSS-->
@@ -577,7 +579,7 @@
                           }
                       }
                       <li>
-                          <span class="glyphicon-plus"></span>@Html.ActionLink("LogIn", "Login", "Account")
+                         @Html.ActionLink("LogIn", "Login", "Account")
                       </li>
                       @if (User.Identity.IsAuthenticated)
                       {
