@@ -21,18 +21,23 @@
    <!-- Bootstrap CSS-->
    <!--<link rel="stylesheet" href="app/css/bootstrap.css">-->
     @Styles.Render("~/app")
+    @Styles.Render("~/vendor")
+    @Scripts.Render("~/appS")
+    @Scripts.Render("~/vendorS")
+
+   
    <!-- Vendor CSS-->
-   <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
+   @*<link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
    <link rel="stylesheet" href="vendor/animo/animate_animo.css">
-   <link rel="stylesheet" href="vendor/csspinner/csspinner.min.css">
+   <link rel="stylesheet" href="vendor/csspinner/csspinner.min.css">*@
    <!-- START Page Custom CSS-->
    <!-- END Page Custom CSS-->
    <!-- App CSS-->
-   <link rel="stylesheet" href="app/css/app.css">
+   @*<link rel="stylesheet" href="app/css/app.css">*@
    <!-- Modernizr JS Script-->
-   <script src="vendor/modernizr/modernizr.js" type="application/javascript"></script>
+   @*<script src="vendor/modernizr/modernizr.js" type="application/javascript"></script>*@
    <!-- FastClick for mobiles-->
-   <script src="vendor/fastclick/fastclick.js" type="application/javascript"></script>
+   @*<script src="vendor/fastclick/fastclick.js" type="application/javascript"></script>*@
 </head>
 
 <body>
@@ -43,8 +48,8 @@
          <!-- START navbar header-->
          <div class="navbar-header">
             <a href="#" class="navbar-brand">
-               <div class="brand-logo">47Admin</div>
-               <div class="brand-logo-collapsed">47</div>
+               <div class="brand-logo">SunValley</div>
+               <div class="brand-logo-collapsed"></div>
             </a>
          </div>
          <!-- END navbar header-->
@@ -68,35 +73,35 @@
             <ul class="nav navbar-nav navbar-right">
                <!-- START Messages menu (dropdown-list)-->
                <li class="dropdown dropdown-list">
-                  <a href="#" data-toggle="dropdown" data-play="bounceIn" class="dropdown-toggle">
+                  @*<a href="#" data-toggle="dropdown" data-play="bounceIn" class="dropdown-toggle">
                      <em class="fa fa-envelope"></em>
                      <div class="label label-danger">300</div>
-                  </a>
+                  </a>*@
                   <!-- START Dropdown menu-->
                   <ul class="dropdown-menu">
-                     <li class="dropdown-menu-header">You have 5 new messages</li>
+                     @*<li class="dropdown-menu-header">You have 5 new messages</li>*@
                      <li>
                         <div class="scroll-viewport">
                            <!-- START list group-->
                            <div class="list-group scroll-content">
                               <!-- START list group item-->
-                              <a href="#" class="list-group-item">
+                              @*<a href="#" class="list-group-item">
                                  <div class="media">
-                                    <div class="pull-left">
+                                    @*<div class="pull-left">
                                        <img style="width: 48px; height: 48px;" src="app/img/user/01.jpg" alt="Image" class="media-object img-rounded">
-                                    </div>
-                                    <div class="media-body clearfix">
+                                    </div>*@
+                                    @*<div class="media-body clearfix">
                                        <small class="pull-right">2h</small>
                                        <strong class="media-heading text-primary">
                                           <div class="point point-success point-lg"></div>Sheila Carter</strong>
                                        <p class="mb-sm">
                                           <small>Cras sit amet nibh libero, in gravida nulla. Nulla...</small>
                                        </p>
-                                    </div>
+                                    </div>*@
                                  </div>
                               </a>
                               <!-- END list group item-->
-                              <!-- START list group item-->
+                               @*START list group item
                               <a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
@@ -111,10 +116,10 @@
                                        </p>
                                     </div>
                                  </div>
-                              </a>
+                              </a>*@
                               <!-- END list group item-->
                               <!-- START list group item-->
-                              <a href="#" class="list-group-item">
+                              @*<a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
                                        <img style="width: 48px; height: 48px;" src="app/img/user/03.jpg" alt="Image" class="media-object img-rounded">
@@ -128,10 +133,10 @@
                                        </p>
                                     </div>
                                  </div>
-                              </a>
+                              </a>*@
                               <!-- END list group item-->
                               <!-- START list group item-->
-                              <a href="#" class="list-group-item">
+                              @*<a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
                                        <img style="width: 48px; height: 48px;" src="app/img/user/05.jpg" alt="Image" class="media-object img-rounded">
@@ -145,10 +150,10 @@
                                        </p>
                                     </div>
                                  </div>
-                              </a>
+                              </a>*@
                               <!-- END list group item-->
                               <!-- START list group item-->
-                              <a href="#" class="list-group-item">
+                              @*<a href="#" class="list-group-item">
                                  <div class="media">
                                     <div class="pull-left">
                                        <img style="width: 48px; height: 48px;" src="app/img/user/06.jpg" alt="Image" class="media-object img-rounded">
@@ -162,25 +167,25 @@
                                        </p>
                                     </div>
                                  </div>
-                              </a>
+                              </a>*@
                               <!-- END list group item-->
                            </div>
                            <!-- END list group-->
                         </div>
                      </li>
                      <!-- START dropdown footer-->
-                     <li class="p">
+                     @*<li class="p">
                         <a href="#" class="text-center">
                            <small class="text-primary">READ ALL</small>
                         </a>
-                     </li>
+                     </li>*@
                      <!-- END dropdown footer-->
                   </ul>
                   <!-- END Dropdown menu-->
                </li>
                <!-- END Messages menu (dropdown-list)-->
                <!-- START Alert menu-->
-               <li class="dropdown dropdown-list">
+               @*<li class="dropdown dropdown-list">
                   <a href="#" data-toggle="dropdown" data-play="bounceIn" class="dropdown-toggle">
                      <em class="fa fa-bell"></em>
                      <div class="label label-info">120</div>
@@ -243,10 +248,10 @@
                      </li>
                   </ul>
                   <!-- END Dropdown menu-->
-               </li>
+               </li>*@
                <!-- END Alert menu-->
                <!-- START User menu-->
-               <li class="dropdown">
+               @*<li class="dropdown">
                   <a href="#" data-toggle="dropdown" data-play="bounceIn" class="dropdown-toggle">
                      <em class="fa fa-user"></em>
                   </a>
@@ -275,27 +280,27 @@
                      </li>
                   </ul>
                   <!-- END Dropdown menu-->
-               </li>
+               </li>*@
                <!-- END User menu-->
                <!-- START Contacts button-->
-               <li>
+               @*<li>
                   <a href="#" data-toggle="offsidebar">
                      <em class="fa fa-align-right"></em>
                   </a>
-               </li>
+               </li>*@
                <!-- END Contacts menu-->
             </ul>
             <!-- END Right Navbar-->
          </div>
          <!-- END Nav wrapper-->
          <!-- START Search form-->
-         <form role="search" class="navbar-form">
+         @*<form role="search" class="navbar-form">
             <div class="form-group has-feedback">
                <input type="text" placeholder="Type and hit Enter.." class="form-control">
                <div data-toggle="navbar-search-dismiss" class="fa fa-times form-control-feedback"></div>
             </div>
             <button type="submit" class="hidden btn btn-default">Submit</button>
-         </form>
+         </form>*@
          <!-- END Search form-->
       </nav>
       <!-- END Top Navbar-->
@@ -308,15 +313,15 @@
                <li>
                   <div data-toggle="collapse-next" class="item user-block has-submenu">
                      <!-- User picture-->
-                     <div class="user-block-picture">
+                     @*<div class="user-block-picture">
                         <img src="app/img/user/02.jpg" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
-                        <!-- Status when collapsed-->
+                         Status when collapsed
                         <div class="user-block-status">
                            <div class="point point-success point-lg"></div>
                         </div>
-                     </div>
+                     </div>*@
                      <!-- Name and Role-->
-                     <div class="user-block-info">
+                     @*<div class="user-block-info">
                         <span class="user-block-name item-text">Welcome, Alex</span>
                         <span class="user-block-role">Designer</span>
                         <!-- START Dropdown to change status-->
@@ -339,10 +344,10 @@
                            </ul>
                         </div>
                         <!-- END Dropdown to change status-->
-                     </div>
+                     </div>*@
                   </div>
                   <!-- START User links collapse-->
-                  <ul class="nav collapse">
+                  @*<ul class="nav collapse">
                      <li><a href="#">Profile</a>
                      </li>
                      <li><a href="#">Settings</a>
@@ -354,12 +359,12 @@
                      <li class="divider"></li>
                      <li><a href="#">Logout</a>
                      </li>
-                  </ul>
+                  </ul>*@
                   <!-- END User links collapse-->
                </li>
                <!-- END user info-->
                <!-- START Menu-->
-               <li>
+               @*<li>
                   <a href="dashboard.html" title="Dashboard" data-toggle="collapse-next" class="has-submenu">
                      <em class="fa fa-dashboard"></em>
                      <div class="label label-primary pull-right">12</div>
@@ -384,8 +389,8 @@
                      </li>
                   </ul>
                   <!-- END SubMenu item-->
-               </li>
-               <li>
+               </li>*@
+               @*<li>
                   <a href="#" title="Charts" data-toggle="collapse-next" class="has-submenu">
                      <em class="fa fa-bar-chart-o"></em>
                      <span class="item-text">Charts</span>
@@ -404,8 +409,8 @@
                      </li>
                   </ul>
                   <!-- END SubMenu item-->
-               </li>
-               <li>
+               </li>*@
+               @*<li>
                   <a href="#" title="Tables" data-toggle="collapse-next" class="has-submenu">
                      <em class="fa fa-table"></em>
                      <span class="item-text">Tables</span>
@@ -429,8 +434,8 @@
                      </li>
                   </ul>
                   <!-- END SubMenu item-->
-               </li>
-               <li>
+               </li>*@
+               @*<li>
                   <a href="#" title="Forms" data-toggle="collapse-next" class="has-submenu">
                      <em class="fa fa-edit"></em>
                      <div class="label label-primary pull-right">new</div>
@@ -461,8 +466,8 @@
                      </li>
                   </ul>
                   <!-- END SubMenu item-->
-               </li>
-               <li>
+               </li>*@
+               @*<li>
                   <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
                      <em class="fa fa-wrench"></em>
                      <span class="item-text">Elements</span>
@@ -542,61 +547,51 @@
                      </li>
                   </ul>
                   <!-- END SubMenu item-->
-               </li>
+               </li>*@
                <li class="active">
                   <a href="#" title="Pages" data-toggle="collapse-next" class="has-submenu">
                      <em class="fa fa-file-text"></em>
                      <div class="label label-primary pull-right">new</div>
-                     <span class="item-text">Pages</span>
+                     <span class="item-text">Main Menu</span>
                   </a>
                   <!-- START SubMenu item-->
                   <ul class="nav collapse in">
+                      @if (User.Identity.IsAuthenticated)
+                      {
+                          if (User.IsInRole("Administrador"))
+                          {
                      <li>
-                        <a href="pages/landing.html" title="Landing" data-toggle="" class="no-submenu">
-                           <span class="item-text">Landing</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="pages/login.html" title="Login" data-toggle="" class="no-submenu">
-                           <span class="item-text">Login</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="pages/login-multi.html" title="Login Multi" data-toggle="" class="no-submenu">
-                           <span class="item-text">Login Multi</span>
+                        <a href="pages/landing.html" title="Owner" data-toggle="" class="no-submenu">
+                           <span class="item-text">Owner</span>
                         </a>
                      </li>
                      <li>
-                        <a href="pages/signup.html" title="Sign up" data-toggle="" class="no-submenu">
-                           <span class="item-text">Sign up</span>
+                        <a href="pages/login.html" title="Houses" data-toggle="" class="no-submenu">
+                           <span class="item-text">Houses</span>
                         </a>
                      </li>
                      <li>
-                        <a href="pages/lock.html" title="Lock" data-toggle="" class="no-submenu">
-                           <span class="item-text">Lock</span>
+                        <a href="pages/login-multi.html" title="Movements" data-toggle="" class="no-submenu">
+                           <span class="item-text">Movements</span>
                         </a>
                      </li>
                      <li>
-                        <a href="pages/recover.html" title="Recover Password" data-toggle="" class="no-submenu">
-                           <span class="item-text">Recover Password</span>
+                        <a href="pages/signup.html" title="Reports" data-toggle="" class="no-submenu">
+                           <span class="item-text">Reports</span>
                         </a>
                      </li>
-                     <li class="active">
-                        <a href="template.html" title="Empty Template" data-toggle="" class="no-submenu">
-                           <span class="item-text">Empty Template</span>
-                        </a>
-                     </li>
+                          }
+                      }
+                      <span class="glyphicon-plus"></span>@Html.ActionLink("LogIn","Login","Account")
+                      @if (User.Identity.IsAuthenticated)
+                      {
                      <li>
-                        <a href="timeline.html" title="Timeline" data-toggle="" class="no-submenu">
-                           <span class="item-text">Timeline</span>
+                        <a href="pages/recover.html" title="LogOut " data-toggle="" class="no-submenu">
+                           <span class="item-text">LogOut</span>
                         </a>
-                     </li>
-                     <li>
-                        <a href="inbox.html" title="Mail Inbox" data-toggle="" class="no-submenu">
-                           <div class="label label-primary pull-right">new</div>
-                           <span class="item-text">Mail Inbox</span>
-                        </a>
-                     </li>
+                     </li>}
+                    
+                    
                   </ul>
                   <!-- END SubMenu item-->
                </li>
@@ -799,23 +794,24 @@
    <!-- END Main wrapper-->
    <!-- START Scripts-->
    <!-- Main vendor Scripts-->
-   <script src="vendor/jquery/jquery.min.js"></script>
-   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+   @*<script src="vendor/jquery/jquery.min.js"></script>
+   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>*@
    <!-- Plugins-->
-   <script src="vendor/chosen/chosen.jquery.min.js"></script>
+   @*<script src="vendor/chosen/chosen.jquery.min.js"></script>
    <script src="vendor/slider/js/bootstrap-slider.js"></script>
-   <script src="vendor/filestyle/bootstrap-filestyle.min.js"></script>
+   <script src="vendor/filestyle/bootstrap-filestyle.min.js"></script>*@
    <!-- Animo-->
-   <script src="vendor/animo/animo.min.js"></script>
+   @*<script src="vendor/animo/animo.min.js"></script>*@
    <!-- Sparklines-->
-   <script src="vendor/sparklines/jquery.sparkline.min.js"></script>
+   @*<script src="vendor/sparklines/jquery.sparkline.min.js"></script>*@
    <!-- Slimscroll-->
-   <script src="vendor/slimscroll/jquery.slimscroll.min.js"></script>
+   @*<script src="vendor/slimscroll/jquery.slimscroll.min.js"></script>*@
    <!-- START Page Custom Script-->
    <!-- END Page Custom Script-->
    <!-- App Main-->
-   <script src="app/js/app.js"></script>
+   @*<script src="app/js/app.js"></script>*@
    <!-- END Scripts-->
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>
