@@ -591,9 +591,12 @@
                      </li>
                           }
                       }
+                     @if (User.Identity.IsAuthenticated)
+                     {
                       <li>
                          @Html.ActionLink("LogIn", "Login", "Account")
                       </li>
+                     }
                       @if (User.Identity.IsAuthenticated)
                       {
                      <li>
