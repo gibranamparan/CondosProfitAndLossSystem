@@ -67,24 +67,32 @@ namespace Sunvalley_PLSystem.Controllers
 
         public ActionResult Create(Movement movement)
         {
+            decimal balanceAnterior = 0;
             if (ModelState.IsValid)
             {
                 movement.createBy = User.Identity.GetUserName();
                 movement.UserID = User.Identity.GetUserId(); ;
-                movement.transactionDate = DateTime.Today;
 
                 movement.amount = movement.qty * movement.value;
 
-                decimal balanceAnterior = db.Movements.OrderBy(mov => mov.transactionDate).First().balance;
+                //var balances = from movi in db.Movements
+                //               where movi.houseID == movement.houseID
+                //               orderby movi.transactionDate descending
+                //               select movi;
+                //decimal b = balances.Take(1).s;
+                try {
+                    balanceAnterior = db.Movements.Where(mov => mov.houseID == movement.houseID).OrderByDescending(mov => mov.transactionDate).First().balance;
+                }
+                catch { }
                 if (movement.amount >= 0)
                 {
                     movement.balance = balanceAnterior+movement.amount;
                 }
                 else
                 {
-                    movement.balance = balanceAnterior - movement.amount;
+                    movement.balance = balanceAnterior - (movement.amount*-1);
                 }
-
+                movement.transactionDate = DateTime.Now;
                 db.Movements.Add(movement);
                 db.SaveChanges();
                 int id = movement.houseID;
