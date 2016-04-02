@@ -74,16 +74,16 @@
                             {
                                 <td>
 
-                                    <span class="glyphicon glyphicon-edit"></span>@Html.ActionLink("Edit", "Edit", new { id = item.houseID }) |
-                                    <span class="glyphicon glyphicon-info-sign"></span>@Html.ActionLink("Movements", "Details", new { id = item.houseID }) |
-                                    <span class="glyphicon glyphicon-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.houseID })
+                                    <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = item.houseID }) |
+                                    <span class="fa fa-reorder"></span>@Html.ActionLink("Movements", "Details", new { id = item.houseID }) |
+                                    <span class="fa fa-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.houseID })
                                 </td>
 
                             }
                             if (User.IsInRole("Cliente"))
                             {
                                 <td>
-                                    <span class="glyphicon glyphicon-info-sign"></span>@Html.ActionLink("Movements", "Details", new { id = item.houseID })
+                                    <span class="fa fa-reorder"></span>@Html.ActionLink("Movements", "Details", new { id = item.houseID })
                                 </td>
 
                             }
