@@ -50,7 +50,20 @@
          <!-- START navbar header-->
          <div class="navbar-header">
             <a href="#" class="navbar-brand">
-               <div class="brand-logo">SunValley</div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Administrador"))
+                    {
+                        <div class="brand-logo">Administrador</div>
+                    }
+                    else if (User.IsInRole("Cliente"))
+                    {
+                        <div class="brand-logo">Cliente</div>
+                    }
+
+                }
+                else {  <div class="brand-logo">SunValley</div>}
+
                <div class="brand-logo-collapsed"></div>
             </a>
          </div>
