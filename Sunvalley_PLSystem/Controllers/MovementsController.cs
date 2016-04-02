@@ -65,13 +65,26 @@ namespace Sunvalley_PLSystem.Controllers
         //[Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Create([Bind(Include = "movementID,createBy,transactionDate,code,description,value,qty,amount,balance,houseID,UserID")] Movement movement)
+        public ActionResult Create(Movement movement)
         {
             if (ModelState.IsValid)
             {
                 movement.createBy = User.Identity.GetUserName();
                 movement.UserID = User.Identity.GetUserId(); ;
                 movement.transactionDate = DateTime.Today;
+
+                movement.amount = movement.qty * movement.value;
+
+                decimal balanceAnterior = db.Movements.OrderBy(mov => mov.transactionDate).First().balance;
+                if (movement.amount >= 0)
+                {
+                    movement.balance = balanceAnterior+movement.amount;
+                }
+                else
+                {
+                    movement.balance = balanceAnterior - movement.amount;
+                }
+
                 db.Movements.Add(movement);
                 db.SaveChanges();
                 int id = movement.houseID;
