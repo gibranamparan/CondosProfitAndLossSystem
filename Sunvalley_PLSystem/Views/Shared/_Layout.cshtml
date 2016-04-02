@@ -561,19 +561,13 @@
                           if (User.IsInRole("Administrador"))
                           {
                      <li>
-                        <a href="pages/landing.html" title="Owner" data-toggle="" class="no-submenu">
-                           <span class="item-text">Owner</span>
-                        </a>
+                        @Html.ActionLink("Owner", "Index", "Account")
                      </li>
                      <li>
-                        <a href="pages/login.html" title="Houses" data-toggle="" class="no-submenu">
-                           <span class="item-text">Houses</span>
-                        </a>
+                        @Html.ActionLink("Houses", "Index", "Houses")
                      </li>
                      <li>
-                        <a href="pages/login-multi.html" title="Movements" data-toggle="" class="no-submenu">
-                           <span class="item-text">Movements</span>
-                        </a>
+                         @Html.ActionLink("Movements", "Index", "Movements")
                      </li>
                      <li>
                         <a href="pages/signup.html" title="Reports" data-toggle="" class="no-submenu">
@@ -582,7 +576,9 @@
                      </li>
                           }
                       }
-                      <span class="glyphicon-plus"></span>@Html.ActionLink("LogIn","Login","Account")
+                      <li>
+                          <span class="glyphicon-plus"></span>@Html.ActionLink("LogIn", "Login", "Account")
+                      </li>
                       @if (User.Identity.IsAuthenticated)
                       {
                      <li>
