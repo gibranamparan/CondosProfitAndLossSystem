@@ -24,10 +24,7 @@ textarea {
 }
 
 @media print{
-    *:not(table){
-        display:none;
-    }
-
+   
     /*table.imprimible{
         display: !important;
     }*/

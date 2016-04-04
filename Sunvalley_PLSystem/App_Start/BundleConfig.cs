@@ -32,7 +32,8 @@ namespace Sunvalley_PLSystem
                 /*Estilos*/
             bundles.Add(new StyleBundle("~/app").Include(
                       "~/app/css/bootstrap.css",
-                      "~/app/css/app.css"));
+                      "~/app/css/app.css",
+                      "~/app/css/print.css)"));
 
 
             bundles.Add(new StyleBundle("~/vendor").Include(

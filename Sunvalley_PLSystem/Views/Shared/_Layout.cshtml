@@ -26,6 +26,7 @@
     @Scripts.Render("~/appS")
     @Scripts.Render("~/vendorS")
     @Scripts.Render("~/bundles/bootstrap")
+
    @*@String= ViewBag.NombreCompleto*@
 
    
@@ -49,9 +50,9 @@
    <!-- START Main wrapper-->
    <section class="wrapper">
       <!-- START Top Navbar-->
-      <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
+      <nav id="ParteLogo" role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
          <!-- START navbar header-->
-         <div class="navbar-header">
+         <div   class="navbar-header">
             <a href="#" class="navbar-brand" style="height: 77px;">
             @if (User.Identity.IsAuthenticated)
             {
@@ -327,7 +328,7 @@
       </nav>
       <!-- END Top Navbar-->
       <!-- START aside-->
-      <aside class="aside">
+      <aside id="BarraSide" class="aside">
          <!-- START Sidebar (left)-->
          <nav class="sidebar">
             <ul class="nav">
@@ -648,7 +649,7 @@
       </aside>
       <!-- End aside-->
       <!-- START aside-->
-      <aside class="offsidebar">
+      <aside id="BarraSide2" class="offsidebar">
          @*<!-- START Off Sidebar (right)-->
          <nav>
             <ul class="nav">

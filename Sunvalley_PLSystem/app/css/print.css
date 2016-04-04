@@ -1,0 +1,13 @@
+﻿
+@media print {
+    #ParteLogo {
+        display:none;
+    }
+
+    #BarraSide {
+        display:none;
+    }
+    #BarraSide2 {
+        display:none;
+    }
+}
