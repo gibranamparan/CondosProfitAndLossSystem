@@ -15,7 +15,8 @@
    <meta name="description" content="">
    <meta name="keywords" content="">
    <meta name="author" content="">
-   <title>SunValley Services - Profit and Loss System</title>
+   <title >SunValley Services - Profit and Loss System</title>
+    
    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
    <!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
    <!-- Bootstrap CSS-->
@@ -43,6 +44,8 @@
 </head>
 
 <body>
+
+    
    <!-- START Main wrapper-->
    <section class="wrapper">
       <!-- START Top Navbar-->
@@ -50,23 +53,12 @@
          <!-- START navbar header-->
          <div class="navbar-header">
             <a href="#" class="navbar-brand">
-                @if (User.Identity.IsAuthenticated)
-                {
-                    if (User.IsInRole("Administrador"))
-                    {
-                        <div class="brand-logo">Administrador</div>
-                    }
-                    else if (User.IsInRole("Cliente"))
-                    {
-                        <div class="brand-logo">Cliente</div>
-                    }
-
-                }
-                else {  <div class="brand-logo">SunValley</div>}
+               <div class="brand-logo">SunValley</div>
 
                <div class="brand-logo-collapsed"></div>
             </a>
          </div>
+          
          <!-- END navbar header-->
          <!-- START Nav wrapper-->
          <div class="nav-wrapper">
@@ -591,21 +583,18 @@
                      </li>
                           }
                       }
-                     @if (User.Identity.IsAuthenticated)
-                     {
-                      <li>
-                         @Html.ActionLink("LogIn", "Login", "Account")
-                      </li>
-                     }
                       @if (User.Identity.IsAuthenticated)
                       {
                      <li>
-                        <a href="pages/recover.html" title="LogOut " data-toggle="" class="no-submenu">
-                           <span class="item-text">LogOut</span>
-                        </a>
+                        @Html.ActionLink("LogOff", "LogOff", "Account")
                      </li>}
-                    
-                    
+                      else {
+                        <li>
+                            @Html.ActionLink("LogIn", "Login", "Account", FormMethod.Post, new { id = "logoutForm"})
+                        </li>
+                      }
+
+
                   </ul>
                   <!-- END SubMenu item-->
                </li>
@@ -800,6 +789,11 @@
          <!-- START Page content-->
          <section class="main-content">
              @RenderBody()
+
+
+             <div>
+                 <img src="~/Imagenes/Sun-Valley-Banner.jpg" style="width: 100%; margin-top: -33px;" />
+             </div>
          </section>
          <!-- END Page content-->
       </section>
@@ -826,6 +820,8 @@
    @*<script src="app/js/app.js"></script>*@
    <!-- END Scripts-->
     @RenderSection("scripts", required: false)
+
+   
 </body>
 
 </html>
