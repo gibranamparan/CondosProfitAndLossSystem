@@ -154,6 +154,7 @@ namespace Sunvalley_PLSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+   
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -163,7 +164,8 @@ namespace Sunvalley_PLSystem.Controllers
             // To enable password failures to trigger account lockout, change to shouldLockout: true
 
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-
+            String NombreCompleto = UserManager.FindByName(model.Email).firstName + " " + UserManager.FindByName(model.Email).lastName;
+            Session["NombreCompleto"] = NombreCompleto;
             switch (result)
             {
                 case SignInStatus.Success:

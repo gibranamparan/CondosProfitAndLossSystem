@@ -50,12 +50,14 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(DateTime fechaInicio, DateTime fechaFin)
+        public ActionResult Index(DateTime fechaInicio, DateTime fechaFin,int houseID)
         {
-            var Movimientos = from movement in db.Movements
-                              where (movement.transactionDate >= fechaInicio && movement.transactionDate <= fechaFin)
-                              select movement;
-            return View(Movimientos.ToList());
+            //var Movimientos = from movement in db.Movements
+            //                  where (movement.transactionDate >= fechaInicio && movement.transactionDate <= fechaFin && movement.UserID == User.Identity.GetUserId())
+            //                  select movement;
+            var Movimientos = db.Movements.Where(mov => mov.transactionDate >= fechaInicio && mov.transactionDate <= fechaFin && mov.houseID == houseID);
+            //return View(Movimientos.ToList());
+            return RedirectToAction("Details", "Houses", new { id = houseID });
         }
 
         // POST: Movements/Create
