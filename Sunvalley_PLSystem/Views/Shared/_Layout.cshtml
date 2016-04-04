@@ -26,7 +26,7 @@
     @Scripts.Render("~/appS")
     @Scripts.Render("~/vendorS")
     @Scripts.Render("~/bundles/bootstrap")
-   
+   @*@String= ViewBag.NombreCompleto*@
 
    
    <!-- Vendor CSS-->
@@ -52,16 +52,19 @@
       <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
          <!-- START navbar header-->
          <div class="navbar-header">
-            <a href="#" class="navbar-brand">
+            <a href="#" class="navbar-brand" style="height: 77px;">
             @if (User.Identity.IsAuthenticated)
             {
                 if (User.IsInRole("Administrador"))
                 {
                     <div class="brand-logo">Administrador</div>
+                   <span class="fa fa-hand-peace-o">WELCOME @ViewBag.NombreCompleto</span> 
+
                 }
                 else
                 {
                     <div class="brand-logo">Cliente</div>
+                   <span class="fa fa-hand-peace-o">WELCOME @ViewBag.NombreCompleto</span> 
                 }
             }
             else { <div class="brand-logo">SunValley</div> }
