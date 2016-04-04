@@ -7,6 +7,16 @@
 <html lang="en" class="no-ie">
 <!--<![endif]-->
 
+
+@{ 
+
+
+    String NombreCompleto = "";
+    if (Session["NombreCompleto"] != null)
+    {
+        NombreCompleto = (String)Session["NombreCompleto"];
+    }
+    }
 <head>
    <!-- Meta-->
    <meta charset="utf-8">
@@ -58,13 +68,13 @@
                 if (User.IsInRole("Administrador"))
                 {
                     <div class="brand-logo">Administrador</div>
-                   <span class="fa fa-hand-peace-o">WELCOME @ViewBag.NombreCompleto</span> 
+                   <span class="fa fa-hand-peace-o">WELCOME @NombreCompleto</span> 
 
                 }
                 else
                 {
                     <div class="brand-logo">Cliente</div>
-                   <span class="fa fa-hand-peace-o">WELCOME @ViewBag.NombreCompleto</span> 
+                   <span class="fa fa-hand-peace-o">WELCOME @NombreCompleto</span> 
                 }
             }
             else { <div class="brand-logo">SunValley</div> }

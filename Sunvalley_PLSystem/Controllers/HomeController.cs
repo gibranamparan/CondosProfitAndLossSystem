@@ -14,7 +14,7 @@ namespace Sunvalley_PLSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        public HomeController(){}
+        public HomeController() { }
         public HomeController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
@@ -45,15 +45,15 @@ namespace Sunvalley_PLSystem.Controllers
         }
         public ActionResult Index()
         {
-            try {
-                String nombre = UserManager.FindById(User.Identity.GetUserId()).firstName;
-                String apellido = UserManager.FindById(User.Identity.GetUserId()).lastName;
-                ViewBag.NombreCompleto = nombre + " " + apellido;
-            }
-            catch { }
+            //try
+            //{
+            //    String nombre = UserManager.FindById(User.Identity.GetUserId()).firstName;
+            //    String apellido = UserManager.FindById(User.Identity.GetUserId()).lastName;
+            //    ViewBag.NombreCompleto = nombre + " " + apellido;
+            //}
+            //catch { }
             return View();
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
