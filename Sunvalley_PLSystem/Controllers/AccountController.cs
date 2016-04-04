@@ -124,7 +124,7 @@ namespace Sunvalley_PLSystem.Controllers
             return View(user);
         }
         // GET: Houses/Details/5
-        [Authorize(Roles = "Administrador")]
+        [Authorize]
         public ActionResult Details(String id)
         {
             if (id == null)
