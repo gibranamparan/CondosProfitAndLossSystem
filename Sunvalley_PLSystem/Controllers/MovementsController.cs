@@ -132,7 +132,7 @@ namespace Sunvalley_PLSystem.Controllers
             {
                 db.Entry(movement).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Houses", new { id = movement.houseID });
             }
             ViewBag.houseID = new SelectList(db.Houses, "houseID", "name", movement.houseID);
             return View(movement);
@@ -163,7 +163,7 @@ namespace Sunvalley_PLSystem.Controllers
             Movement movement = db.Movements.Find(id);
             db.Movements.Remove(movement);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Houses", new { id = movement.houseID });
         }
 
         protected override void Dispose(bool disposing)

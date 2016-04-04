@@ -219,9 +219,9 @@
                                 if (User.IsInRole("Administrador"))
                                 {
                                     <td>
-                                        <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = item.movementID }) |
+                                        <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit","Movements", new { id = item.movementID },null) |
                                         |
-                                        <span class="fa fa-trash-o"></span> @Html.ActionLink("Delete", "Delete", new { id = item.movementID })
+                                        <span class="fa fa-trash-o"></span> @Html.ActionLink("Delete", "Delete","Movements", new { id = item.movementID },null)
                                     </td>
                                 }
                             } 
