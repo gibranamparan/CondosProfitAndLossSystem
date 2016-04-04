@@ -13,22 +13,22 @@
     </p>*@
 <br>
 
-<div style="text-align:right;">
+<div style="text-align:right;" class="hidden-print">
 
     @using (Html.BeginForm("Index", "Movements", "POST"))
     {
         @Html.Label("Del")
-        <input type="date" name="fechaInicio">
+        <input type="date" name="fechaInicio" class="hidden-print">
         @Html.Label("Al")
-        <input type="date" name="fechaFin">
-        <input type="submit" value="Mostrar" />
+        <input type="date" name="fechaFin" class="hidden-print">
+        <input type="submit" value="Mostrar" class="hidden-print" />
     }
 
 
 </div>
 <div class="container">
     <div class="panel panel-warning">
-        <div class="panel-heading">
+        <div class="panel-heading hidden-print">
             <h4>Movements</h4>
             </div>
         <div class="panel-body">
@@ -101,9 +101,9 @@
             </div>
         </div>
     </div>
-            <div style="text-align:right;">
+            @*<div style="text-align:right;">
                 <button type="button" class="btn btn-success" onclick="javascript: printMovement('printMovement')" style="text-align:right;margin-top:20px">Imprimir</button>
-            </div>
+            </div>*@
             @section Scripts {
                 <script>
                     function printMovement() {

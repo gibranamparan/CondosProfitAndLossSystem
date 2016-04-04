@@ -5,12 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2 class="hidden-print">Details</h2>
 
 <div>
-    <h4>Movement</h4>
+    <h4 >Movement</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal hidden-print">
         <dt>
             @Html.DisplayNameFor(model => model.house.name)
         </dt>
@@ -93,7 +93,7 @@
 
     </dl>
 </div>
-<p>
-   <span class="fa fa-reorder"></span> @Html.ActionLink("Edit", "Edit", new { id = Model.movementID }) |
-    <span class="fa fa-mail-reply"></span>@Html.ActionLink("Back to List", "Index")
+<p class="hidden-print"
+   <span class="fa fa-reorder hidden-print"></span> @Html.ActionLink("Edit", "Edit", new { id = Model.movementID }) |
+    <span class="fa fa-mail-reply hidden-print"></span>@Html.ActionLink("Back to List", "Index")
 </p>

@@ -10,4 +10,13 @@
     #BarraSide2 {
         display:none;
     }
+   #AccionesLabel {
+
+        display:none
+    }
+    #Acciones {
+        display:none;
+    }
+    #hPanel {display:none;
+    }
 }

@@ -12,7 +12,7 @@
     <hr />
     <div class="container">
         <div class="panel panel-warning" style="width:93%">
-            <div class="panel-heading">
+            <div class="panel-heading hidden-print">
                 <h4>Owner Details</h4>
                 </div>
             <div class="panel-body">
@@ -253,8 +253,8 @@
                         </td>*@
                     </tr>
                 </table>
-              <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-                <span class="fa fa-mail-reply"></span>@Html.ActionLink("Back to List", "Index")
+              <span class="fa fa-pencil-square-o hidden-print"></span>@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                <span class="fa fa-mail-reply hidden-print"></span>@Html.ActionLink("Back to List", "Index")
                 </div>
             </div>
         </div>
@@ -269,7 +269,7 @@
         <div class="container">
             <div class="panel panel-warning" style="width:93%">
 
-                <div class="panel-heading" >
+                <div class="panel-heading hidden-print" >
                     <h4>Houses of Owner</h4><span class="fa fa-plus-circle"></span>@Html.ActionLink("Create new house", "Create", "Houses", new { id = Model.Id }, null)
                     </div>
 
@@ -361,7 +361,7 @@
                                 if (User.IsInRole("Administrador"))
                                 {
 
-                                    <td>
+                                    <td class="hidden-print">
                                         <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = item.houseID }) |
                                         <span class="fa fa-reorder"></span>@Html.ActionLink("Details", "Details", new { id = item.houseID }) |
                                         <span class="fa fa-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.houseID })

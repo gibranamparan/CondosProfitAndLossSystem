@@ -13,7 +13,7 @@
     </p>*@
 <div class="container">
     <div class="panel panel-warning">
-        <div class="panel-heading">
+        <div class="panel-heading hidden-print">
             <strong style="text-align:center"><h4>All Houses</h4></strong>
             </div>
         <div class="panel-body">
@@ -75,7 +75,7 @@
                         {
                             if (User.IsInRole("Administrador"))
                             {
-                                <td>
+                                <td class="hidden-print">
 
                                     <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = item.houseID }) |
                                     <span class="fa fa-reorder"></span>@Html.ActionLink("Movements", "Details", new { id = item.houseID }) |
@@ -86,7 +86,7 @@
                             if (User.IsInRole("Cliente"))
                             {
                                 <td>
-                                    <span class="fa fa-reorder"></span>@Html.ActionLink("Movements", "Details", new { id = item.houseID })
+                                    <span class="fa fa-reorder hidden-print"></span>@Html.ActionLink("Movements", "Details", new { id = item.houseID })
                                 </td>
 
                             }

@@ -15,7 +15,7 @@
     <div class="container">
         
         <div class="panel panel-warning" style="width:93%">
-            <div class="panel-heading">
+            <div class="panel-heading hidden-print">
                 <h4 style="text-align:center;">House Details</h4>
                </div>
             <div class="panel-body">
@@ -121,7 +121,7 @@
 
                 </table>
                 @*@Html.ActionLink("Edit", "Edit", new { id = Model.houseID }) |*@
-                <span class="fa fa-reply"></span> @Html.ActionLink("Back to List", "Index")
+                <span class="fa fa-reply hidden-print"></span> @Html.ActionLink("Back to List", "Index")
             </div>
             
         </div>
