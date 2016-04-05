@@ -9,6 +9,9 @@
    Component: bootstrap-reset.less
  ========================================================================== */
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700);
+
+
+*{transition:none!important;}
 a {
   outline: none !important;
 }
@@ -18,7 +21,7 @@ hr {
 .page-header {
   border-bottom-color: #e1e1e1;
 }
-*{transition:none!important}
+
 .panel {
   border: 1px solid #eee;
   border-bottom: 1px solid #d1d2d3;

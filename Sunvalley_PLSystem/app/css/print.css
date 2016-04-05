@@ -20,15 +20,18 @@
     #hPanel {display:none;
     }
 
+    #SectionP {
+            margin-top:5px;
+            margin-right:1000px !important;
+        }
+
     @media only screen and (min-width: 768px)
     {
         
         .wrapper > section {
-            margin-left: 50px !important;
-        }
-        #tableprintmedia{
-             margin-left: 100px !important;
+            margin-left: 0px !important;
         }
 
+      
     }
 }
