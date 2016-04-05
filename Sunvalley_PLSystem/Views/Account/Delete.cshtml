@@ -11,130 +11,157 @@
 <div>
     <h4>ApplicationUser</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.firstName)
-        </dt>
+    <table class="table-striped table table-responsive table-hover" >
+        <tr>
+        <th> @Html.DisplayName("First Name")</th>
 
-        <dd>
-            @Html.DisplayFor(model => model.firstName)
-        </dd>
+<td>
+    @Html.DisplayFor(model => model.firstName)
+</td>
+        </tr>
+        
+        <tr>
+        <th>
+            @Html.DisplayName("Last Name")
+        </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lastName)
-        </dt>
-
-        <dd>
+        <td>
             @Html.DisplayFor(model => model.lastName)
-        </dd>
+        </td>
+            </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.createAt)
-        </dt>
 
-        <dd>
+        <tr>
+        <th>
+            @Html.DisplayName("Create At")
+        </th>
+
+        <td>
             @Html.DisplayFor(model => model.createAt)
-        </dd>
+        </td>
+            </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.company)
-        </dt>
+        <tr>
+        <th>
+            @Html.DisplayName("Company")
+        </th>
 
-        <dd>
+        <td>
             @Html.DisplayFor(model => model.company)
-        </dd>
+        </td>
+            </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.adress1)
-        </dt>
+        <tr>
+        <th>
+            @Html.DisplayName("Adress")
+        </th>
 
-        <dd>
+        <td>
             @Html.DisplayFor(model => model.adress1)
-        </dd>
+        </td>
+            </tr>
 
-        
+        <tr>
+        <th>
+            @Html.DisplayName("City")
+        </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.city)
-        </dt>
-
-        <dd>
+        <td>
             @Html.DisplayFor(model => model.city)
-        </dd>
+        </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.country)
-        </dt>
+            </tr>
 
-        <dd>
+        <tr>
+        <th>
+            @Html.DisplayName("Country")
+        </th>
+
+        <td>
             @Html.DisplayFor(model => model.country)
-        </dd>
+        </td>
+            </tr>
 
-        
-        <dt>
-            @Html.DisplayNameFor(model => model.postalCode)
-        </dt>
+        <tr>
+            <th>
+                @Html.DisplayName("Postal Code")
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.postalCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.homePhone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.homePhone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.businessPhone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.businessPhone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.businesFax)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.businesFax)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.mobilePhone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.mobilePhone)
-        </dd>
-
+            <td>@Html.DisplayFor(model => model.postalCode)</td>
+        </tr>
        
-
+           
        
+        <tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <th>
+                @Html.DisplayName("Home Phone")
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.homePhone)
+            </td>
 
-     
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
+        </tr>
         
 
-    </dl>
+        @*<dt>
+                @Html.DisplayName("Bussnies")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.businessPhone)
+            </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.businesFax)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.businesFax)
+            </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.mobilePhone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mobilePhone)
+            </dd>*@
+
+
+
+
+        <tr>
+
+            <th>
+                @Html.DisplayName("E-mail")
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Email)
+            </td>
+
+        </tr>
+       
+
+        <tr>
+
+            <th>
+                @Html.DisplayName("Phone Number")
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </td>
+
+
+
+        </tr>
+      
+
+    </table>
+
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
