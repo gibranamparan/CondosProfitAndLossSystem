@@ -18,6 +18,7 @@ hr {
 .page-header {
   border-bottom-color: #e1e1e1;
 }
+*{transition:none!important}
 .panel {
   border: 1px solid #eee;
   border-bottom: 1px solid #d1d2d3;
