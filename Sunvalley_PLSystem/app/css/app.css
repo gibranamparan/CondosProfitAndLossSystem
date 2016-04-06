@@ -35,8 +35,8 @@ hr {
   border: 1px solid #eee;
   border-bottom: 1px solid #d1d2d3;
   /*Reglas Para el panel de las tablas*/
-  margin-left: -40px;
-  margin-right: 166px;
+  /*margin-left: -40px;
+  margin-right: 166px;*/
 }
 .panel .panel-heading a {
   text-decoration: none !important;
