@@ -5,13 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>ApplicationUser</h4>
     <hr />
-    <table class="table-striped table table-responsive table-hover" >
+   
+    <table id="Delete" class="table-striped table table-responsive table-hover" >
         <tr>
         <th> @Html.DisplayName("First Name")</th>
 
@@ -21,7 +23,7 @@
         </tr>
         
         <tr>
-        <th>
+        <th >
             @Html.DisplayName("Last Name")
         </th>
 

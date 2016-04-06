@@ -33,7 +33,7 @@ namespace Sunvalley_PLSystem
             bundles.Add(new StyleBundle("~/app").Include(
                       "~/app/css/bootstrap.css",
                       "~/app/css/app.css",
-                      "~/app/css/print.css)"));
+                      "~/app/css/print.css"));
 
 
             bundles.Add(new StyleBundle("~/vendor").Include(

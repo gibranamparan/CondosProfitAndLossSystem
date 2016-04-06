@@ -10,6 +10,18 @@
  ========================================================================== */
 *{transition:none!important}
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700);
+   
+
+#Delete th{
+        background-color:orange !important;
+        color:white !important;
+    }
+
+    #Delete{
+        width:50% !important;
+    }
+
+*{transition:none!important;}
 a {
   outline: none !important;
 }
@@ -19,6 +31,7 @@ hr {
 .page-header {
   border-bottom-color: #e1e1e1;
 }
+
 .panel {
   border: 1px solid #eee;
   border-bottom: 1px solid #d1d2d3;

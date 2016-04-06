@@ -97,3 +97,6 @@
    <span class="fa fa-reorder hidden-print"></span> @Html.ActionLink("Edit", "Edit", new { id = Model.movementID }) |
     <span class="fa fa-mail-reply hidden-print"></span>@Html.ActionLink("Back to List", "Index")
 </p>
+<input type="button" class="hidden-print"
+       onClick="window.print()"
+       value="Print This Report" />

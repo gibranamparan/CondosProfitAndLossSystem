@@ -11,88 +11,108 @@
 <div>
     <h4>House</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
+    <table class="table table-striped" id="Delete">
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.status)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.name)
+            </td>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.created)
-        </dt>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.created)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.status)
+            </td>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.area)
-        </dt>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.created)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.area)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.created)
+            </td>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.adress)
-        </dt>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.area)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.adress)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.area)
+            </td>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cityArea)
-        </dt>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.adress)
+            </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.cityArea)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.adress)
+            </td>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.country)
-        </dt>
+        <tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.country)
-        </dd>
+            <th>
+                @Html.DisplayNameFor(model => model.cityArea)
+            </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.stateProvince)
-        </dt>
+            <td>
+                @Html.DisplayFor(model => model.cityArea)
+            </td>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.stateProvince)
-        </dd>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.country)
+            </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.postalCode)
-        </dt>
+            <td>
+                @Html.DisplayFor(model => model.country)
+            </td>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.postalCode)
-        </dd>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.stateProvince)
+            </th>
 
+            <td>
+                @Html.DisplayFor(model => model.stateProvince)
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.postalCode)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.postalCode)
+            </td>
+        </tr>
         @*<dt>
-            @Html.DisplayNameFor(model => model.UserID)
-        </dt>
+                @Html.DisplayNameFor(model => model.UserID)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserID)
-        </dd>*@
+            <dd>
+                @Html.DisplayFor(model => model.UserID)
+            </dd>*@
 
-    </dl>
+    </table>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
