@@ -32,15 +32,27 @@ namespace Sunvalley_PLSystem.Controllers
 
         // GET: Houses/Details/5
         [Authorize]
-        public ActionResult Details(int? id)
+        public ActionResult Details(/*DateTime? fechaInicio, DateTime? fechaFin, */int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             House house = db.Houses.Find(id);
-            var movements = from movement in db.Movements where movement.houseID == id select movement;
-            ViewBag.movements = movements.ToList();
+           
+            //if(fechaInicio==null && fechaFin == null)
+            //{
+                
+
+            //    //var movements = from movement in db.Movements where movement.houseID == id select movement;
+            //    //ViewBag.movements = movements.ToList();
+            //}
+            //else
+            //{
+            //    //house.movimientos.Where(mov => mov.transactionDate >= fechaInicio && mov.transactionDate <= fechaFin && mov.houseID == id);
+            //    var movementsFiltro = db.Movements.Where(mov => mov.transactionDate >= fechaInicio && mov.transactionDate <= fechaFin && mov.houseID == id);
+            //    ViewBag.movements = movementsFiltro.ToList();
+            //}
             if (house == null)
             {
                 return HttpNotFound();

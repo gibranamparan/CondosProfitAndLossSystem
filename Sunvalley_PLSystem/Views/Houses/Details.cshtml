@@ -4,7 +4,8 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
-  
+
+
 }
 
 
@@ -159,15 +160,15 @@
                 </div>
             <br />
             <div class="hidden-print">
-                @using (Html.BeginForm("Index", "Movements", "POST"))
+                @*@using (Html.BeginForm("Details", "Houses", "GET"))
             {
-                    @Html.Label("Del")
+                    @Html.Label("Start")
                     <input class="hidd" type="date" name="fechaInicio">
-                    @Html.Label("Al")
+                    @Html.Label("End")
                     <input type="date" name="fechaFin">
                     @Html.Hidden("houseID", Model.houseID)
                     <input type="submit" value="Mostrar" />
-                }
+                }*@
 
             </div>
             <div class="panel-body">
