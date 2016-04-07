@@ -595,7 +595,7 @@
                           if (User.IsInRole("Administrador"))
                           {
                      <li>
-                        @Html.ActionLink("Owner", "Index", "Account")
+                        @Html.ActionLink("Owners", "Index", "Account")
                      </li>
                      <li>
                         @Html.ActionLink("Houses", "Index", "Houses")
@@ -622,7 +622,7 @@
                       }
                                 @if (User.Identity.IsAuthenticated)
                                 {
-<li>
+            <li>
                         @Html.ActionLink("LogOff", "LogOff", "Account")
                      </li>}
                       else {
