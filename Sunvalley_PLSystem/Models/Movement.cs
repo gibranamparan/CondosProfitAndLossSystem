@@ -15,8 +15,8 @@ namespace Sunvalley_PLSystem.Models
         public string createBy { get; set; }
         [Display(Name = "Transaction Date")]
         public DateTime transactionDate { get; set; }
-        [Display(Name = "Code")]
-        public string code { get; set; }
+        [Display(Name = "type of movement")]
+        public string typeOfMovement { get; set; }
         [Display(Name = "Description")]
         public string description { get; set; }
         [Display(Name = "Value")]
@@ -31,6 +31,9 @@ namespace Sunvalley_PLSystem.Models
         //To one movement correspond one house
         public int houseID { get; set; }
         public virtual House house { get; set; }
+
+        public int serviceID { get; set; }
+        public virtual Services services { get;set;}
 
         //To one movement correspond one user
         public virtual String UserID { get; set; }

@@ -59,6 +59,7 @@ namespace Sunvalley_PLSystem.Models
         //Entidades definidas para atender requerimientos de logica de negocio
         public DbSet<House> Houses { get; set; }
         public DbSet<Movement> Movements { get; set; }
+        public DbSet<Services> Services { get; set; }
 
         ///public System.Data.Entity.DbSet<Sunvalley_PLSystem.Models.ApplicationUser> ApplicationUsers { get; set; }
 
