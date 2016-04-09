@@ -36,9 +36,9 @@
             @Html.LabelFor(model => model.typeOfMovement, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                  @Html.DropDownListFor(x => x.typeOfMovement, new SelectListItem[]{
-                    new SelectListItem() {Text = "Charge", Value="Charge"},
-                    new SelectListItem() {Text = "Contributions", Value="Contributions"},
-                    new SelectListItem() {Text = "Earnings", Value="Earnings"}})
+                    new SelectListItem() {Text = "Profit", Value="Profit"},
+                    new SelectListItem() {Text = "Loss", Value="Loss"},
+                    new SelectListItem() {Text = "Contribution", Value="Contribution"}})
             </div>
         </div>
         @*< div class="form-group">

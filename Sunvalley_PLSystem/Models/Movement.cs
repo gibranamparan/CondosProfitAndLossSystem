@@ -19,10 +19,6 @@ namespace Sunvalley_PLSystem.Models
         public string typeOfMovement { get; set; }
         [Display(Name = "Description")]
         public string description { get; set; }
-        [Display(Name = "Value")]
-        public decimal value { get; set; }
-        [Display(Name = "QTY")]
-        public int qty { get; set; }
         [Display(Name = "Amount")]
         public decimal amount { get; set; }
         [Display(Name = "Balance")]
