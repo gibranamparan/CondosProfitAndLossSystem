@@ -85,13 +85,13 @@ namespace Sunvalley_PLSystem.Controllers
                     balanceAnterior = db.Movements.Where(mov => mov.houseID == movement.houseID).OrderByDescending(mov => mov.transactionDate).First().balance;
                 }
                 catch { }
-                if (movement.amount >= 0)
+                if (movement.typeOfMovement=="Profit")
                 {
                     movement.balance = balanceAnterior+movement.amount;
                 }
-                else
+                else if(movement.typeOfMovement=="Loss")
                 {
-                    movement.balance = balanceAnterior - (movement.amount*-1);
+                    movement.balance = balanceAnterior - movement.amount;
                 }
                 movement.transactionDate = DateTime.Now;
                 db.Movements.Add(movement);
@@ -129,7 +129,7 @@ namespace Sunvalley_PLSystem.Controllers
         [HttpPost]
         //[Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "movementID,createBy,transactionDate,code,description,value,qty,amount,balance,houseID,UserID")] Movement movement)
+        public ActionResult Edit(Movement movement)
         {
             if (ModelState.IsValid)
             {

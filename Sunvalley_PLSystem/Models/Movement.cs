@@ -14,6 +14,7 @@ namespace Sunvalley_PLSystem.Models
         [Display(Name = "Create By")]
         public string createBy { get; set; }
         [Display(Name = "Transaction Date")]
+        [DataType(DataType.Date)]
         public DateTime transactionDate { get; set; }
         [Display(Name = "type of movement")]
         public string typeOfMovement { get; set; }
