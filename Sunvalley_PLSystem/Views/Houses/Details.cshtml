@@ -183,11 +183,18 @@
                         </th>
 
                         <th>
-                            @Html.DisplayName("Code")
+                            @Html.DisplayName("Transaction Date")
                         </th>
 
                         <th>
+                            @Html.DisplayName("Type of movement")
+                        </th>
+
+                        @*<th>
                             @Html.DisplayName("Value")
+                        </th>*@
+                        <th>
+                            @Html.DisplayName("Service")
                         </th>
 
                         <th>
@@ -212,12 +219,20 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.code)
+                                @Html.DisplayFor(modelItem => item.transactionDate)
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.value)
+                                @Html.DisplayFor(modelItem => item.typeOfMovement)
                             </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.services.name)
+                            </td>
+
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.value)
+                            </td>*@
 
                             <td>
                                 @Html.DisplayFor(modelItem => item.amount)

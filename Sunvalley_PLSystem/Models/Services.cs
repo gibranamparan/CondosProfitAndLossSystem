@@ -10,6 +10,7 @@ namespace Sunvalley_PLSystem.Models
     {
         [Key]
         public int serviceID { get; set; }
+        [Display(Name = "Service")]
         public string name { get; set; }
 
         public virtual ICollection<Movement> Movements { get; set; }

@@ -46,6 +46,8 @@ namespace Sunvalley_PLSystem.Controllers
         {
             ViewBag.houseID = new SelectList(db.Houses, "houseID", "name");
             ViewBag.houseID = id;
+            SelectList lista = new SelectList(db.Services,"serviceID","name");
+            ViewBag.Services = lista;
             return View();
         }
 
@@ -74,9 +76,6 @@ namespace Sunvalley_PLSystem.Controllers
             {
                 movement.createBy = User.Identity.GetUserName();
                 movement.UserID = User.Identity.GetUserId(); ;
-
-                movement.amount = movement.qty * movement.value;
-
                 //var balances = from movi in db.Movements
                 //               where movi.houseID == movement.houseID
                 //               orderby movi.transactionDate descending
@@ -119,6 +118,8 @@ namespace Sunvalley_PLSystem.Controllers
                 return HttpNotFound();
             }
             ViewBag.houseID = new SelectList(db.Houses, "houseID", "name", movement.houseID);
+            SelectList lista = new SelectList(db.Services, "serviceID", "name");
+            ViewBag.Services = lista;
             return View(movement);
         }
 
