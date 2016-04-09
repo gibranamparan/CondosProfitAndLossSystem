@@ -9,8 +9,7 @@ namespace Sunvalley_PLSystem
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery.dataTables.min.js"));
+                        "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -33,6 +32,7 @@ namespace Sunvalley_PLSystem
             bundles.Add(new StyleBundle("~/app").Include(
                       "~/app/css/bootstrap.css",
                       "~/app/css/app.css",
+                      "~/app/css/jquery.dataTables.css",
                       "~/app/css/print.css"));
 
 
@@ -43,14 +43,15 @@ namespace Sunvalley_PLSystem
 
             /*Scripts*/
             bundles.Add(new ScriptBundle("~/appS").Include(
-                      "~/app/js/app.js"));
+                      "~/app/js/app.js",
+                       "~/app/js/jquery.dataTables.js"));
 
             bundles.Add(new ScriptBundle("~/vendorS").Include(
                         "~/vendor/modernizr/modernizr.js",
                       "~/vendor/fastclick/fastclick.js",
-                      "~/vendor/jquery/jquery.min.js",
+                      //"~/vendor/jquery/jquery.min.js",
                       "~/vendor/bootstrap/js/bootstrap.min.js",
-                      "~/vendor/chosen/chosen.jquery.min.js",
+                      //"~/vendor/chosen/chosen.jquery.min.js",
                       "~/vendor/slider/js/bootstrap-slider.js",
                       "~/vendor/filestyle/bootstrap-filestyle.min.js",
                       "~/vendor/animo/animo.min.js",

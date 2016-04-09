@@ -206,6 +206,7 @@
   <ItemGroup>
     <Content Include="app\css\app.css" />
     <Content Include="app\css\bootstrap.css" />
+    <Content Include="app\css\jquery.dataTables.css" />
     <Content Include="app\css\landing.css" />
     <Content Include="app\css\print.css" />
     <Content Include="app\img\background.jpg" />
@@ -254,6 +255,8 @@
     <Content Include="app\img\user\12.jpg" />
     <Content Include="app\img\user\13.jpg" />
     <Content Include="app\js\app.js" />
+    <Content Include="app\js\jquery.dataTables.js" />
+    <Content Include="app\js\jquery.js" />
     <Content Include="app\js\pages.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />

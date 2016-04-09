@@ -31,15 +31,19 @@
    <!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
    <!-- Bootstrap CSS-->
    <!--<link rel="stylesheet" href="app/css/bootstrap.css">-->
+    
+    
     @Styles.Render("~/app")
     @Styles.Render("~/vendor")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/appS")
     @Scripts.Render("~/vendorS")
-    @Scripts.Render("~/bundles/bootstrap")
-
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    
+    
+        
+    
    @*@String= ViewBag.NombreCompleto*@
-
    
    <!-- Vendor CSS-->
    @*<link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
@@ -856,7 +860,23 @@
    <!-- END Scripts-->
     @RenderSection("scripts", required: false)
 
+
+
+
    
+        
 </body>
 
+
+
 </html>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabla').DataTable();
+        });
+
+    </script>
+  
+
+

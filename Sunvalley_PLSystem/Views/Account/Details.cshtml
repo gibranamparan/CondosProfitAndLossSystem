@@ -276,8 +276,9 @@
                     </div>
 
                   <div class="panel-body">
-                    <table class="table table-striped table-hover col-md-12 table-responsive" style="margin-top:20px;">
-                        <tr>
+                    <table id="tabla" class="table table-striped table-hover col-md-12 table-responsive" style="margin-top:20px;">
+                       <thead>
+                         <tr>
                             @*<th>
                                     @Html.DisplayName("Name of house")
                                 </th>*@
@@ -316,7 +317,8 @@
                                 </th>*@
                             <th></th>
                         </tr>
-
+                           </thead>
+                        <tbody>
                     @foreach (var item in Model.Houses)
                     {
                         <tr>
@@ -372,7 +374,7 @@
                             }
                         </tr>
                     }
-
+                            </tbody>
                     </table>
                 </div>
 
