@@ -10,7 +10,11 @@
  ========================================================================== */
 *{transition:none!important}
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700);
-   
+
+#tabla th {
+   background-color:orange;
+   color:black !important;
+}
 
 #Delete th{
         background-color:orange !important;

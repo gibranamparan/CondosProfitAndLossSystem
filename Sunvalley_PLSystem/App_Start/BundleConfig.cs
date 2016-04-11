@@ -44,7 +44,8 @@ namespace Sunvalley_PLSystem
             /*Scripts*/
             bundles.Add(new ScriptBundle("~/appS").Include(
                       "~/app/js/app.js",
-                       "~/app/js/jquery.dataTables.js"));
+                       "~/app/js/jquery.dataTables.js",
+                       "~/app/js/dataTables.buttons.min.js"));
 
             bundles.Add(new ScriptBundle("~/vendorS").Include(
                         "~/vendor/modernizr/modernizr.js",

@@ -255,6 +255,8 @@
     <Content Include="app\img\user\12.jpg" />
     <Content Include="app\img\user\13.jpg" />
     <Content Include="app\js\app.js" />
+    <Content Include="app\js\buttons.print.min.js" />
+    <Content Include="app\js\dataTables.buttons.min.js" />
     <Content Include="app\js\jquery.dataTables.js" />
     <Content Include="app\js\jquery.js" />
     <Content Include="app\js\pages.js" />
