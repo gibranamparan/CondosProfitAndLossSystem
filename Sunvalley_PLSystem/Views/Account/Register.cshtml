@@ -141,6 +141,12 @@
                 @Html.TextBoxFor(m => m.homePhone, new { @class = "form-control" })
             </div>
         </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.mobilePhone, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.mobilePhone, new { @class = "form-control" })
+            </div>
+        </div>
 
         <div class="form-group col-md-6">
             @Html.LabelFor(m => m.businessPhone, new { @class = "col-md-4 control-label" })

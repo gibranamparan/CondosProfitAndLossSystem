@@ -57,9 +57,7 @@
                         @*<th>
                             @Html.DisplayName("Bussnies Fax")
                         </th>*@
-                        @*<th>
-                            @Html.DisplayNameFor(model => model.mobilePhone)
-                        </th>*@
+                      
                         @*<th>
                             @Html.DisplayNameFor(model => model.Email1)
                         </th>*@
@@ -68,8 +66,11 @@
                             @Html.DisplayName("E-mail")
                         </th>
                         <th>
-                            @Html.DisplayName("Phone Number")
+                            @Html.DisplayName("Mobile Phone")
                         </th>
+                        @*<th>
+                            @Html.DisplayName("Phone Number")
+                        </th>*@
                         @*<th>
                             @Html.DisplayNameFor(model => model.UserName)
                         </th>*@
@@ -203,7 +204,7 @@
 
 
                         <td>
-                            @Html.DisplayFor(model => model.PhoneNumber)
+                            @Html.DisplayFor(model => model.mobilePhone)
                         </td>
 
                         @*<dt>
