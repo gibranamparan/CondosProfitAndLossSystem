@@ -39,7 +39,18 @@ namespace Sunvalley_PLSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             House house = db.Houses.Find(id);
-           
+
+            if (User.IsInRole("Administrador"))
+            {
+                var m = db.Movements.Where(mov => mov.houseID== id);
+                ViewBag.Movements1 = m.ToList();
+            }
+            else
+            {
+               var m = db.Movements.Where(mov => mov.houseID == id && mov.state == true);
+                ViewBag.Movements1 = m.ToList();
+            }
+
             //if(fechaInicio==null && fechaFin == null)
             //{
                 

@@ -5,7 +5,7 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-
+    IEnumerable<Sunvalley_PLSystem.Models.Movement> m = ViewBag.Movements1;
 }
 
 
@@ -197,6 +197,17 @@
                             <th>
                                 @Html.DisplayName("Service")
                             </th>
+                            @if (Request.IsAuthenticated)
+                            {
+                                if (User.IsInRole("Administrador"))
+                                {
+                                    <th>
+                                        @Html.DisplayName("State")
+                                    </th>
+
+                                }
+                            }
+
 
                             <th>
                                 @Html.DisplayName("Amount")
@@ -210,7 +221,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.movimientos)
+                        @foreach (var item in m)
                         {
                             <tr>
                                 @*<td>
@@ -232,6 +243,17 @@
                                     @Html.DisplayFor(modelItem => item.services.name)
                                 </td>
 
+
+                                @if (Request.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Administrador"))
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.state)
+                                        </td>
+
+                                    }
+                                }
                                 @*<td>
                         @Html.DisplayFor(modelItem => item.value)
                     </td>*@

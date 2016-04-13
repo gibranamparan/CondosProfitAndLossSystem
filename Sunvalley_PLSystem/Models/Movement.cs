@@ -25,6 +25,7 @@ namespace Sunvalley_PLSystem.Models
         public decimal amount { get; set; }
         [Display(Name = "Balance")]
         public decimal balance { get; set; }
+        public Boolean state { get; set; }
 
         //To one movement correspond one house
         public int houseID { get; set; }
