@@ -52,13 +52,35 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(DateTime fechaInicio, DateTime fechaFin,int houseID)
+        public ActionResult Index(DateTime fecha, int houseID,String Accion)
         {
             //var Movimientos = from movement in db.Movements
             //                  where (movement.transactionDate >= fechaInicio && movement.transactionDate <= fechaFin && movement.UserID == User.Identity.GetUserId())
             //                  select movement;
-            var movements = db.Movements.Where(mov => mov.transactionDate >= fechaInicio && mov.transactionDate <= fechaFin && mov.houseID == houseID);
+            //var movements = db.Movements.Where(mov => mov.transactionDate >= fechaInicio && mov.transactionDate <= fechaFin && mov.houseID == houseID);
+            var movements2 = db.Movements.Where(mov => mov.transactionDate.Month == fecha.Month &&mov.transactionDate.Year==fecha.Year&& mov.houseID == houseID);
+            if(Accion == "Autorizar")
+            {
+                foreach (var i in movements2)
+                {
+                    i.state = true;
+                    db.Entry(i).State = EntityState.Modified;
+
+                }
+            }
+            else
+            {
+                foreach (var i in movements2)
+                {
+                    i.state = false;
+                    db.Entry(i).State = EntityState.Modified;
+
+                }
+            }
+
+            db.SaveChanges();
             //return View(Movimientos.ToList());
+            ViewBag.Mensaje = "the movements are properly authorized";
             return RedirectToAction("Details", "Houses", new { id = houseID});
         }
 

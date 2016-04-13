@@ -157,6 +157,22 @@
                         <span class="fa fa-plus-circle"></span>@Html.ActionLink("Create new movement", "Create", "Movements", new { id = Model.houseID }, null)
                     }
                 }
+                @using (Html.BeginForm("Index", "Movements", "POST"))
+                    {
+                    @Html.Label("Date")
+                    <input type="Month" name="fecha" class="hidden-print" style="text-align:right;">
+                    @Html.Hidden("houseID", Model.houseID)
+                    @Html.Hidden("Accion", "Autorizar")
+                    <input type="submit" value="Authorize" class="hidden-print" style="text-align:right;"/>
+                }
+                @using (Html.BeginForm("Index", "Movements", "POST"))
+                {
+                    @Html.Label("Date")
+                    <input type="Month" name="fecha" class="hidden-print" style="text-align:right;">
+                    @Html.Hidden("houseID", Model.houseID)
+                    @Html.Hidden("Accion", "Desautorizar")
+                    <input type="submit" value="disavow" class="hidden-print" style="text-align:right;" />
+                }
                 </div>
             <br />
             <div class="hidden-print">
