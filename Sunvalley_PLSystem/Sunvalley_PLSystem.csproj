@@ -193,6 +193,10 @@
     <Compile Include="Migrations\201604091931184_removeCatributeMovements.Designer.cs">
       <DependentUpon>201604091931184_removeCatributeMovements.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604121744544_addNewAtribute.cs" />
+    <Compile Include="Migrations\201604121744544_addNewAtribute.Designer.cs">
+      <DependentUpon>201604121744544_addNewAtribute.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\House.cs" />
@@ -810,6 +814,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604091931184_removeCatributeMovements.resx">
       <DependentUpon>201604091931184_removeCatributeMovements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604121744544_addNewAtribute.resx">
+      <DependentUpon>201604121744544_addNewAtribute.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
