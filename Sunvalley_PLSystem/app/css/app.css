@@ -11,6 +11,13 @@
 *{transition:none!important}
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700);
 
+
+
+#hPanel{
+
+    margin-bottom: -21px !important ;
+}
+
 #tabla th {
    background-color:orange;
    color:black !important;
