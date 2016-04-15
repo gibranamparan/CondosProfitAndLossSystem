@@ -166,6 +166,7 @@
     <Compile Include="Controllers\HousesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MovementsController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -785,6 +786,11 @@
     <Content Include="vendor\jquery\jquery.min.map" />
     <Content Include="vendor\moment\LICENSE" />
     <Content Include="vendor\slider\less\slider.less" />
+    <Content Include="Views\Service\Create.cshtml" />
+    <Content Include="Views\Service\Delete.cshtml" />
+    <Content Include="Views\Service\Details.cshtml" />
+    <Content Include="Views\Service\Edit.cshtml" />
+    <Content Include="Views\Service\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
