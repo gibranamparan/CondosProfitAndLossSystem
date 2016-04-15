@@ -149,30 +149,44 @@
 
     <div class="panel-group">    
         <div class="panel panel-warning" style="width:100%">
-            <div class="panel-heading hidden-print">
+            <div class="panel-heading row hidden-print">
                 <h4>Movements of house</h4>   @if (Request.IsAuthenticated)
                 {
                     if (User.IsInRole("Administrador"))
                     {
-                        <span class="fa fa-plus-circle"></span>@Html.ActionLink("Create new movement", "Create", "Movements", new { id = Model.houseID }, null)
+                        <div class="col-md-3">
+                            <span class="fa fa-plus-circle"></span>@Html.ActionLink("Create new movement", "Create", "Movements", new { id = Model.houseID }, null)
+                        </div>
                     }
                 }
-                @using (Html.BeginForm("Index", "Movements", "POST"))
-                    {
-                    @Html.Label("Date")
-                    <input type="Month" name="fecha" class="hidden-print" style="text-align:right;">
-                    @Html.Hidden("houseID", Model.houseID)
-                    @Html.Hidden("Accion", "Autorizar")
-                    <input type="submit" value="Authorize" class="hidden-print" style="text-align:right;"/>
-                }
-                @using (Html.BeginForm("Index", "Movements", "POST"))
+
+                @if (Request.IsAuthenticated)
                 {
-                    @Html.Label("Date")
-                    <input type="Month" name="fecha" class="hidden-print" style="text-align:right;">
-                    @Html.Hidden("houseID", Model.houseID)
-                    @Html.Hidden("Accion", "Desautorizar")
-                    <input type="submit" value="disavow" class="hidden-print" style="text-align:right;" />
+                    if (User.IsInRole("Administrador"))
+                    {
+                        <div id="Filtros" class="col-md-9">
+                            @using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "col-md-6" }))
+                            {
+                                @Html.Label("Date")
+                                <input type="Month" name="fecha" class="hidden-print" style="text-align:right;">
+                                @Html.Hidden("houseID", Model.houseID)
+                                @Html.Hidden("Accion", "Autorizar")
+                                <input type="submit" value="Authorize" class="hidden-print" style="text-align:right;" />
+                            }
+                            @using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "col-md-6" }))
+                    {
+                                @Html.Label("Date")
+                                <input type="Month" name="fecha" class="hidden-print" style="text-align:right;">
+                                @Html.Hidden("houseID", Model.houseID)
+                                @Html.Hidden("Accion", "Desautorizar")
+                                <input type="submit" value="Disavow" class="hidden-print" style="text-align:right;" />
+                            }
+
+                        </div>
+                    }
                 }
+              
+
                 </div>
             <br />
             <div class="hidden-print">
