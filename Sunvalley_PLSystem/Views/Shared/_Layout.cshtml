@@ -604,6 +604,9 @@
                      <li>
                         @Html.ActionLink("Houses", "Index", "Houses")
                      </li>
+                    <li>
+                        @Html.ActionLink("Services", "Index", "Service")
+                    </li>
                      @*<li>
                          @Html.ActionLink("Movements", "Index", "Movements")
                      </li>*@
@@ -616,7 +619,7 @@
                           else if (User.IsInRole("Cliente"))
                           {
                             <li>
-                                @Html.ActionLink("Houses", "Index", "Houses")
+                                @Html.ActionLink("Houses", "Index", "My Houses")
                             </li>
                             <li>
                                 @using Microsoft.AspNet.Identity

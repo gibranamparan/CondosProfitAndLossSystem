@@ -11,6 +11,9 @@
 *{transition:none!important}
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700);
 
+.panel-heading form{
+    padding-left: 0%;
+}
 
 
 #hPanel{
