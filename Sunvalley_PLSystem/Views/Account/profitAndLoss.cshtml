@@ -6,7 +6,10 @@
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Loss = ViewBag.Loss;
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Profit = ViewBag.Profit;
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Contribution = ViewBag.Contribution;
-    String id = ViewBag.Id;
+
+    Decimal TotalProfit = ViewBag.TotalProfit;
+    Decimal TotalLoss = ViewBag.TotalLoss;
+   String id = ViewBag.Id;
 }
 
 <h2>profitAndLoss</h2>
@@ -252,21 +255,21 @@
                         <th> @Html.DisplayName("Profit")</th>
 
                         <td>
-                            ViewBag.TotalProfit
+                            @TotalProfit
                         </td>
                     </tr>
                     <tr>
                         <th> @Html.DisplayName("Loss")</th>
 
                         <td>
-                            ViewBag.TotalLoss
+                            @TotalLoss
                         </td>
                     </tr>
                     <tr>
                         <th>@Html.DisplayName("Earnings")</th>
 
                         <td>
-                            ViewBag.TotalContribution
+                            @ViewBag.TotalContribution
                         </td>
                     </tr>
                     </table>
