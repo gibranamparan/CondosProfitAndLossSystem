@@ -107,6 +107,45 @@ namespace Sunvalley_PLSystem.Controllers
             return View(user);
         }
 
+        [Authorize]
+        public ActionResult profitAndLossTotal(String id,DateTime fecha1,DateTime fecha2)
+        {
+            var listHouses = db.Houses.Where(h => h.Id == id);
+            List<Movement> listMovement = new List<Movement>();
+            foreach (var h in listHouses)
+            {
+                listMovement.AddRange(h.movimientos);
+            }
+
+            ViewBag.Loss = listMovement.Where(m => m.typeOfMovement == "Loss" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
+            ViewBag.Profit = listMovement.Where(m => m.typeOfMovement == "Profit" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
+            ViewBag.Contribution = listMovement.Where(m => m.typeOfMovement == "Contribution" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
+
+            ViewBag.TotalLoss = listMovement.Where(m => m.typeOfMovement == "Loss" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
+            ViewBag.TotalProfit = listMovement.Where(m => m.typeOfMovement == "Profit" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
+            ViewBag.TotalContribution = listMovement.Where(m => m.typeOfMovement == "Contribution" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
+
+            ViewBag.Total = listMovement.Where(m => m.typeOfMovement == "Profit" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount) - listMovement.Where(m => m.typeOfMovement == "Loss" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
+
+            return View("profitAndLoss");
+        }
+
+        [Authorize]
+        public ActionResult profitAndLossHouse(int id,DateTime fecha1,DateTime fecha2)
+        {
+            var House = db.Houses.Find(id);
+            ViewBag.Loss = House.movimientos.Where(m => m.typeOfMovement == "Loss" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
+            ViewBag.Profit = House.movimientos.Where(m => m.typeOfMovement == "Profit" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
+            ViewBag.Contribution = House.movimientos.Where(m => m.typeOfMovement == "Contribution" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
+
+            ViewBag.TotalLoss = House.movimientos.Where(m => m.typeOfMovement == "Loss" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
+            ViewBag.TotalProfit = House.movimientos.Where(m => m.typeOfMovement == "Profit" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
+            ViewBag.TotalContribution = House.movimientos.Where(m => m.typeOfMovement == "Contribution" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
+
+            ViewBag.Total = House.movimientos.Where(m => m.typeOfMovement == "Profit" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount) - House.movimientos.Where(m => m.typeOfMovement == "Loss" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
+
+            return View("profitAndLoss");
+        }
         // POST: Houses/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
