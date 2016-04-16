@@ -285,6 +285,8 @@
     <Content Include="app\img\landing\clients\client-logos.psd" />
     <Content Include="app\img\landing\header-background.psd" />
     <Content Include="app\img\landing\mobile-app.psd" />
+    <None Include="Properties\PublishProfiles\Sun.pubxml" />
+    <None Include="Properties\PublishProfiles\SunValley.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -791,6 +793,7 @@
     <Content Include="Views\Service\Details.cshtml" />
     <Content Include="Views\Service\Edit.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
+    <Content Include="Views\Account\profitAndLoss.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
