@@ -7,9 +7,8 @@
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Profit = ViewBag.Profit;
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Contribution = ViewBag.Contribution;
 
-    Decimal TotalProfit = ViewBag.TotalProfit;
-    Decimal TotalLoss = ViewBag.TotalLoss;
-   String id = ViewBag.Id;
+    String id = ViewBag.Id;
+    int? idHouse = ViewBag.idHouse;
 }
 
 <h2>profitAndLoss</h2>
@@ -255,14 +254,14 @@
                         <th> @Html.DisplayName("Profit")</th>
 
                         <td>
-                            @TotalProfit
+                            @ViewBag.TotalProfit
                         </td>
                     </tr>
                     <tr>
                         <th> @Html.DisplayName("Loss")</th>
 
                         <td>
-                            @TotalLoss
+                            @ViewBag.TotalLoss
                         </td>
                     </tr>
                     <tr>
@@ -272,6 +271,13 @@
                             @ViewBag.TotalContribution
                         </td>
                     </tr>
+                    <tr>
+                         <th>@Html.DisplayName("Total Profit")</th>
+
+                            <td>
+                                @ViewBag.Total
+                            </td>
+    </tr>
                     </table>
 
 
@@ -285,7 +291,9 @@ else {
 
         </div>
         <div class="panel-body"> please select the dates to create the report
-            @using (Html.BeginForm("profitAndLossTotal", "Account", "GET"))
+        @if (ViewBag.Tipo == "Total")
+        {
+            using (Html.BeginForm("profitAndLossTotal", "Account", "GET"))
             {
                 @Html.Label("Del")
                 <input type="date" name="fecha1" class="hidden-print">
@@ -294,6 +302,19 @@ else {
                 @Html.Hidden("id", id)
                 <input type="submit" value="Mostrar" class="hidden-print" />
             }
+        }
+        else
+        {
+            using (Html.BeginForm("profitAndLossHouse", "Account", "GET"))
+            {
+                @Html.Label("Del")
+                <input type="date" name="fecha1" class="hidden-print">
+                @Html.Label("Al")
+                <input type="date" name="fecha2" class="hidden-print">
+                @Html.Hidden("idHouse", idHouse)
+                <input type="submit" value="Mostrar" class="hidden-print" />
+            }
+        }
         </div>
     </div>
 
