@@ -288,6 +288,7 @@
     <None Include="Properties\PublishProfiles\Sun.pubxml" />
     <None Include="Properties\PublishProfiles\suns.pubxml" />
     <None Include="Properties\PublishProfiles\SunValley.pubxml" />
+    <None Include="Properties\PublishProfiles\SunValleyNombresCambiados.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

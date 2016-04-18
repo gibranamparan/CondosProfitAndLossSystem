@@ -32,20 +32,16 @@ namespace Sunvalley_PLSystem
             bundles.Add(new StyleBundle("~/appEstilos").Include(
                       "~/app/css/bootstrap.css",
                       "~/app/css/app.css",
-                      "~/app/css/jquery.dataTables.css",
                       "~/app/css/print.css"));
 
 
             bundles.Add(new StyleBundle("~/vendorEstilos").Include(
-                      "~/vendor/fontawesome/css/font-awesome.min.css",
                       "~/vendor/animo/animate_animo.css",
                       "~/vendor/csspinner/csspinner.min.css"));
 
             /*Scripts*/
             bundles.Add(new ScriptBundle("~/appScript").Include(
-                      "~/app/js/app.js",
-                       "~/app/js/jquery.dataTables.js",
-                       "~/app/js/dataTables.buttons.min.js"));
+                      "~/app/js/app.js"));
 
             bundles.Add(new ScriptBundle("~/vendorScript").Include(
                         "~/vendor/modernizr/modernizr.js",
