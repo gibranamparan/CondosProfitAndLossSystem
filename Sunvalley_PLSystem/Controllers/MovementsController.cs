@@ -24,6 +24,19 @@ namespace Sunvalley_PLSystem.Controllers
             return View(movements.ToList());
         }
 
+        public ActionResult IndexReport(String ID)
+        {
+            if (ID == null)
+            {
+                var Reports = db.AccountStatusReport.ToList();
+                return View("Reports", Reports.ToList());
+            }
+            else {
+                var Reports = db.AccountStatusReport.Where(a => a.UserID == ID);
+                return View("Reports", Reports.ToList());
+            }
+        }
+
         // GET: Movements/Details/5
         //[Authorize(Roles = "Administrador")]
         public ActionResult Details(int? id)
@@ -52,7 +65,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(DateTime fecha, int houseID,String Accion)
+        public ActionResult Index(DateTime fecha, int houseID,String Accion,String ID)
         {
             //var Movimientos = from movement in db.Movements
             //                  where (movement.transactionDate >= fechaInicio && movement.transactionDate <= fechaFin && movement.UserID == User.Identity.GetUserId())
@@ -65,6 +78,12 @@ namespace Sunvalley_PLSystem.Controllers
                 {
                     i.state = true;
                     db.Entry(i).State = EntityState.Modified;
+                    AccountStatusReport Report = new AccountStatusReport();
+                    Report.houseID = houseID;
+                    Report.dateMonth = fecha;
+                    Report.UserID = ID;
+                    db.AccountStatusReport.Add(Report);
+                    
 
                 }
             }
@@ -74,7 +93,8 @@ namespace Sunvalley_PLSystem.Controllers
                 {
                     i.state = false;
                     db.Entry(i).State = EntityState.Modified;
-
+                    AccountStatusReport Report = db.AccountStatusReport.Find(fecha);
+                    db.AccountStatusReport.Remove(Report);
                 }
             }
 
@@ -83,14 +103,39 @@ namespace Sunvalley_PLSystem.Controllers
             ViewBag.Mensaje = "the movements are properly authorized";
             return RedirectToAction("Details", "Houses", new { id = houseID});
         }
+        [Authorize]
+        public ActionResult Recalculate(int id)
+        {
+            decimal balanceAnterior = 0;
+            var Movements = db.Movements.Where(m => m.houseID == id).OrderBy(mov => mov.transactionDate);
+            for(int m =0;m<Movements.Count();m++)
+            {
+                var Movemen = Movements.ToList().ElementAt(m);
+                try
+                {
+                    balanceAnterior = Movements.ToList().ElementAt(m-1).balance;
+                }
+                catch { }
 
+                if (Movemen.typeOfMovement == "Income"||Movemen.typeOfMovement == "Contribution")
+                {
+                    Movemen.balance = balanceAnterior + Movemen.amount;
+                }
+                else if (Movemen.typeOfMovement == "Expense")
+                {
+                    Movemen.balance = balanceAnterior - Movemen.amount;
+                }
+                db.Entry(Movemen).State = EntityState.Modified;
+            }
+            db.SaveChanges();
+            return RedirectToAction("Details", "Houses", new { id = id });
+        }
         // POST: Movements/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
-
         public ActionResult Create(Movement movement)
         {
             decimal balanceAnterior = 0;
@@ -107,11 +152,11 @@ namespace Sunvalley_PLSystem.Controllers
                     balanceAnterior = db.Movements.Where(mov => mov.houseID == movement.houseID).OrderByDescending(mov => mov.transactionDate).First().balance;
                 }
                 catch { }
-                if (movement.typeOfMovement=="Profit")
+                if (movement.typeOfMovement== "Income" || movement.typeOfMovement == "Contributions")
                 {
                     movement.balance = balanceAnterior+movement.amount;
                 }
-                else if(movement.typeOfMovement=="Loss")
+                else if(movement.typeOfMovement== "Expense")
                 {
                     movement.balance = balanceAnterior - movement.amount;
                 }
@@ -157,7 +202,7 @@ namespace Sunvalley_PLSystem.Controllers
             {
                 db.Entry(movement).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Details", "Houses", new { id = movement.houseID });
+                return RedirectToAction("Recalculate", new { id = movement.houseID});
             }
             ViewBag.houseID = new SelectList(db.Houses, "houseID", "name", movement.houseID);
             return View(movement);
