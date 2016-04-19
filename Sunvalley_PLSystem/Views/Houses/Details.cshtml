@@ -159,7 +159,7 @@
                             <span class="fa fa-plus-circle"></span>@Html.ActionLink("Create new movement", "Create", "Movements", new { id = Model.houseID }, null)
                         </div>
                     }
-                    <span class="fa fa-trash"></span>@Html.ActionLink("Report", "profitAndLossHouse","Account", new { idHouse = Model.houseID },null)
+                    @*<span class="fa fa-trash"></span>@Html.ActionLink("Report", "profitAndLossHouse","Account", new { idHouse = Model.houseID },null)*@
                 }
 
                 @if (Request.IsAuthenticated)
@@ -320,8 +320,13 @@
             </div>
         </div>
     </div>
-    <input type="button" class="hidden-print"
-           onClick="window.print()"
-           value="Print This Report" />
+    <div id="botones">
+
+        <input type="button" class="hidden-print"
+               onClick="window.print()"
+               value="Print This Report" />
+        <input type="button" value="Report" onclick="location.href='@Url.Action("profitAndLossHouse", "Account", new { idHouse = Model.houseID }, null)'" />
+
+    </div>
 </div>
 
