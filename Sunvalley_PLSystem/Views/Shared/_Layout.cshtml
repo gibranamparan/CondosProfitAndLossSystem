@@ -897,7 +897,12 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#myTable').DataTable();
+        $('#tabla').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'print'
+            ]
+        });
     });
 
 
