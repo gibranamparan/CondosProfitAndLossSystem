@@ -617,7 +617,10 @@
                         @Html.ActionLink("Houses", "Index", "Houses")
                      </li>
                     <li>
-                        @Html.ActionLink("Services", "Index", "Service")
+                        @Html.ActionLink("Reports", "IndexReport", "Movements")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Services", "Index", "Selvice")
                     </li>
                      @*<li>
                          @Html.ActionLink("Movements", "Index", "Movements")
@@ -636,6 +639,9 @@
                             <li>
                                 @using Microsoft.AspNet.Identity
                                 @Html.ActionLink("My account", "Details", "Account",new { id = User.Identity.GetUserId() },null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("Reports", "IndexReport", "Movements", new { ID = User.Identity.GetUserId() })
                             </li>
                           }
                       }

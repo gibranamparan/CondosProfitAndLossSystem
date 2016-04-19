@@ -198,7 +198,16 @@
     <Compile Include="Migrations\201604121744544_addNewAtribute.Designer.cs">
       <DependentUpon>201604121744544_addNewAtribute.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604192000338_AddModel.cs" />
+    <Compile Include="Migrations\201604192000338_AddModel.Designer.cs">
+      <DependentUpon>201604192000338_AddModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604192019209_AddModelReports.cs" />
+    <Compile Include="Migrations\201604192019209_AddModelReports.Designer.cs">
+      <DependentUpon>201604192019209_AddModelReports.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountStatusReport.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\House.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -796,6 +805,7 @@
     <Content Include="Views\Service\Edit.cshtml" />
     <Content Include="Views\Service\Index.cshtml" />
     <Content Include="Views\Account\profitAndLoss.cshtml" />
+    <Content Include="Views\Movements\Reports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -828,6 +838,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604121744544_addNewAtribute.resx">
       <DependentUpon>201604121744544_addNewAtribute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604192000338_AddModel.resx">
+      <DependentUpon>201604192000338_AddModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604192019209_AddModelReports.resx">
+      <DependentUpon>201604192019209_AddModelReports.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

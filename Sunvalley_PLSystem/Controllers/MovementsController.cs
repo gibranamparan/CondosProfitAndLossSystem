@@ -24,6 +24,19 @@ namespace Sunvalley_PLSystem.Controllers
             return View(movements.ToList());
         }
 
+        public ActionResult IndexReport(String ID)
+        {
+            if (ID == null)
+            {
+                var Reports = db.AccountStatusReport.ToList();
+                return View("Reports", Reports.ToList());
+            }
+            else {
+                var Reports = db.AccountStatusReport.Where(a => a.UserID == ID);
+                return View("Reports", Reports.ToList());
+            }
+        }
+
         // GET: Movements/Details/5
         //[Authorize(Roles = "Administrador")]
         public ActionResult Details(int? id)
@@ -52,7 +65,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(DateTime fecha, int houseID,String Accion)
+        public ActionResult Index(DateTime fecha, int houseID,String Accion,String ID)
         {
             //var Movimientos = from movement in db.Movements
             //                  where (movement.transactionDate >= fechaInicio && movement.transactionDate <= fechaFin && movement.UserID == User.Identity.GetUserId())
@@ -65,6 +78,12 @@ namespace Sunvalley_PLSystem.Controllers
                 {
                     i.state = true;
                     db.Entry(i).State = EntityState.Modified;
+                    AccountStatusReport Report = new AccountStatusReport();
+                    Report.houseID = houseID;
+                    Report.dateMonth = fecha;
+                    Report.UserID = ID;
+                    db.AccountStatusReport.Add(Report);
+                    
 
                 }
             }
@@ -74,7 +93,8 @@ namespace Sunvalley_PLSystem.Controllers
                 {
                     i.state = false;
                     db.Entry(i).State = EntityState.Modified;
-
+                    AccountStatusReport Report = db.AccountStatusReport.Find(fecha);
+                    db.AccountStatusReport.Remove(Report);
                 }
             }
 
