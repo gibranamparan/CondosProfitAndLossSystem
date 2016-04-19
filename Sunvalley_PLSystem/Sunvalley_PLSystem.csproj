@@ -211,6 +211,7 @@
   <ItemGroup>
     <Content Include="app\css\app.css" />
     <Content Include="app\css\bootstrap.css" />
+    <Content Include="app\css\buttons.dataTables.min.css" />
     <Content Include="app\css\jquery.dataTables.min.css" />
     <Content Include="app\css\landing.css" />
     <Content Include="app\css\print.css" />
@@ -260,6 +261,7 @@
     <Content Include="app\img\user\12.jpg" />
     <Content Include="app\img\user\13.jpg" />
     <Content Include="app\js\app.js" />
+    <Content Include="app\js\buttons.colVis.min.js" />
     <Content Include="app\js\buttons.print.min.js" />
     <Content Include="app\js\dataTables.buttons.min.js" />
     <Content Include="app\js\jquery.dataTables.min.js" />
