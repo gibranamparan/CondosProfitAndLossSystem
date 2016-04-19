@@ -309,26 +309,26 @@ else {
         <div class="panel-body">
         <table id="tabla" class="table table-striped table-hover col-md-12 table-responsive" style="margin-top:20px;padding:0px;width:50%;">
             <tr>
-                <th> @Html.DisplayName("Profit")</th>
+                <th> @Html.DisplayName("Income")</th>
 
                 <td>
                     @ViewBag.TotalProfit
                 </td>
             </tr>
             <tr>
-                <th> @Html.DisplayName("Loss")</th>
+                <th> @Html.DisplayName("Expense")</th>
 
                 <td>
                     @ViewBag.TotalLoss
                 </td>
             </tr>
-            <tr>
+            @*<tr>
                 <th>@Html.DisplayName("Earnings")</th>
 
                 <td>
                     @ViewBag.TotalContribution
                 </td>
-            </tr>
+            </tr>*@
             <tr>
                 <th>@Html.DisplayName("Total Profit")</th>
 
@@ -345,7 +345,7 @@ else {
         else {
         <div class="panel panel-warning">
             <div class="panel-heading hidden-print">
-               <h4>Warning</h4> 
+               <h4>Profit and loss Report</h4> 
 
 
 
@@ -357,24 +357,24 @@ else {
                 {
                     using (Html.BeginForm("profitAndLossTotal", "Account", "GET"))
                     {
-                            @Html.Label("Del")
+                            @Html.Label("Start")
                             <input type="date" name="fecha1" class="hidden-print">
-                            @Html.Label("Al")
+                            @Html.Label("End")
                             <input type="date" name="fecha2" class="hidden-print">
                             @Html.Hidden("id", id)
-                            <input type="submit" value="Mostrar" class="hidden-print" />
+                            <input type="submit" value="Show" class="hidden-print" />
                         }
                     }
                     else
                     {
                         using (Html.BeginForm("profitAndLossHouse", "Account", "GET"))
                         {
-                            @Html.Label("Del")
+                            @Html.Label("Start")
                             <input type="date" name="fecha1" class="hidden-print">
-                            @Html.Label("Al")
+                            @Html.Label("End")
                             <input type="date" name="fecha2" class="hidden-print">
                             @Html.Hidden("idHouse", idHouse)
-                            <input type="submit" value="Mostrar" class="hidden-print" />
+                            <input type="submit" value="Show" class="hidden-print" />
                         }
                     }
                 </div>
