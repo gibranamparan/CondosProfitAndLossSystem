@@ -21,7 +21,8 @@ namespace Sunvalley_PLSystem.Controllers
 
             if (User.IsInRole("Administrador"))
             {
-                return View(db.Houses.ToList());
+                var houses = db.Houses.Where(h => h.status==true);
+                return View(houses.ToList());
             }
             String userID = User.Identity.GetUserId();
             var Casas = from usu in db.Houses where usu.Id == userID select usu;
@@ -90,6 +91,7 @@ namespace Sunvalley_PLSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                house.status = true;
                 house.created = DateTime.Today;
                 db.Houses.Add(house);
                 db.SaveChanges();
