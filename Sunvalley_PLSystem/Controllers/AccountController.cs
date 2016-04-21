@@ -57,10 +57,50 @@ namespace Sunvalley_PLSystem.Controllers
 
         // GET: Users
         [Authorize(Roles = "Administrador")]
-        public ActionResult Index()
+        public ActionResult Index(String status)
         {
-            ApplicationUser user = UserManager.FindById<ApplicationUser, String>("dsdsds");
-            return View(UserManager.Users.ToList());
+            //ApplicationUser user = UserManager.FindById<ApplicationUser, String>("dsdsds");
+            if (status != null)
+            {
+                if (status == "Activate")
+                {
+                    var Users1 = UserManager.Users.Where(u => u.status == "Activate");
+                    ViewBag.state = "Activate";
+                    return View(Users1);
+                }
+                else
+                {
+                    var Users2 = UserManager.Users.Where(u => u.status == "Disable");
+                    ViewBag.state = "Disable";
+                    return View(Users2);
+                }
+            }
+            else {
+                var Users = UserManager.Users.Where(u => u.status == "Activate");
+                ViewBag.state = "Activate";
+                return View(Users);
+            }
+        }
+
+        [Authorize(Roles = "Administrador")]
+        public ActionResult activateOrDiseable(String id)
+        {
+            //ApplicationUser user = new ApplicationUser();
+            var user = UserManager.FindById<ApplicationUser, String>(id);
+            if (user.status == "Activate")
+            {
+                user.status = "Disable";
+                UserManager.Update(user);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else {
+                user.status = "Activate";
+                UserManager.Update(user);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
         }
 
         // GET: Houses/Delete/5

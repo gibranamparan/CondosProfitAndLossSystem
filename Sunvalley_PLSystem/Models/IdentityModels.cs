@@ -36,6 +36,7 @@ namespace Sunvalley_PLSystem.Models
         public string mobilePhone { get; set; }
         public string Email1 { get; set; }
         public string Email2 { get; set; }
+        public string status { get; set; }
 
         public virtual ICollection<Movement> movimientos { get; set; }
         public virtual ICollection<House> Houses { get; set; }

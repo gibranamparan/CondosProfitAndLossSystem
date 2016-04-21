@@ -116,6 +116,9 @@ namespace Sunvalley_PLSystem.Models
         [Display(Name = "Mobile Phone")]
         public string mobilePhone { get; set; }
 
+        [Display(Name = "Status")]
+        public string status { get; set; }
+
 
         //***************************************************************************
         [Required]

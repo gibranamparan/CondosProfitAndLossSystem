@@ -206,6 +206,14 @@
     <Compile Include="Migrations\201604192019209_AddModelReports.Designer.cs">
       <DependentUpon>201604192019209_AddModelReports.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604211928242_addAtributeStatus.cs" />
+    <Compile Include="Migrations\201604211928242_addAtributeStatus.Designer.cs">
+      <DependentUpon>201604211928242_addAtributeStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604211934203_addAtribute.cs" />
+    <Compile Include="Migrations\201604211934203_addAtribute.Designer.cs">
+      <DependentUpon>201604211934203_addAtribute.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountStatusReport.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -846,6 +854,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604192019209_AddModelReports.resx">
       <DependentUpon>201604192019209_AddModelReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604211928242_addAtributeStatus.resx">
+      <DependentUpon>201604211928242_addAtributeStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604211934203_addAtribute.resx">
+      <DependentUpon>201604211934203_addAtribute.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
