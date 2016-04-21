@@ -15,6 +15,20 @@
     padding-left: 0%;
 }
 
+#Reports{
+   width:50%;
+}
+#Reports th{
+    background-color:orange;
+
+}
+#Services{
+   width:50%;
+}
+#Services th{
+    background-color:orange;
+
+}
 
 #hPanel{
 
