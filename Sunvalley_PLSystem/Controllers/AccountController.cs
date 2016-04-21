@@ -87,14 +87,23 @@ namespace Sunvalley_PLSystem.Controllers
         {
             //ApplicationUser user = new ApplicationUser();
             var user = UserManager.FindById<ApplicationUser, String>(id);
+            var houses = db.Houses.Where(h => h.Id == id);
             if (user.status == "Activate")
             {
+                foreach(var h in houses)
+                {
+                    h.status = false;
+                }
                 user.status = "Disable";
                 UserManager.Update(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             else {
+                foreach (var h in houses)
+                {
+                    h.status = true;
+                }
                 user.status = "Activate";
                 UserManager.Update(user);
                 db.SaveChanges();
