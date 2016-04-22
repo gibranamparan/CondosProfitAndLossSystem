@@ -42,12 +42,15 @@
     @Styles.Render("~/appEstilos")
     @Styles.Render("~/vendor/fontawesome/css/font-awesome.min.css")
     @Styles.Render("~/app/css/jquery.dataTables.min.css")
+    @Styles.Render("~/app/css/buttons.dataTables.min.css")
     @Styles.Render("~/vendorEstilos")
 
 
     @*Scripts*@ 
     @Scripts.Render("~/app/js/jquery.dataTables.min.js")
     @Scripts.Render("~/app/js/dataTables.buttons.min.js")
+    @Scripts.Render("~/app/js/buttons.print.min.js")
+    @Scripts.Render("~/app/js/buttons.colVis.men.js")
     @Scripts.Render("~/appScripts")
     @Scripts.Render("~/vendorScripts")
     @*@Scripts.Render("~/bundles/bootstrap")*@
@@ -617,6 +620,9 @@
                         @Html.ActionLink("Houses", "Index", "Houses")
                      </li>
                     <li>
+                        @Html.ActionLink("Reports", "IndexReport", "Movements")
+                    </li>
+                    <li>
                         @Html.ActionLink("Services", "Index", "Service")
                     </li>
                      @*<li>
@@ -636,6 +642,9 @@
                             <li>
                                 @using Microsoft.AspNet.Identity
                                 @Html.ActionLink("My account", "Details", "Account",new { id = User.Identity.GetUserId() },null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("Reports", "IndexReport", "Movements", new { ID = User.Identity.GetUserId() })
                             </li>
                           }
                       }
@@ -877,7 +886,7 @@
 
 
 
-
+    
    
         
 </body>
@@ -888,8 +897,17 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#tabla').DataTable();
+        $('#tabla').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'print'
+            ]
+        });
     });
+
+
+
+   
     </script>
     
   

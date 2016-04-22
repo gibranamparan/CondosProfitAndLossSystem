@@ -36,6 +36,7 @@ namespace Sunvalley_PLSystem.Models
         public string mobilePhone { get; set; }
         public string Email1 { get; set; }
         public string Email2 { get; set; }
+        public string status { get; set; }
 
         public virtual ICollection<Movement> movimientos { get; set; }
         public virtual ICollection<House> Houses { get; set; }
@@ -60,6 +61,7 @@ namespace Sunvalley_PLSystem.Models
         public DbSet<House> Houses { get; set; }
         public DbSet<Movement> Movements { get; set; }
         public DbSet<Services> Services { get; set; }
+        public DbSet<AccountStatusReport> AccountStatusReport { get; set; }
 
         ///public System.Data.Entity.DbSet<Sunvalley_PLSystem.Models.ApplicationUser> ApplicationUsers { get; set; }
 
