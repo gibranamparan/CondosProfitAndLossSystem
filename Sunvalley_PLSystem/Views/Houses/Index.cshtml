@@ -26,6 +26,9 @@
 
                 <thead>
                     <tr>
+                        @*<th>
+                            @Html.DisplayNameFor(model => model.ApplicationUser.firstName)
+                        </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.name)
                         </th>
@@ -58,6 +61,9 @@
                     @foreach (var item in Model)
                     {
                         <tr>
+                            @*<td>
+                                @(item.ApplicationUser.firstName+ " "+item.ApplicationUser.lastName)
+                            </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.name)
                             </td>
@@ -87,7 +93,7 @@
                                     <td class="hidden-print">
 
                                         <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = item.houseID }, null) |
-                                        <span class="fa fa-reorder"></span>@Html.ActionLink("Movements", "Details", new { id = item.houseID }, null) |
+                                        <span class="fa fa-reorder"></span>@Html.ActionLink("Movements", "Details", new { id = item.houseID}, null) |
                                         <span class="fa fa-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.houseID }, null)
                                     </td>
 
