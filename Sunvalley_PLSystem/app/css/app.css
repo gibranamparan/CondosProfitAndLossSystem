@@ -11,10 +11,38 @@
 *{transition:none!important}
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700);
 
+#DeleteService{
+    width:50%;
+    border:solid 2px;
+
+
+}
+#DeleteService th{
+    background-color:orange;
+    color:white;
+
+
+}
+
 .panel-heading form{
     padding-left: 0%;
 }
 
+#Reports{
+   width:50%;
+}
+#Reports th{
+    background-color:orange;
+
+}
+#Services{
+   width:50%;
+   border:solid 2px;
+}
+#Services th{
+    background-color:orange;
+
+}
 
 #hPanel{
 
@@ -41,6 +69,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', end
 
 
    color:black !important;
+   /*margin-top:-1px !important;*/
 }
 
 #Delete th{
@@ -472,7 +501,13 @@ body {
   }
   .nav-wrapper {
     position: relative;
-    background-color: #ffc61d;
+    background: -moz-linear-gradient(358deg, rgba(255,181,33,1) 0%, rgba(255,181,33,1) 48%, rgba(255,255,255,1) 100%); /* ff3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,181,33,1)), color-stop(48%, rgba(255,181,33,1)), color-stop(100%, rgba(255,255,255,1))); /* safari4+,chrome */
+background: -webkit-linear-gradient(358deg, rgba(255,181,33,1) 0%, rgba(255,181,33,1) 48%, rgba(255,255,255,1) 100%); /* safari5.1+,chrome10+ */
+background: -o-linear-gradient(358deg, rgba(255,181,33,1) 0%, rgba(255,181,33,1) 48%, rgba(255,255,255,1) 100%); /* opera 11.10+ */
+background: -ms-linear-gradient(358deg, rgba(255,181,33,1) 0%, rgba(255,181,33,1) 48%, rgba(255,255,255,1) 100%); /* ie10+ */
+background: linear-gradient(92deg, rgba(255,181,33,1) 0%, rgba(255,181,33,1) 48%, rgba(255,255,255,1) 100%); /* w3c */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFB521', endColorstr='#FFFFFF',GradientType=1 ); /* ie6-9 */
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     z-index: 10;
   }
