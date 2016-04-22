@@ -33,24 +33,43 @@ namespace Sunvalley_PLSystem.Controllers
 
         // GET: Houses/Details/5
         [Authorize]
-        public ActionResult Details(/*DateTime? fechaInicio, DateTime? fechaFin, */int? id)
+        public ActionResult Details(/*DateTime? fechaInicio, DateTime? fechaFin, */DateTime? fecha, int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             House house = db.Houses.Find(id);
-
-            if (User.IsInRole("Administrador"))
+            if(fecha == null)
             {
-                var m = db.Movements.Where(mov => mov.houseID== id);
-                ViewBag.Movements1 = m.ToList();
+                if (User.IsInRole("Administrador"))
+                {
+                    var m = db.Movements.Where(mov => mov.houseID == id);
+                    ViewBag.Movements1 = m.ToList();
+                }
+                else
+                {
+                    var m = db.Movements.Where(mov => mov.houseID == id && mov.state == true);
+                    ViewBag.Movements1 = m.ToList();
+                }
             }
             else
             {
-               var m = db.Movements.Where(mov => mov.houseID == id && mov.state == true);
-                ViewBag.Movements1 = m.ToList();
+                DateTime fechaConArgumentos = new DateTime();
+                fechaConArgumentos = (DateTime)fecha;
+                if (User.IsInRole("Administrador"))
+                {
+
+                    var m = db.Movements.Where(mov => mov.houseID == id && mov.transactionDate.Month == fechaConArgumentos.Month && mov.transactionDate.Year == fechaConArgumentos.Year);
+                    ViewBag.Movements1 = m.ToList();
+                }
+                else
+                {
+                    var m = db.Movements.Where(mov => mov.houseID == id && mov.transactionDate.Year== fechaConArgumentos.Year && mov.transactionDate.Year == fechaConArgumentos.Year);
+                    ViewBag.Movements1 = m.ToList();
+                }
             }
+
 
             //if(fechaInicio==null && fechaFin == null)
             //{
