@@ -69,14 +69,15 @@ background: #fceabb;
 }
 
 .dataTables_wrapper {
-    margin-top:20px !important;
+    /*margin-top:20px !important;*/
+    padding: 0px;
 
 }
 
 
 
 
-#tabla_wrapper {
+/*#tabla_wrapper {
   
 background: #fceabb; /* Old browsers */
 background: -moz-linear-gradient(top,  #fceabb 0%, #fccd4d 50%, #f8b500 51%, #fbdf93 100%) !important; /* FF3.6-15 */
@@ -89,7 +90,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', end
 
    border: solid 1px;
    /*margin-top:-1px !important;*/
-}
+}*/
 
 #Delete th{
         background-color:orange !important;
@@ -4983,4 +4984,17 @@ textarea.chosen-container-active.chosen-with-drop .chosen-single {
 .label-purple[href]:hover,
 .label-purple[href]:focus {
   background-color: #804399;
+}
+
+.container {
+    width: 100%;
+}
+.function-cell a+span {
+    margin-left: .8em;
+}
+@media print{
+    
+    #tabla_filter{
+        display: none !important;
+    }
 }

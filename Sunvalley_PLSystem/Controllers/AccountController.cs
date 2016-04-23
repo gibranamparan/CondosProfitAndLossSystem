@@ -295,7 +295,7 @@ namespace Sunvalley_PLSystem.Controllers
                 }
             }
             else {
-                ModelState.AddModelError("", "your account is inactive please contact the administrator.");
+                ModelState.AddModelError("", "Your account was disabled. Please contact the administrator.");
                 return View(model);
             }
         }

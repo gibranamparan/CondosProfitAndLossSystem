@@ -15,11 +15,11 @@
                 <strong style="text-align:center"><h4>All Owners</h4></strong>     <span class="fa fa-plus-circle"></span>@Html.ActionLink("Create New", "Register") |
             @if (state == "Activate")
             {
-                @Html.ActionLink("Disabled", "Index", new { status = "Disable" })
+                @Html.ActionLink("List Disabled Owners", "Index", new { status = "Disable" })
             }
             else
             {
-                @Html.ActionLink("Activated", "Index", new { status = "Activate" })
+                @Html.ActionLink("List Active Owners", "Index", new { status = "Activate" })
             }
             </div>
         <div id="BodyOwners" class="panel-body" style="margin-top:-8px; width:100%; ">
@@ -67,25 +67,26 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Email)
                             </td>
-                            <td class="hidden-print">
+                            <td class="function-cell hidden-print">
 
                                 @if (item.status == "Activate")
                                 {
-                                <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+                                    <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = item.Id })
 
-                                <span class="fa fa-reorder"></span>@Html.ActionLink("Houses", "Details", new { id = item.Id }) 
+                                    <span class="fa fa-reorder"></span>@Html.ActionLink("Houses", "Details", new { id = item.Id })
 
-                                <span class="fa fa-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.Id }) 
+                                    <span class="fa fa-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.Id })
 
-                                <span class="fa fa-file-text"></span>@Html.ActionLink("Report", "profitAndLossTotal", new { id = item.Id }) 
+                                    <span class="fa fa-file-text"></span>@Html.ActionLink("Report", "profitAndLossTotal", new { id = item.Id })
 
-                                <span class="fa fa-ban"></span>@Html.ActionLink("Disable", "activateOrDiseable", new { id = item.Id }) 
-                                
+                                    <span class="fa fa-ban"></span>@Html.ActionLink("Disable", "activateOrDiseable", new { id = item.Id })
+
                                 }
-                                else {
-                                    <span class="fa fa-trash"></span>@Html.ActionLink("Activate", "activateOrDiseable", new { id = item.Id }) 
+                                else
+                                {
+                                    <span class="fa fa-trash"></span>@Html.ActionLink("Activate", "activateOrDiseable", new { id = item.Id })
                                 }
-                                
+
 
                             </td>
                         </tr>

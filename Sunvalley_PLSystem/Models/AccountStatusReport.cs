@@ -9,6 +9,7 @@ namespace Sunvalley_PLSystem.Models
     public class AccountStatusReport
     {
         [Key]
+        [DisplayFormat(DataFormatString="{0:MMMM yyyy}")]
         public DateTime dateMonth { get; set; }
 
         public int houseID { get; set; }
