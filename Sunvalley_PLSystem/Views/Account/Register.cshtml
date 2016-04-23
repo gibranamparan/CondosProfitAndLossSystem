@@ -11,15 +11,15 @@
 {
     @Html.AntiForgeryToken()
    
-    <hr />
+
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
     <div class="panel-warning">
        
-        <div class="panel-heading">
+        <div id="PanelHeading" class="panel-heading">
             <h4>Create a new account.</h4>
         </div>
-        <div class="panel-body" style="background-color:lightgoldenrodyellow;border:solid 1px">
+        <div id="PanelBody" class="panel-body">
             @*//roles de usuarios*@
             <div class="form-group">
                 <label style="margin-left: 42%;margin-right: 17px;">Role of user</label>

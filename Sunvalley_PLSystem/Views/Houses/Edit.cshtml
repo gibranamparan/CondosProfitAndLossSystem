@@ -5,20 +5,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-   
-        <h4>House</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.houseID)
+    <div class="panel-warning">
+        <div id="PanelHeading" class="panel-heading">
+            <h4>House</h4>
+        
+        </div>
 
-       
+        <div id="PanelBody" class="panel-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.houseID)
+
+
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -26,8 +29,8 @@
                     @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                 </div>
             </div>
-        
-      
+
+
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.created, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -35,8 +38,8 @@
                     @Html.ValidationMessageFor(model => model.created, "", new { @class = "text-danger" })
                 </div>
             </div>
-         
-      
+
+
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.area, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -44,9 +47,9 @@
                     @Html.ValidationMessageFor(model => model.area, "", new { @class = "text-danger" })
                 </div>
             </div>
-        
 
-       
+
+
             <div style="margin-top:-44px" class="form-group col-md-6">
                 @Html.LabelFor(model => model.adress, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -54,9 +57,9 @@
                     @Html.ValidationMessageFor(model => model.adress, "", new { @class = "text-danger" })
                 </div>
             </div>
-           
 
-        
+
+
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.cityArea, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-8">
@@ -64,8 +67,8 @@
                     @Html.ValidationMessageFor(model => model.cityArea, "", new { @class = "text-danger" })
                 </div>
             </div>
-          
-        
+
+
             <div style="margin-top:-46px" class="form-group col-md-6">
                 @Html.LabelFor(model => model.country, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-8">
@@ -73,7 +76,7 @@
                     @Html.ValidationMessageFor(model => model.country, "", new { @class = "text-danger" })
                 </div>
             </div>
-           
+
 
 
             <div class="form-group col-md-6">
@@ -83,9 +86,9 @@
                     @Html.ValidationMessageFor(model => model.stateProvince, "", new { @class = "text-danger" })
                 </div>
             </div>
-          
 
-        
+
+
             <div style="margin-top:-46px" class="form-group col-md-6">
                 @Html.LabelFor(model => model.postalCode, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-8">
@@ -93,7 +96,7 @@
                     @Html.ValidationMessageFor(model => model.postalCode, "", new { @class = "text-danger" })
                 </div>
             </div>
-        
+
 
             @*<div class="form-group">
                 @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -108,6 +111,8 @@
                     <input type="submit" value="Save" class="btn btn-default" />
                 </div>
             </div>
+        </div>
+    </div>
 
             @*<div class="col-sm-6">
                 <div class="form-group">
