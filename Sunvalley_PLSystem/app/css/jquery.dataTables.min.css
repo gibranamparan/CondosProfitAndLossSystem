@@ -2,3 +2,8 @@ table.dataTable{width:100%;margin:0 auto;clear:both;border-collapse:separate;bor
 .dataTables_wrapper .dataTables_filter{
     margin-right:5px;
 }
+
+.dataTables_wrapper{
+    margin-top:27px;
+    
+}

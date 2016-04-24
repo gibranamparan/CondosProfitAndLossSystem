@@ -129,12 +129,12 @@
             <div id="PanelHeading" class="panel-heading hidden-print">
                 <h4>Movements of house</h4>   
             </div>
-            <div class="panel-body">
+            <div class="PbodyDetailsHouse panel-body">
                 @if (Request.IsAuthenticated)
                 {
                     if (User.IsInRole("Administrador"))
                     {
-                        <div class="col-md-3">
+                        <div class="col-md-3 hidden-print">
                             <span class="fa fa-plus-circle"></span>@Html.ActionLink("Create new movement", "Create", "Movements", new { id = Model.houseID }, null)
                         </div>
                     }
@@ -145,7 +145,7 @@
                 {
                     if (User.IsInRole("Administrador"))
                     {
-                        <div id="Filtros" class="col-md-9">
+                        <div id="Filtros" class="col-md-9 hidden-print">
                             @using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "col-md-6" }))
                             {
                                 @Html.Label("Date")
@@ -286,7 +286,7 @@
             </div>
         </div>
     </div>
-    <div id="botones">
+    <div id="botones" class="hidden-print">
         <input type="button" value="Report" onclick="location.href='@Url.Action("profitAndLossHouse", "Account", new { idHouse = Model.houseID }, null)'" />
 
     </div>

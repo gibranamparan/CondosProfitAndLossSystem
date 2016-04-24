@@ -279,8 +279,8 @@
                     <h4>Houses of Owner</h4><span class="fa fa-plus-circle"></span>@Html.ActionLink("Create new house", "Create", "Houses", new { id = Model.Id }, null)
                 </div>
 
-                <div id="PanelBody" class="panel-body"  style="margin-top:-0px">
-                    <table id="tabla" class="table table-striped table-hover col-md-12 table-responsive" style="padding:0px;">
+                <div id="PanelBody" class="panel-body"">
+                    <table id="tabla" class="table table-striped table-hover table-responsive" style="padding:0px;">
                         <thead>
                             <tr>
                                 @*<th>
@@ -316,7 +316,7 @@
                                 <th>
                                     @Html.DisplayName("Postal Code")
                                 </th>
-                                <th class="hidden-print">
+                                <th class="actionsAccount hidden-print">
                                     @Html.DisplayName("Actions")
 
                                 </th>
