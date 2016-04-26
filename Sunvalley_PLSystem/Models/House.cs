@@ -18,7 +18,7 @@ namespace Sunvalley_PLSystem.Models
         public DateTime created { get; set; }
         [Display(Name = "Area")]
         public string area { get; set; }
-        [Display(Name = "Adress")]
+        [Display(Name = "Address")]
         public string adress { get; set; }
         [Display(Name = "City/Area")]
         public string cityArea { get; set; }

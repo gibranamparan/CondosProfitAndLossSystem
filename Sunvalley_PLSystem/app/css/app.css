@@ -76,6 +76,13 @@ background: #fceabb;
 
 
 
+div#PanelHeading h4 {
+    text-align: center;
+}
+
+.panel-body{
+    margin:1em;
+}
 
 /*#tabla_wrapper {
   
