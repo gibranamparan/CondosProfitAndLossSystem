@@ -11,8 +11,120 @@
 *{transition:none!important}
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700);
 
+
+#Services{
+    width:50%;
+    border:solid 2px;
+    background-color:white;
+
+}
+#Services th{
+    background-color:orange;
+    color:white;
+    
+
+
+}
+
+#Reports{
+    width:50%;
+    border:solid 2px;
+    background-color:white;
+
+}
+#Reports th{
+    background-color:orange;
+    color:white;
+    
+
+
+}
+
+
+#DeleteHouse{
+    width:50%;
+    border:solid 2px;
+    background-color:white;
+
+}
+#DeleteHouse th{
+    background-color:orange;
+    color:white;
+    
+
+
+}
+
+#DeleteMovements{
+    width:50%;
+    border:solid 2px;
+    background-color:white;
+
+}
+#DeleteMovements th{
+    background-color:orange;
+    color:white;
+    
+
+
+}
+
+#DeleteAccount{
+    width:50%;
+    border:solid 2px;
+    background-color:white;
+
+}
+#DeleteAccount th{
+    background-color:orange;
+    color:white;
+    
+
+
+}
+
+@media print {
+    #tabla_length{
+        display:none;
+    }
+    #tabla_info{
+
+        display:none;
+    }
+
+    #tabla_paginate{
+
+        display:none;
+    }
+
+
+}
+
+.PbodyDetailsHouse{
+
+    padding-top: 11px !important;
+
+}
+.actions{
+
+
+    width: 23% !important;
+
+}
+.actionsAccount{
+ width: 418px !important;
+}
+h4{text-align:center;}
+
 #PanelHeading{
 border: solid 1px;
+}
+#PanelBodyHouses{
+
+   background-color:lightgoldenrodyellow !important;
+    border:solid 1px !important;
+        padding-top: 20px !important;
+      
 }
 
 #PanelBody{
@@ -20,7 +132,7 @@ border: solid 1px;
    background-color:lightgoldenrodyellow !important;
   
    border:solid 1px !important;
-       padding-top: 16px!important;
+      
 }
 
 #Details th{
@@ -45,21 +157,8 @@ background: #fceabb;
     padding-left: 0%;
 }
 
-#Reports{
-   width:50%;
-}
-#Reports th{
-    background-color:orange;
 
-}
-#Services{
-   width:50%;
-   border:solid 2px;
-}
-#Services th{
-    background-color:orange;
 
-}
 
 #hPanel{
 

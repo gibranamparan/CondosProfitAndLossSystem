@@ -12,12 +12,12 @@
 {
     @Html.AntiForgeryToken()
     <div class="panel-warning">
-        <div id="PanelHeading" class="panel-heading">
+        <div id="PanelHeadingHouses" class="panel-heading">
             <h4>House</h4>
         
         </div>
 
-        <div id="PanelBody" class="panel-body">
+        <div id="PanelBodyHouses" class="panel-body">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.houseID)
 

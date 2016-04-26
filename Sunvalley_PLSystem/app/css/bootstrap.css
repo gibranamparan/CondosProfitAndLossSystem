@@ -2306,10 +2306,10 @@ th {
   border-bottom-width: 2px;
 }
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #fafbfc;
+  background-color: #FFFFD2;
 }
 .table-hover > tbody > tr:hover {
-  background-color: #fafbfc;
+  background-color:#FFD732;
 }
 table col[class*="col-"] {
   position: static;
