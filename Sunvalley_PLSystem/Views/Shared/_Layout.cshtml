@@ -641,23 +641,23 @@
                             </li>
                             <li>
                                 @using Microsoft.AspNet.Identity
-                                @Html.ActionLink("My account", "Details", "Account",new { id = User.Identity.GetUserId() },null)
+                                @Html.ActionLink("My Account", "Details", "Account",new { id = User.Identity.GetUserId() },null)
                             </li>
                             <li>
                                 @Html.ActionLink("Reports", "IndexReport", "Movements", new { ID = User.Identity.GetUserId() },null)
                             </li>
                           }
                       }
-                                @if (User.Identity.IsAuthenticated)
-                                {
-            <li>
-                        @Html.ActionLink("LogOff", "LogOff", "Account")
-                     </li>}
-                      else {
-                        <li>
-                            @Html.ActionLink("LogIn", "Login", "Account", FormMethod.Post, new { id = "logoutForm"})
-                        </li>
-                      }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                @Html.ActionLink("LogOff", "LogOff", "Account")
+                            </li>}
+                        else {
+                            <li>
+                                @Html.ActionLink("LogIn", "Login", "Account", FormMethod.Post, new { id = "logoutForm"})
+                            </li>
+                        }
 
 
                   </ul>
