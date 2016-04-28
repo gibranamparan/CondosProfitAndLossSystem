@@ -21,6 +21,8 @@ namespace Sunvalley_PLSystem.Models
         public string typeOfMovement { get; set; }
         [Display(Name = "Description")]
         public string description { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:c}", ApplyFormatInEditMode = true)]
         [Display(Name = "Amount")]
         public decimal amount { get; set; }
         [Display(Name = "Balance")]

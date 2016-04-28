@@ -78,8 +78,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "InputAmount form-control" } })
-                @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "InputAmount form-control", @data_val = "false" } })
+                @*@Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
@@ -151,7 +151,7 @@
     <script>
         $(document).ready(function () {
 
-            $('.InputAmount').mask('000.000.000.000.000,00', { reverse: true });
+            $('.InputAmount').mask('000.000.000.000.000.00', { reverse: true });
 
 
 
