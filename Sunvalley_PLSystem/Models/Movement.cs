@@ -13,18 +13,26 @@ namespace Sunvalley_PLSystem.Models
 
         [Display(Name = "Create By")]
         public string createBy { get; set; }
+
         [Display(Name = "Transaction Date")]
         [DataType(DataType.Date)]
+
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime transactionDate { get; set; }
+
         [Display(Name = "type of movement")]
         public string typeOfMovement { get; set; }
+
         [Display(Name = "Description")]
         public string description { get; set; }
+
         [Display(Name = "Amount")]
         public decimal amount { get; set; }
+
         [Display(Name = "Balance")]
         public decimal balance { get; set; }
+
+        [Display(Name = "Status")]
         public Boolean state { get; set; }
 
         //To one movement correspond one house
