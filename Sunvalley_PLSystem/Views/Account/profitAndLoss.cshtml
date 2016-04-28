@@ -169,7 +169,7 @@
                                 @Html.DisplayFor(modelItem => item.description)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.amount)
+                               $ @Html.DisplayFor(modelItem => item.amount)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.balance)
@@ -219,7 +219,7 @@
                     </th>
 
                     <th>
-                        @Html.DisplayNameFor(model => model.amount)
+                       $ @Html.DisplayNameFor(model => model.amount)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.balance)
@@ -260,7 +260,7 @@
                         </td>
 
                         <td>
-                            @Html.DisplayFor(modelItem => item.amount)
+                           $ @Html.DisplayFor(modelItem => item.amount)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.balance)
@@ -311,7 +311,7 @@
                     </th>
 
                     <th>
-                        @Html.DisplayNameFor(model => model.amount)
+                       $ @Html.DisplayNameFor(model => model.amount)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.balance)
@@ -352,7 +352,7 @@ else {
                         </td>
 
                         <td>
-                            @Html.DisplayFor(modelItem => item.amount)
+                           $ @Html.DisplayFor(modelItem => item.amount)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.balance)
@@ -387,14 +387,14 @@ else {
                 <th> @Html.DisplayName("Income")</th>
 
                 <td>
-                    @ViewBag.TotalProfit
+                    $ @ViewBag.TotalProfit
                 </td>
             </tr>
             <tr>
                 <th> @Html.DisplayName("Expense")</th>
 
                 <td>
-                    @ViewBag.TotalLoss
+                    $ @ViewBag.TotalLoss
                 </td>
             </tr>
             @*<tr>
@@ -406,10 +406,17 @@ else {
             </tr>*@
             <tr>
                 <th>@Html.DisplayName("Total Profit")</th>
-
-                <td>
-                    @ViewBag.Total
+                @if (ViewBag.Total < 0)
+                {
+                <td style="color:red">
+                    $ @ViewBag.Total
                 </td>
+                }
+                else {
+                    <td>
+                        $ @ViewBag.Total
+                    </td>
+                }
             </tr>
         </table>
             </div>
