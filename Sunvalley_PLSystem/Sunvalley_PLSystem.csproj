@@ -283,6 +283,7 @@
     <Content Include="app\js\dataTables.buttons.min.js" />
     <Content Include="app\js\jquery.dataTables.min.js" />
     <Content Include="app\js\jquery.js" />
+    <Content Include="app\js\jquery.mask.js" />
     <Content Include="app\js\pages.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
