@@ -177,9 +177,12 @@
                             @*<th>
                                     @Html.DisplayName("Name of house")
                                 </th>*@
+                            @if (User.IsInRole("Administrador"))
+                            { 
                             <th>
                                 @Html.DisplayName("Created By")
                             </th>
+                            }
 
                             <th>
                                 @Html.DisplayName("Transaction Date")
@@ -195,27 +198,24 @@
                             <th>
                                 @Html.DisplayName("Service")
                             </th>
-                            @if (Request.IsAuthenticated)
-                            {
-                                if (User.IsInRole("Administrador"))
+                                @if (User.IsInRole("Administrador"))
                                 {
-                                    <th>
-                                        @Html.DisplayName("State")
-                                    </th>
-
+                                <th>
+                                    @Html.DisplayName("State")
+                                </th>
                                 }
-                            }
-
-
                             <th>
                                 @Html.DisplayName("Amount")
                             </th>
                             <th>
                                 @Html.DisplayName("Balance")
                             </th>
+                            @if (User.IsInRole("Administrador"))
+                            {
                             <th class="hidden-print">
                                 @Html.DisplayName("Actions")
                             </th>
+                            }
                             @*<th>
                                     @Html.DisplayNameFor(model => model.UserID)
                                 </th>*@
@@ -228,9 +228,12 @@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.name)
                                     </td>*@
+                                @if (User.IsInRole("Administrador"))
+                                {
                                 <td>
                                     @Html.DisplayFor(modelItem => item.createBy)
                                 </td>
+                                }
 
                                 <td>
                                     @Html.DisplayFor(modelItem => item.transactionDate)
@@ -244,16 +247,11 @@
                                     @Html.DisplayFor(modelItem => item.services.name)
                                 </td>
 
-
-                                @if (Request.IsAuthenticated)
+                                @if (User.IsInRole("Administrador"))
                                 {
-                                    if (User.IsInRole("Administrador"))
-                                    {
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.state)
-                                        </td>
-
-                                    }
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.state)
+                                </td>
                                 }
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.value)
@@ -266,19 +264,15 @@
                                     @Html.DisplayFor(modelItem => item.balance)
                                 </td>
                                 @*<td>
-                                        @Html.DisplayFor(modelItem => item.UserID)
-                                    </td>*@
-                                @if (Request.IsAuthenticated)
+                                    @Html.DisplayFor(modelItem => item.UserID)
+                                </td>*@
+                                @if (User.IsInRole("Administrador"))
                                 {
-                                    if (User.IsInRole("Administrador"))
-                                    {
-                                        <td class="hidden-print">
-                                            <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", "Movements", new { id = item.movementID }, null) |
-                                            |<span class="fa fa-trash-o"></span> @Html.ActionLink("Delete", "Delete", "Movements", new { id = item.movementID }, null)
-                                        </td>
-                                    }
+                                    <td class="hidden-print">
+                                        <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", "Movements", new { id = item.movementID }, null) |
+                                        |<span class="fa fa-trash-o"></span> @Html.ActionLink("Delete", "Delete", "Movements", new { id = item.movementID }, null)
+                                    </td>
                                 }
-
                             </tr>
                         }
                     </tbody>
