@@ -29,6 +29,7 @@ namespace Sunvalley_PLSystem.Models
         [Display(Name = "Amount")]
         public decimal amount { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:c}", ApplyFormatInEditMode = true)]
         [Display(Name = "Balance")]
         public decimal balance { get; set; }
 
