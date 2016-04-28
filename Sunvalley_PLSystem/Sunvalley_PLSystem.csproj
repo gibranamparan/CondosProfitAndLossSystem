@@ -226,6 +226,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Movement.cs" />
     <Compile Include="Models\Services.cs" />
+    <Compile Include="Models\VmFilter\VmAprov.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
