@@ -4,9 +4,10 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    Sunvalley_PLSystem.Models.VmFilter.VmAprov f = new Sunvalley_PLSystem.Models.VmFilter.VmAprov();
     IEnumerable<Sunvalley_PLSystem.Models.Movement> m = ViewBag.Movements1;
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Loss = ViewBag.Loss;
+
 }
 
 
@@ -149,18 +150,20 @@
                             @using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "col-md-6" }))
                             {
                                 @Html.Label("Date")
-                                <input type="Month" name="fecha" class="hidden-print" style="text-align:right;">
+                                <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
                                 @Html.Hidden("houseID", Model.houseID)
                                 @Html.Hidden("Accion", "Autorizar")
                                 @Html.Hidden("IdUser", Model.Id)
+                                
                                 <input type="submit" value="Approve" class="hidden-print" style="text-align:right;" />
                             }
                             @using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "col-md-6" }))
                             {
                                 @Html.Label("Date")
-                                <input type="Month" name="fecha" class="hidden-print" style="text-align:right;">
+                                <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
                                 @Html.Hidden("houseID", Model.houseID)
                                 @Html.Hidden("Accion", "Desautorizar")
+                                @Html.ValidationMessage("BeginForm")
                                 <input type="submit" value="Unaprove" class="hidden-print" style="text-align:right;" />
                             }
 
