@@ -189,7 +189,7 @@
                                 </th>*@
                             @if (User.IsInRole("Administrador"))
                             { 
-                            <th>
+                            <th class="hidden-print">
                                 @Html.DisplayName("Created By")
                             </th>
                             }
@@ -240,7 +240,7 @@
                                     </td>*@
                                 @if (User.IsInRole("Administrador"))
                                 {
-                                <td>
+                                <td class="hidden-print">
                                     @Html.DisplayFor(modelItem => item.createBy)
                                 </td>
                                 }

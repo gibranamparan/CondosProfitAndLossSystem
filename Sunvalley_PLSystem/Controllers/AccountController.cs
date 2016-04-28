@@ -209,6 +209,8 @@ namespace Sunvalley_PLSystem.Controllers
                 ViewBag.Profit = House.movimientos.Where(m => m.typeOfMovement == "Income" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
                 ViewBag.Contribution = House.movimientos.Where(m => m.typeOfMovement == "Contribution" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
 
+                ViewBag.House = House;
+
                 ViewBag.TotalLoss = House.movimientos.Where(m => m.typeOfMovement == "Expense" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
                 ViewBag.TotalProfit = House.movimientos.Where(m => m.typeOfMovement == "Income" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
                 ViewBag.TotalContribution = House.movimientos.Where(m => m.typeOfMovement == "Contribution" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
