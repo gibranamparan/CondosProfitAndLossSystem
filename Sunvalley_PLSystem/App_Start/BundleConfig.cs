@@ -35,13 +35,20 @@ namespace Sunvalley_PLSystem
                       "~/app/css/print.css"));
 
 
+            bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
+                     "~/Content/themes/base/jquery.ui.all.css",
+                     "~/Content/themes/base/jquery.ui.datepicker.css",
+                     "~/Content/themes/base/jquery.ui.core.css"
+                     ));
+
+
             bundles.Add(new StyleBundle("~/vendorEstilos").Include(
                       "~/vendor/animo/animate_animo.css",
                       "~/vendor/csspinner/csspinner.min.css"));
 
             /*Scripts*/
             bundles.Add(new ScriptBundle("~/appScript").Include(
-                      "~/app/js/app.js"));
+                      "~/app/js/app.js", "~/app/js/pages.js"));
 
             bundles.Add(new ScriptBundle("~/vendorScript").Include(
                         "~/vendor/modernizr/modernizr.js",

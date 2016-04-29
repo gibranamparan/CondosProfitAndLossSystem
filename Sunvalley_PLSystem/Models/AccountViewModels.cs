@@ -119,7 +119,11 @@ namespace Sunvalley_PLSystem.Models
         [Display(Name = "Status")]
         public string status { get; set; }
 
+        [Display(Name = "Role Name")]
+        public string roleName { get; set; }
 
+        [Display(Name = "Registered UserID")]
+        public string registeredUserID { get; set; }
         //***************************************************************************
         [Required]
         [EmailAddress]

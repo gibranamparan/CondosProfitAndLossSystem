@@ -59,27 +59,44 @@ namespace Sunvalley_PLSystem.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Index(String status)
         {
-            //ApplicationUser user = UserManager.FindById<ApplicationUser, String>("dsdsds");
+            var allUsers = UserManager.Users.ToList();//Get all users
+            var roles = new ApplicationDbContext().Roles.ToList();//Get all roles
+
+            //Get a view showing users with their roles.
+            var Users = from user in allUsers
+                                     join rol in roles
+                                     on user.Roles.First().RoleId equals rol.Id
+                                     select new RegisterViewModel
+                                     {
+                                         firstName = user.firstName,
+                                         lastName = user.lastName,
+                                         country = user.country,
+                                         mobilePhone = user.mobilePhone,
+                                         Email = user.Email,
+                                         roleName = rol.Name,
+                                         registeredUserID = user.Id,
+                                         status = user.status
+                                     };
+
             if (status != null)
             {
                 if (status == "Activate")
                 {
-                    var Users1 = UserManager.Users.Where(u => u.status == "Activate");
+                    Users = Users.Where(u => u.status == "Activate");
                     ViewBag.state = "Activate";
-                    return View(Users1);
                 }
                 else
                 {
-                    var Users2 = UserManager.Users.Where(u => u.status == "Disable");
+                    Users = Users.Where(u => u.status == "Disable");
                     ViewBag.state = "Disable";
-                    return View(Users2);
                 }
             }
             else {
-                var Users = UserManager.Users.Where(u => u.status == "Activate");
+                Users = Users.Where(u => u.status == "Activate");
                 ViewBag.state = "Activate";
-                return View(Users);
             }
+
+            return View(Users);
         }
 
         [Authorize(Roles = "Administrador")]
@@ -372,13 +389,8 @@ namespace Sunvalley_PLSystem.Controllers
                 homePhone=model.homePhone,businesFax=model.businesFax,businessPhone=model.businessPhone, Email1=model.Email1,Email2=model.Email2,status="Activate"};
                 var result = await UserManager.CreateAsync(user, model.Password);
 
-                
-
-
                 if (result.Succeeded)
                 {
-
-
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

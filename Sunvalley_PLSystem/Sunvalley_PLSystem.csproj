@@ -219,6 +219,10 @@
     <Compile Include="Migrations\201604281651263_quitkey.Designer.cs">
       <DependentUpon>201604281651263_quitkey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604291951501_house_changedAttr_postalCodeToString.cs" />
+    <Compile Include="Migrations\201604291951501_house_changedAttr_postalCodeToString.Designer.cs">
+      <DependentUpon>201604291951501_house_changedAttr_postalCodeToString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountStatusReport.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -870,6 +874,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604281651263_quitkey.resx">
       <DependentUpon>201604281651263_quitkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604291951501_house_changedAttr_postalCodeToString.resx">
+      <DependentUpon>201604291951501_house_changedAttr_postalCodeToString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

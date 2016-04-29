@@ -20,6 +20,7 @@ namespace Sunvalley_PLSystem.Models
             return userIdentity;
         }
 
+        [Display(Name="Owner Name")]
         public string firstName { get; set; }
         public string lastName { get; set; }
         public DateTime createAt { get; set; }

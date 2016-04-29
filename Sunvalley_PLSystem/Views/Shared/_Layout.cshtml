@@ -44,6 +44,7 @@
     @Styles.Render("~/app/css/jquery.dataTables.min.css")
     @Styles.Render("~/app/css/buttons.dataTables.min.css")
     @Styles.Render("~/vendorEstilos")
+    @Styles.Render("~/Content/themes/base/css")
 
 
     @*Scripts*@ 
@@ -51,8 +52,8 @@
     @Scripts.Render("~/app/js/dataTables.buttons.min.js")
     @Scripts.Render("~/app/js/buttons.print.min.js")
     @*@Scripts.Render("~/app/js/buttons.colVis.men.js")*@
-    @Scripts.Render("~/appScripts")
-    @Scripts.Render("~/vendorScripts")
+    @Scripts.Render("~/appScript")
+    @Scripts.Render("~/vendorScript")
     @Scripts.Render("~/app/js/jquery.mask.js")
     @*@Scripts.Render("~/bundles/bootstrap")*@
     
@@ -112,14 +113,14 @@
             <!-- START Left navbar-->
             <ul class="nav navbar-nav">
                <li>
-                  @*<a href="#" data-toggle="aside">
-                     <em class="fa fa-align-left"></em>*@
+                  <a href="#" data-toggle="aside">
+                     <em class="fa fa-align-left"></em>
                   </a>
                </li>
                <li>
                   @*<a href="#" data-toggle="navbar-search">
-                     <em class="fa fa-search"></em>*@
-                  </a>
+                   <em class="fa fa-search"></em>
+                </a>*@
                </li>
             </ul>
             <!-- END Left navbar-->
@@ -343,9 +344,9 @@
                   </a>
                </li>*@
                <!-- END Contacts menu-->
-            </ul>
+            @*</ul>*@
             <!-- END Right Navbar-->
-         </div>
+         @*</div>*@
          <!-- END Nav wrapper-->
          <!-- START Search form-->
          @*<form role="search" class="navbar-form">

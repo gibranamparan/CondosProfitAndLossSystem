@@ -26,8 +26,9 @@ namespace Sunvalley_PLSystem.Models
         public string country { get; set; }
         [Display(Name = "State/Province")]
         public string stateProvince { get; set; }
+
         [Display(Name = "Postal Code")]
-        public int postalCode { get; set; }
+        public String postalCode { get; set; }
 
         public String Id { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
