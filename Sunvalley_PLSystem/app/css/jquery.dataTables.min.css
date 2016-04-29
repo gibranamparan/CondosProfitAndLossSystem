@@ -7,3 +7,8 @@ table.dataTable{width:100%;margin:0 auto;clear:both;border-collapse:separate;bor
     margin-top:27px;
     
 }
+
+table.dataTable tbody td {
+    padding: 8px 4px !important;
+}
+

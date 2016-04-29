@@ -11,6 +11,14 @@
 *{transition:none!important}
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700);
 
+.BuscadorFecha{
+
+    margin-top: 54px !important;
+    margin-left: 58% !important;
+    margin-bottom: -38px !important;
+
+}
+
 
 #Services{
     width:50%;
