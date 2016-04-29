@@ -11,7 +11,9 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    @Html.HiddenFor(model=>model.UserID)
+    @Html.HiddenFor(model => model.houseID)
+    @Html.HiddenFor(model => model.transactionDate)
     <div class="form-horizontal">
 
         <div class="panel-warning">
@@ -30,22 +32,6 @@
                     @Html.ValidationMessageFor(model => model.createBy, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.transactionDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.transactionDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.transactionDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.typeOfMovement, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.typeOfMovement, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.typeOfMovement, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.typeOfMovement, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -72,21 +58,6 @@
                 </div>
             </div>
 
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.value, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.value, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.value, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.qty, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.qty, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.qty, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -96,30 +67,6 @@
                 </div>
             </div>
 
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.balance, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.balance, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.balance, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
-            @Html.Hidden("houseID", Model.houseID)
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.houseID, "houseID", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("houseID", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.houseID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
-            @Html.Hidden("houseID", Model.UserID)
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" />

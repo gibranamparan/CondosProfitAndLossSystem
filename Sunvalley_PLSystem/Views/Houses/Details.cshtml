@@ -272,7 +272,7 @@
                                     $@String.Format("{0:n}", item.amount)
                                 </td>
 
-                                <td>
+                                <td class=@(item.balance < 0 ? "balanceNegativo" : "")>
                                     @Html.DisplayFor(modelItem => item.balance)
                                 </td>
                                 @*<td>

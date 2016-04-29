@@ -141,17 +141,45 @@ namespace Sunvalley_PLSystem.Controllers
             if (ModelState.IsValid)
             {
                 movement.createBy = User.Identity.GetUserName();
-                movement.UserID = User.Identity.GetUserId(); ;
+                movement.UserID = User.Identity.GetUserId();
+                if (movement.typeOfMovement == "Income")
+                {
+                    Services rent = db.Services.SingleOrDefault(ser => ser.name == "RENT");
+                    if (rent == null || rent.serviceID == 0)
+                    {
+                        rent = new Services();
+                        rent.name = "RENT";
+                        db.Services.Add(rent);
+                        db.SaveChanges();
+                    }
+                    movement.serviceID = rent.serviceID;
+                }
+                else if (movement.typeOfMovement == "Contribution")
+                {
+                    Services contri = db.Services.SingleOrDefault(ser => ser.name == "Contribution");
+                    if (contri == null || contri.serviceID == 0)
+                    {
+                        contri = new Services();
+                        contri.name = "Contribution";
+                        db.Services.Add(contri);
+                        db.SaveChanges();
+                    }
+                    
+                    movement.serviceID = contri.serviceID;
+                }
                 //var balances = from movi in db.Movements
                 //               where movi.houseID == movement.houseID
                 //               orderby movi.transactionDate descending
                 //               select movi;
                 //decimal b = balances.Take(1).s;
                 try {
-                    balanceAnterior = db.Movements.Where(mov => mov.houseID == movement.houseID).OrderByDescending(mov => mov.transactionDate).First().balance;
+                    var movimientosAscendentes = db.Movements.Where(mov => mov.houseID == movement.houseID).OrderByDescending(mov => mov.transactionDate);
+                    int cant = movimientosAscendentes.Count();
+                    var ultimoMov = movimientosAscendentes.First();
+                    balanceAnterior = ultimoMov.balance;
                 }
                 catch { }
-                if (movement.typeOfMovement== "Income" || movement.typeOfMovement == "Contributions")
+                if (movement.typeOfMovement == "Income" || movement.typeOfMovement == "Contribution")
                 {
                     movement.balance = balanceAnterior+movement.amount;
                 }
@@ -204,6 +232,8 @@ namespace Sunvalley_PLSystem.Controllers
                 return RedirectToAction("Recalculate", new { id = movement.houseID});
             }
             ViewBag.houseID = new SelectList(db.Houses, "houseID", "name", movement.houseID);
+            SelectList lista = new SelectList(db.Services, "serviceID", "name");
+            ViewBag.Services = lista;
             return View(movement);
         }
 
@@ -232,7 +262,7 @@ namespace Sunvalley_PLSystem.Controllers
             Movement movement = db.Movements.Find(id);
             db.Movements.Remove(movement);
             db.SaveChanges();
-            return RedirectToAction("Details", "Houses", new { id = movement.houseID });
+            return RedirectToAction("Recalculate", new { id = movement.houseID });
         }
 
         protected override void Dispose(bool disposing)

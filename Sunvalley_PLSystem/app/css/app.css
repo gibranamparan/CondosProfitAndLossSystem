@@ -34,6 +34,9 @@
 
 }
 
+.balanceNegativo{
+    color: red;
+}
 #Reports{
     width:50%;
     border:solid 2px;
@@ -62,6 +65,7 @@
 
 
 }
+
 
 #DeleteMovements{
     width:50%;
