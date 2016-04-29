@@ -166,7 +166,7 @@
                                 <input type="submit" value="Unaprove" class="hidden-print" style="text-align:right;" />
                             }
 
-                            @using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "col-md-6" }))
+                            @using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "BuscadorFecha col-md-6" }))
                             {
                                 @Html.Label("Date")
                                 <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
