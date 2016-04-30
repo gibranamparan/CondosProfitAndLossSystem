@@ -11,7 +11,7 @@ namespace Sunvalley_PLSystem.Models
         [Key]
         public int movementID { get; set; }
 
-        [Display(Name = "Create By")]
+        [Display(Name = "Registered By")]
         public string createBy { get; set; }
 
         [Display(Name = "Transaction Date")]

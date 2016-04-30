@@ -24,9 +24,6 @@
                         <th>
                             @Html.DisplayNameFor(model => model.name)
                         </th>
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.status)
-                            </th>*@
 
                         <th>
                             @Html.DisplayNameFor(model => model.created)
@@ -50,9 +47,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.postalCode)
                         </th>
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.UserID)
-                            </th>*@
+
                     </tr>
 
                     <tr>
@@ -60,14 +55,6 @@
                         <td>
                             @Html.DisplayFor(model => model.name)
                         </td>
-
-
-
-                        @*<td>
-                                @Html.DisplayFor(model => model.status)
-                            </td>*@
-
-
 
                         <td>
                             @Html.DisplayFor(model => model.created)
@@ -119,11 +106,6 @@
                 <div class="hidden-print"><span class="fa fa-reply hidden-print"></span> @Html.ActionLink("Back to List", "Index")</div>
         </div>
     </div>
-
-
-
-
-
 
     <div class="panel-group">
         <div class="panel panel-warning">
@@ -190,7 +172,7 @@
                             @if (User.IsInRole("Administrador"))
                             { 
                             <th class="hidden-print">
-                                @Html.DisplayName("Created By")
+                                @Html.DisplayNameFor(mov=>m.FirstOrDefault().createBy)
                             </th>
                             }
 
