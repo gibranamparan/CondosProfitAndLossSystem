@@ -621,9 +621,25 @@
                      <li>
                         @Html.ActionLink("Houses", "Index", "Houses")
                      </li>
-                    <li>
-                        @Html.ActionLink("Reports", "IndexReport", "Movements")
-                    </li>
+
+                        @*@Html.ActionLink("Reports", "IndexReport", "Movements")*@
+                            <li>
+                                <div style="margin-left:30px;color:gray;padding-top: 8px;padding-bottom: 9px;" class="dropdown hover">
+                                    <span class="dropdown-toggle"  data-toggle="dropdown">
+                                        Reports
+                                        <span class="caret"></span>
+                                    </span>
+                                    <ul class="dropdown-menu">
+                                    
+                                        <li><a href="#" onclick="window.print();return false;">Montly Statement</a> </li>
+                                       
+                                    </ul>
+                                </div>
+
+                            </li>
+
+
+
                     <li>
                         @Html.ActionLink("Services", "Index", "Service")
                     </li>

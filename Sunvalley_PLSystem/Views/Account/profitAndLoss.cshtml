@@ -101,7 +101,7 @@
 
     <div class="panel panel-warning" style="background-color:white; width:100%">
         <div class="panel-heading hidden-print">
-           <h4>Profit</h4>
+           <h4>Income</h4>
 
         </div>
         <div class="panel-body">
@@ -195,10 +195,106 @@
 
 
 
+
+
+        @*contributions*@
+
+        <div class="panel-warning" style="background-color:white">
+            <div class="panel-heading hidden-print">
+                <h4>Contributions</h4>
+            </div>
+            <div class="panel-body">
+                <table id="Details" class="table table-bordered table-hover table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            @*<th class="hidden">
+                                    @Html.DisplayNameFor(model => model.house.name)
+                                </th>*@
+                            <th>
+                                @Html.DisplayNameFor(model => model.services.name)
+                            </th>
+
+                            <th>
+
+                                @Html.DisplayNameFor(model => model.transactionDate)
+                            </th>
+                            <th>
+
+                                @Html.DisplayName("Type")
+                            </th>
+
+                            <th>
+                                $ @Html.DisplayNameFor(model => model.amount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.balance)
+                            </th>
+                            @*<th>
+                                    @Html.DisplayNameFor(model => model.state)
+                                </th>*@
+                            @*<th>
+                                    @Html.DisplayNameFor(model => model.UserID)
+                                </th>*@
+
+                        </tr>
+                    </thead>
+
+                    @if (!Contribution.Any())
+                    {
+                        <tbody>
+                            <tr><td>No movements were found in the set period</td></tr>
+                        </tbody>
+                    }
+                    else {
+                        <tbody>
+                            @foreach (var item in Contribution)
+                            {
+                                <tr>
+                                    @*<td class="hidd">
+                                            @Html.DisplayFor(modelItem => item.house.name)
+                                        </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.services.name)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.transactionDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.typeOfMovement)
+                                    </td>
+
+                                    <td>
+                                        $ @Html.DisplayFor(modelItem => item.amount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.balance)
+                                    </td>
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.state)
+                                        </td>*@
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.UserID)
+                                        </td>*@
+                                    @*<td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.movementID }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.movementID }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.movementID })
+                                        </td>*@
+                                </tr>
+                            }
+                        </tbody>
+                    }
+                </table>
+            </div>
+        </div>
+
+
+
         @*loss*@
     <div class="panel-warning" style="background-color:white">
         <div class="panel-heading hidden-print">
-            <h4>Loss</h4>
+            <h4>Expenses</h4>
         </div>
         <div class="panel-body">
         <table id="Details" class="table table-bordered table-hover table-responsive table-striped">
@@ -286,97 +382,6 @@
 
 
 
-        @*contributions*@
-    
-    <div class="panel-warning" style="background-color:white">
-        <div class="panel-heading hidden-print">
-            <h4>Contributions</h4>
-        </div>
-        <div class="panel-body">
-        <table id="Details" class="table table-bordered table-hover table-responsive table-striped">
-            <thead>
-                <tr>
-                    @*<th class="hidden">
-                        @Html.DisplayNameFor(model => model.house.name)
-                    </th>*@
-                    <th>
-                        @Html.DisplayNameFor(model => model.services.name)
-                    </th>
-
-                    <th>
-                       
-                        @Html.DisplayNameFor(model => model.transactionDate)
-                    </th>
-                    <th>
-                       
-                        @Html.DisplayName("Type")
-                    </th>
-
-                    <th>
-                       $ @Html.DisplayNameFor(model => model.amount)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.balance)
-                    </th>
-                    @*<th>
-                        @Html.DisplayNameFor(model => model.state)
-                    </th>*@
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.UserID)
-                        </th>*@
-                  
-                </tr>
-            </thead>
-
-@if (!Contribution.Any())
-{
-    <tbody>
-        <tr><td>No movements were found in the set period</td></tr>
-    </tbody>
-}
-else {
-            <tbody>
-                @foreach (var item in Contribution)
-                {
-                    <tr>
-                        @*<td class="hidd">
-                            @Html.DisplayFor(modelItem => item.house.name)
-                        </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.services.name)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.transactionDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.typeOfMovement)
-                        </td>
-
-                        <td>
-                           $ @Html.DisplayFor(modelItem => item.amount)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.balance)
-                        </td>
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.state)
-                        </td>*@
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.UserID)
-                            </td>*@
-                        @*<td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.movementID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.movementID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.movementID })
-                            </td>*@
-                    </tr>
-                }
-            </tbody>
-}
-        </table>
-            </div>
-    </div>
 
 
     <div class="panel-warning" style="background-color:white">
