@@ -187,7 +187,7 @@ namespace Sunvalley_PLSystem.Controllers
                 {
                     movement.balance = balanceAnterior - movement.amount;
                 }
-                movement.transactionDate = DateTime.Now;
+                //movement.transactionDate = DateTime.Now;
                 db.Movements.Add(movement);
                 db.SaveChanges();
                 int id = movement.houseID;
@@ -221,7 +221,7 @@ namespace Sunvalley_PLSystem.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Movement movement)
         {
@@ -238,7 +238,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Movements/Delete/5
-        //[Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -255,14 +255,14 @@ namespace Sunvalley_PLSystem.Controllers
 
         // POST: Movements/Delete/5
         [HttpPost, ActionName("Delete")]
-        //[Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Movement movement = db.Movements.Find(id);
             db.Movements.Remove(movement);
             db.SaveChanges();
-            return RedirectToAction("Recalculate", new { id = movement.houseID });
+            return RedirectToAction("Recalculate", new { id = movement.houseID});
         }
 
         protected override void Dispose(bool disposing)
