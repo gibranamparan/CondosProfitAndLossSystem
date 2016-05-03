@@ -140,7 +140,7 @@
                     </tr>
                 </thead>
 
-                @if (!Model.Any())
+                @if (!Profit.Any())
                 {
                     <tbody class="hidden-print">
                         <tr><td>No movements were found in the set period</td></tr>
@@ -233,7 +233,7 @@
                   
                 </tr>
             </thead>
-            @if (!Model.Any())
+            @if (!Loss.Any())
             {
                 <tbody>
                     <tr><td>No movements were found in the set period</td></tr>
@@ -244,10 +244,10 @@
             <tbody>
                 @foreach (var item in Loss)
                 {
-                    <tr class="hidden">
-                        <td>
+                    <tr>
+                        @*<td>
                             @Html.DisplayFor(modelItem => item.house.name)
-                        </td>
+                        </td>*@
                         <td>
                             @Html.DisplayFor(modelItem => item.services.name)
                         </td>
@@ -328,7 +328,7 @@
                 </tr>
             </thead>
 
-@if (!Model.Any())
+@if (!Contribution.Any())
 {
     <tbody>
         <tr><td>No movements were found in the set period</td></tr>
