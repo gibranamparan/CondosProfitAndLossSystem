@@ -274,6 +274,7 @@
     <Content Include="app\img\logo2.png" />
     <Content Include="app\img\logo3.png" />
     <Content Include="app\img\offsidebar-bg.jpg" />
+    <Content Include="app\img\Sol.png" />
     <Content Include="app\img\user\01.jpg" />
     <Content Include="app\img\user\02.jpg" />
     <Content Include="app\img\user\03.jpg" />

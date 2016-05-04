@@ -630,7 +630,13 @@
                                         <span class="caret"></span>
                                     </span>
                                     <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Profit and Loss","profitAndLossHouse", "Account", new { idHouse = Model.houseID }, null)</li>
+
+                                        @*@if ( idHouse == 0)*@
+
+                                        
+                                        <li>@Html.ActionLink("Profit and Loss", "profitAndLossHouse", "Account", new { idHouse = 0 }, null)</li>
+                                      
+                                           
                                         <li><a href="#" onclick="window.print();return false;">Montly Statement</a> </li>
                                        
                                     </ul>
