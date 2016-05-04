@@ -128,8 +128,8 @@
                 {
                     if (User.IsInRole("Administrador"))
                     {
-                        <div id="Filtros" class="col-md-9 hidden-print">
-                            @using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "col-md-6" }))
+                        <div id="Filtros" class="hidden-print">
+                            @using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "Filtro1" }))
                             {
                                 @Html.Label("Date")
                                 <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
@@ -139,7 +139,7 @@
                                 
                                 <input type="submit" value="Approve" class="hidden-print" style="text-align:right;" />
                             }
-                            @using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "col-md-6" }))
+                            @using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "Filtro2" }))
                             {
                                 @Html.Label("Date")
                                 <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
@@ -148,16 +148,20 @@
                                 <input type="submit" value="Unaprove" class="hidden-print" style="text-align:right;" />
                             }
 
-                            @using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "BuscadorFecha col-md-6" }))
-                            {
-                                @Html.Label("Date")
-                                <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
-                                @Html.Hidden("houseID", Model.houseID)
-                                <input type="submit" value="Search" class="hidden-print" style="text-align:right;" />
-                            }
+                            
 
                         </div>
                     }
+                }
+            </div>
+            <div class="hidden-print">
+
+                @using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "BuscadorFecha " }))
+            {
+                    @Html.Label("Date")
+                    <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
+                    @Html.Hidden("houseID", Model.houseID)
+                    <input type="submit" value="Search" class="hidden-print" style="text-align:right;" />
                 }
             </div>
             <!--style="margin-top: -40px;width: 968px;margin-left:-15px"-->
