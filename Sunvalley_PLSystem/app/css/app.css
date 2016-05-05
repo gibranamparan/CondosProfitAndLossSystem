@@ -5138,7 +5138,7 @@ textarea.chosen-container-active.chosen-with-drop .chosen-single {
     width: 100%;
 }
 .function-cell a+span {
-    margin-left: .8em;
+    margin-left: 4px !important;
 }
 @media print{
     

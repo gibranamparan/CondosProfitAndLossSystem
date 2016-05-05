@@ -634,10 +634,10 @@
                                         @*@if ( idHouse == 0)*@
 
                                         
-                                        <li>@Html.ActionLink("Profit and Loss", "profitAndLossHouse", "Account", new { idHouse = 0 }, null)</li>
+                                        <li>@Html.ActionLink("Profit and Loss", "profitAndLossHouse", "Account", new {idHouse=0 },null)</li>
                                       
                                            
-                                        <li><a href="#" onclick="window.print();return false;">Montly Statement</a> </li>
+                                        <li>@Html.ActionLink("Montly Statement", "Reports", "Movements", new { idHouse = 0 }, null) </li>
                                        
                                     </ul>
                                 </div>
