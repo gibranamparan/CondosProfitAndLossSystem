@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+   
 }
 
 
@@ -110,6 +111,8 @@
                                 {
                                     <td>
                                         <span class="fa fa-reorder hidden-print"></span>@Html.ActionLink("Movements", "Details", new { id = item.houseID },null)
+                                        <span class="fa fa-reorder"></span>@Html.ActionLink("Profit and Loss Report", "profitAndLossHouse","Account", new { idHouse = item.houseID},null) 
+
                                     </td>
 
                                 }
