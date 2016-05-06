@@ -612,7 +612,7 @@
                   <!-- START SubMenu item-->
                   <ul class="nav collapse in">
                       @if (User.Identity.IsAuthenticated)
-                      {
+                     {
                           if (User.IsInRole("Administrador"))
                           {
                      <li>
@@ -623,26 +623,7 @@
                      </li>
 
                         @*@Html.ActionLink("Reports", "IndexReport", "Movements")*@
-                            <li>
-                                <div style="margin-left:30px;color:gray;padding-top: 8px;padding-bottom: 9px;" class="dropdown hover">
-                                    <span class="dropdown-toggle"  data-toggle="dropdown">
-                                        Reports
-                                        <span class="caret"></span>
-                                    </span>
-                                    <ul class="dropdown-menu">
-
-                                        
-
-                                        
-                                        <li>@Html.ActionLink("Profit and Loss", "profitAndLossHouse", "Account", new {idHouse=0 },null)</li>
-                                      
-                                           
-                                        <li>@Html.ActionLink("Montly Statement", "Reports", "Movements", new { idHouse = 0 }, null) </li>
-                                       
-                                    </ul>
-                                </div>
-
-                            </li>
+                            
 
 
 
@@ -658,6 +639,8 @@
                         </a>
                      </li>*@
                           }
+
+
                           else if (User.IsInRole("Cliente"))
                           {
                             <li>
@@ -671,6 +654,8 @@
                                 @Html.ActionLink("Reports", "IndexReport", "Movements", new { ID = User.Identity.GetUserId() },null)
                             </li>
                           }
+
+
                       }
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -682,6 +667,27 @@
                                 @Html.ActionLink("LogIn", "Login", "Account", FormMethod.Post, new { id = "logoutForm"})
                             </li>
                         }
+
+                      <li>
+                          <div style="margin-left:30px;color:gray;padding-top: 8px;padding-bottom: 9px;" class="dropdown hover">
+                              <span class="dropdown-toggle" data-toggle="dropdown">
+                                  Reports
+                                  <span class="caret"></span>
+                              </span>
+                              <ul class="dropdown-menu">
+
+
+
+
+                                  <li>@Html.ActionLink("Profit and Loss", "profitAndLossHouse", "Account", new { idHouse = 0 }, null)</li>
+
+
+                                  <li>@Html.ActionLink("Montly Statement", "Reports", "Movements", new { idHouse = 0 }, null) </li>
+
+                              </ul>
+                          </div>
+
+                      </li>
 
 
                   </ul>
