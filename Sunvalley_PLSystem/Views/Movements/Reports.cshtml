@@ -38,7 +38,7 @@
             @Html.ActionLink("Delete", "Delete", new { id=item.dateMonth })
         </td>*@
         <td>
-            @Html.ActionLink("Report", "Details","Houses", new { id = item.houseID },null)
+            @Html.ActionLink("Report", "Details","Houses", new { id = item.houseID, fecha= item.dateMonth },null)
         </td>
     </tr>
 

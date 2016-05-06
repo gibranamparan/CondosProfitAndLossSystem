@@ -317,10 +317,14 @@
                                 <th>
                                     @Html.DisplayName("Postal Code")
                                 </th>
+
+                                @if (User.IsInRole("Administrador"))
+                                {
                                 <th class="actionsAccount hidden-print">
                                     @Html.DisplayName("Actions")
 
                                 </th>
+                                }
                                 @*<th>
                                 @Html.DisplayNameFor(model => model.UserID)
                             </th>*@
