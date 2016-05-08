@@ -18,9 +18,11 @@ namespace Sunvalley_PLSystem.Controllers
         // GET: Service
         public ActionResult Index()
         {
+            String mensaje = db.GeneralInformations.Find(1).InformacionGen;
+            ViewBag.mensaje = mensaje;
 
 
-            
+
             return View(db.Services.ToList());
         }
 
@@ -78,6 +80,8 @@ namespace Sunvalley_PLSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "serviceID,name")] Services services)
         {
+
+            
             if (ModelState.IsValid)
             {
                 db.Services.Add(services);

@@ -35,6 +35,8 @@ namespace Sunvalley_PLSystem.Controllers
         [Authorize]
         public ActionResult Details(/*DateTime? fechaInicio, DateTime? fechaFin, */DateTime? fecha, int? id)
         {
+            String mensaje = db.GeneralInformations.Find(1).InformacionGen;
+            ViewBag.mensaje = mensaje;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

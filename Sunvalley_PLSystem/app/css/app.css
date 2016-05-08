@@ -135,11 +135,14 @@
 
     #textareamensaje{
 
-       width:300px !important;
-       font-size: 11px !important;
-       height: 144px;
+      
+      
        border:none;
-       margin-right:100px !important;
+       margin-right:50% !important;
+
+        width: 363px;
+         font-size: 11px !important;
+          height: 149px;
 
     }
 

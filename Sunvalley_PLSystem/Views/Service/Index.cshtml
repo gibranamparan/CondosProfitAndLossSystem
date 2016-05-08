@@ -5,7 +5,8 @@
 
 
     Layout = "~/Views/Shared/_Layout.cshtml";
-    Sunvalley_PLSystem.Models.Services mensaje = ViewBag.mensaje;
+    String mensaje = ViewBag.mensaje;
+  
 
 }
 
@@ -49,7 +50,7 @@
 
 
                 <textarea  rows="8"  type="text" style="width: 511px;"    name="mensaje" required >
-                  @mensaje
+                    @mensaje
 
                 </textarea>
 
