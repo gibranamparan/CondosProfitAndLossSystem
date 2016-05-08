@@ -11,6 +11,8 @@
     Sunvalley_PLSystem.Models.House H = ViewBag.House;
     String id = ViewBag.Id;
     int? idHouse = ViewBag.idHouse;
+
+   String mensaje = ViewBag.mensaje;
 }
 
 
@@ -19,10 +21,16 @@
 
 
 <div id="imagens" style="display:-webkit-box;">
-    <img class="visible-print" src="~/app/img/Sol.png" alt="SUN VALLEY SERVICES" style="margin-left:55%; width:88px;display:block" />
+    <img class="" src="~/app/img/Sol.png" alt="SUN VALLEY SERVICES" style="margin-left:55%; width:88px;display:block;height: 97px;" />
     
-    <textarea class="visible-print" rows="4" cols="40" >
-        Aqui ira la informacion de sunvalley
+    
+</div>
+
+<div id="imagens2" style="display:-webkit-box;">
+    
+
+    <textarea id="textareamensaje" class="" rows="8"   style="margin: -97px 0px 0px 670.5px; width: 363px; font-size: 11px !important; height: 149px;">
+        @mensaje
     </textarea>
 </div>
 

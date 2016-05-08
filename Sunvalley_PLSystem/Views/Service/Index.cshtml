@@ -2,7 +2,11 @@
 
 @{
     ViewBag.Title = "Index";
+
+
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Sunvalley_PLSystem.Models.Services mensaje = ViewBag.mensaje;
+
 }
 
 <h2>List of Services</h2>
@@ -34,3 +38,22 @@
 }
 
 </table>
+
+
+
+
+<h4>General Information</h4>
+
+@using (Html.BeginForm("GeneralInfo", "Service","GET"))
+{
+
+
+                <textarea  rows="8"  type="text" style="width: 511px;"    name="mensaje" required >
+                  @mensaje
+
+                </textarea>
+
+                
+                <input style="margin-top: -28px;" type="submit" value="Save" class="btn btn-default" />
+
+}

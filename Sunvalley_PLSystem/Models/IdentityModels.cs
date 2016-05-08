@@ -64,6 +64,8 @@ namespace Sunvalley_PLSystem.Models
         public DbSet<Services> Services { get; set; }
         public DbSet<AccountStatusReport> AccountStatusReport { get; set; }
 
+        public System.Data.Entity.DbSet<Sunvalley_PLSystem.Models.GeneralInformation> GeneralInformations { get; set; }
+
         ///public System.Data.Entity.DbSet<Sunvalley_PLSystem.Models.ApplicationUser> ApplicationUsers { get; set; }
 
         //public System.Data.Entity.DbSet<Sunvalley_PLSystem.Models.ApplicationUser> ApplicationUsers { get; set; }

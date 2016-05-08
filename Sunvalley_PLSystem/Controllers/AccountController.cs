@@ -212,6 +212,8 @@ namespace Sunvalley_PLSystem.Controllers
         [Authorize]
         public ActionResult profitAndLossHouse(int idHouse,DateTime? fecha1,DateTime? fecha2)
         {
+            String mensaje = db.GeneralInformations.Find(1).InformacionGen;
+            ViewBag.mensaje = mensaje;
             if (fecha1 == null && fecha2 == null)
             {
 
