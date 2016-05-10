@@ -202,6 +202,7 @@ namespace Sunvalley_PLSystem.Controllers
                 //decimal b = balances.Take(1).s;
                 try {
                     var movimientosAscendentes = db.Movements.Where(mov => mov.houseID == movement.houseID).OrderByDescending(mov => mov.transactionDate);
+                    //var movimientosAscendentes = db.Movements.Where(mov => mov.houseID == movement.houseID).OrderBy(mov => mov.transactionDate);
                     int cant = movimientosAscendentes.Count();
                     var ultimoMov = movimientosAscendentes.First();
                     balanceAnterior = ultimoMov.balance;

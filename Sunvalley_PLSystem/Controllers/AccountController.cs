@@ -214,6 +214,12 @@ namespace Sunvalley_PLSystem.Controllers
         {
             String mensaje = db.GeneralInformations.Find(1).InformacionGen;
             ViewBag.mensaje = mensaje;
+            var House = db.Houses.Find(idHouse);
+            ViewBag.Loss = House.movimientos.Where(m => m.typeOfMovement == "Expense" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
+            ViewBag.Profit = House.movimientos.Where(m => m.typeOfMovement == "Income" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
+            ViewBag.Contribution = House.movimientos.Where(m => m.typeOfMovement == "Contribution" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
+
+            ViewBag.House = House;
             if (fecha1 == null && fecha2 == null)
             {
 
@@ -223,12 +229,6 @@ namespace Sunvalley_PLSystem.Controllers
 
             }
             else {
-                var House = db.Houses.Find(idHouse);
-                ViewBag.Loss = House.movimientos.Where(m => m.typeOfMovement == "Expense" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
-                ViewBag.Profit = House.movimientos.Where(m => m.typeOfMovement == "Income" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
-                ViewBag.Contribution = House.movimientos.Where(m => m.typeOfMovement == "Contribution" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
-
-                ViewBag.House = House;
 
                 ViewBag.TotalLoss = House.movimientos.Where(m => m.typeOfMovement == "Expense" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
                 ViewBag.TotalProfit = House.movimientos.Where(m => m.typeOfMovement == "Income" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
@@ -291,33 +291,34 @@ namespace Sunvalley_PLSystem.Controllers
             {
                 return View(model);
             }
-            var user = UserManager.FindByEmail<ApplicationUser, String>(model.Email);
-            if (user.status != "Disable")
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
+            switch (result)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, change to shouldLockout: true
-
-                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            String NombreCompleto = UserManager.FindByName(model.Email).firstName + " " + UserManager.FindByName(model.Email).lastName;
-            Session["NombreCompleto"] = NombreCompleto;
-
-                switch (result)
-                {
-                    case SignInStatus.Success:
-                            return RedirectToLocal(returnUrl);
-                    case SignInStatus.LockedOut:
-                        return View("Lockout");
-                    case SignInStatus.RequiresVerification:
-                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                    case SignInStatus.Failure:
-                    default:
-                        ModelState.AddModelError("", "Invalid login attempt.");
+                case SignInStatus.Success:
+                    var user = UserManager.FindByEmail<ApplicationUser, String>(model.Email);
+                    if (user.status != "Disable")
+                    {
+                        String NombreCompleto = UserManager.FindByName(model.Email).firstName + " " + UserManager.FindByName(model.Email).lastName;
+                        Session["NombreCompleto"] = NombreCompleto;
+                        return RedirectToLocal(returnUrl);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Your account was disabled. Please contact the administrator.");
                         return View(model);
-                }
-            }
-            else {
-                ModelState.AddModelError("", "Your account was disabled. Please contact the administrator.");
-                return View(model);
+                    }
+                case SignInStatus.LockedOut:
+                    return View("Lockout");
+                case SignInStatus.RequiresVerification:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                case SignInStatus.Failure:
+                default:
+                    ModelState.AddModelError("", "Invalid login attempt.");
+                    return View(model);
             }
         }
 

@@ -22,7 +22,9 @@ namespace Sunvalley_PLSystem.Models
 
         [Display(Name="Owner Name")]
         public string firstName { get; set; }
+        [Display(Name = "Last Name")]
         public string lastName { get; set; }
+        [Display(Name = "Created At")]
         public DateTime createAt { get; set; }
         public string company { get; set; }
         public string adress1 { get; set; }

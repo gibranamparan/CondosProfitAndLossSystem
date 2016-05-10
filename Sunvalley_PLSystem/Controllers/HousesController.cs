@@ -116,7 +116,8 @@ namespace Sunvalley_PLSystem.Controllers
                 house.created = DateTime.Today;
                 db.Houses.Add(house);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return RedirectToAction("Details","Account",new {id=house.Id});
             }
 
             return View(house);

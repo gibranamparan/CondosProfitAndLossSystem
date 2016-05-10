@@ -15,8 +15,6 @@
 #Filtros{
     
     display: -webkit-inline-box;
-
-
 }
 
 .Filtro1{
@@ -179,8 +177,8 @@ border: solid 1px;
 #PanelBody{
 
    background-color:lightgoldenrodyellow !important;
-  
    border:solid 1px !important;
+   padding: 1em;
       
 }
 #PanelHeadingCreateMovement{

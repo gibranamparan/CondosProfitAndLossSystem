@@ -131,56 +131,45 @@
                 <h4>Movements of house</h4>   
             </div>
             <div class="PbodyDetailsHouse panel-body">
-                @if (Request.IsAuthenticated)
+                @if (User.IsInRole("Administrador"))
                 {
-                    if (User.IsInRole("Administrador"))
-                    {
-                        <div class="col-md-3 hidden-print">
-                            <span class="fa fa-plus-circle"></span>@Html.ActionLink("Create new movement", "Create", "Movements", new { id = Model.houseID }, null)
-                        </div>
-                    }
-                    @*<span class="fa fa-trash"></span>@Html.ActionLink("Report", "profitAndLossHouse","Account", new { idHouse = Model.houseID },null)*@
+                    <div class="col-md-3 hidden-print">
+                        <span class="fa fa-plus-circle"></span>@Html.ActionLink("Create new movement", "Create", "Movements", new { id = Model.houseID }, null)
+                    </div>
                 }
 
-                @if (Request.IsAuthenticated)
-                {
-                    if (User.IsInRole("Administrador"))
-                    {
-                        <div id="Filtros" class="hidden-print">
-                            @using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "Filtro1" }))
-                            {
-                                @Html.Label("Date")
-                                <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
-                                @Html.Hidden("houseID", Model.houseID)
-                                @Html.Hidden("Accion", "Autorizar")
-                                @Html.Hidden("IdUser", Model.Id)
-                                
-                                <input type="submit" value="Approve" class="hidden-print" style="text-align:right;" />
-                            }
-                            @using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "Filtro2" }))
-                            {
-                                @Html.Label("Date")
-                                <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
-                                @Html.Hidden("houseID", Model.houseID)
-                                @Html.Hidden("Accion", "Desautorizar")
-                                <input type="submit" value="Unaprove" class="hidden-print" style="text-align:right;" />
-                            }
-
-                            
-
-                        </div>
-                    }
-                }
             </div>
-            <div class="hidden-print">
+            <div class="row">
+                <div id="Filtros" class="hidden-print col-md-12">
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "Filtro1" }))
+                        {
+                            @Html.Label("Date")
+                            <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
+                            @Html.Hidden("houseID", Model.houseID)
+                            @Html.Hidden("Accion", "Autorizar")
+                            @Html.Hidden("IdUser", Model.Id)
 
-                @using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "BuscadorFecha " }))
-            {
-                    @Html.Label("Date")
-                    <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
-                    @Html.Hidden("houseID", Model.houseID)
-                    <input type="submit" value="Search" class="hidden-print" style="text-align:right;" />
-                }
+                            <input type="submit" value="Approve" class="hidden-print" style="text-align:right;" />
+                        }
+                        using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "Filtro2" }))
+                        {
+                            @Html.Label("Date")
+                            <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
+                            @Html.Hidden("houseID", Model.houseID)
+                            @Html.Hidden("Accion", "Desautorizar")
+                            <input type="submit" value="Unapprove" class="hidden-print" style="text-align:right;" />
+                        }
+                    }
+                    @using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "Filtro2 " }))
+                    {
+                        @Html.Label("Date")
+                        <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
+                        @Html.Hidden("houseID", Model.houseID)
+                        <input type="submit" value="Search by Date" class="hidden-print" style="text-align:right;" />
+                    }
+                </div>
             </div>
             <!--style="margin-top: -40px;width: 968px;margin-left:-15px"-->
             <div class="panel-body">

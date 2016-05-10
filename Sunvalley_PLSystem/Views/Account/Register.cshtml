@@ -21,12 +21,15 @@
         </div>
         <div id="PanelBody" class="panel-body">
             @*//roles de usuarios*@
-            <div class="form-group">
-                <label style="margin-left: 42%;margin-right: 17px;">Role of user</label>
-                @*@Html.DropDownList("UserRoles")*@
-                @Html.DropDownList("UserRoles",
-                   (IEnumerable<SelectListItem>)ViewBag.Roles)
-
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="control-label">Role of user</label>
+                    @*@Html.DropDownList("UserRoles")*@
+                    <div class="col-xs-12">
+                        @Html.DropDownList("UserRoles",
+                   (IEnumerable<SelectListItem>)ViewBag.Roles, new { @class = "form-control valid" })
+                    </div>
+                </div>
             </div>
 
 
