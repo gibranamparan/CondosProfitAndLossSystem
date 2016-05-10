@@ -126,6 +126,26 @@
         display:none;
     }
 
+    #imagens2{
+       margin-left: -100px;
+
+
+
+    }
+
+    #textareamensaje{
+
+      
+      
+       border:none;
+       margin-right:50% !important;
+
+        width: 363px;
+         font-size: 11px !important;
+          height: 149px;
+
+    }
+
 
 }
 

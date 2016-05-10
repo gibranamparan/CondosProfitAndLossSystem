@@ -212,6 +212,8 @@ namespace Sunvalley_PLSystem.Controllers
         [Authorize]
         public ActionResult profitAndLossHouse(int idHouse,DateTime? fecha1,DateTime? fecha2)
         {
+            String mensaje = db.GeneralInformations.Find(1).InformacionGen;
+            ViewBag.mensaje = mensaje;
             if (fecha1 == null && fecha2 == null)
             {
 
@@ -386,6 +388,7 @@ namespace Sunvalley_PLSystem.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, firstName=model.firstName,lastName=model.lastName,createAt=DateTime.Today,
                 company=model.company,adress1=model.adress1,adress2=model.adress2,city=model.city,country=model.country,state=model.state,postalCode=model.postalCode,
+                mobilePhone=model.mobilePhone,
                 homePhone=model.homePhone,businesFax=model.businesFax,businessPhone=model.businessPhone, Email1=model.Email1,Email2=model.Email2,status="Activate"};
                 var result = await UserManager.CreateAsync(user, model.Password);
 

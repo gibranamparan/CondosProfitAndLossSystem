@@ -223,9 +223,18 @@
     <Compile Include="Migrations\201604291951501_house_changedAttr_postalCodeToString.Designer.cs">
       <DependentUpon>201604291951501_house_changedAttr_postalCodeToString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605062012513_tablaInformacion.cs" />
+    <Compile Include="Migrations\201605062012513_tablaInformacion.Designer.cs">
+      <DependentUpon>201605062012513_tablaInformacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605072032470_mig2.cs" />
+    <Compile Include="Migrations\201605072032470_mig2.Designer.cs">
+      <DependentUpon>201605072032470_mig2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountStatusReport.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\GeneralInformation.cs" />
     <Compile Include="Models\House.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -878,6 +887,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604291951501_house_changedAttr_postalCodeToString.resx">
       <DependentUpon>201604291951501_house_changedAttr_postalCodeToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605062012513_tablaInformacion.resx">
+      <DependentUpon>201605062012513_tablaInformacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605072032470_mig2.resx">
+      <DependentUpon>201605072032470_mig2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

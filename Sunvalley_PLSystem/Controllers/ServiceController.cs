@@ -18,6 +18,11 @@ namespace Sunvalley_PLSystem.Controllers
         // GET: Service
         public ActionResult Index()
         {
+            String mensaje = db.GeneralInformations.Find(1).InformacionGen;
+            ViewBag.mensaje = mensaje;
+
+
+
             return View(db.Services.ToList());
         }
 
@@ -36,6 +41,32 @@ namespace Sunvalley_PLSystem.Controllers
             return View(services);
         }
 
+        [Authorize]
+        public ActionResult GeneralInfo(String mensaje)
+        {
+            int contador = db.GeneralInformations.Count();
+            GeneralInformation G = new GeneralInformation();
+            if (contador > 0)
+            {
+                G = db.GeneralInformations.Find(1);
+                G.InformacionGen = mensaje;
+                db.Entry(G).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            else
+            {
+                G.InformacionGen = mensaje;
+                db.GeneralInformations.Add(G);
+                db.SaveChanges();
+                
+            }
+            ViewBag.mensaje = mensaje;
+            return View("Index", db.Services.ToList());
+        }
+
+
+
+
         // GET: Service/Create
         public ActionResult Create()
         {
@@ -49,6 +80,8 @@ namespace Sunvalley_PLSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "serviceID,name")] Services services)
         {
+
+            
             if (ModelState.IsValid)
             {
                 db.Services.Add(services);

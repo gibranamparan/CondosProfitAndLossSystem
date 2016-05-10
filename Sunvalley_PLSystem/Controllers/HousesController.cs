@@ -35,6 +35,8 @@ namespace Sunvalley_PLSystem.Controllers
         [Authorize]
         public ActionResult Details(/*DateTime? fechaInicio, DateTime? fechaFin, */DateTime? fecha, int? id)
         {
+            String mensaje = db.GeneralInformations.Find(1).InformacionGen;
+            ViewBag.mensaje = mensaje;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -65,7 +67,7 @@ namespace Sunvalley_PLSystem.Controllers
                 }
                 else
                 {
-                    var m = db.Movements.Where(mov => mov.houseID == id && mov.transactionDate.Year== fechaConArgumentos.Year && mov.transactionDate.Year == fechaConArgumentos.Year);
+                    var m = db.Movements.Where(mov => mov.houseID == id && mov.transactionDate.Year== fechaConArgumentos.Year && mov.transactionDate.Month == fechaConArgumentos.Month);
                     ViewBag.Movements1 = m.ToList();
                 }
             }

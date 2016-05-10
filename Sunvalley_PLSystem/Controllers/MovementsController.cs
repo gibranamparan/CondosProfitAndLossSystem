@@ -72,18 +72,46 @@ namespace Sunvalley_PLSystem.Controllers
             //                  select movement;
             //var movements = db.Movements.Where(mov => mov.transactionDate >= fechaInicio && mov.transactionDate <= fechaFin && mov.houseID == houseID);
             var movements2 = db.Movements.Where(mov => mov.transactionDate.Month == fecha.Month &&mov.transactionDate.Year==fecha.Year&& mov.houseID == houseID);
+            var reporte = db.AccountStatusReport.FirstOrDefault(r =>r.dateMonth.Month == fecha.Month  &&  r.UserID == IdUser);
             if(Accion == "Autorizar")
             {
-                AccountStatusReport Report = new AccountStatusReport();
-                Report.houseID = houseID;
-                Report.dateMonth = fecha;
-                Report.UserID = IdUser;
-                db.AccountStatusReport.Add(Report);
-                foreach (var i in movements2)
+
+                if (reporte != null)
                 {
-                    i.state = true;
-                    db.Entry(i).State = EntityState.Modified;
+
+                    //AccountStatusReport Report = db.AccountStatusReport.Find(fecha);
+                    db.AccountStatusReport.Remove(reporte);
+                    AccountStatusReport Report = new AccountStatusReport();
+                    Report.houseID = houseID;
+                    Report.dateMonth = fecha;
+                    Report.UserID = IdUser;
+                    db.AccountStatusReport.Add(Report);
+                    foreach (var i in movements2)
+                    {
+                        i.state = true;
+                        db.Entry(i).State = EntityState.Modified;
+
+                    }
+
+
+                  
+
                 }
+                else {
+                    AccountStatusReport Report = new AccountStatusReport();
+                    Report.houseID = houseID;
+                    Report.dateMonth = fecha;
+                    Report.UserID = IdUser;
+                    db.AccountStatusReport.Add(Report);
+                    foreach (var i in movements2)
+                    {
+                        i.state = true;
+                        db.Entry(i).State = EntityState.Modified;
+                    }
+
+                }
+
+
             }
             else
             {
