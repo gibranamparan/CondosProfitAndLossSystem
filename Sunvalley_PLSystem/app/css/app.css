@@ -11,6 +11,18 @@
 *{transition:none!important}
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700);
 
+#UserRoles{
+
+    margin-left: 11px;
+    width: 356px;
+
+}
+
+.labels{
+
+margin-left:31px !important;
+
+}
 
 #Filtros{
     
