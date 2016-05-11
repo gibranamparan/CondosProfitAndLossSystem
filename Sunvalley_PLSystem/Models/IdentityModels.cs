@@ -26,19 +26,45 @@ namespace Sunvalley_PLSystem.Models
         public string lastName { get; set; }
         [Display(Name = "Created At")]
         public DateTime createAt { get; set; }
+        [Display(Name = "Company")]
         public string company { get; set; }
+
+        [Display(Name = "Address")]
         public string adress1 { get; set; }
+
+        [Display(Name = "Address 2")]
         public string adress2 { get; set; }
+
+        [Display(Name = "City")]
         public string city { get; set; }
+        [Display(Name = "Country")]
         public string country { get; set; }
+
+        [Display(Name = "State")]
         public string state { get; set; }
+
+        [Display(Name = "Postal Code")]
         public string postalCode { get; set; }
+
+        [Display(Name = "Home Phone")]
         public string homePhone { get; set; }
-        public string businessPhone { get; set; }
+
+        [Display(Name = "BusinessPhone")]
+        public string businessPhone { get; set;}
+
+        [Display(Name = "BusinessFax")]
         public string businesFax { get; set; }
+
+        [Display(Name = "MobilePhone")]
         public string mobilePhone { get; set; }
+
+        [Display(Name = "E-mail")]
         public string Email1 { get; set; }
+
+        [Display(Name = "E-mail2")]
         public string Email2 { get; set; }
+
+        [Display(Name = "Status")]
         public string status { get; set; }
 
         public virtual ICollection<Movement> movimientos { get; set; }

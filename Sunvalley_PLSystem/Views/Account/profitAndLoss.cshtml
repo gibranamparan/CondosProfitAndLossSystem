@@ -12,7 +12,7 @@
     String id = ViewBag.Id;
     int? idHouse = ViewBag.idHouse;
 
-   String mensaje = ViewBag.mensaje;
+    String mensaje = ViewBag.mensaje;
 }
 
 
@@ -28,24 +28,24 @@
         <table id="Details" class="table  table-striped table-hover table-responsive">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model=>model.FirstOrDefault().house.name)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().house.name)
                 </th>
 
                 <th>
-                    @Html.DisplayNameFor(model=>model.FirstOrDefault().house.area)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().house.area)
                 </th>
                 <th>
-                    @Html.DisplayName("Adress")
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().house.adress)
                 </th>
 
                 <th>
-                    @Html.DisplayName("City Area")
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().house.cityArea)
                 </th>
                 <th>
-                    @Html.DisplayName("Country")
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().house.country)
                 </th>
                 <th>
-                    @Html.DisplayName("State Province")
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().house.stateProvince)
                 </th>
 
 
@@ -53,7 +53,7 @@
 
             <tr>
                 <td>
-                    @H.name
+                   @H.name
                 </td>
                 <td>
                     @H.area
@@ -96,9 +96,7 @@
 
 
 
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+
 
 @if (Model != null)
 {
@@ -134,12 +132,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.balance)
                         </th>
-                        @*<th>
-                            @Html.DisplayNameFor(model => model.state)
-                        </th>*@
-                        @*<th>
-                            @Html.DisplayNameFor(model => model.UserID)
-                        </th>*@
+                      
                        
                     </tr>
                 </thead>
@@ -178,17 +171,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.balance)
                             </td>
-                            @*<td>
-                                @Html.DisplayFor(modelItem => item.state)
-                            </td>*@
-                            @*<td>
-                                @Html.DisplayFor(modelItem => item.UserID)
-                            </td>*@
-                            @*<td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.movementID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.movementID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.movementID })
-                            </td>*@
+                           
                         </tr>
                     }
                 </tbody>
@@ -211,9 +194,7 @@
                 <table id="Details" class="table table-bordered table-hover table-responsive table-striped">
                     <thead>
                         <tr>
-                            @*<th class="hidden">
-                                    @Html.DisplayNameFor(model => model.house.name)
-                                </th>*@
+                           
                             <th>
                                 @Html.DisplayNameFor(model => model.services.name)
                             </th>
@@ -233,12 +214,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.balance)
                             </th>
-                            @*<th>
-                                    @Html.DisplayNameFor(model => model.state)
-                                </th>*@
-                            @*<th>
-                                    @Html.DisplayNameFor(model => model.UserID)
-                                </th>*@
+                      
 
                         </tr>
                     </thead>
@@ -254,9 +230,7 @@
                             @foreach (var item in Contribution)
                             {
                                 <tr>
-                                    @*<td class="hidd">
-                                            @Html.DisplayFor(modelItem => item.house.name)
-                                        </td>*@
+                                 
                                     <td>
                                         @Html.DisplayFor(modelItem => item.services.name)
                                     </td>
@@ -274,17 +248,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.balance)
                                     </td>
-                                    @*<td>
-                                            @Html.DisplayFor(modelItem => item.state)
-                                        </td>*@
-                                    @*<td>
-                                            @Html.DisplayFor(modelItem => item.UserID)
-                                        </td>*@
-                                    @*<td>
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.movementID }) |
-                                            @Html.ActionLink("Details", "Details", new { id = item.movementID }) |
-                                            @Html.ActionLink("Delete", "Delete", new { id = item.movementID })
-                                        </td>*@
+
                                 </tr>
                             }
                         </tbody>
@@ -324,12 +288,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.balance)
                     </th>
-                    @*<th>
-                        @Html.DisplayNameFor(model => model.state)
-                    </th>*@
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.UserID)
-                        </th>*@
+                   
                   
                 </tr>
             </thead>
@@ -345,9 +304,7 @@
                 @foreach (var item in Loss)
                 {
                     <tr>
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.house.name)
-                        </td>*@
+                        
                         <td>
                             @Html.DisplayFor(modelItem => item.services.name)
                         </td>
@@ -365,17 +322,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.balance)
                         </td>
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.state)
-                        </td>*@
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.UserID)
-                            </td>*@
-                        @*<td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.movementID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.movementID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.movementID })
-                            </td>*@
+                      
                     </tr>
                 }
             </tbody>
@@ -408,13 +355,7 @@
                     $ @ViewBag.TotalLoss
                 </td>
             </tr>
-            @*<tr>
-                <th>@Html.DisplayName("Earnings")</th>
-
-                <td>
-                    @ViewBag.TotalContribution
-                </td>
-            </tr>*@
+           
             <tr>
                 <th>@Html.DisplayName("Total Profit")</th>
                 @if (ViewBag.Total < 0)
