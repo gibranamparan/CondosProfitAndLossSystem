@@ -115,7 +115,7 @@ namespace Sunvalley_PLSystem.Controllers
             }
             else
             {
-                AccountStatusReport Report = db.AccountStatusReport.Find(fecha);
+                AccountStatusReport Report = db.AccountStatusReport.Where(A=>A.dateMonth.Month==fecha.Month&&A.UserID== IdUser).First();
                 db.AccountStatusReport.Remove(Report);
                 foreach (var i in movements2)
                 {
