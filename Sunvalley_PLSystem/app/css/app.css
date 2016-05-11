@@ -24,20 +24,10 @@ margin-left:31px !important;
 
 }
 
-#Filtros{
-    
-    display: -webkit-inline-box;
-    margin-left: -8%;
+div#Filtros form {
+    display: inline-block;
 }
 
-.Filtro1{
-    margin-left: 84px !important;
-}
-
-.Filtro2{
-  margin-left: 30px !important;
-
-}
 
 .BuscadorFecha{
 
@@ -45,6 +35,15 @@ margin-left:31px !important;
     margin-left: 69% !important;
     margin-bottom: -38px !important;
 
+}
+
+.panel-warning{
+    background-color: white;
+}
+
+.panel-heading{
+    text-align: center;
+    font-weight: bold;
 }
 
 
@@ -5176,4 +5175,19 @@ textarea.chosen-container-active.chosen-with-drop .chosen-single {
     #tabla_filter{
         display: none !important;
     }
+    img#logo {
+        width: 150px !important;
+    }
+    #logo, #logo_legend{
+        display: inline-block;
+        font-size: .8em;
+    }
+
+    #empresa_info{
+        vertical-align: top;
+    }
+    img#logo {
+    vertical-align: top;
+}
+
 }

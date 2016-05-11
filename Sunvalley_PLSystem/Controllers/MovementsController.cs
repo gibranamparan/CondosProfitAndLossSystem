@@ -92,6 +92,7 @@ namespace Sunvalley_PLSystem.Controllers
                         db.Entry(i).State = EntityState.Modified;
 
                     }
+                    db.SaveChanges();
 
 
                   
@@ -108,6 +109,7 @@ namespace Sunvalley_PLSystem.Controllers
                         i.state = true;
                         db.Entry(i).State = EntityState.Modified;
                     }
+                    db.SaveChanges();
 
                 }
 
@@ -115,19 +117,24 @@ namespace Sunvalley_PLSystem.Controllers
             }
             else
             {
-                AccountStatusReport Report = db.AccountStatusReport.Where(A=>A.dateMonth.Month==fecha.Month&&A.UserID== IdUser).First();
-                db.AccountStatusReport.Remove(Report);
-                foreach (var i in movements2)
+                //AccountStatusReport Report = db.AccountStatusReport.Where(A=>A.dateMonth.Month==fecha.Month&&A.UserID== IdUser).First();
+                var Reports = db.AccountStatusReport.Where(A => A.dateMonth.Month == fecha.Month && A.UserID == IdUser);
+                if(Reports.Count()>0)
                 {
-                    i.state = false;
-                    db.Entry(i).State = EntityState.Modified;
+                    AccountStatusReport Report = Reports.First();
+                    db.AccountStatusReport.Remove(Report);
+                    foreach (var i in movements2)
+                    {
+                        i.state = false;
+                        db.Entry(i).State = EntityState.Modified;
 
+                    }
+                    db.SaveChanges();
+                    //return View(Movimientos.ToList());
+                    ViewBag.Mensaje = "the movements are properly authorized";
                 }
             }
 
-            db.SaveChanges();
-            //return View(Movimientos.ToList());
-            ViewBag.Mensaje = "the movements are properly authorized";
             return RedirectToAction("Details", "Houses", new { id = houseID});
         }
         [Authorize]
