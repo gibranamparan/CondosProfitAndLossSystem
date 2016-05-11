@@ -220,7 +220,8 @@ namespace Sunvalley_PLSystem.Controllers
                 db.Movements.Add(movement);
                 db.SaveChanges();
                 int id = movement.houseID;
-                return RedirectToAction("Details", "Houses", new { id = id });
+                //return RedirectToAction("Details", "Houses", new { id = id });
+                return RedirectToAction("Recalculate", new { id = movement.houseID });
             }
 
             ViewBag.houseID = new SelectList(db.Houses, "houseID", "name", movement.houseID);
