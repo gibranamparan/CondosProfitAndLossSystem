@@ -46,12 +46,12 @@ namespace Sunvalley_PLSystem.Controllers
             {
                 if (User.IsInRole("Administrador"))
                 {
-                    var m = db.Movements.Where(mov => mov.houseID == id);
+                    var m = db.Movements.Where(mov => mov.houseID == id).OrderBy(mo=>mo.transactionDate);
                     ViewBag.Movements1 = m.ToList();
                 }
                 else
                 {
-                    var m = db.Movements.Where(mov => mov.houseID == id && mov.state == true);
+                    var m = db.Movements.Where(mov => mov.houseID == id && mov.state == true).OrderBy(mo => mo.transactionDate);
                     ViewBag.Movements1 = m.ToList();
                 }
             }
@@ -62,12 +62,12 @@ namespace Sunvalley_PLSystem.Controllers
                 if (User.IsInRole("Administrador"))
                 {
 
-                    var m = db.Movements.Where(mov => mov.houseID == id && mov.transactionDate.Month == fechaConArgumentos.Month && mov.transactionDate.Year == fechaConArgumentos.Year);
+                    var m = db.Movements.Where(mov => mov.houseID == id && mov.transactionDate.Month == fechaConArgumentos.Month && mov.transactionDate.Year == fechaConArgumentos.Year).OrderBy(move=>move.transactionDate);
                     ViewBag.Movements1 = m.ToList();
                 }
                 else
                 {
-                    var m = db.Movements.Where(mov => mov.houseID == id && mov.transactionDate.Year== fechaConArgumentos.Year && mov.transactionDate.Month == fechaConArgumentos.Month);
+                    var m = db.Movements.Where(mov => mov.houseID == id && mov.transactionDate.Year== fechaConArgumentos.Year && mov.transactionDate.Month == fechaConArgumentos.Month).OrderBy(move => move.transactionDate);
                     ViewBag.Movements1 = m.ToList();
                 }
             }
