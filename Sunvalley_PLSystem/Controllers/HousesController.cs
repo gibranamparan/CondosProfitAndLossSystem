@@ -67,7 +67,7 @@ namespace Sunvalley_PLSystem.Controllers
                 }
                 else
                 {
-                    var m = db.Movements.Where(mov => mov.houseID == id && mov.transactionDate.Year== fechaConArgumentos.Year && mov.transactionDate.Month == fechaConArgumentos.Month).OrderBy(move => move.transactionDate);
+                    var m = db.Movements.Where(mov => mov.houseID == id &&mov.state== true&& mov.transactionDate.Year== fechaConArgumentos.Year && mov.transactionDate.Month == fechaConArgumentos.Month).OrderBy(move => move.transactionDate);
                     ViewBag.Movements1 = m.ToList();
                 }
             }
