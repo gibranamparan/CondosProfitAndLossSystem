@@ -1,6 +1,5 @@
 ﻿@model Sunvalley_PLSystem.Models.House
 
-
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,27 +10,19 @@
 
 }
 
-
 <h3>Montly Statement</h3>
-
-<div id="imagens" class="visible-print" style="display:-webkit-box;">
-    <img class="" src="~/app/img/Sol.png" alt="SUN VALLEY SERVICES" style="margin-left:55%; width:88px;display:block;height: 97px;" />
-
-
+<div id="empresa_info" class="row visible-print">
+    <div class="col-md-6 pull-right">
+        <img id="logo" class="col-md-6" src="~/app/img/Sol.png" alt="SUN VALLEY SERVICES" />
+        <div id="logo_legend" class="col-md-6">
+            <p>
+                @Html.Raw(mensaje.Replace(Environment.NewLine, "<br/>"))
+            </p>
+        </div>
+    </div>
 </div>
-
-<div id="imagens2" class="visible-print" style="display:-webkit-box;">
-
-
-    <textarea id="textareamensaje"  rows="8" style="margin: -97px 0px 0px 670.5px; width: 363px; font-size: 11px !important; height: 149px;">
-        @mensaje
-    </textarea>
-</div>
-
-
 
 <div class="panel" style="width:103% !important">
-
         <div class="panel panel-warning" style="width:100%">
             <div class="panel-heading hidden-print">
                 House Details

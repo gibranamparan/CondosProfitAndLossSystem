@@ -176,15 +176,16 @@ namespace Sunvalley_PLSystem.Controllers
         [Authorize]
         public ActionResult profitAndLossTotal(String id,DateTime? fecha1,DateTime? fecha2)
         {
-
-
+            String mensaje = db.GeneralInformations.Find(1).InformacionGen;
+            ViewBag.mensaje = mensaje;
             if (fecha1 == null && fecha2 == null)
             {
-                
                 List<Movement> m = new List<Movement>();
+                ViewBag.Loss = m;
+                ViewBag.Profit = m;
+                ViewBag.Contribution = m;
                 ViewBag.Tipo = "Total";
                 return View("profitAndLoss");
-
             }
             else {
 

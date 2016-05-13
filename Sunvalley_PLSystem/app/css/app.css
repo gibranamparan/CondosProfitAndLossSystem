@@ -179,64 +179,41 @@ h4{text-align:center;}
 border: solid 1px;
 }
 #PanelBodyHouses{
-
-   background-color:lightgoldenrodyellow !important;
+    background-color:lightgoldenrodyellow !important;
     border:solid 1px !important;
-        padding-top: 20px !important;
-      
+    padding-top: 20px !important;
 }
 
-#PanelBody{
-
-   background-color:lightgoldenrodyellow !important;
-   border:solid 1px !important;
-   padding: 1em;
-      
-}
 #PanelHeadingCreateMovement{
-border: solid 1px;
+    border: solid 1px;
 }
 
 #PanelBodyCreateMovement{
-
    background-color:lightgoldenrodyellow !important;
-  
    border:solid 1px !important;
-
    padding-top: 10px !important;
-      
 }
 
 #Details th{
+    background: #fceabb;
+}
 
-background: #fceabb;
+table th{
+    background: #fceabb;
+    color: black;
 }
 
 #DeleteService{
     width:50%;
     border:solid 2px;
-
-
 }
 #DeleteService th{
     background-color:orange;
     color:white;
-
-
 }
 
 .panel-heading form{
     padding-left: 0%;
-}
-
-
-
-
-#hPanel{
-
-    margin-bottom: -21px !important ;
-    
-
 }
 
 .dataTables_wrapper {
@@ -244,8 +221,6 @@ background: #fceabb;
     padding: 0px;
 
 }
-
-
 
 div#PanelHeading h4 {
     text-align: center;

@@ -51,7 +51,7 @@
         General Information
     </div>
     <div class="panel-body">
-        @using (Html.BeginForm("GeneralInfo", "Service", "GET"))
+        @using (Html.BeginForm("GeneralInfo", "Service", FormMethod.Post))
         {
             <textarea rows="8" type="text" style="width: 511px;" name="mensaje" required>@mensaje</textarea>
             <input style="margin-top: -28px;" type="submit" value="Save" class="btn btn-default" />

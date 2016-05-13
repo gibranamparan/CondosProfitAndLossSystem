@@ -11,9 +11,11 @@
 <link href="@Url.Content("~/Content/Estilos.css")" rel="stylesheet" type="text/css" />
 
 <div class="container">
-    <div class="panel panel-warning" style="width:105% !important">
+    <div class="panel panel-warning">
         <div id="hPanel" class="panel-heading hidden-print">
-            <strong style="text-align:center"><h4>All Owners</h4></strong>
+            All Owners
+        </div>
+        <div id="BodyOwners" class="panel-body">
             <span class="fa fa-plus-circle"></span>@Html.ActionLink("Create New", "Register") |
             @if (state == "Activate")
             {
@@ -23,8 +25,6 @@
             {
                 @Html.ActionLink("List Active Owners", "Index", new { status = "Activate" })
             }
-        </div>
-        <div id="BodyOwners" class="panel-body" style="margin-top:-8px; width:98%; ">
             <!--OWNERS TABLE-->
             <table id="tabla" class="table table-striped table-hover  table-responsive" style="margin-top:20px; width:100%;">
                 <thead>
@@ -47,49 +47,42 @@
                         <th class="hidden-print">
                             @Html.DisplayName("Actions")
                         </th>
-
                     </tr>
-
                 </thead>
                 <tbody>
                     @foreach (var item in Model.Where(us => us.roleName == "Cliente"))
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.firstName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.lastName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.country)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.mobilePhone)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Email)
-                            </td>
-                            <td class="function-cell hidden-print">
-                                @if (item.status == "Activate")
-                                {
-                                    <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = item.registeredUserID })
-
-                                    <span class="fa fa-reorder"></span>@Html.ActionLink("Houses", "Details", new { id = item.registeredUserID })
-
-                                    <span class="fa fa-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.registeredUserID })
-
-                                    <span class="fa fa-file-text"></span>@Html.ActionLink("Report", "profitAndLossTotal", new { id = item.registeredUserID })
-
-                                    <span class="fa fa-ban"></span>@Html.ActionLink("Disable", "activateOrDiseable", new { id = item.registeredUserID })
-
-                                }
-                                else
-                                {
-                                    <span class="fa fa-trash"></span>@Html.ActionLink("Activate", "activateOrDiseable", new { id = item.registeredUserID })
-                                }
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.firstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.country)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.mobilePhone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td class="function-cell hidden-print">
+                            @if (item.status == "Activate")
+                            {
+                                <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = item.registeredUserID })
+                                <span class="fa fa-reorder"></span>@Html.ActionLink("Houses", "Details", new { id = item.registeredUserID })
+                                <span class="fa fa-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.registeredUserID })
+                                <span class="fa fa-file-text"></span>@Html.ActionLink("Report", "profitAndLossTotal", new { id = item.registeredUserID })
+                                <span class="fa fa-ban"></span>@Html.ActionLink("Disable", "activateOrDiseable", new { id = item.registeredUserID })
+                            }
+                            else
+                            {
+                                <span class="fa fa-trash"></span>@Html.ActionLink("Activate", "activateOrDiseable", new { id = item.registeredUserID })
+                            }
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -97,15 +90,13 @@
     </div>
     @if (User.IsInRole("Administrador"))
     {
-        <div class="panel panel-warning" style="width: 105%;">
+        <div class="panel panel-warning">
             <div id="hPanel" class="panel-heading hidden-print">
-                <h4 style="text-align:center">
-                    <strong>All Administrators</strong>
-                </h4>
+                    All Administrators
             </div>
-            <div id="BodyOwners" class="panel-body" style="margin-top:-8px; width:100%; ">
+            <div id="BodyOwners" class="panel-body">
                 <!--ADMINISTRATOR TABLE-->
-                <table id="tabla" class="table table-striped table-hover  table-responsive" style="margin-top:20px; width:100%;">
+                <table id="tabla" class="table table-striped table-hover table-responsive">
                     <thead>
                         <tr>
                             <th>
@@ -126,55 +117,45 @@
                             <th class="hidden-print">
                                 @Html.DisplayName("Actions")
                             </th>
-
                         </tr>
-
                     </thead>
                     <tbody>
                         @foreach (var item in Model.Where(us => us.roleName == "Administrador"))
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.firstName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.lastName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.country)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.mobilePhone)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Email)
-                                </td>
-                                <td class="function-cell hidden-print">
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.firstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.lastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.country)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mobilePhone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td class="function-cell hidden-print">
 
-                                    @if (item.status == "Activate")
-                                    {
-                                        <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = item.registeredUserID })
-                                        <span class="fa fa-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.registeredUserID })
-                                        <span class="fa fa-ban"></span>@Html.ActionLink("Disable", "activateOrDiseable", new { id = item.registeredUserID })
-
-                                    }
-                                    else
-                                    {
-                                        <span class="fa fa-trash"></span>@Html.ActionLink("Activate", "activateOrDiseable", new { id = item.registeredUserID })
-                                    }
-                                </td>
-                            </tr>
+                                @if (item.status == "Activate")
+                                {
+                                    <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = item.registeredUserID })
+                                    <span class="fa fa-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.registeredUserID })
+                                    <span class="fa fa-ban"></span>@Html.ActionLink("Disable", "activateOrDiseable", new { id = item.registeredUserID })
+                                }
+                                else
+                                {
+                                    <span class="fa fa-trash"></span>@Html.ActionLink("Activate", "activateOrDiseable", new { id = item.registeredUserID })
+                                }
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
             </div>
         </div>
     }
-
-
-
-    @*<input type="button" class="dt-button-print hidden-print"
-            onclick="window.print()"
-            value="Print This Report" />*@
-
 </div>

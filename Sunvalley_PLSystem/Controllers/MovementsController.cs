@@ -93,10 +93,6 @@ namespace Sunvalley_PLSystem.Controllers
 
                     }
                     db.SaveChanges();
-
-
-                  
-
                 }
                 else {
                     AccountStatusReport Report = new AccountStatusReport();
@@ -112,8 +108,6 @@ namespace Sunvalley_PLSystem.Controllers
                     db.SaveChanges();
 
                 }
-
-
             }
             else
             {

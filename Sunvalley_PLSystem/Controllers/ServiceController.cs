@@ -42,11 +42,15 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         [Authorize]
+        [HttpPost]
         public ActionResult GeneralInfo(String mensaje)
         {
-            mensaje = mensaje.Trim();
             if (String.IsNullOrEmpty(mensaje))
                 mensaje = "Please, fill your general information in Report Settings.";
+            else
+            {
+                mensaje = mensaje.Trim();
+            }
 
             int contador = db.GeneralInformations.Count();
             GeneralInformation G = new GeneralInformation();
