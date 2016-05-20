@@ -74,8 +74,6 @@
     <!-- FastClick for mobiles-->
     <script src="/vendor/fastclick/fastclick.js" type="application/javascript"></script>
     
-        
-    
    @*@String= ViewBag.NombreCompleto*@
    
    <!-- Vendor CSS-->
@@ -93,22 +91,19 @@
 </head>
 
 <body>
-
-    
    <!-- START Main wrapper-->
    <section class="wrapper" id="SectionP">
       <!-- START Top Navbar-->
       <nav id="ParteLogo" role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
          <!-- START navbar header-->
          <div   class="navbar-header">
-            <a href="#" class="navbar-brand" style="height: 77px;">
+            <a href="#" class="navbar-brand">
             @if (User.Identity.IsAuthenticated)
             {
                 if (User.IsInRole("Administrador"))
                 {
                     <div class="brand-logo">Administrador</div>
                    <span class="fa fa-hand-peace-o">WELCOME @NombreCompleto</span> 
-
                 }
                 else
                 {
@@ -117,8 +112,6 @@
                 }
             }
             else { <div class="brand-logo">SunValley</div> }
-              
-
                <div class="brand-logo-collapsed"></div>
             </a>
          </div>
@@ -512,112 +505,12 @@
                      <div class="label label-primary pull-right">new</div>
                      <span class="item-text">Forms</span>
                   </a>
-                  <!-- START SubMenu item-->
-                  <ul class="nav collapse ">
-                     <li>
-                        <a href="form-standard.html" title="Standard" data-toggle="" class="no-submenu">
-                           <span class="item-text">Standard</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="form-extended.html" title="Extended" data-toggle="" class="no-submenu">
-                           <span class="item-text">Extended</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="form-validation.html" title="Validation" data-toggle="" class="no-submenu">
-                           <span class="item-text">Validation</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="form-wizard.html" title="Wizard" data-toggle="" class="no-submenu">
-                           <div class="label label-primary pull-right">new</div>
-                           <span class="item-text">Wizard</span>
-                        </a>
-                     </li>
-                  </ul>
-                  <!-- END SubMenu item-->
                </li>*@
                @*<li>
                   <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
                      <em class="fa fa-wrench"></em>
                      <span class="item-text">Elements</span>
                   </a>
-                  <!-- START SubMenu item-->
-                  <ul class="nav collapse ">
-                     <li>
-                        <a href="panels.html" title="Panels" data-toggle="" class="no-submenu">
-                           <span class="item-text">Panels</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="portlets.html" title="Portlets" data-toggle="" class="no-submenu">
-                           <span class="item-text">Portlets</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="button.html" title="Buttons" data-toggle="" class="no-submenu">
-                           <span class="item-text">Buttons</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="icons.html" title="Icons" data-toggle="" class="no-submenu">
-                           <div class="label label-primary pull-right">+400</div>
-                           <span class="item-text">Icons</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="notifications.html" title="Notifications" data-toggle="" class="no-submenu">
-                           <span class="item-text">Notifications</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="typo.html" title="Typography" data-toggle="" class="no-submenu">
-                           <span class="item-text">Typography</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="grid.html" title="Grid" data-toggle="" class="no-submenu">
-                           <span class="item-text">Grid</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="grid-masonry.html" title="Grid Masonry" data-toggle="" class="no-submenu">
-                           <span class="item-text">Grid Masonry</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="animations.html" title="Animations" data-toggle="" class="no-submenu">
-                           <span class="item-text">Animations</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="dropdown-animations.html" title="Dropdown" data-toggle="" class="no-submenu">
-                           <span class="item-text">Dropdown</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="widgets.html" title="Widgets" data-toggle="" class="no-submenu">
-                           <span class="item-text">Widgets</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="maps.html" title="Maps" data-toggle="" class="no-submenu">
-                           <span class="item-text">Maps</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="calendar.html" title="Calendar" data-toggle="" class="no-submenu">
-                           <span class="item-text">Calendar</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="spinners.html" title="Spinners" data-toggle="" class="no-submenu">
-                           <span class="item-text">Spinners</span>
-                        </a>
-                     </li>
-                  </ul>
-                  <!-- END SubMenu item-->
                </li>*@
                <li class="active">
                   @*<a href="#" title="Pages" data-toggle="collapse-next" class="has-submenu">*@
@@ -627,74 +520,47 @@
                   </a>
                   <!-- START SubMenu item-->
                   <ul class="nav collapse in">
-                      @if (User.Identity.IsAuthenticated)
-                     {
-
-                          if (User.IsInRole("Administrador"))
-                          {
-                     <li>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <li>
                         @Html.ActionLink("Owners", "Index", "Account")
-                     </li>
-                     <li>
+                        </li>
+                        <li>
                         @Html.ActionLink("Houses", "Index", "Houses")
-                     </li>
-
+                        </li>
                         @*@Html.ActionLink("Reports", "IndexReport", "Movements")*@
-                            
-
-
-
                     <li>
                         @Html.ActionLink("Report Settings", "Index", "Service")
                     </li>
                    
-                          }
+                    }
+                    else if (User.IsInRole("Cliente"))
+                    {
+                    <li>
+                        @Html.ActionLink("My Houses", "Index", "Houses")
+                    </li>
+                    <li>
+                        @using Microsoft.AspNet.Identity
+                        @Html.ActionLink("My Account", "Details", "Account",new { id = User.Identity.GetUserId() },null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Report Montly Statement", "IndexReport", "Movements", new { ID = User.Identity.GetUserId() }, null)
+                    </li>
 
+                    @*<li>@Html.ActionLink("Profit and Loss", "profitAndLossHouse", "Account", new { idHouse = 0 }, null)</li>*@
 
-                          else if (User.IsInRole("Cliente"))
-                          {
-                            <li>
-                                @Html.ActionLink("My Houses", "Index", "Houses")
-                            </li>
-                            <li>
-                                @using Microsoft.AspNet.Identity
-                                @Html.ActionLink("My Account", "Details", "Account",new { id = User.Identity.GetUserId() },null)
-                            </li>
-
-
-                         
-
-
-                                    <li>
-                                        @Html.ActionLink("Report Montly Statement", "IndexReport", "Movements", new { ID = User.Identity.GetUserId() }, null)
-                                    </li>
-
-                                    @*<li>@Html.ActionLink("Profit and Loss", "profitAndLossHouse", "Account", new { idHouse = 0 }, null)</li>*@
-
-
-
-
-                           
-
-
-                          }
-
-
-                      }
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li>
-                                @Html.ActionLink("LogOff", "LogOff", "Account")
-                            </li>}
-                        else {
-                            <li>
-                                @Html.ActionLink("LogIn", "Login", "Account", FormMethod.Post, new { id = "logoutForm"})
-                            </li>
-                        }
-
-                   
-
-
+                    }
+                      
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            @Html.ActionLink("LogOff", "LogOff", "Account")
+                        </li>}
+                    else {
+                        <li>
+                            @Html.ActionLink("LogIn", "Login", "Account", FormMethod.Post, new { id = "logoutForm"})
+                        </li>
+                    }
                   </ul>
                   <!-- END SubMenu item-->
                </li>
@@ -702,20 +568,6 @@
                <!-- Sidebar footer    -->
                <li class="nav-footer">
                   <div class="nav-footer-divider"></div>
-                  <!-- START button group-->
-                  @*<div class="btn-group text-center">
-                     <button type="button" data-toggle="tooltip" data-title="Add Contact" class="btn btn-link">
-                        <em class="fa fa-user text-muted"><sup class="fa fa-plus"></sup>
-                        </em>
-                     </button>
-                     <button type="button" data-toggle="tooltip" data-title="Settings" class="btn btn-link">
-                        <em class="fa fa-cog text-muted"></em>
-                     </button>
-                     <button type="button" data-toggle="tooltip" data-title="Logout" class="btn btn-link">
-                        <em class="fa fa-sign-out text-muted"></em>
-                     </button>
-                  </div>*@
-                  <!-- END button group-->
                </li>
             </ul>
          </nav>
@@ -889,9 +741,6 @@
          <!-- START Page content-->
          <section class="main-content">
              @RenderBody()
-
-
-             
          </section>
          <!-- END Page content-->
       </section>
@@ -917,15 +766,7 @@
    @*<script src="app/js/app.js"></script>*@
    <!-- END Scripts-->
     @RenderSection("scripts", required: false)
-
-
-
-    
-   
-        
 </body>
-
-
 
 </html>
 
@@ -934,13 +775,5 @@
         $('#tabla').DataTable({
           
         });
-    });
-
-
-
-   
-    </script>
-    
-  
-
-
+    });       
+</script>

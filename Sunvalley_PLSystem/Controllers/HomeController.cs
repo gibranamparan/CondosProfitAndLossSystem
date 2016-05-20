@@ -52,7 +52,19 @@ namespace Sunvalley_PLSystem.Controllers
             //    ViewBag.NombreCompleto = nombre + " " + apellido;
             //}
             //catch { }
-            return View();
+            if(!User.Identity.IsAuthenticated){
+                return RedirectToAction("LogIn","Account");
+            }
+            else if (User.IsInRole("Administrador"))
+            {
+                return RedirectToAction("Index", "Account");
+            }
+            else if(User.IsInRole("Cliente"))
+            {
+                return RedirectToAction("Index", "Houses");
+            }
+            else
+                return View();
         }
         public ActionResult About()
         {
