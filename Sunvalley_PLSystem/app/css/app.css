@@ -5154,16 +5154,21 @@ textarea.chosen-container-active.chosen-with-drop .chosen-single {
         display: none !important;
     }
     img#logo {
-        width: 150px !important;
+        width: 80px !important;
     }
     #logo, #logo_legend{
         display: inline-block;
-        font-size: .8em;
+        font-size: .6em;
     }
 
     #empresa_info{
         vertical-align: top;
     }
+    div#empresa_info * {
+        /* margin: 0; */
+        padding: 0;
+    }
+
     img#logo {
     vertical-align: top;
 }

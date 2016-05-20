@@ -314,6 +314,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Imagenes\Sun-Valley-Banner.jpg" />
+    <Content Include="Imagenes\sunvalley_logo.png" />
     <Content Include="pages\landing.html" />
     <Content Include="pages\lock.html" />
     <Content Include="pages\login-multi.html" />
