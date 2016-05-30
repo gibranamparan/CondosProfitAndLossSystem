@@ -24,8 +24,19 @@ namespace Sunvalley_PLSystem.Models
         public string firstName { get; set; }
         [Display(Name = "Last Name")]
         public string lastName { get; set; }
+
+
+
+      
+       
+     
         [Display(Name = "Created At")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime createAt { get; set; }
+
+
+
         [Display(Name = "Company")]
         public string company { get; set; }
 

@@ -248,9 +248,27 @@ namespace Sunvalley_PLSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ApplicationUser user)
         {
+
+           
+
+            
             if (ModelState.IsValid)
             {
-                UserManager.Update(user);
+                var usuario = db.Users.Find(user.Id);
+                usuario.firstName = user.firstName;
+                usuario.lastName = user.lastName;
+                usuario.createAt = user.createAt;
+                usuario.company = user.company;
+                usuario.adress1 = user.adress1;
+                usuario.city = user.city;
+                usuario.country = user.country;
+                usuario.state = user.state;
+                usuario.mobilePhone = user.mobilePhone;
+                usuario.Email = user.Email;
+               
+
+
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

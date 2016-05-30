@@ -15,6 +15,7 @@
       
       $body.toggleClass('aside-toggled');
 
+
   });
 
 }(jQuery, window, document));

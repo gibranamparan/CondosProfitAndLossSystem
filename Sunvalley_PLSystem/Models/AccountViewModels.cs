@@ -80,8 +80,11 @@ namespace Sunvalley_PLSystem.Models
         [Display(Name = "Last Name")]
         public string lastName { get; set; }
 
+
         [Display(Name = "Create At")]
-        public DateTime createAt { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public Nullable<System.DateTime> createAt { get; set; }
 
         [Display(Name = "Company")]
         public string company { get; set; }

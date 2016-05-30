@@ -37,7 +37,7 @@
                 <div class="form-group">
                     @Html.Label("CreateAt", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.createAt, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.createAt, new { htmlAttributes = new { @class = "form-control FechaEdicion" } })
                         @Html.ValidationMessageFor(model => model.createAt, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -114,4 +114,6 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
 }
