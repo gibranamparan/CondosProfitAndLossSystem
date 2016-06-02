@@ -260,13 +260,16 @@ namespace Sunvalley_PLSystem.Controllers
                 usuario.createAt = user.createAt;
                 usuario.company = user.company;
                 usuario.adress1 = user.adress1;
+                usuario.adress2 = user.adress2;
                 usuario.city = user.city;
                 usuario.country = user.country;
                 usuario.state = user.state;
                 usuario.mobilePhone = user.mobilePhone;
                 usuario.Email = user.Email;
-               
-
+                usuario.Email1 = user.Email1;
+                usuario.Email2 = user.Email2;
+                usuario.postalCode = user.postalCode;
+                usuario.businesFax = user.businesFax;
 
 
                 db.SaveChanges();

@@ -135,11 +135,11 @@ namespace Sunvalley_PLSystem.Models
 
 
        
-        [Display(Name = "AddEmail#1")]
+        [Display(Name = "Email#1")]
         public string Email1 { get; set; }
 
         
-        [Display(Name = "AddEmail#2")]
+        [Display(Name = "Email#2")]
         public string Email2 { get; set; }
 
         [Required]

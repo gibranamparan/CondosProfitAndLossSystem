@@ -180,6 +180,8 @@ h4{
 
 #Details th{
     background: #fceabb;
+    border-bottom-color:darkgray !important;
+    width:25% !important;
 }
 
 table th{
