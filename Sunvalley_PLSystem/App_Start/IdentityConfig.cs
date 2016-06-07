@@ -31,7 +31,7 @@ namespace Sunvalley_PLSystem
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
             myMessage.From = new System.Net.Mail.MailAddress(
-                                "bianeysvisa@aol.com", "SunValley");
+                                "Gibranamparand@hotmail.com", "Sun Valley");
             myMessage.Subject = message.Subject;
             myMessage.Text = message.Body;
             myMessage.Html = message.Body;
