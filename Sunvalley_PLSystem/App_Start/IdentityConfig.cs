@@ -31,7 +31,7 @@ namespace Sunvalley_PLSystem
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
             myMessage.From = new System.Net.Mail.MailAddress(
-                                "Gibranamparand@hotmail.com", "Sun Valley");
+                                "gibranamparand@hotmail.com", "Sun Valley Services");
             myMessage.Subject = message.Subject;
             myMessage.Text = message.Body;
             myMessage.Html = message.Body;
@@ -88,10 +88,10 @@ namespace Sunvalley_PLSystem
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = false,
-                RequireDigit = false,
+                RequireNonLetterOrDigit = true,
+                RequireDigit = true,
                 RequireLowercase = true,
-                RequireUppercase = false,
+                RequireUppercase = true,
             };
 
             // Configure user lockout defaults

@@ -9,14 +9,12 @@
 
 
 @{ 
-
-
     String NombreCompleto = "";
     if (Session["NombreCompleto"] != null)
     {
         NombreCompleto = (String)Session["NombreCompleto"];
     }
-    }
+}
 <head>
    <!-- Meta-->
    <meta charset="utf-8">
@@ -29,12 +27,10 @@
     
    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
    <!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+
    <!-- Bootstrap CSS-->
-    
     @*<link rel="stylesheet" href="~/vendor/fontawesome/css/font-awesome.min.css">*@
-    
     @*<script src="~/app/js/dataTables.buttons.min.js" type="text/javascript"></script>*@
-    
     <!--<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>-->
    
     
@@ -74,10 +70,6 @@
     <!-- FastClick for mobiles-->
     <script src="/vendor/fastclick/fastclick.js" type="application/javascript"></script>
 
-
-
-
-  
     <script src="/vendor/fastclick/fastclick.js" type="application/javascript"></script>
     
    @*@String= ViewBag.NombreCompleto*@
@@ -94,6 +86,8 @@
    
    <!-- FastClick for mobiles-->
    @*<script src="vendor/fastclick/fastclick.js" type="application/javascript"></script>*@
+
+    <link href="http://sunvalleyservicesrockypoint.com/wp-content/uploads/2016/05/cropped-sunvalley_logo1-32x32.png" rel="icon" />
 </head>
 
 <body>
@@ -417,7 +411,7 @@
                      </div>*@
                   </div>
                   <!-- START User links collapse-->
-                  @*<ul class="nav collapse">
+                  <ul class="nav collapse">
                      <li><a href="#">Profile</a>
                      </li>
                      <li><a href="#">Settings</a>
@@ -429,12 +423,12 @@
                      <li class="divider"></li>
                      <li><a href="#">Logout</a>
                      </li>
-                  </ul>*@
+                  </ul>
                   <!-- END User links collapse-->
                </li>
                <!-- END user info-->
                <!-- START Menu-->
-               @*<li>
+               <li>
                   <a href="dashboard.html" title="Dashboard" data-toggle="collapse-next" class="has-submenu">
                      <em class="fa fa-dashboard"></em>
                      <div class="label label-primary pull-right">12</div>
@@ -459,8 +453,8 @@
                      </li>
                   </ul>
                   <!-- END SubMenu item-->
-               </li>*@
-               @*<li>
+               </li>
+               <li>
                   <a href="#" title="Charts" data-toggle="collapse-next" class="has-submenu">
                      <em class="fa fa-bar-chart-o"></em>
                      <span class="item-text">Charts</span>
@@ -479,8 +473,8 @@
                      </li>
                   </ul>
                   <!-- END SubMenu item-->
-               </li>*@
-               @*<li>
+               </li>
+               <li>
                   <a href="#" title="Tables" data-toggle="collapse-next" class="has-submenu">
                      <em class="fa fa-table"></em>
                      <span class="item-text">Tables</span>
@@ -504,26 +498,26 @@
                      </li>
                   </ul>
                   <!-- END SubMenu item-->
-               </li>*@
-               @*<li>
+               </li>
+               <li>
                   <a href="#" title="Forms" data-toggle="collapse-next" class="has-submenu">
                      <em class="fa fa-edit"></em>
                      <div class="label label-primary pull-right">new</div>
                      <span class="item-text">Forms</span>
                   </a>
-               </li>*@
-               @*<li>
+               </li>
+               <li>
                   <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
                      <em class="fa fa-wrench"></em>
                      <span class="item-text">Elements</span>
                   </a>
-               </li>*@
+               </li>
                <li class="active">
                   @*<a href="#" title="Pages" data-toggle="collapse-next" class="has-submenu">*@
                      @*<em class="fa fa-file-text"></em>*@
                      @*<div class="label label-primary pull-right">new</div>*@
-                     @*<span class="item-text">Main Menu</span>*@
-                  </a>
+                     @*<span class="item-text">Main Menu</span>
+                    </a>*@
                   <!-- START SubMenu item-->
                   <ul class="nav collapse in">
                     @if (User.IsInRole("Administrador"))

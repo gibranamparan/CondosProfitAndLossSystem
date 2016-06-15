@@ -62,13 +62,15 @@
             <div class="form-group col-md-6">
                 @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                 <div class="col-md-8">
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control",placeholder = "minimun 6 numbers and 1 character" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Introduce an strong password." })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group col-md-6" style="margin-bottom: 4px;">
                 @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
                 <div class="col-md-8">
                     @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div id="Cliente">
@@ -137,8 +139,11 @@
           
 
                 <div class="form-group">
-                    <div class="col-md-8">
-                        <input type="submit" class="btn btn-default" value="Register" />
+                    <div class="col-md-8 row">
+                        <div class="col-md-2">
+                            <input type="submit" class="btn btn-default" value="Register" />
+                        </div>
+                        <p class="col-md-10">An strong password must have 6 characters min. included lower & uppercase and non digit or letter character.</p>
                     </div>
                 </div>
             </div>

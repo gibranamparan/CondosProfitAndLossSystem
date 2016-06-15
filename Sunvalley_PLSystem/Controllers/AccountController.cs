@@ -404,7 +404,7 @@ namespace Sunvalley_PLSystem.Controllers
 
         //
         // GET: /Account/Register
-        [Authorize(Roles = "Administrador")]
+        //[Authorize(Roles = "Administrador")]
         public ActionResult Register()
         {
 
@@ -418,7 +418,7 @@ namespace Sunvalley_PLSystem.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [Authorize(Roles = "Administrador")]
+        //[Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model,string UserRoles)
         {
@@ -531,8 +531,13 @@ namespace Sunvalley_PLSystem.Controllers
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
                  string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                 await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+                 String htmlBody = "<table><tr><td><img src='http://sunvalleyservicesrockypoint.com/wp-content/uploads/2016/06/weblogo.png' alt='Alternate Text' /></td></tr>"+
+                     "<tr><td>Please reset your password by clicking <a href='"+ callbackUrl +"'>here</a></td></tr></table>";
+
+                 await UserManager.SendEmailAsync(user.Id, "Reset Password", htmlBody);
+
                  return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
