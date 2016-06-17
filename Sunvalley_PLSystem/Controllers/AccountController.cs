@@ -12,6 +12,7 @@ using Sunvalley_PLSystem.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Sunvalley_PLSystem.Controllers
 {
@@ -246,15 +247,17 @@ namespace Sunvalley_PLSystem.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ApplicationUser user)
+        public async Task<ActionResult> Edit(ApplicationUser user, String NewPassword)
         {
 
-           
 
-            
             if (ModelState.IsValid)
             {
-                var usuario = db.Users.Find(user.Id);
+                ApplicationDbContext context = new ApplicationDbContext();
+                UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(context);
+
+                //var usuario = db.Users.Find(user.Id);
+                var usuario = store.FindByIdAsync(user.Id).Result;
                 usuario.firstName = user.firstName;
                 usuario.lastName = user.lastName;
                 usuario.createAt = user.createAt;
@@ -270,9 +273,22 @@ namespace Sunvalley_PLSystem.Controllers
                 usuario.Email2 = user.Email2;
                 usuario.postalCode = user.postalCode;
                 usuario.businesFax = user.businesFax;
-                
+
+                //db.Entry(usuario).State = EntityState.Modified;
+
+                //Si es administrador y se introdujo nuevo password
 
 
+                if (User.IsInRole ("Administrador")&& !String.IsNullOrEmpty(NewPassword))
+                {
+                    UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(store);
+                    //String userId = User.Identity.GetUserId();//"<YourLogicAssignsRequestedUserId>";
+                    String hashedNewPassword = UserManager.PasswordHasher.HashPassword(NewPassword);
+                    await store.SetPasswordHashAsync(usuario, hashedNewPassword);
+
+                }
+
+                await store.UpdateAsync(usuario);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
