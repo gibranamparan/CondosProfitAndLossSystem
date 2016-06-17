@@ -270,6 +270,7 @@ namespace Sunvalley_PLSystem.Controllers
                 usuario.Email2 = user.Email2;
                 usuario.postalCode = user.postalCode;
                 usuario.businesFax = user.businesFax;
+                
 
 
                 db.SaveChanges();
@@ -308,26 +309,10 @@ namespace Sunvalley_PLSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-   
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-
-
-            var user = await UserManager.FindByNameAsync(model.Email);
-            if (user != null)
-            {
-                if (!await UserManager.IsEmailConfirmedAsync(user.Id))
-                {
-
-                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account-Resend");
-                    ViewBag.errorMessage = "You must have a confirmed email to log on.";
-                    return View("Error");
-                }
-            }
-
-
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
 
@@ -336,8 +321,8 @@ namespace Sunvalley_PLSystem.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    var users = UserManager.FindByEmail<ApplicationUser, String>(model.Email);
-                    if (users.status != "Disable")
+                    var user = UserManager.FindByEmail<ApplicationUser, String>(model.Email);
+                    if (user.status != "Disable")
                     {
                         String NombreCompleto = UserManager.FindByName(model.Email).firstName + " " + UserManager.FindByName(model.Email).lastName;
                         Session["NombreCompleto"] = NombreCompleto;
@@ -433,7 +418,7 @@ namespace Sunvalley_PLSystem.Controllers
                 if (result.Succeeded)
                 {
 
-                    string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
+  
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -462,13 +447,10 @@ namespace Sunvalley_PLSystem.Controllers
                     //// Uncomment to debug locally 
                     //TempData["ViewBagLink"] = callbackUrl;
 
-                    ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
-                                    + "before you can log in.";
+                    //ViewBag.Message = "Check your email and confirm your account, you must be confirmed "
+                    //                + "before you can log in.";
 
-                    return View("Info");
-
-
-                    //return RedirectToAction("Index", "Account");
+                    return RedirectToAction("Index", "Account");
                 }
                 AddErrors(result);
             }
