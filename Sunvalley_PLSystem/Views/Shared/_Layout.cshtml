@@ -98,11 +98,11 @@
          <!-- START navbar header-->
          <div   class="navbar-header">
             <a href="#" class="navbar-brand" id="logoss">
-            @if (User.Identity.IsAuthenticated)
+            @*@if (User.Identity.IsAuthenticated)
             {
                 if (User.IsInRole("Administrador"))
                 {
-                    <div class="brand-logo">Administrador</div>
+                    <div class="brand-logo"></div>
                    <span class="fa fa-hand-peace-o">WELCOME @NombreCompleto</span> 
                 }
                 else
@@ -112,7 +112,7 @@
                 }
             }
             else { <div class="brand-logo">SunValley</div> }
-               <div class="brand-logo-collapsed"></div>
+               <div class="brand-logo-collapsed"></div>*@
             </a>
          </div>
           
@@ -136,7 +136,25 @@
             <!-- START Right Navbar-->
             <ul class="nav navbar-nav navbar-right">
                 <li class="pull-right">
-                    Hello Username, you are logged as RoleName.
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Administrador"))
+                        {
+                            <div>
+                                <strong>Hello @NombreCompleto</strong>,<br /> you are logged as <strong>Administrator.</strong>
+                                   
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <strong>Hello @NombreCompleto</strong>,<br /> you are logged as <strong>Client.</strong>
+
+                            </div>
+
+                        }
+                    }
                 </li>
                <!-- START Messages menu (dropdown-list)-->
                <li class="dropdown dropdown-list">
@@ -429,92 +447,78 @@
                   </ul>
                   <!-- END User links collapse-->
                </li>
-               <!-- END user info-->
-               <!-- START Menu-->
+               @if (User.IsInRole("Administrador"))
+               {
                <li>
-                  <a href="dashboard.html" title="Dashboard" data-toggle="collapse-next" class="has-submenu">
-                     <em class="fa fa-sign-in"></em>
-                     @*<div class="label label-primary pull-right">12</div>*@
-                     <span class="item-text">Log In</span>
+                  <a href="@Url.Action("Index", "Account")" title="Owners" >
+                     <em class="fa fa-users"></em>
+                     <span class="item-text">Owners</span>
                   </a>
-                  <!-- START SubMenu item-->
-                  <ul class="nav collapse ">
-                     <li>
-                        <a href="dashboard.html" title="Default" data-toggle="" class="no-submenu">
-                           <span class="item-text">Default</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="dashboard-nosidebar.html" title="No Sidebar" data-toggle="" class="no-submenu">
-                           <span class="item-text">No Sidebar</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="dashboard-noprofile.html" title="No Profile" data-toggle="" class="no-submenu">
-                           <span class="item-text">No Profile</span>
-                        </a>
-                     </li>
-                  </ul>
-                  <!-- END SubMenu item-->
+                 
                </li>
                <li>
-                  <a href="#" title="Charts" data-toggle="collapse-next" class="has-submenu">
-                     <em class="fa fa-internet-explorer"></em>
-                     <span class="item-text">Web Site</span>
-                  </a>
-                  <!-- START SubMenu item-->
-                  <ul class="nav collapse ">
-                     <li>
-                        <a href="chart-flot.html" title="Flot" data-toggle="" class="no-submenu">
-                           <span class="item-text">Flot</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="chart-radial.html" title="Radial" data-toggle="" class="no-submenu">
-                           <span class="item-text">Radial</span>
-                        </a>
-                     </li>
-                  </ul>
-                  <!-- END SubMenu item-->
-               </li>
-               <li>
-                  <a href="#" title="Tables" data-toggle="collapse-next" class="has-submenu">
-                     <em class="fa fa-table"></em>
-                     <span class="item-text">Tables</span>
-                  </a>
-                  <!-- START SubMenu item-->
-                  <ul class="nav collapse ">
-                     <li>
-                        <a href="table-datatable.html" title="Data Table" data-toggle="" class="no-submenu">
-                           <span class="item-text">Data Table</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="table-standard.html" title="Standard" data-toggle="" class="no-submenu">
-                           <span class="item-text">Standard</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="table-extended.html" title="Extended" data-toggle="" class="no-submenu">
-                           <span class="item-text">Extended</span>
-                        </a>
-                     </li>
-                  </ul>
-                  <!-- END SubMenu item-->
-               </li>
-               <li>
-                  <a href="#" title="Forms" data-toggle="collapse-next" class="has-submenu">
-                     <em class="fa fa-edit"></em>
-                     <div class="label label-primary pull-right">new</div>
-                     <span class="item-text">Forms</span>
+                  <a href="@Url.Action("Index", "Houses")"  title="Houses">
+                     <em class="fa fa-home"></em>
+                     <span class="item-text">Houses</span>
                   </a>
                </li>
-               <li>
-                  <a href="#" title="Elements" data-toggle="collapse-next" class="has-submenu">
-                     <em class="fa fa-wrench"></em>
-                     <span class="item-text">Elements</span>
-                  </a>
-               </li>
+                <li>
+                    <a href="@Url.Action("Index", "Service")" title="Houses">
+                        <em class="fa fa-sticky-note"></em>
+                        <span class="item-text">Report Settings</span>
+                    </a>
+                </li>
+              
+               }
+               else if (User.IsInRole("Cliente"))
+               {
+                <li>
+                    <a href="@Url.Action("Index","Houses")" title="Houses">
+                        <em class="fa fa-home"></em>
+                        <span class="item-text">My Houses</span>
+                    </a>
+                </li>
+                <li>
+                    @using Microsoft.AspNet.Identity
+                    <a href="@Url.Action("Details", "Account", new { id = User.Identity.GetUserId() }, null)" title="Houses">
+                        <em class="fa fa-user"></em>
+                        <span class="item-text">My Account</span>
+                    </a>
+               
+                </li>
+   
+                    <li>
+                        <a href="@Url.Action("IndexReport", "Movements", new { ID = User.Identity.GetUserId() }, null)" title="Report Montly Statement">
+                            <em class="fa fa-file-text"></em>
+                            <span class="item-text">Report Montly Statement</span>
+                        </a>
+                    </li>
+
+                }
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>
+                        <a href="@Url.Action("LogOff","Account")" title="Log Off">
+                            <em class="fa fa-sign-out"></em>
+                            <span class="item-text">Log Off</span>
+                        </a>
+                    </li>}
+                else {
+                    <li>
+                        <a href="@Url.Action("Log In","Account")" title="Log In">
+                            <em class="fa fa-sign-in"></em>
+                            <span class="item-text">Log In</span>
+                        </a>
+                    </li>
+                }
+                <li>
+                    <a href="http://sunvalleyservicesrockypoint.com/" target="_blank" title="Web Site">
+                        <em class="fa fa-internet-explorer"></em>
+                        <span class="item-text">Web Site</span>
+                    </a>
+                </li>
+
                <li class="active">
                   @*<a href="#" title="Pages" data-toggle="collapse-next" class="has-submenu">*@
                      @*<em class="fa fa-file-text"></em>*@
@@ -522,48 +526,8 @@
                      @*<span class="item-text">Main Menu</span>
                     </a>*@
                   <!-- START SubMenu item-->
-                  <ul class="nav collapse in">
-                    @if (User.IsInRole("Administrador"))
-                    {
-                        <li>
-                        @Html.ActionLink("Owners", "Index", "Account")
-                        </li>
-                        <li>
-                        @Html.ActionLink("Houses", "Index", "Houses")
-                        </li>
-                        @*@Html.ActionLink("Reports", "IndexReport", "Movements")*@
-                    <li>
-                        @Html.ActionLink("Report Settings", "Index", "Service")
-                    </li>
+                 <ul class="nav collapse in">
                    
-                    }
-                    else if (User.IsInRole("Cliente"))
-                    {
-                    <li>
-                        @Html.ActionLink("My Houses", "Index", "Houses")
-                    </li>
-                    <li>
-                        @using Microsoft.AspNet.Identity
-                        @Html.ActionLink("My Account", "Details", "Account",new { id = User.Identity.GetUserId() },null)
-                    </li>
-                    <li>
-                        @Html.ActionLink("Report Montly Statement", "IndexReport", "Movements", new { ID = User.Identity.GetUserId() }, null)
-                    </li>
-
-                    @*<li>@Html.ActionLink("Profit and Loss", "profitAndLossHouse", "Account", new { idHouse = 0 }, null)</li>*@
-
-                    }
-                      
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>
-                            @Html.ActionLink("LogOff", "LogOff", "Account")
-                        </li>}
-                    else {
-                        <li>
-                            @Html.ActionLink("LogIn", "Login", "Account", FormMethod.Post, new { id = "logoutForm"})
-                        </li>
-                    }
                   </ul>
                   <!-- END SubMenu item-->
                </li>
