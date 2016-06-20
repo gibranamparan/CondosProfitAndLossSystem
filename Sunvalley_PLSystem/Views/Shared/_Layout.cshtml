@@ -113,6 +113,8 @@
             }
             else { <div class="brand-logo">SunValley</div> }
                <div class="brand-logo-collapsed"></div>*@
+
+                <dv class="brand-logo"><img src="~/Imagenes/systemLogo.png" width="169"></dv>
             </a>
          </div>
           
@@ -141,15 +143,15 @@
                     {
                         if (User.IsInRole("Administrador"))
                         {
-                            <div>
-                                <strong>Hello @NombreCompleto</strong>,<br /> you are logged as <strong>Administrator.</strong>
+                            <div id="TextoLog">
+                               Hello<strong> @NombreCompleto</strong>,<br /> you are logged as <br /><strong>Administrator.</strong>
                                    
                             </div>
                         }
                         else
                         {
-                            <div>
-                                <strong>Hello @NombreCompleto</strong>,<br /> you are logged as <strong>Client.</strong>
+                            <div id="TextoLog">
+                                Hello <strong>@NombreCompleto</strong>,<br /> you are logged as <br /> <strong>Client.</strong>
 
                             </div>
 
@@ -505,12 +507,12 @@
                         </a>
                     </li>}
                 else {
-                    <li>
+                    @*<li>
                         <a href="@Url.Action("Log In","Account")" title="Log In">
                             <em class="fa fa-sign-in"></em>
                             <span class="item-text">Log In</span>
                         </a>
-                    </li>
+                    </li>*@
                 }
                 <li>
                     <a href="http://sunvalleyservicesrockypoint.com/" target="_blank" title="Web Site">
