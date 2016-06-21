@@ -184,13 +184,6 @@
                 $("#NewPassword").attr("type", "password")
         })
 
-        $("#showPassword").click(function () {
-            if ($(this).prop("checked"))
-                $("#NewPassword").attr("type", "text")
-            else
-                $("#NewPassword").attr("type", "password")
-        })
-
         $("#btnGeneratePassword").click(function () {
             $("#NewPassword").val(generatePassword());
         })
