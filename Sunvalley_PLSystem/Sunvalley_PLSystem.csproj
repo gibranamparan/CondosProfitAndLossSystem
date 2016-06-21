@@ -262,12 +262,12 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\css\app.css" />
     <Content Include="app\css\bootstrap.css" />
     <Content Include="app\css\buttons.dataTables.min.css" />
     <Content Include="app\css\jquery.dataTables.min.css" />
     <Content Include="app\css\landing.css" />
     <Content Include="app\css\print.css" />
+    <Content Include="app\css\s.css" />
     <Content Include="app\img\background.jpg" />
     <Content Include="app\img\bg1.jpg" />
     <Content Include="app\img\bg10.jpg" />
