@@ -741,8 +741,9 @@ body {
   position: relative;
   padding-bottom: 60px;
   min-height: 100%;
-  background-color:#fceabb;
+  background-color:#ffda6e;/*#*/
 }
+
 .sidebar .nav > li > a {
     padding: 16px 30px;
     color: #fff !important;
@@ -809,6 +810,10 @@ body {
   height: 1px;
   width: auto;
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar span.item-text {
+    font-size: 16px;
 }
 @media only screen and (min-width: 768px) {
   .aside-toggled .sidebar {

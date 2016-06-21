@@ -7,6 +7,7 @@
     IEnumerable<Sunvalley_PLSystem.Models.Movement> m = ViewBag.Movements1;
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Loss = ViewBag.Loss;
     String mensaje = ViewBag.mensaje;
+    DateTime fechaConArgumentos = ViewBag.fechaConArgumentos;
 
 }
 
@@ -125,6 +126,15 @@
                 <div id="Filtros" class="hidden-print col-md-12">
                     @if (User.IsInRole("Administrador"))
                     {
+                        using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "col-xs-4" }))
+                        {
+                            @Html.Label("Date")
+                            @Html.TextBox("fecha", fechaConArgumentos.ToString("yyyy-MM"), new { @class = "hidden-print", type = "Month", required = "required", style = "text-align:right;" })
+                            <!--<input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required
+                                   value="fechaConArgumentos.ToString("YYYY-MM-dd")>-->
+                            @Html.Hidden("houseID", Model.houseID)
+                            <input type="submit" value="Search by Month" class="hidden-print" style="text-align:right;" />
+                        }
                         using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "col-xs-4" }))
                         {
                             @Html.Label("Date")
@@ -144,13 +154,6 @@
                             @Html.Hidden("IdUser", Model.Id)
                             <input type="submit" value="Unapprove" class="hidden-print" style="text-align:right;" />
                         }
-                    }
-                    @using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "col-xs-4     " }))
-                    {
-                        @Html.Label("Date")
-                        <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
-                        @Html.Hidden("houseID", Model.houseID)
-                        <input type="submit" value="Search by Date" class="hidden-print" style="text-align:right;" />
                     }
                 </div>
             </div>
@@ -280,8 +283,5 @@
                onClick="window.print()"
                value="Print Montly Statement" />
 
-        </div>
     </div>
-
-
 </div>
