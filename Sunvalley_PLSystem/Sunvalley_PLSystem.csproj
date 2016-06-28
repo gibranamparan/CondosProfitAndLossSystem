@@ -256,6 +256,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Movement.cs" />
+    <Compile Include="Models\ReportedMovements.cs" />
     <Compile Include="Models\Services.cs" />
     <Compile Include="Models\VmFilter\VmAprov.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

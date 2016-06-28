@@ -21,6 +21,9 @@ namespace Sunvalley_PLSystem.Models
         public virtual ApplicationUser ApplicationUser { get; set; }
 
 
+        public virtual ICollection<ReportedMovements> ReportedMovements { get; set; }
+
+
 
 
     }
