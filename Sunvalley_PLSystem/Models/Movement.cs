@@ -46,7 +46,5 @@ namespace Sunvalley_PLSystem.Models
         //To one movement correspond one user
         public virtual String UserID { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
-
-
     }
 }

@@ -248,6 +248,14 @@
     <Compile Include="Migrations\201605072032470_mig2.Designer.cs">
       <DependentUpon>201605072032470_mig2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606282014118_added_table_ReportedMovements.cs" />
+    <Compile Include="Migrations\201606282014118_added_table_ReportedMovements.Designer.cs">
+      <DependentUpon>201606282014118_added_table_ReportedMovements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606282028226_deleted_field_status_reporteMovements.cs" />
+    <Compile Include="Migrations\201606282028226_deleted_field_status_reporteMovements.Designer.cs">
+      <DependentUpon>201606282028226_deleted_field_status_reporteMovements.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountStatusReport.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -914,6 +922,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605072032470_mig2.resx">
       <DependentUpon>201605072032470_mig2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606282014118_added_table_ReportedMovements.resx">
+      <DependentUpon>201606282014118_added_table_ReportedMovements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606282028226_deleted_field_status_reporteMovements.resx">
+      <DependentUpon>201606282028226_deleted_field_status_reporteMovements.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

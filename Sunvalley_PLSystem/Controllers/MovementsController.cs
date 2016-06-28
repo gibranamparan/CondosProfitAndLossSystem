@@ -142,17 +142,47 @@ namespace Sunvalley_PLSystem.Controllers
             return RedirectToAction("Details", "Houses", new { id = houseID});
         }
 
+        
+        [Authorize]
+        [HttpPost]
+        public ActionResult generarReporte(int houseID, DateTime fecha)
+        {
+            if (houseID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            House house = db.Houses.Find(houseID);
+            if (house == null)
+            {
+                return HttpNotFound();
+            }
+            String IdUser = house.ApplicationUser.Id;
+
+            var movements2 = db.Movements.Where(mov => mov.transactionDate.Month == fecha.Month && mov.transactionDate.Year == fecha.Year && mov.houseID == houseID);
+            var reporte = db.AccountStatusReport.FirstOrDefault(r => r.dateMonth.Month == fecha.Month && r.UserID == IdUser);
+            if (reporte == null)
+            {
+                AccountStatusReport Report = new AccountStatusReport();
+                Report.houseID = houseID;
+                Report.dateMonth = fecha;
+                Report.UserID = IdUser;
+                db.AccountStatusReport.Add(Report);
+                db.SaveChanges();
+                reporte = Report;
+            }
+
+            int reportID = reporte.accountStatusReportID;
+            List<ReportedMovements> movimientosReportados = (from mov in movements2.ToList() select
+                                                                 new ReportedMovements(mov, reportID)).ToList();
+            db.ReportedMovements.AddRange(movimientosReportados);
+            db.SaveChanges();
+
+            return RedirectToAction("Details", "Houses", new { id = houseID });
+        }
         /*
         [Authorize]
         [HttpPost]
-        public ActionResult generarReporte(int id)
-        {
-
-        }
-
-        [Authorize]
-        [HttpPost]
-        public ActionResult eliminarReporte(int id)
+        public ActionResult eliminarReporte(int houseID, DateTime Fecha)
         {
 
         }*/
