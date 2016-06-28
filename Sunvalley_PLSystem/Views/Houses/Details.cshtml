@@ -124,24 +124,23 @@
             </div>
             <div class="row">
                 <div id="Filtros" class="hidden-print col-md-12">
+                    @using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "col-xs-4" }))
+                    {
+                        @Html.Label("Date")
+                        @Html.TextBox("fecha", fechaConArgumentos.ToString("yyyy-MM"), new { @class = "hidden-print", type = "Month", required = "required", style = "text-align:right;" })
+                        <!--<input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required
+                                value="fechaConArgumentos.ToString("YYYY-MM-dd")>-->
+                        @Html.Hidden("houseID", Model.houseID)
+                        <input type="submit" value="Search by Month" class="hidden-print" style="text-align:right;" />
+                    }
                     @if (User.IsInRole("Administrador"))
                     {
-                        using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "col-xs-4" }))
-                        {
-                            @Html.Label("Date")
-                            @Html.TextBox("fecha", fechaConArgumentos.ToString("yyyy-MM"), new { @class = "hidden-print", type = "Month", required = "required", style = "text-align:right;" })
-                            <!--<input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required
-                                   value="fechaConArgumentos.ToString("YYYY-MM-dd")>-->
-                            @Html.Hidden("houseID", Model.houseID)
-                            <input type="submit" value="Search by Month" class="hidden-print" style="text-align:right;" />
-                        }
                         using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "col-xs-4" }))
                         {
                             @Html.Label("Date")
                             <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
                             @Html.Hidden("houseID", Model.houseID)
                             @Html.Hidden("Accion", "Autorizar")
-                            @Html.Hidden("IdUser", Model.Id)
 
                             <input type="submit" value="Approve" class="hidden-print" style="text-align:right;" />
                         }
@@ -151,7 +150,6 @@
                             <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
                             @Html.Hidden("houseID", Model.houseID)
                             @Html.Hidden("Accion", "Desautorizar")
-                            @Html.Hidden("IdUser", Model.Id)
                             <input type="submit" value="Unapprove" class="hidden-print" style="text-align:right;" />
                         }
                     }
@@ -269,7 +267,7 @@
        
         <input type="button" class="hidden-print"
                onClick="window.print()"
-               value="Print Montly Statement" />
+               value="Print Monthly Statement" />
 
     </div>
 </div>

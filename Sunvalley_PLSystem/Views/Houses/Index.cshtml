@@ -6,11 +6,6 @@
    
 }
 
-
-
-
-
-
 <div class="container">
     <div class="panel panel-warning">
         <div class="panel-heading hidden-print">
@@ -21,10 +16,11 @@
 
                 <thead>
                     <tr>
-                       
+                       @if (User.IsInRole("Administrador")){
                         <th>
                             @Html.DisplayNameFor(model => model.ApplicationUser.firstName)
                         </th>
+                       }
                         <th>
                             @Html.DisplayNameFor(model => model.name)
                         </th>
@@ -54,10 +50,11 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                           
-                            <td>
-                                @(item.ApplicationUser.firstName +" "+item.ApplicationUser.lastName)
-                            </td>
+                            @if (User.IsInRole("Administrador")){
+                                <td>
+                                    @(item.ApplicationUser.firstName +" "+item.ApplicationUser.lastName)
+                                </td>
+                            }
                             <td>
                                 @Html.DisplayFor(modelItem => item.name)
                             </td>

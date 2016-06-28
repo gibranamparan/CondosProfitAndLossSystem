@@ -65,12 +65,22 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(DateTime fecha, int houseID,String Accion,String IdUser)
+        public ActionResult Index(DateTime fecha, int houseID,String Accion)
         {
             //var Movimientos = from movement in db.Movements
             //                  where (movement.transactionDate >= fechaInicio && movement.transactionDate <= fechaFin && movement.UserID == User.Identity.GetUserId())
             //                  select movement;
             //var movements = db.Movements.Where(mov => mov.transactionDate >= fechaInicio && mov.transactionDate <= fechaFin && mov.houseID == houseID);
+            if (houseID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            House house = db.Houses.Find(houseID);
+            String IdUser = house.ApplicationUser.Id;
+            if (house == null)
+            {
+                return HttpNotFound();
+            }
             var movements2 = db.Movements.Where(mov => mov.transactionDate.Month == fecha.Month &&mov.transactionDate.Year==fecha.Year&& mov.houseID == houseID);
             var reporte = db.AccountStatusReport.FirstOrDefault(r =>r.dateMonth.Month == fecha.Month  &&  r.UserID == IdUser);
             if(Accion == "Autorizar")
