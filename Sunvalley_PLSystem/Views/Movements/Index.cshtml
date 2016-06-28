@@ -8,9 +8,7 @@
 
 <h2 class="no-imprimir">Movements</h2>
 <link href="@Url.Content("~/Content/Estilos.css")" rel="stylesheet" type="text/css" />
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
+
 <br>
 
 <div style="text-align:right;" class="hidden-print">
@@ -46,9 +44,7 @@
                             @Html.DisplayNameFor(model => model.typeOfMovement)
                         </th>
 
-                        @*<th>
-                    @Html.DisplayNameFor(model => model.value)
-                </th>*@
+                        
 
                         <th>
                             @Html.DisplayNameFor(model => model.amount)
@@ -56,9 +52,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.balance)
                         </th>
-                        @*<th>
-                    @Html.DisplayNameFor(model => model.UserID)
-                </th>*@
+                       
                         <th></th>
                     </tr>
 
@@ -78,9 +72,7 @@
                                 @Html.DisplayFor(modelItem => item.typeOfMovement)
                             </td>
 
-                            @*<td>
-                        @Html.DisplayFor(modelItem => item.value)
-                    </td>*@
+                           
 
                             <td>
                                 @Html.DisplayFor(modelItem => item.amount)
@@ -88,14 +80,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.balance)
                             </td>
-                            @*<td>
-                        @Html.DisplayFor(modelItem => item.UserID)
-                    </td>*@
-                            @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.movementID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.movementID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.movementID })
-                    </td>*@
+                           
                         </tr>
                     }
                 </tbody>
@@ -106,17 +91,11 @@
            onClick="window.print()"
            value="Print This Report" />
     </div>
-            @*<div style="text-align:right;">
-                <button type="button" class="btn btn-success" onclick="javascript: printMovement('printMovement')" style="text-align:right;margin-top:20px">Imprimir</button>
-            </div>*@
+           
             @section Scripts {
                 <script>
                     function printMovement() {
-                        /* var tablePrint = document.getElementById('tableMovements');
-                         newWin = window.open("");
-                         newWin.document.write(tablePrint.innerHTML);
-                         newWin.print();
-                         newWin.close();*/
+                       
                     }
 
                 </script>

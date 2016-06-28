@@ -7,9 +7,7 @@
 
 <h2>Reports</h2>
 
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+
 <table id="Reports"  class="table table-striped table-responsive table-hover" >
     <tr>
         <th>
@@ -32,11 +30,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.dateMonth)
         </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.dateMonth }) |
-            @Html.ActionLink("Details", "Details", new { id=item.dateMonth }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.dateMonth })
-        </td>*@
+       
         <td>
             @Html.ActionLink("Report", "Details","Houses", new { id = item.houseID, fecha= item.dateMonth },null)
         </td>

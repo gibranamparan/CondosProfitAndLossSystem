@@ -159,7 +159,7 @@ namespace Sunvalley_PLSystem.Controllers
             return RedirectToAction("Index");
         }
         // GET: Houses/Edit/5
-        [Authorize]
+        //[Authorize]
         public ActionResult Edit(String id)
         {
             if (id == null)
@@ -245,7 +245,7 @@ namespace Sunvalley_PLSystem.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ApplicationUser user, String NewPassword)
         {
