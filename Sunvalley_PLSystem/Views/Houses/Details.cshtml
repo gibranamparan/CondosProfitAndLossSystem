@@ -184,14 +184,17 @@
                             <th>
                                 @Html.DisplayNameFor(mov=>m.FirstOrDefault().description)
                             </th>
-                                @if (User.IsInRole("Administrador"))
-                                {
-                                <th>
-                                    @Html.DisplayName("Status")
-                                </th>
-                                }
+                            @if (User.IsInRole("Administrador"))
+                            {
                             <th>
-                                @Html.DisplayName("Amount")
+                                @Html.DisplayName("Status")
+                            </th>
+                            } 
+                            <th>
+                                @Html.DisplayName("Withdrawl")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Deposit")
                             </th>
                             <th>
                                 @Html.DisplayName("Balance")
@@ -238,11 +241,22 @@
                                     @Html.DisplayFor(modelItem => item.state)
                                 </td>
                                 }
-                             
+                                
+                                <td>
+                                    @if (item.typeOfMovement == "Expense")
+                                    {
+                                        @Html.Raw("$");
+                                        @String.Format("{0:n}", item.amount);
+                                    }
+                                </td>
+
 
                                 <td>
-                                   
-                                    $@String.Format("{0:n}", item.amount)
+                                    @if (item.typeOfMovement == "Income" || item.typeOfMovement == "Contribution")
+                                    {
+                                        @Html.Raw("$");
+                                        @String.Format("{0:n}", item.amount);
+                                    }
                                 </td>
 
                                 <td class=@(item.balance < 0 ? "balanceNegativo" : "")>

@@ -76,11 +76,11 @@ namespace Sunvalley_PLSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             House house = db.Houses.Find(houseID);
-            String IdUser = house.ApplicationUser.Id;
             if (house == null)
             {
                 return HttpNotFound();
             }
+            String IdUser = house.ApplicationUser.Id;
             var movements2 = db.Movements.Where(mov => mov.transactionDate.Month == fecha.Month &&mov.transactionDate.Year==fecha.Year&& mov.houseID == houseID);
             var reporte = db.AccountStatusReport.FirstOrDefault(r =>r.dateMonth.Month == fecha.Month  &&  r.UserID == IdUser);
             if(Accion == "Autorizar")
@@ -141,6 +141,22 @@ namespace Sunvalley_PLSystem.Controllers
 
             return RedirectToAction("Details", "Houses", new { id = houseID});
         }
+
+        /*
+        [Authorize]
+        [HttpPost]
+        public ActionResult generarReporte(int id)
+        {
+
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult eliminarReporte(int id)
+        {
+
+        }*/
+
         [Authorize]
         public ActionResult Recalculate(int id)
         {
