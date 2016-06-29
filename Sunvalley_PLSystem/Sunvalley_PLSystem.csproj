@@ -256,6 +256,10 @@
     <Compile Include="Migrations\201606282028226_deleted_field_status_reporteMovements.Designer.cs">
       <DependentUpon>201606282028226_deleted_field_status_reporteMovements.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606291816041_reportedMovement_listo.cs" />
+    <Compile Include="Migrations\201606291816041_reportedMovement_listo.Designer.cs">
+      <DependentUpon>201606291816041_reportedMovement_listo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountStatusReport.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -866,7 +870,7 @@
     <Content Include="Views\Account\profitAndLoss.cshtml" />
     <Content Include="Views\Movements\Reports.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
-    <Content Include="Views\Houses\ReportedMovements.cshtml" />
+    <Content Include="Views\Movements\ReportedMovements.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -929,6 +933,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606282028226_deleted_field_status_reporteMovements.resx">
       <DependentUpon>201606282028226_deleted_field_status_reporteMovements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606291816041_reportedMovement_listo.resx">
+      <DependentUpon>201606291816041_reportedMovement_listo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

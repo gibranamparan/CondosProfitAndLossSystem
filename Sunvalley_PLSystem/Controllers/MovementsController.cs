@@ -167,8 +167,19 @@ namespace Sunvalley_PLSystem.Controllers
                 Report.dateMonth = fecha;
                 Report.UserID = IdUser;
                 db.AccountStatusReport.Add(Report);
+
+                foreach (var i in movements2)
+                {
+                    i.state = true;
+                    db.Entry(i).State = EntityState.Modified;
+
+                }
                 db.SaveChanges();
                 reporte = Report;
+            }
+            else
+            {
+                db.ReportedMovements.RemoveRange(reporte.ReportedMovements.ToList());
             }
 
             int reportID = reporte.accountStatusReportID;
@@ -179,20 +190,26 @@ namespace Sunvalley_PLSystem.Controllers
 
             return RedirectToAction("Details", "Houses", new { id = houseID });
         }
-        /*
+        
         [Authorize]
         [HttpPost]
         public ActionResult eliminarReporte(int houseID, DateTime Fecha)
         {
+            //Buscar el reporte en la tabla de reportes filtrando por fecha
 
-        }*/
+            //Marcar el estatus de los movimientos como falso
+
+            //Eliminar reporte
+
+            return RedirectToAction("Details", "Houses", new { id = houseID });
+        }
 
         [Authorize]
         public ActionResult ReportedMovements(int accountStatusReportID) {
 
-            var Movimientos = db.ReportedMovements.Find(accountStatusReportID);
+            var Reporte = db.AccountStatusReport.Find(accountStatusReportID);
 
-            return View (Movimientos);
+            return View (Reporte);
         }
 
         [Authorize]

@@ -135,7 +135,7 @@
                     }
                     @if (User.IsInRole("Administrador"))
                     {
-                        using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "col-xs-4" }))
+                        using (Html.BeginForm("generarReporte", "Movements", FormMethod.Post, new { @class = "col-xs-4" }))
                         {
                             @Html.Label("Date")
                             <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
@@ -144,17 +144,8 @@
 
                             <input type="submit" value="Approve" class="hidden-print" style="text-align:right;" />
                         }
-
-                        using (Html.BeginForm("generarReporte", "Movements", FormMethod.Post, new { @class = "col-xs-4" }))
-                        {
-                            @Html.Label("Date")
-                            <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
-                            @Html.Hidden("houseID", Model.houseID)
-                            @Html.Hidden("Accion", "Autorizar")
-
-                            <input type="submit" value="MovRep" class="hidden-print" style="text-align:right;" />
-                        }
-                        using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "col-xs-4" }))
+                        
+                        using (Html.BeginForm("eliminarReporte", "Movements", FormMethod.Post, new { @class = "col-xs-4" }))
                         {
                             @Html.Label("Date")
                             <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>

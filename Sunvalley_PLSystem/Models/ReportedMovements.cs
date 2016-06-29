@@ -21,13 +21,16 @@ namespace Sunvalley_PLSystem.Models
         public string Type { get; set; }
 
         [Display(Name = "Destription")]
-        public string Destription  { get; set; }
+        public string Description  { get; set; }
 
         [Display(Name = "Amount")]
         public decimal Amount { get; set; }
 
         [Display(Name = "Balance")]
         public decimal Balance { get; set; }
+
+        [Display(Name = "Service")]
+        public String service { get; set; }
 
         public int accountStatusReportID { get; set; }
         public virtual AccountStatusReport accountStatusReport { get; set; }
@@ -38,10 +41,16 @@ namespace Sunvalley_PLSystem.Models
             this.RegisterBy = m.createBy;
             this.TransactionDate = m.transactionDate;
             this.Type = m.typeOfMovement;
-            this.Destription = m.description;
+            this.Description = m.description;
             this.Amount = m.amount;
             this.Balance = m.balance;
+            this.service = m.services.name;
             this.accountStatusReportID = reportID;
+        }
+
+        public ReportedMovements()
+        {
+
         }
     }
 }

@@ -6,8 +6,13 @@
     Sunvalley_PLSystem.Models.VmFilter.VmAprov f = new Sunvalley_PLSystem.Models.VmFilter.VmAprov();
     IEnumerable<Sunvalley_PLSystem.Models.Movement> m = ViewBag.Movements1;
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Loss = ViewBag.Loss;
+
+
+    IEnumerable<Sunvalley_PLSystem.Models.ReportedMovements> reportedMovements = Model.ReportedMovements;
+
     String mensaje = ViewBag.mensaje;
-    DateTime fechaConArgumentos = ViewBag.fechaConArgumentos;
+    //DateTime fechaConArgumentos = ViewBag.fechaConArgumentos;
+
 
 }
 
@@ -16,9 +21,9 @@
     <div class="col-md-6 pull-right">
         <img id="logo" class="col-md-6" src="~/Imagenes/sunvalley_logo.png" alt="SUN VALLEY SERVICES" />
         <div id="logo_legend" class="col-md-6">
-            <p>
+            @*<p>
                 @Html.Raw(mensaje.Replace(Environment.NewLine, "<br/>"))
-            </p>
+            </p>*@
         </div>
     </div>
 </div>
@@ -38,30 +43,30 @@
                         @Html.DisplayNameFor(model => model.ApplicationUser.lastName)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.name)
+                        @Html.DisplayNameFor(model => model.house.name)
                     </th>
 
                     <th>
-                        @Html.DisplayNameFor(model => model.created)
+                        @Html.DisplayNameFor(model => model.house.created)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.area)
+                        @Html.DisplayNameFor(model => model.house.area)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.adress)
+                        @Html.DisplayNameFor(model => model.house.adress)
                     </th>
 
                     <th>
-                        @Html.DisplayNameFor(model => model.cityArea)
+                        @Html.DisplayNameFor(model => model.house.cityArea)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.country)
+                        @Html.DisplayNameFor(model => model.house.country)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.stateProvince)
+                        @Html.DisplayNameFor(model => model.house.stateProvince)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.postalCode)
+                        @Html.DisplayNameFor(model => model.house.postalCode)
                     </th>
 
                 </tr>
@@ -74,30 +79,30 @@
                         @Html.DisplayFor(model => model.ApplicationUser.lastName)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.name)
+                        @Html.DisplayFor(model => model.house.name)
                     </td>
 
                     <td>
-                        @Html.DisplayFor(model => model.created)
+                        @Html.DisplayFor(model => model.house.created)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.area)
+                        @Html.DisplayFor(model => model.house.area)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.adress)
+                        @Html.DisplayFor(model => model.house.adress)
                     </td>
 
                     <td>
-                        @Html.DisplayFor(model => model.cityArea)
+                        @Html.DisplayFor(model => model.house.cityArea)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.country)
+                        @Html.DisplayFor(model => model.house.country)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.stateProvince)
+                        @Html.DisplayFor(model => model.house.stateProvince)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.postalCode)
+                        @Html.DisplayFor(model => model.house.postalCode)
                     </td>
                 </tr>
 
@@ -105,7 +110,7 @@
 
             <div class="hidden-print">
                 <span class="fa fa-reply hidden-print"></span>
-                @Html.ActionLink("Back to List", "Details", "Account", new { id = Model.ApplicationUser.Id }, null)
+                @*@Html.ActionLink("Back to List", "Details", "Account", new { id = Model.ApplicationUser.Id }, null)*@
             </div>
         </div>
     </div>
@@ -124,14 +129,14 @@
                 }
 
             </div>
-            <div class="row">
+            @*<div class="row">
                 <div id="Filtros" class="hidden-print col-md-12">
                     @using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "col-xs-4" }))
                     {
                         @Html.Label("Date")
                         @Html.TextBox("fecha", fechaConArgumentos.ToString("yyyy-MM"), new { @class = "hidden-print", type = "Month", required = "required", style = "text-align:right;" })
-                        <!--<input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required
-                                value="fechaConArgumentos.ToString("YYYY-MM-dd")>-->
+                        <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required
+                                value="fechaConArgumentos.ToString("YYYY-MM-dd")>
                         @Html.Hidden("houseID", Model.houseID)
                         <input type="submit" value="Search by Month" class="hidden-print" style="text-align:right;" />
                     }
@@ -166,7 +171,7 @@
                         }
                     }
                 </div>
-            </div>
+            </div>*@
             <!--style="margin-top: -40px;width: 968px;margin-left:-15px"-->
             <div class="panel-body">
                 <!--style="margin-top: -20px;padding: 0px;padding-top:28px;"-->
@@ -221,65 +226,65 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in m)
+                        @foreach (var item in reportedMovements)
                         {
                             <tr>
 
                                 @if (User.IsInRole("Administrador"))
                                 {
                                     <td class="hidden-print">
-                                        @Html.DisplayFor(modelItem => item.createBy)
+                                        @Html.DisplayFor(modelItem => item.RegisterBy)
                                     </td>
                                 }
 
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.transactionDate)
+                                    @Html.DisplayFor(modelItem => item.TransactionDate)
                                 </td>
 
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.typeOfMovement)
+                                    @Html.DisplayFor(modelItem => item.Type)
                                 </td>
 
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.services.name)
+                                    @Html.DisplayFor(modelItem => item.service)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.description)
+                                    @Html.DisplayFor(modelItem => item.Description)
                                 </td>
 
-                                @if (User.IsInRole("Administrador"))
+                                @*@if (User.IsInRole("Administrador"))
                                 {
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.state)
+                                        @Html.DisplayFor(modelItem => item.st)
                                     </td>
-                                }
+                                }*@
 
                                 <td>
-                                    @if (item.typeOfMovement == "Expense")
+                                    @if (item.Type == "Expense")
                                     {
                                         @Html.Raw("$");
-                                        @String.Format("{0:n}", item.amount);
+                                        @String.Format("{0:n}", item.Amount);
                                     }
                                 </td>
 
 
                                 <td>
-                                    @if (item.typeOfMovement == "Income" || item.typeOfMovement == "Contribution")
+                                    @if (item.Type == "Income" || item.Type == "Contribution")
                                     {
                                         @Html.Raw("$");
-                                        @String.Format("{0:n}", item.amount);
+                                        @String.Format("{0:n}", item.Amount);
                                     }
                                 </td>
 
-                                <td class=@(item.balance < 0 ? "balanceNegativo" : "")>
-                                    @Html.DisplayFor(modelItem => item.balance)
+                                <td class=@(item.Balance < 0 ? "balanceNegativo" : "")>
+                                    @Html.DisplayFor(modelItem => item.Balance)
                                 </td>
 
                                 @if (User.IsInRole("Administrador"))
                                 {
                                     <td class="hidden-print">
-                                        <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", "Movements", new { id = item.movementID }, null) |
-                                        |<span class="fa fa-trash-o"></span> @Html.ActionLink("Delete", "Delete", "Movements", new { id = item.movementID }, null)
+                                        <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", "Movements", new { id = item.accountStatusReportID }, null) |
+                                        |<span class="fa fa-trash-o"></span> @Html.ActionLink("Delete", "Delete", "Movements", new { id = item.accountStatusReportID }, null)
                                     </td>
                                 }
                             </tr>
