@@ -866,6 +866,7 @@
     <Content Include="Views\Account\profitAndLoss.cshtml" />
     <Content Include="Views\Movements\Reports.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
+    <Content Include="Views\Houses\ReportedMovements.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

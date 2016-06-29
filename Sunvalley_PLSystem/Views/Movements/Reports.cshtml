@@ -32,7 +32,8 @@
         </td>
        
         <td>
-            @Html.ActionLink("Report", "Details","Houses", new { id = item.houseID, fecha= item.dateMonth },null)
+            @*Html.ActionLink("Report", "Details","Houses", new { id = item.houseID, fecha= item.dateMonth },null)*@
+            @Html.ActionLink("Report", "ReportedMovements","Movements", new { id = item.accountStatusReportID },null)
         </td>
     </tr>
 

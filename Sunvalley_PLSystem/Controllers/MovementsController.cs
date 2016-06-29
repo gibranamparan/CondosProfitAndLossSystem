@@ -19,7 +19,7 @@ namespace Sunvalley_PLSystem.Controllers
         //[Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
-            
+
             var movements = db.Movements.Include(m => m.house);
             return View(movements.ToList());
         }
@@ -59,13 +59,13 @@ namespace Sunvalley_PLSystem.Controllers
         {
             ViewBag.houseID = new SelectList(db.Houses, "houseID", "name");
             ViewBag.houseID = id;
-            SelectList lista = new SelectList(db.Services,"serviceID","name");
+            SelectList lista = new SelectList(db.Services, "serviceID", "name");
             ViewBag.Services = lista;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(DateTime fecha, int houseID,String Accion)
+        public ActionResult Index(DateTime fecha, int houseID, String Accion)
         {
             //var Movimientos = from movement in db.Movements
             //                  where (movement.transactionDate >= fechaInicio && movement.transactionDate <= fechaFin && movement.UserID == User.Identity.GetUserId())
@@ -81,9 +81,9 @@ namespace Sunvalley_PLSystem.Controllers
                 return HttpNotFound();
             }
             String IdUser = house.ApplicationUser.Id;
-            var movements2 = db.Movements.Where(mov => mov.transactionDate.Month == fecha.Month &&mov.transactionDate.Year==fecha.Year&& mov.houseID == houseID);
-            var reporte = db.AccountStatusReport.FirstOrDefault(r =>r.dateMonth.Month == fecha.Month  &&  r.UserID == IdUser);
-            if(Accion == "Autorizar")
+            var movements2 = db.Movements.Where(mov => mov.transactionDate.Month == fecha.Month && mov.transactionDate.Year == fecha.Year && mov.houseID == houseID);
+            var reporte = db.AccountStatusReport.FirstOrDefault(r => r.dateMonth.Month == fecha.Month && r.UserID == IdUser);
+            if (Accion == "Autorizar")
             {
 
                 if (reporte != null)
@@ -123,7 +123,7 @@ namespace Sunvalley_PLSystem.Controllers
             {
                 //AccountStatusReport Report = db.AccountStatusReport.Where(A=>A.dateMonth.Month==fecha.Month&&A.UserID== IdUser).First();
                 var Reports = db.AccountStatusReport.Where(A => A.dateMonth.Month == fecha.Month && A.UserID == IdUser);
-                if(Reports.Count()>0)
+                if (Reports.Count() > 0)
                 {
                     AccountStatusReport Report = Reports.First();
                     db.AccountStatusReport.Remove(Report);
@@ -139,10 +139,10 @@ namespace Sunvalley_PLSystem.Controllers
                 }
             }
 
-            return RedirectToAction("Details", "Houses", new { id = houseID});
+            return RedirectToAction("Details", "Houses", new { id = houseID });
         }
 
-        
+
         [Authorize]
         [HttpPost]
         public ActionResult generarReporte(int houseID, DateTime fecha)
@@ -186,6 +186,14 @@ namespace Sunvalley_PLSystem.Controllers
         {
 
         }*/
+
+        [Authorize]
+        public ActionResult ReportedMovements(int accountStatusReportID) {
+
+            var Movimientos = db.ReportedMovements.Find(accountStatusReportID);
+
+            return View (Movimientos);
+        }
 
         [Authorize]
         public ActionResult Recalculate(int id)
