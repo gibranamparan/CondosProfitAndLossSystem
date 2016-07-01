@@ -11,7 +11,7 @@
     IEnumerable<Sunvalley_PLSystem.Models.ReportedMovements> reportedMovements = Model.ReportedMovements;
 
     String mensaje = ViewBag.mensaje;
-    //DateTime fechaConArgumentos = ViewBag.fechaConArgumentos;
+   
 
 
 }
@@ -21,9 +21,9 @@
     <div class="col-md-6 pull-right">
         <img id="logo" class="col-md-6" src="~/Imagenes/sunvalley_logo.png" alt="SUN VALLEY SERVICES" />
         <div id="logo_legend" class="col-md-6">
-            @*<p>
+            <p>
                 @Html.Raw(mensaje.Replace(Environment.NewLine, "<br/>"))
-            </p>*@
+            </p>
         </div>
     </div>
 </div>
@@ -129,49 +129,7 @@
                 }
 
             </div>
-            @*<div class="row">
-                <div id="Filtros" class="hidden-print col-md-12">
-                    @using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "col-xs-4" }))
-                    {
-                        @Html.Label("Date")
-                        @Html.TextBox("fecha", fechaConArgumentos.ToString("yyyy-MM"), new { @class = "hidden-print", type = "Month", required = "required", style = "text-align:right;" })
-                        <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required
-                                value="fechaConArgumentos.ToString("YYYY-MM-dd")>
-                        @Html.Hidden("houseID", Model.houseID)
-                        <input type="submit" value="Search by Month" class="hidden-print" style="text-align:right;" />
-                    }
-                    @if (User.IsInRole("Administrador"))
-                    {
-                        using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "col-xs-4" }))
-                        {
-                            @Html.Label("Date")
-                            <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
-                            @Html.Hidden("houseID", Model.houseID)
-                            @Html.Hidden("Accion", "Autorizar")
-
-                            <input type="submit" value="Approve" class="hidden-print" style="text-align:right;" />
-                        }
-
-                        using (Html.BeginForm("generarReporte", "Movements", FormMethod.Post, new { @class = "col-xs-4" }))
-                        {
-                            @Html.Label("Date")
-                            <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
-                            @Html.Hidden("houseID", Model.houseID)
-                            @Html.Hidden("Accion", "Autorizar")
-
-                            <input type="submit" value="MovRep" class="hidden-print" style="text-align:right;" />
-                        }
-                        using (Html.BeginForm("Index", "Movements", FormMethod.Post, new { @class = "col-xs-4" }))
-                        {
-                            @Html.Label("Date")
-                            <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
-                            @Html.Hidden("houseID", Model.houseID)
-                            @Html.Hidden("Accion", "Desautorizar")
-                            <input type="submit" value="Unapprove" class="hidden-print" style="text-align:right;" />
-                        }
-                    }
-                </div>
-            </div>*@
+           
             <!--style="margin-top: -40px;width: 968px;margin-left:-15px"-->
             <div class="panel-body">
                 <!--style="margin-top: -20px;padding: 0px;padding-top:28px;"-->

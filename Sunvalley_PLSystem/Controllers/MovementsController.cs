@@ -193,13 +193,30 @@ namespace Sunvalley_PLSystem.Controllers
         
         [Authorize]
         [HttpPost]
-        public ActionResult eliminarReporte(int houseID, DateTime Fecha)
+        public ActionResult eliminarReporte(int houseID, DateTime fecha)
         {
+
             //Buscar el reporte en la tabla de reportes filtrando por fecha
+            House house = db.Houses.Find(houseID);
+            String IdUser = house.ApplicationUser.Id;
+
+            var movements2 = db.Movements.Where(mov => mov.transactionDate.Month == fecha.Month && mov.transactionDate.Year == fecha.Year && mov.houseID == houseID);
+            var reporte = db.AccountStatusReport.FirstOrDefault(r => r.dateMonth.Month == fecha.Month && r.UserID == IdUser);
 
             //Marcar el estatus de los movimientos como falso
+            foreach (var i in movements2)
+            {
+                i.state = false;
+                db.Entry(i).State = EntityState.Modified;
+
+            }
 
             //Eliminar reporte
+            if (reporte != null)
+            {
+                db.AccountStatusReport.Remove(reporte);
+            }
+            db.SaveChanges();
 
             return RedirectToAction("Details", "Houses", new { id = houseID });
         }
@@ -207,6 +224,9 @@ namespace Sunvalley_PLSystem.Controllers
         [Authorize]
         public ActionResult ReportedMovements(int accountStatusReportID) {
 
+
+            String mensaje = db.GeneralInformations.Find(1).InformacionGen;
+            ViewBag.mensaje = mensaje;
             var Reporte = db.AccountStatusReport.Find(accountStatusReportID);
 
             return View (Reporte);
