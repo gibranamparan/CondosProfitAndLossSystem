@@ -158,7 +158,7 @@ namespace Sunvalley_PLSystem.Controllers
             }
             String IdUser = house.ApplicationUser.Id;
 
-            var movements2 = db.Movements.Where(mov => mov.transactionDate.Month == fecha.Month && mov.transactionDate.Year == fecha.Year && mov.houseID == houseID);
+            var movements2 = db.Movements.Where(mov => mov.transactionDate.Month == fecha.Month && mov.transactionDate.Year == fecha.Year && mov.houseID == houseID).OrderBy(move => move.transactionDate);
             var reporte = db.AccountStatusReport.FirstOrDefault(r => r.dateMonth.Month == fecha.Month && r.UserID == IdUser);
             if (reporte == null)
             {
@@ -168,13 +168,6 @@ namespace Sunvalley_PLSystem.Controllers
                 Report.UserID = IdUser;
                 db.AccountStatusReport.Add(Report);
 
-                foreach (var i in movements2)
-                {
-                    i.state = true;
-                    db.Entry(i).State = EntityState.Modified;
-
-                }
-                db.SaveChanges();
                 reporte = Report;
             }
             else
@@ -182,9 +175,25 @@ namespace Sunvalley_PLSystem.Controllers
                 db.ReportedMovements.RemoveRange(reporte.ReportedMovements.ToList());
             }
 
+            foreach (var i in movements2)
+            {
+                i.state = true;
+                db.Entry(i).State = EntityState.Modified;
+
+            }
+            //db.SaveChanges();
+
             int reportID = reporte.accountStatusReportID;
-            List<ReportedMovements> movimientosReportados = (from mov in movements2.ToList() select
-                                                                 new ReportedMovements(mov, reportID)).ToList();
+            /*List<ReportedMovements> movimientosReportados = (from mov in movements2.ToList()
+                                                             select
+                                                                 new ReportedMovements(mov, reportID)).ToList();*/
+            List<ReportedMovements> movimientosReportados = new List<Models.ReportedMovements>();
+            int orden = 1;
+            foreach (Movement mov in movements2.ToList())
+            {
+                movimientosReportados.Add(new ReportedMovements(mov, reportID, orden));
+                orden++;
+            }
             db.ReportedMovements.AddRange(movimientosReportados);
             db.SaveChanges();
 
