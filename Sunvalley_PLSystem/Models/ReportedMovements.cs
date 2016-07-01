@@ -11,8 +11,6 @@ namespace Sunvalley_PLSystem.Models
         [Key]
         public int MovementID { get; set; }
 
-        public int orden { get; set; }
-
         [Display(Name = "RegisterBy")]
         public string RegisterBy { get; set; }
 
@@ -40,7 +38,6 @@ namespace Sunvalley_PLSystem.Models
         public ReportedMovements(Movement m, int reportID, int orden)
         {
             this.MovementID = m.movementID;
-            this.orden = orden;
             this.RegisterBy = m.createBy;
             this.TransactionDate = m.transactionDate;
             this.Type = m.typeOfMovement;

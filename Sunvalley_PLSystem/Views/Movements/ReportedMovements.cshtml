@@ -8,7 +8,7 @@
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Loss = ViewBag.Loss;
 
 
-    IEnumerable<Sunvalley_PLSystem.Models.ReportedMovements> reportedMovements = Model.ReportedMovements.OrderBy(mov => mov.orden);
+    IEnumerable<Sunvalley_PLSystem.Models.ReportedMovements> reportedMovements = Model.ReportedMovements.OrderBy(mov => mov.TransactionDate);
 
     String mensaje = ViewBag.mensaje;
    
@@ -136,9 +136,6 @@
                                 @Html.DisplayName("ID")
                             </th>
                             <th>
-                                @Html.DisplayName("Orden")
-                            </th>
-                            <th>
                                 @Html.DisplayName("Transaction Date")
                             </th>
 
@@ -191,9 +188,6 @@
 
                                 <td>
                                     @Html.DisplayFor(modelItem => item.MovementID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.orden)
                                 </td>
                                 <td>
                                     @item.TransactionDate.ToShortDateString()

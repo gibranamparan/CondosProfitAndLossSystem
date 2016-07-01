@@ -281,6 +281,11 @@ namespace Sunvalley_PLSystem.Controllers
             {
                 movement.createBy = User.Identity.GetUserName();
                 movement.UserID = User.Identity.GetUserId();
+
+                DateTime rightNow = DateTime.Now;
+                DateTime transactionDate = movement.transactionDate;
+                movement.transactionDate = transactionDate.AddHours(rightNow.Hour).
+                    AddMinutes(rightNow.Minute).AddSeconds(rightNow.Second);
                 if (movement.typeOfMovement == "Income")
                 {
                     Services rent = db.Services.SingleOrDefault(ser => ser.name == "RENT");
@@ -366,6 +371,12 @@ namespace Sunvalley_PLSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Movement movement)
         {
+            DateTime rightNow = DateTime.Now;
+
+            DateTime transactionDate = movement.transactionDate;
+            movement.transactionDate = transactionDate.AddHours(rightNow.Hour).
+                AddMinutes(rightNow.Minute).AddSeconds(rightNow.Second);
+
             if (ModelState.IsValid)
             {
                 db.Entry(movement).State = EntityState.Modified;

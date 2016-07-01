@@ -264,6 +264,10 @@
     <Compile Include="Migrations\201607012043326_added_field_ordenReportedMovement.Designer.cs">
       <DependentUpon>201607012043326_added_field_ordenReportedMovement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607012116222_deleted_field_ordenReportedMovement.cs" />
+    <Compile Include="Migrations\201607012116222_deleted_field_ordenReportedMovement.Designer.cs">
+      <DependentUpon>201607012116222_deleted_field_ordenReportedMovement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountStatusReport.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -943,6 +947,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607012043326_added_field_ordenReportedMovement.resx">
       <DependentUpon>201607012043326_added_field_ordenReportedMovement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607012116222_deleted_field_ordenReportedMovement.resx">
+      <DependentUpon>201607012116222_deleted_field_ordenReportedMovement.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
