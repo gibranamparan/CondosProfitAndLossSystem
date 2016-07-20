@@ -236,6 +236,14 @@ namespace Sunvalley_PLSystem.Controllers
 
             String mensaje = db.GeneralInformations.Find(1).InformacionGen;
             ViewBag.mensaje = mensaje;
+            String Nombre = db.AccountStatusReport.Find(accountStatusReportID).house.ApplicationUser.firstName;
+            String Apellido = db.AccountStatusReport.Find(accountStatusReportID).house.ApplicationUser.lastName;
+            String HAD = db.AccountStatusReport.Find(accountStatusReportID).house.name + ", " + db.AccountStatusReport.Find(accountStatusReportID).house.area + ", " + db.AccountStatusReport.Find(accountStatusReportID).house.adress;
+            String CCSP = db.AccountStatusReport.Find(accountStatusReportID).house.cityArea + ", " + db.AccountStatusReport.Find(accountStatusReportID).house.country + ", " + db.AccountStatusReport.Find(accountStatusReportID).house.stateProvince + ", " + db.AccountStatusReport.Find(accountStatusReportID).house.postalCode;
+            ViewBag.HAD = HAD;
+            ViewBag.CCSP = CCSP;
+            ViewBag.Nombre = Nombre;
+            ViewBag.Apellido = Apellido;
             var Reporte = db.AccountStatusReport.Find(accountStatusReportID);
 
             return View (Reporte);

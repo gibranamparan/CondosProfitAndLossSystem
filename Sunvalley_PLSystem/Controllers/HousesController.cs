@@ -36,6 +36,12 @@ namespace Sunvalley_PLSystem.Controllers
         public ActionResult Details(/*DateTime? fechaInicio, DateTime? fechaFin, */DateTime? fecha, int? id)
         {
             String mensaje = db.GeneralInformations.Find(1).InformacionGen;
+            String NombreCompleto = db.Houses.Find(id).ApplicationUser.firstName + " " + db.Houses.Find(id).ApplicationUser.lastName;
+            String HAD = db.Houses.Find(id).name + ", " + db.Houses.Find(id).area + ", " + db.Houses.Find(id).adress;
+            String CCSP = db.Houses.Find(id).cityArea + ", " + db.Houses.Find(id).country + ", " + db.Houses.Find(id).stateProvince + ", " + db.Houses.Find(id).postalCode;
+            ViewBag.HAD = HAD;
+            ViewBag.CCSP = CCSP;
+            ViewBag.NombreCompleto = NombreCompleto;
             ViewBag.mensaje = mensaje;
             if (id == null)
             {

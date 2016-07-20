@@ -7,6 +7,9 @@
     IEnumerable<Sunvalley_PLSystem.Models.Movement> m = ViewBag.Movements1;
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Loss = ViewBag.Loss;
     String mensaje = ViewBag.mensaje;
+    String NombreCompleto = ViewBag.NombreCompleto;
+    String HAD = ViewBag.HAD;
+    String CCSP = ViewBag.CCSP;
     DateTime fechaConArgumentos = ViewBag.fechaConArgumentos;
 
 }
@@ -23,8 +26,20 @@
     </div>
 </div>
 
+<div id="InfoCliente" class="visible-print">
+    <div class="col-md-6">
+        
+        <div id="InfoCliente" class="visible-print" style="margin-top:-75px;padding-bottom:20px">
+            @NombreCompleto<br /> @HAD <br />@CCSP .
+
+
+        </div> 
+    </div>
+</div>
+
+
 <div class="panel" style="width:103% !important">
-        <div class="panel panel-warning" style="width:100%">
+        <div class="panel panel-warning hidden-print" style="width:100%">
             <div class="panel-heading hidden-print">
                 House Details
             </div>

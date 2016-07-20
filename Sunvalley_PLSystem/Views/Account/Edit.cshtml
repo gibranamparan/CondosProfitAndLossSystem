@@ -133,7 +133,7 @@
                     </div>
                 </div>
 
-                @*@if (User.IsInRole("Administrador")) {*@
+                @if (User.IsInRole("Administrador")) {
 
                  <div class="form-group">
                     @Html.Label("New Password", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -149,7 +149,7 @@
                          Show Password: <input type="checkbox" id="showPassword" value=" " />
                      </div>
                 </div>
-            @*}*@
+            }
             <div class="form-group">
                 <div class="col-md-8 row">
                     <div class="col-md-2">

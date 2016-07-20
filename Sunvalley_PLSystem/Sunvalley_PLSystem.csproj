@@ -188,10 +188,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603130019519_first_migration.cs" />
-    <Compile Include="Migrations\201603130019519_first_migration.Designer.cs">
-      <DependentUpon>201603130019519_first_migration.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201603282155194_InitialCreate.cs" />
     <Compile Include="Migrations\201603282155194_InitialCreate.Designer.cs">
       <DependentUpon>201603282155194_InitialCreate.cs</DependentUpon>
@@ -199,30 +195,6 @@
     <Compile Include="Migrations\201603312135460_House_cambioTipo_UserID.cs" />
     <Compile Include="Migrations\201603312135460_House_cambioTipo_UserID.Designer.cs">
       <DependentUpon>201603312135460_House_cambioTipo_UserID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603312142160_House_cambioNombre_UserIDAId.cs" />
-    <Compile Include="Migrations\201603312142160_House_cambioNombre_UserIDAId.Designer.cs">
-      <DependentUpon>201603312142160_House_cambioNombre_UserIDAId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604082052461_services.cs" />
-    <Compile Include="Migrations\201604082052461_services.Designer.cs">
-      <DependentUpon>201604082052461_services.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604091931184_removeCatributeMovements.cs" />
-    <Compile Include="Migrations\201604091931184_removeCatributeMovements.Designer.cs">
-      <DependentUpon>201604091931184_removeCatributeMovements.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604121744544_addNewAtribute.cs" />
-    <Compile Include="Migrations\201604121744544_addNewAtribute.Designer.cs">
-      <DependentUpon>201604121744544_addNewAtribute.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604192000338_AddModel.cs" />
-    <Compile Include="Migrations\201604192000338_AddModel.Designer.cs">
-      <DependentUpon>201604192000338_AddModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604192019209_AddModelReports.cs" />
-    <Compile Include="Migrations\201604192019209_AddModelReports.Designer.cs">
-      <DependentUpon>201604192019209_AddModelReports.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201604211928242_addAtributeStatus.cs" />
     <Compile Include="Migrations\201604211928242_addAtributeStatus.Designer.cs">
@@ -232,10 +204,6 @@
     <Compile Include="Migrations\201604211934203_addAtribute.Designer.cs">
       <DependentUpon>201604211934203_addAtribute.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604281651263_quitkey.cs" />
-    <Compile Include="Migrations\201604281651263_quitkey.Designer.cs">
-      <DependentUpon>201604281651263_quitkey.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201604291951501_house_changedAttr_postalCodeToString.cs" />
     <Compile Include="Migrations\201604291951501_house_changedAttr_postalCodeToString.Designer.cs">
       <DependentUpon>201604291951501_house_changedAttr_postalCodeToString.cs</DependentUpon>
@@ -244,9 +212,9 @@
     <Compile Include="Migrations\201605062012513_tablaInformacion.Designer.cs">
       <DependentUpon>201605062012513_tablaInformacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201605072032470_mig2.cs" />
-    <Compile Include="Migrations\201605072032470_mig2.Designer.cs">
-      <DependentUpon>201605072032470_mig2.cs</DependentUpon>
+    <Compile Include="Migrations\201605162333127_campos.cs" />
+    <Compile Include="Migrations\201605162333127_campos.Designer.cs">
+      <DependentUpon>201605162333127_campos.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201606282014118_added_table_ReportedMovements.cs" />
     <Compile Include="Migrations\201606282014118_added_table_ReportedMovements.Designer.cs">
@@ -891,32 +859,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603130019519_first_migration.resx">
-      <DependentUpon>201603130019519_first_migration.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603282155194_InitialCreate.resx">
       <DependentUpon>201603282155194_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603312135460_House_cambioTipo_UserID.resx">
       <DependentUpon>201603312135460_House_cambioTipo_UserID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603312142160_House_cambioNombre_UserIDAId.resx">
-      <DependentUpon>201603312142160_House_cambioNombre_UserIDAId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604082052461_services.resx">
-      <DependentUpon>201604082052461_services.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604091931184_removeCatributeMovements.resx">
-      <DependentUpon>201604091931184_removeCatributeMovements.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604121744544_addNewAtribute.resx">
-      <DependentUpon>201604121744544_addNewAtribute.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604192000338_AddModel.resx">
-      <DependentUpon>201604192000338_AddModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604192019209_AddModelReports.resx">
-      <DependentUpon>201604192019209_AddModelReports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604211928242_addAtributeStatus.resx">
       <DependentUpon>201604211928242_addAtributeStatus.cs</DependentUpon>
@@ -924,17 +871,14 @@
     <EmbeddedResource Include="Migrations\201604211934203_addAtribute.resx">
       <DependentUpon>201604211934203_addAtribute.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604281651263_quitkey.resx">
-      <DependentUpon>201604281651263_quitkey.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604291951501_house_changedAttr_postalCodeToString.resx">
       <DependentUpon>201604291951501_house_changedAttr_postalCodeToString.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605062012513_tablaInformacion.resx">
       <DependentUpon>201605062012513_tablaInformacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605072032470_mig2.resx">
-      <DependentUpon>201605072032470_mig2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605162333127_campos.resx">
+      <DependentUpon>201605162333127_campos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606282014118_added_table_ReportedMovements.resx">
       <DependentUpon>201606282014118_added_table_ReportedMovements.cs</DependentUpon>

@@ -11,6 +11,11 @@
 *{transition:none!important}
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700);
 
+
+#InfoCliente{
+    margin-top:-20px;
+
+}
 table#Informacion{
     background: #fceabb;
     border-bottom-color:darkgray !important;
@@ -5184,7 +5189,17 @@ textarea.chosen-container-active.chosen-with-drop .chosen-single {
     }
 
     img#logo {
-    vertical-align: top;
+        vertical-align: top;
+    }
+
+    #InfoCliente{
+
+        margin-top:-80px !important;
+        
+        
+    }
+
+   
 }
 
 }

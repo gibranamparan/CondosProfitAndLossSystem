@@ -159,7 +159,7 @@ namespace Sunvalley_PLSystem.Controllers
             return RedirectToAction("Index");
         }
         // GET: Houses/Edit/5
-        //[Authorize]
+        [Authorize]
         public ActionResult Edit(String id)
         {
             if (id == null)
@@ -178,6 +178,16 @@ namespace Sunvalley_PLSystem.Controllers
         public ActionResult profitAndLossTotal(String id,DateTime? fecha1,DateTime? fecha2)
         {
             String mensaje = db.GeneralInformations.Find(1).InformacionGen;
+
+            //String NombreCompleto = db.Houses.Find(id).ApplicationUser.firstName;
+            //String Apellido = db.Houses.Find().ApplicationUser.lastName;
+            //String HAD = db.Houses.Find(id).name + "," + db.Houses.Find(id).area + "," + db.Houses.Find(id).adress;
+            //String CCSP = db.Houses.Find(id).cityArea + "," + db.Houses.Find(id).country + "," + db.Houses.Find(id).stateProvince + "," + db.Houses.Find(id).postalCode;
+            //ViewBag.HAD = HAD;
+            //ViewBag.Apellido= Apellido;
+            //ViewBag.CCSP = CCSP;
+            //ViewBag.NombreCompleto = NombreCompleto;
+
             ViewBag.mensaje = mensaje;
             if (fecha1 == null && fecha2 == null)
             {
@@ -214,8 +224,16 @@ namespace Sunvalley_PLSystem.Controllers
         [Authorize]
         public ActionResult profitAndLossHouse(int idHouse,DateTime? fecha1,DateTime? fecha2)
         {
+           
             String mensaje = db.GeneralInformations.Find(1).InformacionGen;
+            String NombreCompleto = db.Houses.Find(idHouse).ApplicationUser.firstName + " " + db.Houses.Find(idHouse).ApplicationUser.lastName;
+            String HAD = db.Houses.Find(idHouse).name + ", " + db.Houses.Find(idHouse).area + ", " + db.Houses.Find(idHouse).adress;
+            String CCSP = db.Houses.Find(idHouse).cityArea + ", " + db.Houses.Find(idHouse).country + ", " + db.Houses.Find(idHouse).stateProvince + ", " + db.Houses.Find(idHouse).postalCode;
+            ViewBag.HAD = HAD;
+            ViewBag.CCSP = CCSP;
+            ViewBag.NombreCompleto = NombreCompleto;
             ViewBag.mensaje = mensaje;
+            
             var House = db.Houses.Find(idHouse);
             ViewBag.Loss = House.movimientos.Where(m => m.typeOfMovement == "Expense" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2 && m.state==true);
             ViewBag.Profit = House.movimientos.Where(m => m.typeOfMovement == "Income" && m.transactionDate >= fecha1 && m.transactionDate <= fecha2 && m.state==true);
@@ -245,7 +263,7 @@ namespace Sunvalley_PLSystem.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ApplicationUser user, String NewPassword)
         {

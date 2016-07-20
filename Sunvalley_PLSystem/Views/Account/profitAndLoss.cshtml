@@ -12,7 +12,12 @@
     int? idHouse = ViewBag.idHouse;
 
     String mensaje = ViewBag.mensaje;
-    
+    String NombreCompleto = ViewBag.NombreCompleto;
+    String HAD = ViewBag.HAD;
+    String CCSP = ViewBag.CCSP;
+    String Apellido = ViewBag.Apellido;
+
+    ;
 }
 
 <h2>Profit And Loss</h2>
@@ -26,10 +31,22 @@
         </div>
     </div>
 </div>
+<div id="InfoCliente" class="visible-print">
+    <div class="col-md-6">
+
+        <div id="InfoCliente" class="visible-print" style="margin-top:-75px;padding-bottom:20px">
+            @NombreCompleto<br /> @HAD <br />@CCSP .
+
+
+        </div>
+    </div>
+</div>
+
+
 
 @if (H != null) { //Si este reporte es por casa
     //Muestro los detalles la casa sobre la que estoy haciendo el reporte
-<div class="panel panel-warning" style="width:100%">
+<div class="panel panel-warning hidden-print" style="width:100%">
     <div class="panel-heading hidden-print">
         House Details
     </div>
