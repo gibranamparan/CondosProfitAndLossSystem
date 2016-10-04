@@ -202,7 +202,7 @@
                             </th>
                             @if (User.IsInRole("Administrador"))
                             {
-                            <th>
+                            <th class="hidden-print">
                                 @Html.DisplayName("Status")
                             </th>
                             } 
@@ -253,7 +253,7 @@
 
                                 @if (User.IsInRole("Administrador"))
                                 {
-                                <td>
+                                <td class="hidden-print">
                                     @Html.DisplayFor(modelItem => item.state)
                                 </td>
                                 }
