@@ -28,12 +28,12 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div style="padding-top:10px !important" class="form-group">
                         @Html.Label("Type", htmlAttributes: new { @class = " control-label col-md-2" })
-                        <div class="col-md-10">
+                        <div class="col-md-5">
                             @Html.DropDownListFor(x => x.typeOfMovement, new SelectListItem[]{
-                           new SelectListItem() {Text = "TAX", Value="TAX"},
                            new SelectListItem() {Text = "Expense", Value="Expense"},
                            new SelectListItem() {Text = "Income", Value="Income"},
-                           new SelectListItem() {Text = "Contribution", Value="Contribution"}}, new { @id = "KindAction" })
+                           new SelectListItem() {Text = "TAX", Value="TAX"},
+                           new SelectListItem() {Text = "Contribution", Value="Contribution"}}, new { @id = "KindAction", @class="form-control" })
                         </div>
                     </div>
 
@@ -103,7 +103,7 @@
 <script>
     $(document).ready(function () {
         $('#KindAction').change(function () {
-            if (this.value == 'Expense'||this.value == 'TAX')
+            if (this.value == 'Expense' || this.value == 'TAX')
             {
                 $("#ListServices").show();
             }
@@ -111,20 +111,11 @@
                 $("#ListServices").hide();
             }
         });
+
+        $('.InputAmount').mask('000000000.00', { reverse: true });
     });
 
 </script>
-
-    <script>
-        $(document).ready(function () {
-
-            $('.InputAmount').mask('000000000.00', { reverse: true });
-
-
-
-        });
-
-    </script>
 }
 
 

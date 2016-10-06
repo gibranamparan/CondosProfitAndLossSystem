@@ -55,8 +55,13 @@ namespace Sunvalley_PLSystem.Controllers
 
         // GET: Movements/Create
         //[Authorize(Roles = "Administrador")]
-        public ActionResult Create(int id)
+        public ActionResult Create(int id=0)
         {
+            var house = db.Houses.Find(id);
+            if (house == null)
+            {
+                return RedirectToAction("Index", "Account");
+            }
             ViewBag.houseID = new SelectList(db.Houses, "houseID", "name");
             ViewBag.houseID = id;
             SelectList lista = new SelectList(db.Services, "serviceID", "name");

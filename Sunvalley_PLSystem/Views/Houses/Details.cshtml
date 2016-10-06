@@ -146,7 +146,7 @@
                         <!--<input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required
                                 value="fechaConArgumentos.ToString("YYYY-MM-dd")>-->
                         @Html.Hidden("houseID", Model.houseID)
-                        <input type="submit" value="Search by Month" class="hidden-print" style="text-align:right;" />
+                        <input type="submit" value="Search by Month" class="hidden-print btn btn-default" style="text-align:right;" />
                     }
                     @if (User.IsInRole("Administrador"))
                     {
@@ -157,7 +157,7 @@
                             @Html.Hidden("houseID", Model.houseID)
                             @Html.Hidden("Accion", "Autorizar")
 
-                            <input type="submit" value="Approve" class="hidden-print" style="text-align:right;" />
+                            <input type="submit" value="Approve" class="hidden-print btn btn-default" style="text-align:right;" />
                         }
                         
                         using (Html.BeginForm("eliminarReporte", "Movements", FormMethod.Post, new { @class = "col-xs-4" }))
@@ -166,7 +166,7 @@
                             <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
                             @Html.Hidden("houseID", Model.houseID)
                             @Html.Hidden("Accion", "Desautorizar")
-                            <input type="submit" value="Unapprove" class="hidden-print" style="text-align:right;" />
+                            <input type="submit" value="Unapprove" class="hidden-print btn btn-default" style="text-align:right;" />
                         }
                     }
                 </div>
@@ -293,11 +293,10 @@
             </div>
         </div>
     </div>
-    <div class="hidden-print" style="display: inline-flex;">
-       
-        <input type="button" class="hidden-print"
-               onClick="window.print()"
-               value="Print Monthly Statement" />
+    <div class="hidden-print">
 
+        <input type="button" class="hidden-print  btn btn-primary"
+               onclick="window.print()"
+               value="Print Monthly Statement" />
     </div>
 </div>

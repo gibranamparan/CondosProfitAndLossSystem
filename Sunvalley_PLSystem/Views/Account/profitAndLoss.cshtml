@@ -36,8 +36,6 @@
 
         <div id="InfoCliente" class="visible-print" style="margin-top:-75px;padding-bottom:20px">
             @NombreCompleto<br /> @HAD <br />@CCSP .
-
-
         </div>
     </div>
 </div>
@@ -124,6 +122,7 @@
 
 @if (Model != null)
 {
+    @Html.ActionLink("Select another period", "profitAndLossHouse", new { idHouse = idHouse })
 @*Profit*@
     <div class="panel panel-warning" style="background-color:white; width:100%">
         <div class="panel-heading hidden-print">
@@ -163,7 +162,7 @@
                 @if (!Profit.Any())
                 {
                     <tbody class="hidden-print">
-                        <tr><td>No movements were found in the set period</td></tr>
+                        <tr><td>No movements were found in this period</td></tr>
                     </tbody>
                 }
                 else {
@@ -237,7 +236,7 @@
             @if (!Loss.Any())
             {
                 <tbody>
-                    <tr><td>No movements were found in the set period</td></tr>
+                    <tr><td>No movements were found in this period</td></tr>
                 </tbody>
             }
             else {
@@ -318,31 +317,31 @@
         <div class="panel-heading hidden-print">
             Profit and loss Report
         </div>
-        <div class="panel-body" style="border:solid 1px">
-            <h4 style="text-align:center">PLEASE SELECT THE DATES TO CREATE THE REPORT</h4>
-            <div class="col-md-6">
+        <div class="panel-body">
+            <h4 style="text-align:center">PLEASE SELECT PERIOD TO CREATE REPORT</h4>
+            <div class="col-md-12">
                 @if (ViewBag.Tipo == "Total")
             {
-                using (Html.BeginForm("profitAndLossTotal", "Account", "GET"))
+                using (Html.BeginForm("profitAndLossTotal", "Account", FormMethod.Get,new {@class="form-inline"}))
                 {
-                        @Html.Label("Start")
-                        <input type="date" name="fecha1" class="hidden-print">
-                        @Html.Label("End")
-                        <input type="date" name="fecha2" class="hidden-print">
+                        @Html.Label("Start:")
+                        <input type="date" name="fecha1" class="hidden-print form-control">
+                        @Html.Label("End:")
+                        <input type="date" name="fecha2" class="hidden-print form-control">
                         @Html.Hidden("id", id)
-                        <input type="submit" value="Show" class="hidden-print" />
+                        <input type="submit" value="Show" class="hidden-print btn btn-default" />
                     }
                 }
                 else
                 {
-                    using (Html.BeginForm("profitAndLossHouse", "Account", "GET"))
+                    using (Html.BeginForm("profitAndLossHouse", "Account", FormMethod.Get, new { @class = "form-inline" }))
                     {
-                        @Html.Label("Start")
-                        <input type="date" name="fecha1" class="hidden-print">
-                        @Html.Label("End")
-                        <input type="date" name="fecha2" class="hidden-print">
+                        @Html.Label("Start:")
+                        <input type="date" name="fecha1" class="hidden-print form-control">
+                        @Html.Label("End:")
+                        <input type="date" name="fecha2" class="hidden-print form-control">
                         @Html.Hidden("idHouse", idHouse)
-                        <input type="submit" value="Show" class="hidden-print" />
+                        <input type="submit" value="Show" class="hidden-print btn btn-default" />
                     }
                 }
             </div>
