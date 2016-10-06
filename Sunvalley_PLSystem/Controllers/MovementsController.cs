@@ -268,7 +268,7 @@ namespace Sunvalley_PLSystem.Controllers
                 }
                 catch { }
 
-                if (Movemen.typeOfMovement == "Income"||Movemen.typeOfMovement == "Contribution")
+                if (Movemen.typeOfMovement == "Income"||Movemen.typeOfMovement == "Contribution"||Movemen.typeOfMovement== "TAX")
                 {
                     Movemen.balance = balanceAnterior + Movemen.amount;
                 }
@@ -337,7 +337,7 @@ namespace Sunvalley_PLSystem.Controllers
                     balanceAnterior = ultimoMov.balance;
                 }
                 catch { }
-                if (movement.typeOfMovement == "Income" || movement.typeOfMovement == "Contribution")
+                if (movement.typeOfMovement == "Income" || movement.typeOfMovement == "Contribution" || movement.typeOfMovement == "TAX")
                 {
                     movement.balance = balanceAnterior+movement.amount;
                 }

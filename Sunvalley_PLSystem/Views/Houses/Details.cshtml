@@ -268,7 +268,7 @@
 
 
                                 <td>
-                                    @if (item.typeOfMovement == "Income" || item.typeOfMovement == "Contribution")
+                                    @if (item.typeOfMovement == "Income" || item.typeOfMovement == "Contribution" ||item.typeOfMovement == "TAX")
                                     {
                                         @Html.Raw("$");
                                         @String.Format("{0:n}", item.amount);
