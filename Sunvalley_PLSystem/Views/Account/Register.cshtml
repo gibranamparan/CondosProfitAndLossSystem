@@ -62,7 +62,7 @@
             <div class="form-group col-md-6">
                 @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                 <div class="col-md-6">
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Introduce an strong password." })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Introduce a strong password." })
                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-4">
@@ -147,63 +147,62 @@
                         <div class="col-md-2">
                             <input type="submit" class="btn btn-default" value="Register" />
                         </div>
-                        <p class="col-md-10">An strong password must have 6 characters min. included lower & uppercase and non digit or letter character.</p>
+                        <p class="col-md-10">A strong password must have 6 characters min. included lower & uppercase and non digit or letter character.</p>
                     </div>
                 </div>
             </div>
-
         </div>
 }
 
 @section Scripts {
-@Scripts.Render("~/bundles/jqueryval")
-<script>
-    $().ready(function () {
-        registerScreen(1);
-    })
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $().ready(function () {
+            registerScreen(1);
+        })
 
-    $('#UserRoles').change(function () {
+        $('#UserRoles').change(function () {
 
-        var value = $(this).val();
-        registerScreen(value)
-    });
+            var value = $(this).val();
+            registerScreen(value)
+        });
 
-    function registerScreen(mode){
+        function registerScreen(mode){
                     
-        if (mode == '1') {
-            $("#Administrador").fadeIn();
+            if (mode == '1') {
+                $("#Administrador").fadeIn();
+            }
+            else {
+                $("#Administrador").fadeOut();
+            }
+
+            if (mode == '2') {
+                $("#Cliente").fadeIn();
+            }
+            else {
+                $("#Cliente").fadeOut();
+            }
         }
-        else {
-            $("#Administrador").fadeOut();
+        function generatePassword() {
+            var length = 8,
+                charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+                retVal = "";
+            for (var i = 0, n = charset.length; i < length; ++i) {
+                retVal += charset.charAt(Math.floor(Math.random() * n));
+            }
+            return retVal;
         }
 
-        if (mode == '2') {
-            $("#Cliente").fadeIn();
-        }
-        else {
-            $("#Cliente").fadeOut();
-        }
-    }
-    function generatePassword() {
-        var length = 8,
-            charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-            retVal = "";
-        for (var i = 0, n = charset.length; i < length; ++i) {
-            retVal += charset.charAt(Math.floor(Math.random() * n));
-        }
-        return retVal;
-    }
+        $("#showPassword").click(function () {
+            if ($(this).prop("checked"))
+                $("#Password").attr("type", "text")
+            else
+                $("#Password").attr("type", "password")
+        })
 
-    $("#showPassword").click(function () {
-        if ($(this).prop("checked"))
-            $("#Password").attr("type", "text")
-        else
-            $("#Password").attr("type", "password")
-    })
+        $("#btnGeneratePassword").click(function () {
+            $("#Password").val(generatePassword());
+        })
 
-    $("#btnGeneratePassword").click(function () {
-        $("#Password").val(generatePassword());
-    })
-
-</script> 
+    </script> 
  }

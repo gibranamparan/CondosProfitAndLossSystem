@@ -473,8 +473,10 @@ body {
   z-index: 11;
   margin-left: 0;
 }
+
 .main-content {
   padding: 20px 10px;
+  min-height: 800px;
 }
 .main-content > h3 {
   margin: 0 0 30px 0;
@@ -795,6 +797,12 @@ body {
 .sidebar .nav .nav > li.active > a:after {
   background-color: #fff;
   background-color: #3498db;
+}
+
+
+
+footer{
+    padding: 0 1em;
 }
 .sidebar .nav > .nav-footer {
   position: absolute;
