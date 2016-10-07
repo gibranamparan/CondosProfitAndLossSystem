@@ -7,248 +7,241 @@
     IEnumerable<Sunvalley_PLSystem.Models.Movement> m = ViewBag.Movements1;
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Loss = ViewBag.Loss;
 
-
     IEnumerable<Sunvalley_PLSystem.Models.ReportedMovements> reportedMovements = Model.ReportedMovements.OrderBy(mov => mov.TransactionDate);
 
     String mensaje = ViewBag.mensaje;
     String Nombre = ViewBag.Nombre;
+    String Apellido = ViewBag.Apellido;
+    String NombreCompleto = Nombre + " " + Apellido;
     String HAD = ViewBag.HAD;
     String CCSP = ViewBag.CCSP;
-    String Apellido = ViewBag.Apellido;
-
-
 }
 
 <h3>Montly Statement</h3>
 <div id="empresa_info" class="row visible-print">
-    <div class="col-md-6 pull-right">
-        <img id="logo" class="col-md-6" src="~/Imagenes/sunvalley_logo.png" alt="SUN VALLEY SERVICES" />
-        <div id="logo_legend" class="col-md-6">
-            <p>
-                @Html.Raw(mensaje.Replace(Environment.NewLine, "<br/>"))
-            </p>
+        <div class="col-md-6 pull-right">
+            <img id="logo" class="col-md-6" src="~/Imagenes/sunvalley_logo.png" alt="SUN VALLEY SERVICES" />
+            <div id="logo_legend" class="col-md-6">
+                <p>
+                    @Html.Raw(mensaje.Replace(Environment.NewLine, "<br/>"))
+                </p>
+            </div>
+        </div>
+    </div>
+ 
+<div id="InfoCliente" >
+    <div class="col-md-6">
+        <div id="InfoCliente" class="visible-print" style="margin-top:-75px;padding-bottom:20px">
+            @NombreCompleto<br /> @HAD <br />@CCSP .
+        </div>
+    </div>
+</div> 
+
+<div class="panel panel-warning hidden-print" style="width:100%">
+    <div class="panel-heading hidden-print">
+        House Details
+    </div>
+    <div class="panel-body">
+        <table id="Informacion" class="table  table-striped table-hover table-responsive">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.house.name)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.house.created)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.house.area)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.house.adress)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.house.cityArea)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.house.country)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.house.stateProvince)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.house.postalCode)
+                </th>
+
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.house.name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.house.created)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.house.area)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.house.adress)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.house.cityArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.house.country)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.house.stateProvince)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.house.postalCode)
+                </td>
+            </tr>
+
+        </table>
+
+        <div class="hidden-print">
+            <span class="fa fa-reply hidden-print"></span>
         </div>
     </div>
 </div>
-<div id="InfoCliente" class="visible-print">
-    @Nombre @Apellido<br /> @HAD, <br />@CCSP .
 
+<div class="panel-group">
+    <div class="panel panel-warning">
+        <div id="PanelHeading" class="panel-heading hidden-print">
+            Movements of house
+        </div>
+        <div class="PbodyDetailsHouse panel-body">
+            @if (User.IsInRole("Administrador"))
+            {
+                <div class="col-md-3 hidden-print">
+                    <span class="fa fa-plus-circle"></span>@Html.ActionLink("Create new movement", "Create", "Movements", new { id = Model.houseID }, null)
+                </div>
+            }
 
-</div> 
-
-<div class="panel" style="width:103% !important">
-    <div class="panel panel-warning hidden-print" style="width:100%">
-        <div class="panel-heading hidden-print">
-            House Details
         </div>
         <div class="panel-body">
-            <table id="Informacion" class="table  table-striped table-hover table-responsive">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.house.name)
-                    </th>
+            <table id="Informacion" class="table table-striped table-hover col-md-12 table-responsive">
+                <thead>
+                    <tr>
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <th class="hidden-print">
+                                @Html.DisplayNameFor(mov => m.FirstOrDefault().createBy)
+                            </th>
+                        }
+                        <th>
+                            @Html.DisplayName("ID")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Transaction Date")
+                        </th>
 
-                    <th>
-                        @Html.DisplayNameFor(model => model.house.created)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.house.area)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.house.adress)
-                    </th>
+                        <th>
+                            @Html.DisplayName("Type")
+                        </th>
 
-                    <th>
-                        @Html.DisplayNameFor(model => model.house.cityArea)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.house.country)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.house.stateProvince)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.house.postalCode)
-                    </th>
 
-                </tr>
+                        <th>
+                            @Html.DisplayName("Service")
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(mov => m.FirstOrDefault().description)
+                        </th>
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <th>
+                                @Html.DisplayName("Status")
+                            </th>
+                        }
+                        <th>
+                            @Html.DisplayName("Withdrawl")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Deposit")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Balance")
+                        </th>
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <th class="hidden-print">
+                                @Html.DisplayName("Actions")
+                            </th>
+                        }
 
-                <tr>
-                    <td>
-                        @Html.DisplayFor(model => model.house.name)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(model => model.house.created)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.house.area)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.house.adress)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(model => model.house.cityArea)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.house.country)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.house.stateProvince)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.house.postalCode)
-                    </td>
-                </tr>
-
-            </table>
-
-            <div class="hidden-print">
-                <span class="fa fa-reply hidden-print"></span>
-                @*@Html.ActionLink("Back to List", "Details", "Account", new { id = Model.ApplicationUser.Id }, null)*@
-            </div>
-        </div>
-    </div>
-
-    <div class="panel-group">
-        <div class="panel panel-warning">
-            <div id="PanelHeading" class="panel-heading hidden-print">
-                Movements of house
-            </div>
-            <div class="PbodyDetailsHouse panel-body">
-                @if (User.IsInRole("Administrador"))
-                {
-                    <div class="col-md-3 hidden-print">
-                        <span class="fa fa-plus-circle"></span>@Html.ActionLink("Create new movement", "Create", "Movements", new { id = Model.houseID }, null)
-                    </div>
-                }
-
-            </div>
-           
-            <!--style="margin-top: -40px;width: 968px;margin-left:-15px"-->
-            <div class="panel-body">
-                <!--style="margin-top: -20px;padding: 0px;padding-top:28px;"-->
-                <table id="Informacion" class="table table-striped table-hover col-md-12 table-responsive">
-                    <thead>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in reportedMovements)
+                    {
                         <tr>
 
                             @if (User.IsInRole("Administrador"))
                             {
-                                <th class="hidden-print">
-                                    @Html.DisplayNameFor(mov => m.FirstOrDefault().createBy)
-                                </th>
+                                <td class="hidden-print">
+                                    @Html.DisplayFor(modelItem => item.RegisterBy)
+                                </td>
                             }
 
-                            <th>
-                                @Html.DisplayName("ID")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Transaction Date")
-                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MovementID)
+                            </td>
+                            <td>
+                                @item.TransactionDate.ToShortDateString()
+                            </td>
 
-                            <th>
-                                @Html.DisplayName("Type")
-                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
 
+                            <td>
+                                @Html.DisplayFor(modelItem => item.service)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @if (item.Type == "Expense")
+                                {
+                                    @Html.Raw("$");
+                                    @String.Format("{0:n}", item.Amount);
+                                }
+                            </td>
+                            <td>
+                                @if (item.Type == "Income" || item.Type == "Contribution")
+                                {
+                                    @Html.Raw("$");
+                                    @String.Format("{0:n}", item.Amount);
+                                }
+                            </td>
 
-                            <th>
-                                @Html.DisplayName("Service")
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(mov => m.FirstOrDefault().description)
-                            </th>
+                            <td class=@(item.Balance < 0 ? "balanceNegativo" : "")>
+                                $@String.Format("{0:n}", item.Balance)
+                            </td>
+
                             @if (User.IsInRole("Administrador"))
                             {
-                                <th>
-                                    @Html.DisplayName("Status")
-                                </th>
+                                <td class="hidden-print">
+                                    <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", "Movements", new { id = item.accountStatusReportID }, null) |
+                                    |<span class="fa fa-trash-o"></span> @Html.ActionLink("Delete", "Delete", "Movements", new { id = item.accountStatusReportID }, null)
+                                </td>
                             }
-                            <th>
-                                @Html.DisplayName("Withdrawl")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Deposit")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Balance")
-                            </th>
-                            @if (User.IsInRole("Administrador"))
-                            {
-                                <th class="hidden-print">
-                                    @Html.DisplayName("Actions")
-                                </th>
-                            }
-
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in reportedMovements)
-                        {
-                            <tr>
-
-                                @if (User.IsInRole("Administrador"))
-                                {
-                                    <td class="hidden-print">
-                                        @Html.DisplayFor(modelItem => item.RegisterBy)
-                                    </td>
-                                }
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.MovementID)
-                                </td>
-                                <td>
-                                    @item.TransactionDate.ToShortDateString()
-                                </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Type)
-                                </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.service)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Description)
-                                </td>
-                                <td>
-                                    @if (item.Type == "Expense")
-                                    {
-                                        @Html.Raw("$");
-                                        @String.Format("{0:n}", item.Amount);
-                                    }
-                                </td>
-                                <td>
-                                    @if (item.Type == "Income" || item.Type == "Contribution")
-                                    {
-                                        @Html.Raw("$");
-                                        @String.Format("{0:n}", item.Amount);
-                                    }
-                                </td>
-
-                                <td class=@(item.Balance < 0 ? "balanceNegativo" : "")>
-                                    $@String.Format("{0:n}", item.Balance)
-                                </td>
-
-                                @if (User.IsInRole("Administrador"))
-                                {
-                                    <td class="hidden-print">
-                                        <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", "Movements", new { id = item.accountStatusReportID }, null) |
-                                        |<span class="fa fa-trash-o"></span> @Html.ActionLink("Delete", "Delete", "Movements", new { id = item.accountStatusReportID }, null)
-                                    </td>
-                                }
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="hidden-print" style="display: inline-flex;">
+</div>
+<div class="hidden-print" style="display: inline-flex;">
 
-        <input type="button" class="hidden-print"
-               onClick="window.print()"
-               value="Print Monthly Statement" />
+    <input type="button" class="hidden-print btn btn-primary"
+            onClick="window.print()"
+            value="Print Monthly Statement" />
 
-    </div>
 </div>

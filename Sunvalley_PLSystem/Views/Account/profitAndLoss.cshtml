@@ -122,19 +122,16 @@
 
 @if (Model != null)
 {
-    @Html.ActionLink("Select another period", "profitAndLossHouse", new { idHouse = idHouse })
+    @Html.ActionLink("Select another period", "profitAndLossHouse", new { idHouse = idHouse }, new { @class="hidden-print"})
 @*Profit*@
     <div class="panel panel-warning" style="background-color:white; width:100%">
-        <div class="panel-heading hidden-print">
+        <div class="panel-heading">
             Income
         </div>
         <div class="panel-body">
             <table id="" class="table table-bordered table-hover table-responsive table-striped">
                 <thead>
                     <tr>
-                        <th class="hidden">
-                            @Html.DisplayNameFor(model => model.house.name)
-                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model.services.name)
                         </th>
@@ -171,9 +168,6 @@
                     @foreach (var item in Profit)
                     {
                         <tr>
-                            <td class="hidden">
-                                @Html.DisplayFor(modelItem => item.house.name)
-                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.services.name)
                             </td>
@@ -203,8 +197,8 @@
     </div>
     
     @*loss*@
-    <div class="panel-warning" style="background-color:white">
-        <div class="panel-heading hidden-print">
+    <div class="panel panel-warning" style="background-color:white">
+        <div class="panel-heading">
             Expenses
         </div>
         <div class="panel-body">
@@ -273,8 +267,8 @@
         </div>
     
     @*Total*@
-    <div class="panel-warning" style="background-color:white">
-        <div class="panel-heading hidden-print">
+    <div class="panel panel-warning" style="background-color:white">
+        <div class="panel-heading">
             Totals
         </div>
         <div class="panel-body">
@@ -313,7 +307,7 @@
 </div>
     }
     else {
-    <div class="panel panel-warning">
+    <div class="panel panel panel-warning">
         <div class="panel-heading hidden-print">
             Profit and loss Report
         </div>
@@ -350,7 +344,7 @@
     }
 
 @if ((Profit.Count() + Loss.Count() + Contribution.Count()) > 0) { 
-    <input type="button" class="dt-button-print hidden-print"
+    <input type="button" class="dt-button-print hidden-print btn btn-primary"
            onclick="window.print()"
-           value="Print Profit and Loss" />
+           value="Print Report" />
 }

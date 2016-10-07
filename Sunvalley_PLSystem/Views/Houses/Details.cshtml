@@ -139,34 +139,38 @@
             </div>
             <div class="row">
                 <div id="Filtros" class="hidden-print col-md-12">
-                    @using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "col-xs-4" }))
+                    @using (Html.BeginForm("Details", "Houses", FormMethod.Get, new { @class = "col-xs-4 form-horizontal" }))
                     {
-                        @Html.Label("Date")
-                        @Html.TextBox("fecha", fechaConArgumentos.ToString("yyyy-MM"), new { @class = "hidden-print", type = "Month", required = "required", style = "text-align:right;" })
-                        <!--<input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required
-                                value="fechaConArgumentos.ToString("YYYY-MM-dd")>-->
+                        @Html.Label("Date", new { @class = "control-label pull-left" })
+                        <div class="col-md-7">
+                            @Html.TextBox("fecha", fechaConArgumentos.ToString("yyyy-MM"), new { @class = "hidden-print form-control", type = "Month", required = "required" })
+                        </div>
                         @Html.Hidden("houseID", Model.houseID)
-                        <input type="submit" value="Search by Month" class="hidden-print btn btn-default" style="text-align:right;" />
+                        <input type="submit" value="Search" class="hidden-print btn btn-default col-md-3" />
                     }
                     @if (User.IsInRole("Administrador"))
                     {
-                        using (Html.BeginForm("generarReporte", "Movements", FormMethod.Post, new { @class = "col-xs-4" }))
+                        using (Html.BeginForm("generarReporte", "Movements", FormMethod.Post, new { @class = "col-xs-4 form-horizontal" }))
                         {
-                            @Html.Label("Date")
-                            <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
+                            @Html.Label("Date", new { @class = "control-label pull-left" })
+                            <div class="col-md-7">
+                                <input type="Month" name="fecha" class="hidden-print form-control" required>
+                            </div>
                             @Html.Hidden("houseID", Model.houseID)
                             @Html.Hidden("Accion", "Autorizar")
 
-                            <input type="submit" value="Approve" class="hidden-print btn btn-default" style="text-align:right;" />
+                            <input type="submit" value="Approve" class="hidden-print btn btn-default col-md-3" />
                         }
-                        
-                        using (Html.BeginForm("eliminarReporte", "Movements", FormMethod.Post, new { @class = "col-xs-4" }))
+
+                        using (Html.BeginForm("eliminarReporte", "Movements", FormMethod.Post, new { @class = "col-xs-4 form-horizontal" }))
                         {
-                            @Html.Label("Date")
-                            <input type="Month" name="fecha" class="hidden-print" style="text-align:right;" required>
+                            @Html.Label("Date", new { @class = "control-label pull-left" })
+                            <div class="col-md-7">
+                                <input type="Month" name="fecha" class="hidden-print form-control" required>
+                            </div>
                             @Html.Hidden("houseID", Model.houseID)
                             @Html.Hidden("Accion", "Desautorizar")
-                            <input type="submit" value="Unapprove" class="hidden-print btn btn-default" style="text-align:right;" />
+                            <input type="submit" value="Unapprove" class="hidden-print btn btn-default col-md-3"/>
                         }
                     }
                 </div>

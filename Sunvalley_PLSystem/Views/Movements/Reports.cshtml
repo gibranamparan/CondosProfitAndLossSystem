@@ -22,7 +22,7 @@
      
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.OrderByDescending(mov=>mov.dateMonth)) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.house.name)
