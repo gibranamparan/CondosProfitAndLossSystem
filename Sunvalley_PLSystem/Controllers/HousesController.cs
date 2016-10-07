@@ -16,6 +16,7 @@ namespace Sunvalley_PLSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Houses
+        [Authorize]
         public ActionResult Index()
         {
 
