@@ -38,7 +38,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Movements/Details/5
-        //[Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -54,7 +54,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Movements/Create
-        //[Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador")]
         public ActionResult Create(int id=0)
         {
             var house = db.Houses.Find(id);
@@ -62,7 +62,6 @@ namespace Sunvalley_PLSystem.Controllers
             {
                 return RedirectToAction("Index", "Account");
             }
-            ViewBag.houseID = new SelectList(db.Houses, "houseID", "name");
             ViewBag.houseID = id;
             SelectList lista = new SelectList(db.Services, "serviceID", "name");
             ViewBag.Services = lista;

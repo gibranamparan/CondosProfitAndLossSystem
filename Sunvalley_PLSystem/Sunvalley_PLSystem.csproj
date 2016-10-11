@@ -334,6 +334,7 @@
     <Content Include="app\img\landing\clients\client-logos.psd" />
     <Content Include="app\img\landing\header-background.psd" />
     <Content Include="app\img\landing\mobile-app.psd" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\Sun.pubxml" />
     <None Include="Properties\PublishProfiles\suns.pubxml" />
     <None Include="Properties\PublishProfiles\SunValley.pubxml" />
