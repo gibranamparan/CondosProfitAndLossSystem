@@ -24,16 +24,38 @@ namespace Sunvalley_PLSystem.Controllers
             return View(movements.ToList());
         }
 
-        public ActionResult IndexReport(String ID)
+        public ActionResult IndexReport(DateTime? fecha,String ID)
         {
+            DateTime fechaArgumentos;
+            if (fecha == null)
+            {
+                fechaArgumentos = DateTime.Now;
+                ViewBag.fechaA = fechaArgumentos;
+            }
+            else
+            {
+                fechaArgumentos = (DateTime)fecha;
+                ViewBag.fechaA = fechaArgumentos;
+            }
+            
             if (ID == null)
             {
                 var Reports = db.AccountStatusReport.ToList();
                 return View("Reports", Reports.ToList());
             }
             else {
-                var Reports = db.AccountStatusReport.Where(a => a.UserID == ID);
-                return View("Reports", Reports.ToList());
+                if (fecha == null)
+                {
+                    var Reports = db.AccountStatusReport.Where(a => a.UserID == ID);
+                    ViewBag.ID = ID;
+                    return View("Reports", Reports.ToList());
+                }
+                else
+                {
+                    var Reports = db.AccountStatusReport.Where(a => a.UserID == ID && a.dateMonth.Month == fechaArgumentos.Month && a.dateMonth.Year == fechaArgumentos.Year);
+                    ViewBag.ID = ID;
+                    return View("Reports", Reports.ToList());
+                }
             }
         }
 
