@@ -106,21 +106,6 @@ div#Filtros form {
 
 }
 
-
-#DeleteMovements{
-    width:50%;
-    border:solid 2px;
-    background-color:white;
-
-}
-#DeleteMovements th{
-    background-color:orange;
-    color:white;
-    
-
-
-}
-
 #DeleteAccount{
     width:50%;
     border:solid 2px;

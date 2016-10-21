@@ -20,7 +20,7 @@ namespace Sunvalley_PLSystem.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime transactionDate { get; set; }
 
-        [Display(Name = "type of movement")]
+        [Display(Name = "Type of movement")]
         public string typeOfMovement { get; set; }
 
         [Display(Name = "Description")]
@@ -46,5 +46,29 @@ namespace Sunvalley_PLSystem.Models
         //To one movement correspond one user
         public virtual String UserID { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
+
+        public static Object[] getTypeOfMovements()
+        {
+            Object[] typeOfMovementes = new Object[]{
+                new {Text = TypeOfMovements.EXPENSE, Value=TypeOfMovements.EXPENSE},
+                new {Text = TypeOfMovements.INCOME, Value=TypeOfMovements.INCOME},
+                new {Text = TypeOfMovements.CONTRIBUTION, Value=TypeOfMovements.CONTRIBUTION},
+                new {Text = TypeOfMovements.TAX, Value=TypeOfMovements.TAX},
+                new {Text = TypeOfMovements.OWINGPAY, Value=TypeOfMovements.OWINGPAY}
+            };
+            return typeOfMovementes;
+        }
+
+
+        //Default validation error messages
+        public static class TypeOfMovements
+        {
+            public const string EXPENSE = "Expense";
+            public const string INCOME = "Income";
+            public const string CONTRIBUTION = "Contribution";
+            public const string TAX = "TAX";
+            public const string OWINGPAY = "Owing Pay";
+        }
+
     }
 }

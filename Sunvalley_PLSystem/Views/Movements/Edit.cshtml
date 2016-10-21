@@ -1,89 +1,73 @@
 ﻿@model Sunvalley_PLSystem.Models.Movement
+@using Sunvalley_PLSystem.Models
 
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
 <h2>Edit</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-
-        <div class="panel-warning">
+        <div class="panel panel-warning">
             <div class="panel-heading">
-            <h4>Movement</h4>
-        </div>
-
-            <div id="PanelBodyHouses" class="panel-body">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.movementID)
-            @Html.HiddenFor(model=>model.UserID)
-            @Html.HiddenFor(model => model.houseID)
-          
-            @Html.HiddenFor(model => model.createBy)
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.typeOfMovement, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("typeOfMovement", new SelectListItem[]{
-                    new SelectListItem() {Text = "Income", Value="Income"},
-                    new SelectListItem() {Text = "Expense", Value="Expense"},
-                    new SelectListItem() {Text = "Contribution", Value="Contribution"}})
-                </div>
+                <h4>Movement</h4>
             </div>
+            <div id="" class="panel-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.movementID)
+                @Html.HiddenFor(model=>model.UserID)
+                @Html.HiddenFor(model => model.houseID)
+                @Html.HiddenFor(model => model.createBy)
 
                 <div class="form-group">
+                    @Html.LabelFor(model => model.typeOfMovement, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.DropDownListFor(x => x.typeOfMovement, new SelectList(Movement.getTypeOfMovements(), "Value", "Text"), new { @id = "KindAction", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
                     @Html.LabelFor(model => model.transactionDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         @Html.EditorFor(model => model.transactionDate, new { htmlAttributes = new { @class = "form-control FechaEdicion" } })
                         @Html.ValidationMessageFor(model => model.transactionDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.services.name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("serviceID", (SelectList)ViewBag.Services)
-                    @Html.ValidationMessageFor(model => model.services, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control", @data_val = "false" } })
+                        @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.services.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.DropDownList("serviceID", (SelectList)ViewBag.Services, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.services, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
                 </div>
             </div>
-
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control", @data_val = "false" } })
-                    @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
         </div>
     </div>
 }
-
 <div>
-    <span class="fa fa-reply"></span> @Html.ActionLink("Back to List", "Index")
+    <span class="fa fa-mail-reply hidden-print"></span>@Html.ActionLink("Back to House's Movements", "details", "houses", new { id = Model.houseID },null)
 </div>
 
 @section Scripts {

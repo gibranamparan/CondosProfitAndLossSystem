@@ -1,4 +1,5 @@
 ﻿@model Sunvalley_PLSystem.Models.AccountStatusReport
+@using TypeOfMovements = Sunvalley_PLSystem.Models.Movement.TypeOfMovements
 
 @{
     ViewBag.Title = "Details";
@@ -206,14 +207,15 @@
                                 @Html.DisplayFor(modelItem => item.Description)
                             </td>
                             <td>
-                                @if (item.Type == "Expense")
+                                @if (item.Type == TypeOfMovements.EXPENSE)
                                 {
                                     @Html.Raw("$");
                                     @String.Format("{0:n}", item.Amount);
                                 }
                             </td>
                             <td>
-                                @if (item.Type == "Income" || item.Type == "Contribution")
+                                @if (item.Type == TypeOfMovements.INCOME || item.Type == TypeOfMovements.CONTRIBUTION
+                                    || item.Type == TypeOfMovements.TAX || item.Type == TypeOfMovements.OWINGPAY)
                                 {
                                     @Html.Raw("$");
                                     @String.Format("{0:n}", item.Amount);

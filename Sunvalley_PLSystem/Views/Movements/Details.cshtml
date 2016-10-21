@@ -81,7 +81,7 @@
 </div>
 <p class="hidden-print"
    <span class="fa fa-reorder hidden-print"></span> @Html.ActionLink("Edit", "Edit", new { id = Model.movementID }) |
-    <span class="fa fa-mail-reply hidden-print"></span>@Html.ActionLink("Back to List", "Index")
+    <span class="fa fa-mail-reply hidden-print"></span>@Html.ActionLink("Back to House's Movements", "details", "houses", new { id = Model.houseID })
 </p>
 <input type="button" class="hidden-print"
        onClick="window.print()"

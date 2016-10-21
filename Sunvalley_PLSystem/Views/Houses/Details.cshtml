@@ -1,5 +1,5 @@
 ﻿@model Sunvalley_PLSystem.Models.House
-
+@using TypeOfMovements = Sunvalley_PLSystem.Models.Movement.TypeOfMovements
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -175,41 +175,36 @@
                     }
                 </div>
             </div>
-            <!--style="margin-top: -40px;width: 968px;margin-left:-15px"-->
             <div class="panel-body">
-                <!--style="margin-top: -20px;padding: 0px;padding-top:28px;"-->
                 <table id="Informacion" class="table table-striped table-hover col-md-12 table-responsive">
                     <thead>
                         <tr>
-                           
                             @if (User.IsInRole("Administrador"))
                             { 
                             <th class="hidden-print">
                                 @Html.DisplayNameFor(mov=>m.FirstOrDefault().createBy)
                             </th>
                             }
-
                             <th>
                                 @Html.DisplayName("Transaction Date")
                             </th>
-
                             <th>
                                 @Html.DisplayName("Type")
                             </th>
-
-                          
                             <th>
                                 @Html.DisplayName("Service")
                             </th>
                             <th>
                                 @Html.DisplayNameFor(mov=>m.FirstOrDefault().description)
                             </th>
+
                             @if (User.IsInRole("Administrador"))
                             {
-                            <th class="hidden-print">
-                                @Html.DisplayName("Status")
-                            </th>
-                            } 
+                                <th class="hidden-print">
+                                    @Html.DisplayName("Status")
+                                </th>
+                            }
+                            
                             <th>
                                 @Html.DisplayName("Withdrawl")
                             </th>
@@ -263,7 +258,7 @@
                                 }
                                 
                                 <td>
-                                    @if (item.typeOfMovement == "Expense")
+                                    @if (item.typeOfMovement == TypeOfMovements.EXPENSE)
                                     {
                                         @Html.Raw("$");
                                         @String.Format("{0:n}", item.amount);
@@ -272,7 +267,8 @@
 
 
                                 <td>
-                                    @if (item.typeOfMovement == "Income" || item.typeOfMovement == "Contribution" ||item.typeOfMovement == "TAX")
+                                    @if (item.typeOfMovement == TypeOfMovements.INCOME || item.typeOfMovement == TypeOfMovements.CONTRIBUTION
+                                        || item.typeOfMovement == TypeOfMovements.TAX || item.typeOfMovement == TypeOfMovements.OWINGPAY)
                                     {
                                         @Html.Raw("$");
                                         @String.Format("{0:n}", item.amount);

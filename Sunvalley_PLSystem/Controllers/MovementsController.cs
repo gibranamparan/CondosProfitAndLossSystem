@@ -11,12 +11,13 @@ using Microsoft.AspNet.Identity;
 
 namespace Sunvalley_PLSystem.Controllers
 {
+    [Authorize]
     public class MovementsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Movements
-        //[Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
 
@@ -38,7 +39,6 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Movements/Details/5
-        [Authorize(Roles = "Administrador")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -69,6 +69,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index(DateTime fecha, int houseID, String Accion)
         {
             //var Movimientos = from movement in db.Movements
@@ -149,6 +150,7 @@ namespace Sunvalley_PLSystem.Controllers
 
         [Authorize]
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         public ActionResult generarReporte(int houseID, DateTime fecha)
         {
             if (houseID == null)
@@ -206,6 +208,7 @@ namespace Sunvalley_PLSystem.Controllers
         
         [Authorize]
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         public ActionResult eliminarReporte(int houseID, DateTime fecha)
         {
 
@@ -254,6 +257,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         [Authorize]
+        [Authorize(Roles = "Administrador")]
         public ActionResult Recalculate(int id)
         {
             decimal balanceAnterior = 0;
@@ -267,11 +271,12 @@ namespace Sunvalley_PLSystem.Controllers
                 }
                 catch { }
 
-                if (Movemen.typeOfMovement == "Income"||Movemen.typeOfMovement == "Contribution"||Movemen.typeOfMovement== "TAX")
+                if (Movemen.typeOfMovement == Movement.TypeOfMovements.INCOME||Movemen.typeOfMovement == Movement.TypeOfMovements.CONTRIBUTION||
+                    Movemen.typeOfMovement == Movement.TypeOfMovements.TAX || Movemen.typeOfMovement == Movement.TypeOfMovements.OWINGPAY)
                 {
                     Movemen.balance = balanceAnterior + Movemen.amount;
                 }
-                else if (Movemen.typeOfMovement == "Expense")
+                else if (Movemen.typeOfMovement == Movement.TypeOfMovements.EXPENSE)
                 {
                     Movemen.balance = balanceAnterior - Movemen.amount;
                 }
@@ -298,7 +303,7 @@ namespace Sunvalley_PLSystem.Controllers
                 DateTime transactionDate = movement.transactionDate;
                 movement.transactionDate = transactionDate.AddHours(rightNow.Hour).
                     AddMinutes(rightNow.Minute).AddSeconds(rightNow.Second);
-                if (movement.typeOfMovement == "Income")
+                if (movement.typeOfMovement == Movement.TypeOfMovements.INCOME)
                 {
                     Services rent = db.Services.SingleOrDefault(ser => ser.name == "RENT");
                     if (rent == null || rent.serviceID == 0)
@@ -310,13 +315,13 @@ namespace Sunvalley_PLSystem.Controllers
                     }
                     movement.serviceID = rent.serviceID;
                 }
-                else if (movement.typeOfMovement == "Contribution")
+                else if (movement.typeOfMovement == Movement.TypeOfMovements.CONTRIBUTION)
                 {
-                    Services contri = db.Services.SingleOrDefault(ser => ser.name == "Contribution");
+                    Services contri = db.Services.SingleOrDefault(ser => ser.name == Movement.TypeOfMovements.CONTRIBUTION);
                     if (contri == null || contri.serviceID == 0)
                     {
                         contri = new Services();
-                        contri.name = "Contribution";
+                        contri.name = Movement.TypeOfMovements.CONTRIBUTION;
                         db.Services.Add(contri);
                         db.SaveChanges();
                     }
@@ -336,11 +341,15 @@ namespace Sunvalley_PLSystem.Controllers
                     balanceAnterior = ultimoMov.balance;
                 }
                 catch { }
-                if (movement.typeOfMovement == "Income" || movement.typeOfMovement == "Contribution" || movement.typeOfMovement == "TAX")
+
+                //Tipos de movimientos que incrementan el balance
+                if (movement.typeOfMovement == Movement.TypeOfMovements.INCOME || movement.typeOfMovement == Movement.TypeOfMovements.CONTRIBUTION
+                    || movement.typeOfMovement == Movement.TypeOfMovements.TAX || movement.typeOfMovement == Movement.TypeOfMovements.OWINGPAY)
                 {
                     movement.balance = balanceAnterior+movement.amount;
                 }
-                else if(movement.typeOfMovement== "Expense")
+                //Tipos de movimientos que restan al balance
+                else if (movement.typeOfMovement == Movement.TypeOfMovements.EXPENSE)
                 {
                     movement.balance = balanceAnterior - movement.amount;
                 }
@@ -357,7 +366,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Movements/Edit/5
-        //[Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

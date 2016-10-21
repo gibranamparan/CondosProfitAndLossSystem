@@ -14,6 +14,10 @@
     {
         NombreCompleto = (String)Session["NombreCompleto"];
     }
+    @*else if(User.Identity.IsAuthenticated)
+    {
+        NombreCompleto = new Sunvalley_PLSystem.Controllers.AccountController().storeUsernameInSession(User.Identity.GetUserName());
+    }*@
 }
 <head>
    <!-- Meta-->
@@ -98,21 +102,6 @@
          <!-- START navbar header-->
          <div   class="navbar-header">
             <a href="#" class="navbar-brand" id="logoss">
-            @*@if (User.Identity.IsAuthenticated)
-            {
-                if (User.IsInRole("Administrador"))
-                {
-                    <div class="brand-logo"></div>
-                   <span class="fa fa-hand-peace-o">WELCOME @NombreCompleto</span> 
-                }
-                else
-                {
-                    <div class="brand-logo">Cliente</div>
-                   <span class="fa fa-hand-peace-o">WELCOME @NombreCompleto</span> 
-                }
-            }
-            else { <div class="brand-logo">SunValley</div> }
-               <div class="brand-logo-collapsed"></div>*@
 
                 <dv class="brand-logo"><img src="~/Imagenes/systemLogo.png" width="169"></dv>
             </a>
@@ -150,10 +139,10 @@
                         }
                         else
                         {
-                         <!--  <div id="TextoLog">
+                         <div id="TextoLog">
                                 Hello <strong>@NombreCompleto</strong>,<br /> you are logged as <br /> <strong>Client.</strong>
 
-                            </div>-->
+                            </div>
 
                         }
                     }

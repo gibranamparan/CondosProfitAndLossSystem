@@ -8,77 +8,67 @@
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Movement</h4>
-    <hr />
-    <table id="DeleteMovements" class="table table-responsive table-striped table-hover" >
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.house.name)
-            </th>
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h4>Movement</h4>
+    </div>
+    <div class="panel-body">
+        <table id="DeleteMovements" class="table table-responsive table-striped table-hover">
+            <tr>
+                <th class="col-md-3">
+                    @Html.DisplayNameFor(model => model.house.name)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.house.name)
+                </td>
+            </tr>
+            <tr>
+                <th class="col-md-3">
+                    @Html.DisplayNameFor(model => model.createBy)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.createBy)
+                </td>
+            </tr>
+            <tr>
+                <th class="col-md-3">
+                    @Html.DisplayNameFor(model => model.transactionDate)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.transactionDate)
+                </td>
+            </tr>
+            <tr>
+                <th class="col-md-3">
+                    @Html.DisplayNameFor(model => model.description)
+                </th>
 
-            <td>
-                @Html.DisplayFor(model => model.house.name)
-            </td>
-        </tr>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.createBy)
-            </th>
+                <td>
+                    @Html.DisplayFor(model => model.description)
+                </td>
+            </tr>
 
-            <td>
-                @Html.DisplayFor(model => model.createBy)
-            </td>
-        </tr>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.transactionDate)
-            </th>
+            <tr>
+                <th class="col-md-3">
+                    @Html.DisplayNameFor(model => model.amount)
+                </th>
 
-            <td>
-                @Html.DisplayFor(model => model.transactionDate)
-            </td>
-        </tr>
+                <td>
+                    @Html.DisplayFor(model => model.amount)
+                </td>
+            </tr>
+        </table>
+    </div>
 
-       
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.description)
-            </th>
-
-            <td>
-                @Html.DisplayFor(model => model.description)
-            </td>
-        </tr>
-       
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.amount)
-            </th>
-
-            <td>
-                @Html.DisplayFor(model => model.amount)
-            </td>
-        </tr>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.balance)
-            </th>
-
-            <td>
-                @Html.DisplayFor(model => model.balance)
-            </td>
-         </tr>
-       
-</table>
-   
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" />
         </div>
     }
+</div>
+<div>
+    <span class="fa fa-reply"></span>@Html.ActionLink("Back to House's Movements", "Details", "Houses", new { id = Model.houseID }, null)
 </div>
