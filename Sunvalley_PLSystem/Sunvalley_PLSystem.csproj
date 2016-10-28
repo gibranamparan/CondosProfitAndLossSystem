@@ -850,6 +850,7 @@
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\Movements\ReportedMovements.cshtml" />
     <Content Include="Views\Houses\Partial_HouseDetails.cshtml" />
+    <Content Include="Views\Service\Partial_CreateService.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

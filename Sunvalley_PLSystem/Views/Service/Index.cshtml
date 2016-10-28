@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Sunvalley_PLSystem.Models.Services>
+@using Sunvalley_PLSystem.Models
 
 @{
     ViewBag.Title = "Index";
@@ -10,10 +11,8 @@
 
 }
 <h2>Report Settings</h2>
-<p>
-
-    <input type="button" value="Create" onclick="location.href='@Url.Action("Create","Service")'" />
-</p>
+@Html.Partial("Partial_CreateService", new Services())
+<hr />
 <div class="panel-warning">
     <div class="panel-heading">
         List of Services

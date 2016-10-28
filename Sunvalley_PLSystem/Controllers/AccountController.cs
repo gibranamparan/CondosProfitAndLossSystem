@@ -458,7 +458,7 @@ namespace Sunvalley_PLSystem.Controllers
 
         //
         // GET: /Account/Register
-        //[Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador")]
         public ActionResult Register()
         {
 
@@ -472,7 +472,7 @@ namespace Sunvalley_PLSystem.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        //[Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model,string UserRoles)
         {
