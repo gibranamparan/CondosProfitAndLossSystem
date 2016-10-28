@@ -34,7 +34,8 @@ namespace Sunvalley_PLSystem.Controllers
 
         // GET: Houses/Details/5
         [Authorize]
-        public ActionResult Details(/*DateTime? fechaInicio, DateTime? fechaFin, */DateTime? fecha, int? id)
+        [HttpGet]
+        public ActionResult Details(DateTime? fecha, int? id)
         {
             String mensaje = db.GeneralInformations.Find(1).InformacionGen;
             String NombreCompleto = db.Houses.Find(id).ApplicationUser.firstName + " " + db.Houses.Find(id).ApplicationUser.lastName;
@@ -55,20 +56,11 @@ namespace Sunvalley_PLSystem.Controllers
                 //Si no viene fecha, se establece por defecto el mes actual
                 fechaConArgumentos = DateTime.Now;
                 fechaConArgumentos = new DateTime(fechaConArgumentos.Year, fechaConArgumentos.Month, 1);
-                /*if (User.IsInRole("Administrador"))
-                {
-                    var m = db.Movements.Where(mov => mov.houseID == id).OrderBy(mo=>mo.transactionDate);
-                    ViewBag.Movements1 = m.ToList();
-                }
-                else
-                {
-                    var m = db.Movements.Where(mov => mov.houseID == id && mov.state == true).OrderBy(mo => mo.transactionDate);
-                    ViewBag.Movements1 = m.ToList();
-                }*/
             }
             else
             {
-                fechaConArgumentos = (DateTime)fecha;
+                //Si dentro de la transaccion viene con fecha, se ignora la hora
+                fechaConArgumentos = fecha.Value;
             }
 
             if (User.IsInRole("Administrador"))
@@ -84,19 +76,6 @@ namespace Sunvalley_PLSystem.Controllers
             }
 
             ViewBag.fechaConArgumentos = fechaConArgumentos;
-            //if(fechaInicio==null && fechaFin == null)
-            //{
-                
-
-            //    //var movements = from movement in db.Movements where movement.houseID == id select movement;
-            //    //ViewBag.movements = movements.ToList();
-            //}
-            //else
-            //{
-            //    //house.movimientos.Where(mov => mov.transactionDate >= fechaInicio && mov.transactionDate <= fechaFin && mov.houseID == id);
-            //    var movementsFiltro = db.Movements.Where(mov => mov.transactionDate >= fechaInicio && mov.transactionDate <= fechaFin && mov.houseID == id);
-            //    ViewBag.movements = movementsFiltro.ToList();
-            //}
             if (house == null)
             {
                 return HttpNotFound();

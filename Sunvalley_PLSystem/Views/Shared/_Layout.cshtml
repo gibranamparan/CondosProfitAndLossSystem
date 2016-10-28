@@ -125,259 +125,30 @@
             </ul>
             <!-- END Left navbar-->
             <!-- START Right Navbar-->
-            <ul class="nav navbar-nav navbar-right">
-                <li class="pull-right">
+             <ul class="nav navbar-nav navbar-right" style="padding-right: 1em">
+                 <li class="pull-right">
 
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        if (User.IsInRole("Administrador"))
-                        {
-                            <div id="TextoLog">
-                               Hello<strong> @NombreCompleto</strong>,<br /> you are logged as <br /><strong>Administrator.</strong>
-                                   
-                            </div>
-                        }
-                        else
-                        {
-                         <div id="TextoLog">
-                                Hello <strong>@NombreCompleto</strong>,<br /> you are logged as <br /> <strong>Client.</strong>
+                     @if (User.Identity.IsAuthenticated)
+                     {
+                         if (User.IsInRole("Administrador"))
+                         {
+                             <div id="TextoLog">
+                                 Hello<strong> @NombreCompleto</strong>,<br /> you are logged as <br /><strong>Administrator.</strong>
 
-                            </div>
+                             </div>
+                         }
+                         else
+                         {
+                             <div id="TextoLog">
+                                 Hello <strong>@NombreCompleto</strong>,<br /> you are logged as <br /> <strong>Client.</strong>
 
-                        }
-                    }
-                </li>
-               <!-- START Messages menu (dropdown-list)-->
-               <li class="dropdown dropdown-list">
-                  @*<a href="#" data-toggle="dropdown" data-play="bounceIn" class="dropdown-toggle">
-                     <em class="fa fa-envelope"></em>
-                     <div class="label label-danger">300</div>
-                  </a>*@
-                  <!-- START Dropdown menu-->
-                  <ul class="dropdown-menu">
-                     @*<li class="dropdown-menu-header">You have 5 new messages</li>*@
-                     <li>
-                        <div class="scroll-viewport">
-                           <!-- START list group-->
-                           <div class="list-group scroll-content">
-                              <!-- START list group item-->
-                              @*<a href="#" class="list-group-item">
-                                 <div class="media">
-                                    @*<div class="pull-left">
-                                       <img style="width: 48px; height: 48px;" src="app/img/user/01.jpg" alt="Image" class="media-object img-rounded">
-                                    </div>*@
-                                    @*<div class="media-body clearfix">
-                                       <small class="pull-right">2h</small>
-                                       <strong class="media-heading text-primary">
-                                          <div class="point point-success point-lg"></div>Sheila Carter</strong>
-                                       <p class="mb-sm">
-                                          <small>Cras sit amet nibh libero, in gravida nulla. Nulla...</small>
-                                       </p>
-                                    </div>*@
-                                 </div>
-                              </a>
-                              <!-- END list group item-->
-                               @*START list group item
-                              <a href="#" class="list-group-item">
-                                 <div class="media">
-                                    <div class="pull-left">
-                                       <img style="width: 48px; height: 48px;" src="app/img/user/04.jpg" alt="Image" class="media-object img-rounded">
-                                    </div>
-                                    <div class="media-body clearfix">
-                                       <small class="pull-right">3h</small>
-                                       <strong class="media-heading text-primary">
-                                          <div class="point point-success point-lg"></div>Rich Reynolds</strong>
-                                       <p class="mb-sm">
-                                          <small>Cras sit amet nibh libero, in gravida nulla. Nulla...</small>
-                                       </p>
-                                    </div>
-                                 </div>
-                              </a>*@
-                              <!-- END list group item-->
-                              <!-- START list group item-->
-                              @*<a href="#" class="list-group-item">
-                                 <div class="media">
-                                    <div class="pull-left">
-                                       <img style="width: 48px; height: 48px;" src="app/img/user/03.jpg" alt="Image" class="media-object img-rounded">
-                                    </div>
-                                    <div class="media-body clearfix">
-                                       <small class="pull-right">4h</small>
-                                       <strong class="media-heading text-primary">
-                                          <div class="point point-danger point-lg"></div>Beverley Pierce</strong>
-                                       <p class="mb-sm">
-                                          <small>Cras sit amet nibh libero, in gravida nulla. Nulla...</small>
-                                       </p>
-                                    </div>
-                                 </div>
-                              </a>*@
-                              <!-- END list group item-->
-                              <!-- START list group item-->
-                              @*<a href="#" class="list-group-item">
-                                 <div class="media">
-                                    <div class="pull-left">
-                                       <img style="width: 48px; height: 48px;" src="app/img/user/05.jpg" alt="Image" class="media-object img-rounded">
-                                    </div>
-                                    <div class="media-body clearfix">
-                                       <small class="pull-right">4h</small>
-                                       <strong class="media-heading text-primary">
-                                          <div class="point point-danger point-lg"></div>Perry Cole</strong>
-                                       <p class="mb-sm">
-                                          <small>Cras sit amet nibh libero, in gravida nulla. Nulla...</small>
-                                       </p>
-                                    </div>
-                                 </div>
-                              </a>*@
-                              <!-- END list group item-->
-                              <!-- START list group item-->
-                              @*<a href="#" class="list-group-item">
-                                 <div class="media">
-                                    <div class="pull-left">
-                                       <img style="width: 48px; height: 48px;" src="app/img/user/06.jpg" alt="Image" class="media-object img-rounded">
-                                    </div>
-                                    <div class="media-body clearfix">
-                                       <small class="pull-right">4h</small>
-                                       <strong class="media-heading text-primary">
-                                          <div class="point point-danger point-lg"></div>Carolyn Carpenter</strong>
-                                       <p class="mb-sm">
-                                          <small>Cras sit amet nibh libero, in gravida nulla. Nulla...</small>
-                                       </p>
-                                    </div>
-                                 </div>
-                              </a>*@
-                              <!-- END list group item-->
-                           </div>
-                           <!-- END list group-->
-                        </div>
-                     </li>
-                     <!-- START dropdown footer-->
-                     @*<li class="p">
-                        <a href="#" class="text-center">
-                           <small class="text-primary">READ ALL</small>
-                        </a>
-                     </li>*@
-                     <!-- END dropdown footer-->
-                  </ul>
-                  <!-- END Dropdown menu-->
-               </li>
-               <!-- END Messages menu (dropdown-list)-->
-               <!-- START Alert menu-->
-               @*<li class="dropdown dropdown-list">
-                  <a href="#" data-toggle="dropdown" data-play="bounceIn" class="dropdown-toggle">
-                     <em class="fa fa-bell"></em>
-                     <div class="label label-info">120</div>
-                  </a>
-                  <!-- START Dropdown menu-->
-                  <ul class="dropdown-menu">
-                     <li>
-                        <!-- START list group-->
-                        <div class="list-group">
-                           <!-- list item-->
-                           <a href="#" class="list-group-item">
-                              <div class="media">
-                                 <div class="pull-left">
-                                    <em class="fa fa-envelope-o fa-2x text-success"></em>
-                                 </div>
-                                 <div class="media-body clearfix">
-                                    <div class="media-heading">Unread messages</div>
-                                    <p class="m0">
-                                       <small>You have 10 unread messages</small>
-                                    </p>
-                                 </div>
-                              </div>
-                           </a>
-                           <!-- list item-->
-                           <a href="#" class="list-group-item">
-                              <div class="media">
-                                 <div class="pull-left">
-                                    <em class="fa fa-cog fa-2x"></em>
-                                 </div>
-                                 <div class="media-body clearfix">
-                                    <div class="media-heading">New settings</div>
-                                    <p class="m0">
-                                       <small>There are new settings available</small>
-                                    </p>
-                                 </div>
-                              </div>
-                           </a>
-                           <!-- list item-->
-                           <a href="#" class="list-group-item">
-                              <div class="media">
-                                 <div class="pull-left">
-                                    <em class="fa fa-fire fa-2x"></em>
-                                 </div>
-                                 <div class="media-body clearfix">
-                                    <div class="media-heading">Updates</div>
-                                    <p class="m0">
-                                       <small>There are
-                                          <span class="text-primary">2</span>new updates available</small>
-                                    </p>
-                                 </div>
-                              </div>
-                           </a>
-                           <!-- last list item -->
-                           <a href="#" class="list-group-item">
-                              <small>Unread notifications</small>
-                              <span class="badge">14</span>
-                           </a>
-                        </div>
-                        <!-- END list group-->
-                     </li>
-                  </ul>
-                  <!-- END Dropdown menu-->
-               </li>*@
-               <!-- END Alert menu-->
-               <!-- START User menu-->
-               @*<li class="dropdown">
-                  <a href="#" data-toggle="dropdown" data-play="bounceIn" class="dropdown-toggle">
-                     <em class="fa fa-user"></em>
-                  </a>
-                  <!-- START Dropdown menu-->
-                  <ul class="dropdown-menu">
-                     <li>
-                        <div class="p">
-                           <p>Overall progress</p>
-                           <div class="progress progress-striped progress-xs m0">
-                              <div role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;" class="progress-bar progress-bar-success">
-                                 <span class="sr-only">80% Complete</span>
-                              </div>
-                           </div>
-                        </div>
-                     </li>
-                     <li class="divider"></li>
-                     <li><a href="#">Profile</a>
-                     </li>
-                     <li><a href="#">Settings</a>
-                     </li>
-                     <li><a href="#">Notifications<div class="label label-info pull-right">5</div></a>
-                     </li>
-                     <li><a href="#">Messages<div class="label label-danger pull-right">10</div></a>
-                     </li>
-                     <li><a href="#">Logout</a>
-                     </li>
-                  </ul>
-                  <!-- END Dropdown menu-->
-               </li>*@
-               <!-- END User menu-->
-               <!-- START Contacts button-->
-               @*<li>
-                  <a href="#" data-toggle="offsidebar">
-                     <em class="fa fa-align-right"></em>
-                  </a>
-               </li>*@
-               <!-- END Contacts menu-->
-            @*</ul>*@
-            <!-- END Right Navbar-->
-         @*</div>*@
-         <!-- END Nav wrapper-->
-         <!-- START Search form-->
-         @*<form role="search" class="navbar-form">
-            <div class="form-group has-feedback">
-               <input type="text" placeholder="Type and hit Enter.." class="form-control">
-               <div data-toggle="navbar-search-dismiss" class="fa fa-times form-control-feedback"></div>
-            </div>
-            <button type="submit" class="hidden btn btn-default">Submit</button>
-         </form>*@
-         <!-- END Search form-->
+                             </div>
+
+                         }
+                     }
+                 </li>
+             </ul>
+         </div>
       </nav>
       <!-- END Top Navbar-->
       <!-- START aside-->
@@ -431,7 +202,7 @@
                 <li>
                     <a href="@Url.Action("Index","Houses")" title="Houses">
                         <em class="fa fa-home"></em>
-                        <span class="item-text">My Houses</span>
+                        <span class="item-text">Reports</span>
                     </a>
                 </li>
                 <li>
@@ -442,31 +213,16 @@
                     </a>
                
                 </li>
-   
-                    <li>
-                        <a href="@Url.Action("IndexReport", "Movements", new { ID = User.Identity.GetUserId() }, null)" title="Report Montly Statement">
-                            <em class="fa fa-file-text"></em>
-                            <span class="item-text">Report Montly Statement</span>
-                        </a>
-                    </li>
-
-                }
+               }
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li>
-                        <a href="@Url.Action("LogOff","Account")" title="Log Off">
-                            <em class="fa fa-sign-out"></em>
-                            <span class="item-text">Log Off</span>
-                        </a>
-                    </li>}
-                else {
-                    @*<li>
-                        <a href="@Url.Action("Log In","Account")" title="Log In">
-                            <em class="fa fa-sign-in"></em>
-                            <span class="item-text">Log In</span>
-                        </a>
-                    </li>*@
+                <li>
+                    <a href="@Url.Action("LogOff","Account")" title="Log Off">
+                        <em class="fa fa-sign-out"></em>
+                        <span class="item-text">Log Off</span>
+                    </a>
+                </li>
                 }
                 <li>
                     <a href="http://sunvalleyservicesrockypoint.com/" target="_blank" title="Web Site">
@@ -474,19 +230,6 @@
                         <span class="item-text">Web Site</span>
                     </a>
                 </li>
-
-               <li class="active">
-                  @*<a href="#" title="Pages" data-toggle="collapse-next" class="has-submenu">*@
-                     @*<em class="fa fa-file-text"></em>*@
-                     @*<div class="label label-primary pull-right">new</div>*@
-                     @*<span class="item-text">Main Menu</span>
-                    </a>*@
-                  <!-- START SubMenu item-->
-                 <ul class="nav collapse in">
-                   
-                  </ul>
-                  <!-- END SubMenu item-->
-               </li>
                <!-- END Menu-->
                <!-- Sidebar footer    -->
                <li class="nav-footer">
@@ -544,23 +287,6 @@
     <script src="/app/js/app.js"></script>
 
 
-
-   @*<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-   <!-- Plugins-->
-   <script src="/vendor/chosen/chosen.jquery.min.js"></script>
-    <script src="/vendor/slider/js/bootstrap-slider.js"></script>
-    <script src="/vendor/filestyle/bootstrap-filestyle.min.js"></script>
-   <!-- Animo-->
-   <script src="/vendor/animo/animo.min.js"></script>
-   <!-- Sparklines-->
-   @*<script src="vendor/sparklines/jquery.sparkline.min.js"></script>*@
-   <!-- Slimscroll-->
-   @*<script src="vendor/slimscroll/jquery.slimscroll.min.js"></script>*@
-   <!-- START Page Custom Script-->
-   <!-- END Page Custom Script-->
-   <!-- App Main-->
-   @*<script src="app/js/app.js"></script>*@
-   <!-- END Scripts-->
     @RenderSection("scripts", required: false)
 </body>
 

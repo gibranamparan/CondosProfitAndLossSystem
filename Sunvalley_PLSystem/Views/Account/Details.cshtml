@@ -5,362 +5,265 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="panel" style="width:104% !important">
+<div class="container">
+    <div class="panel panel-warning">
+        <div id="PanelHeading" class="panel-heading hidden-print">
+            Owner Details
+        </div>
+        <div id="PanelBody" class="panel-body">
+            <div class="hidden-print">
+                <span class="fa fa-pencil-square-o hidden-print"></span>@Html.ActionLink("Edit", "Edit", new { id = Model.Id })
 
-    <div class="container">
-        <div class="panel panel-warning">
-            <div id="PanelHeading" class="panel-heading hidden-print">
-                Owner Details
+                @if (User.IsInRole("Administrador"))
+                {
+                    <span class="fa fa-mail-reply hidden-print"></span>@Html.ActionLink("Back to List", "Index")}
             </div>
-            <div id="PanelBody" class="panel-body">
-                <div class="hidden-print">
-                    <span class="fa fa-pencil-square-o hidden-print"></span>@Html.ActionLink("Edit", "Edit", new { id = Model.Id })
-
-                    @if (User.IsInRole("Administrador"))
-                    {
-                        <span class="fa fa-mail-reply hidden-print"></span>@Html.ActionLink("Back to List", "Index")}
-                </div>
 
 
-                <div id="TablasInfo">
-                    <table id="Details" class="table table-striped table table-responsive table-hover table-bordered">
-                        <tr>
-                            <th> @Html.DisplayName("First Name")</th>
-                            <td>
-                                @Html.DisplayFor(model => model.firstName)
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                @Html.DisplayName("Last Name")
-                            </th>
-                            <td>
-                                @Html.DisplayFor(model => model.lastName)
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                @Html.DisplayName("Create At")
-                            </th>
-                            <td>
-                                @Html.DisplayFor(model => model.createAt)
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                @Html.DisplayName("Company")
-                            </th>
-                            <td>
-                                @Html.DisplayFor(model => model.company)
-                            </td>
-                        </tr>
-                        <tr>
-
-                            <th>
-                                @Html.DisplayName("Postal Code")
-                            </th>
-
-                            <td>
-                                @Html.DisplayFor(model => model.postalCode)
-                            </td>
-
-                        </tr>
-                    </table>
-                    <table id="Details" class="table table-striped table table-responsive table-hover table-bordered">
-
-                        <tr>
-                            <th>
-                                @Html.DisplayName("Adress")
-                            </th>
-
-                            <td>
-                                @Html.DisplayFor(model => model.adress1)
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                @Html.DisplayName("Adress2")
-                            </th>
-
-                            <td>
-                                @Html.DisplayFor(model => model.adress2)
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                @Html.DisplayName("City")
-                            </th>
-
-                            <td>
-                                @Html.DisplayFor(model => model.city)
-                            </td>
-
-                        </tr>
-
-                        <tr>
-                            <th>
-                                @Html.DisplayName("Country")
-                            </th>
-
-                            <td>
-                                @Html.DisplayFor(model => model.country)
-                            </td>
-                        </tr>
-                        <tr>
-
-                            <th>
-                                @Html.DisplayName("Fax")
-                            </th>
-
-                            <td>
-                                @Html.DisplayFor(model => model.businesFax)
-                            </td>
-
-                        </tr>
-
-
-                    </table>
-                    <table id="Details" class="table table-striped table table-responsive table-hover table-bordered">
-
-                        <tr>
-
-                            <th>
-                                @Html.DisplayName("E-mail")
-                            </th>
-
-                            <td>
-                                @Html.DisplayFor(model => model.Email)
-                            </td>
-
-                        </tr>
-                        <tr>
-
-                            <th>
-                                @Html.DisplayName("E-mail1")
-                            </th>
-
-                            <td>
-                                @Html.DisplayFor(model => model.Email1)
-                            </td>
-
-                        </tr>
-                        <tr>
-
-                            <th>
-                                @Html.DisplayName("E-mail2")
-                            </th>
-
-                            <td>
-                                @Html.DisplayFor(model => model.Email2)
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <th>
-                                @Html.DisplayName("PhoneNumber")
-                            </th>
-
-                            <td>
-                                @Html.DisplayFor(model => model.mobilePhone)
-                            </td>
-                        </tr>
-
-                      
-                    </table>
-                   
-                </div>
-                @*<table id="Details" class="table table-striped table-hover table-responsive table-bordered ">
-                    <thead >
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.firstName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.lastName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.createAt)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.company)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.adress1)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.city)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.country)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.state)
-                            </th>
-
-                            <th>
-                                @Html.DisplayNameFor(model => model.Email)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.mobilePhone)
-                            </th>
-                        </tr>
-                    </thead>
+            <div id="TablasInfo">
+                <table id="Details" class="table table-striped table table-responsive table-hover table-bordered">
                     <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.firstName)</th>
                         <td>
-                            @Html.DisplayFor(model => model.firstName)
+                            @(Model.firstName+" "+Model.lastName)
                         </td>
-
-                        <td>
-                            @Html.DisplayFor(model => model.lastName)
-                        </td>
-
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.createAt)
+                        </th>
                         <td>
                             @Html.DisplayFor(model => model.createAt)
                         </td>
-
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.company)
+                        </th>
                         <td>
                             @Html.DisplayFor(model => model.company)
                         </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.postalCode)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.postalCode)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.businesFax)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.businesFax)
+                        </td>
+
+                    </tr>
+                </table>
+                <table id="Details" class="table table-striped table table-responsive table-hover table-bordered">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.adress1)
+                        </th>
 
                         <td>
                             @Html.DisplayFor(model => model.adress1)
                         </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.adress2)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.adress2)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.city)
+                        </th>
 
                         <td>
                             @Html.DisplayFor(model => model.city)
                         </td>
 
+                    </tr>
+
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.country)
+                        </th>
+
                         <td>
                             @Html.DisplayFor(model => model.country)
                         </td>
+                    </tr>
 
-                        <td>
-                            @Html.DisplayFor(model => model.state)
-                        </td>
+
+                </table>
+                <table id="Details" class="table table-striped table table-responsive table-hover table-bordered">
+
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
 
                         <td>
                             @Html.DisplayFor(model => model.Email)
                         </td>
 
+                    </tr>
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email1)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Email1)
+                        </td>
+
+                    </tr>
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email2)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Email2)
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.mobilePhone)
+                        </th>
+
                         <td>
                             @Html.DisplayFor(model => model.mobilePhone)
                         </td>
                     </tr>
-                </table>*@
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="panel panel-warning">
-
-            <div id="PanelHeading" class="panel-heading hidden-print">
-                Houses of Owner
-            </div>
-            <div id="PanelBody" class="panel-body">
-                @if (User.IsInRole("Administrador"))
-                {
-                    <span class="fa fa-plus-circle"></span>@Html.ActionLink("Create new house", "Create", "Houses", new { id = Model.Id }, null)
-                }
-                <table id="tabla" class="table table-striped table-hover table-responsive" style="padding:0px;">
-                    <thead>
-                        <tr>
-                            <th>
-                                Name
-                            </th>
-
-                            <th>
-                                Status
-                            </th>
-
-                            <th>
-                                Created
-                            </th>
-
-                            <th>
-                                Area
-                            </th>
-                            <th>
-                                Address
-                            </th>
-                            <th>
-                                City/Area
-                            </th>
-                            <th>
-                                Country
-                            </th>
-                            <th>
-                                State Province
-                            </th>
-                            <th>
-                                Postal Code
-                            </th>
-
-                            @if (User.IsInRole("Administrador"))
-                            {
-                                <th class="actionsAccount hidden-print">
-                                    @Html.DisplayName("Actions")
-
-                                </th>
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Houses)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(model => item.name)
-                                </td>
-
-                                <td>
-                                    @Html.DisplayFor(model => item.status)
-                                </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.created)
-                                </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.area)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.adress)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.cityArea)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.country)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.stateProvince)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.postalCode)
-                                </td>
-
-                                @if (Request.IsAuthenticated)
-                                {
-                                    if (User.IsInRole("Administrador"))
-                                    {
-
-                                        <td class="hidden-print">
-                                            <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", "Houses", new { id = item.houseID }, null) |
-                                            <span class="fa fa-reorder"></span>@Html.ActionLink("Movements", "Details", "Houses", new { id = item.houseID }, null) |
-                                            <span class="fa fa-trash"></span>@Html.ActionLink("Delete", "Delete", "Houses", new { id = item.houseID }, null) |
-                                            <span class="fa fa-bar-chart"></span>@Html.ActionLink("Profit and Loss Report", "profitAndLossHouse", "Account", new { idHouse = item.houseID }, null)
-                                        </td>
-                                    }
-                                }
-                            </tr>
-                        }
-                    </tbody>
                 </table>
             </div>
         </div>
-
     </div>
+</div>
+
+<div class="container">
+    <div class="panel panel-warning">
+
+        <div id="PanelHeading" class="panel-heading hidden-print">
+            Houses of Owner
+        </div>
+        <div id="PanelBody" class="panel-body">
+            @if (User.IsInRole("Administrador"))
+            {
+                <span class="fa fa-plus-circle"></span>@Html.ActionLink("Create new house", "Create", "Houses", new { id = Model.Id }, null)
+            }
+            <table id="tabla" class="table table-striped table-hover table-responsive" style="padding:0px;">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        @if (User.IsInRole("Administrador")){
+                        <th>
+                            Status
+                        </th>
+                        }
+
+                        <th>
+                            Created
+                        </th>
+
+                        <th>
+                            Area
+                        </th>
+                        <th>
+                            Address
+                        </th>
+                        <th>
+                            City/Area
+                        </th>
+                        <th>
+                            Country
+                        </th>
+                        <th>
+                            State Province
+                        </th>
+                        <th>
+                            Postal Code
+                        </th>
+
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <th class="actionsAccount hidden-print">
+                                @Html.DisplayName("Actions")
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Houses)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => item.name)
+                            </td>
+                            
+                            @if (User.IsInRole("Administrador")){
+                            <td>
+                                @Html.DisplayFor(model => item.status)
+                            </td>
+                            }
+                            <td>
+                                @Html.DisplayFor(modelItem => item.created)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.area)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.adress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cityArea)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.country)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.stateProvince)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.postalCode)
+                            </td>
+
+                            @if (Request.IsAuthenticated)
+                            {
+                                if (User.IsInRole("Administrador"))
+                                {
+                                    <td class="hidden-print">
+                                        <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", "Houses", new { id = item.houseID }, null) |
+                                        <span class="fa fa-reorder"></span>@Html.ActionLink("Movements", "Details", "Houses", new { id = item.houseID }, null) |
+                                        <span class="fa fa-trash"></span>@Html.ActionLink("Delete", "Delete", "Houses", new { id = item.houseID }, null) |
+                                        <span class="fa fa-bar-chart"></span>@Html.ActionLink("Profit and Loss Report", "profitAndLossHouse", "Account", new { idHouse = item.houseID }, null)
+                                    </td>
+                                }
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>

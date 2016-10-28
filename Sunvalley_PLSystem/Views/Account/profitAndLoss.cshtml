@@ -21,6 +21,12 @@
 }
 
 <h2>Profit And Loss</h2>
+
+<div class="hidden-print">
+    <span class="fa fa-reply hidden-print"></span>
+    @Html.ActionLink("Select another period", "profitAndLossHouse", new { idHouse = idHouse })
+</div>
+
 <div id="empresa_info" class="row visible-print">
     <div class="col-md-6 pull-right">
         <img id="logo" class="col-md-6" src="~/Imagenes/sunvalley_logo.png" alt="SUN VALLEY SERVICES" />
@@ -33,97 +39,20 @@
 </div>
 <div id="InfoCliente" class="visible-print">
     <div class="col-md-6">
-
         <div id="InfoCliente" class="visible-print" style="margin-top:-75px;padding-bottom:20px">
             @NombreCompleto<br /> @HAD <br />@CCSP .
         </div>
     </div>
 </div>
 
-
-
 @if (H != null) { //Si este reporte es por casa
     //Muestro los detalles la casa sobre la que estoy haciendo el reporte
-<div class="panel panel-warning hidden-print" style="width:100%">
-    <div class="panel-heading hidden-print">
-        House Details
-    </div>
-    <div class="panel-body">
-        <table class="table  table-striped table-hover table-responsive">
-            <tr>
-                @if (User.IsInRole("Administrador")) { 
-                    <th>
-                        @Html.DisplayNameFor(model => model.FirstOrDefault().house.ApplicationUser.firstName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FirstOrDefault().house.ApplicationUser.lastName)
-                    </th>
-                }
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().house.name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().house.area)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().house.adress)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().house.cityArea)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().house.country)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().house.stateProvince)
-                </th>
-
-
-            </tr>
-
-            <tr>
-                @if (User.IsInRole("Administrador")) {
-                    <td>
-                        @H.ApplicationUser.firstName
-                    </td>
-                    <td>
-                        @H.ApplicationUser.firstName
-                    </td>
-                }
-                <td>
-                    @H.name
-                </td>
-                <td>
-                    @H.area
-                </td>
-
-                <td>
-                    @H.adress
-                </td>
-                <td>
-                    @H.cityArea
-                </td>
-
-                <td>
-                    @H.country
-                </td>
-                <td>
-                    @H.stateProvince
-                </td>
-            </tr>
-
-        </table>
-
-
-    </div>
-</div>
+@Html.Partial("../Houses/Partial_HouseDetails",H)
 }
 
 @if (Model != null)
 {
-    @Html.ActionLink("Select another period", "profitAndLossHouse", new { idHouse = idHouse }, new { @class="hidden-print"})
-@*Profit*@
+    @*Profit*@
     <div class="panel panel-warning" style="background-color:white; width:100%">
         <div class="panel-heading">
             Income
@@ -140,7 +69,7 @@
                             @Html.DisplayNameFor(model => model.transactionDate)
                         </th>
                         <th>
-                            @Html.DisplayName("Type")
+                            @Html.DisplayNameFor(model => model.typeOfMovement)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.description)
@@ -151,46 +80,45 @@
                         <th>
                             @Html.DisplayNameFor(model => model.balance)
                         </th>
-                      
-                       
                     </tr>
                 </thead>
 
                 @if (!Profit.Any())
                 {
                     <tbody class="hidden-print">
-                        <tr><td>No movements were found in this period</td></tr>
+                        <tr><td>No movements were found in this period.</td></tr>
                     </tbody>
                 }
-                else {
+                else
+                {
 
-                <tbody>
-                    @foreach (var item in Profit)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.services.name)
-                            </td>
+                    <tbody>
+                        @foreach (var item in Profit)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.services.name)
+                                </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.transactionDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.typeOfMovement)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.description)
-                            </td>
-                            <td>
-                               $ @Html.DisplayFor(modelItem => item.amount)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.balance)
-                            </td>
-                           
-                        </tr>
-                    }
-                </tbody>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.transactionDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.typeOfMovement)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.description)
+                                </td>
+                                <td>
+                                    $ @Html.DisplayFor(modelItem => item.amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.balance)
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
                 }
             </table>
         </div>
@@ -202,44 +130,48 @@
             Expenses
         </div>
         <div class="panel-body">
-        <table id="" class="table table-bordered table-hover table-responsive table-striped">
-            <thead>
-                <tr>
-                    <th class="hidden">
-                        @Html.DisplayNameFor(model => model.house.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.services.name)
-                    </th>
+            <table id="" class="table table-bordered table-hover table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th class="hidden">
+                            @Html.DisplayNameFor(model => model.house.name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.services.name)
+                        </th>
 
-                    <th>
-                        @Html.DisplayNameFor(model => model.transactionDate)
-                    </th>
-                    <th>
-                        @Html.DisplayName("Type")
-                    </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.transactionDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.typeOfMovement)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.description)
+                        </th>
 
-                    <th>
-                       $ @Html.DisplayNameFor(model => model.amount)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.balance)
-                    </th>
-                </tr>
-            </thead>
-            @if (!Loss.Any())
-            {
+                        <th>
+                            $ @Html.DisplayNameFor(model => model.amount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.balance)
+                        </th>
+                    </tr>
+                </thead>
+                @if (!Loss.Any())
+                {
+                    <tbody>
+                        <tr><td>No movements were found in this period.</td></tr>
+                    </tbody>
+                }
+                else
+                {
+
                 <tbody>
-                    <tr><td>No movements were found in this period</td></tr>
-                </tbody>
-            }
-            else {
-
-            <tbody>
                 @foreach (var item in Loss)
                 {
                     <tr>
-                        
+
                         <td>
                             @Html.DisplayFor(modelItem => item.services.name)
                         </td>
@@ -250,19 +182,22 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.typeOfMovement)
                         </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
 
                         <td>
-                           $ @Html.DisplayFor(modelItem => item.amount)
+                            $ @Html.DisplayFor(modelItem => item.amount)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.balance)
                         </td>
-                      
+
                     </tr>
                 }
-            </tbody>
-            }
-        </table>
+                </tbody>
+                }
+            </table>
             </div>
         </div>
     

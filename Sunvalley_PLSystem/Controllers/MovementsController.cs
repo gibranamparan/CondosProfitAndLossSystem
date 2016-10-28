@@ -25,39 +25,35 @@ namespace Sunvalley_PLSystem.Controllers
             return View(movements.ToList());
         }
 
-        public ActionResult IndexReport(DateTime? fecha,String ID)
+        public ActionResult IndexReport(int fecha=0, int houseID = 0)
         {
+            String ID = User.Identity.GetUserId();
+            var house = db.Houses.Find(houseID);
+            if (house == null || String.IsNullOrEmpty(ID))
+            {
+                return RedirectToAction("Index", "Houses");
+            }
+            ViewBag.house = house;
             DateTime fechaArgumentos;
-            if (fecha == null)
+            if (fecha == 0)
             {
                 fechaArgumentos = DateTime.Now;
                 ViewBag.fechaA = fechaArgumentos;
+                fecha = fechaArgumentos.Year;
             }
             else
             {
-                fechaArgumentos = (DateTime)fecha;
+                fechaArgumentos = new DateTime(fecha,1,1);
                 ViewBag.fechaA = fechaArgumentos;
             }
-            
-            if (ID == null)
+
+            var Reports = db.AccountStatusReport.Where(a=> a.dateMonth.Year == fechaArgumentos.Year && a.houseID == houseID);
+            if (!User.IsInRole("Administrador"))
             {
-                var Reports = db.AccountStatusReport.ToList();
-                return View("Reports", Reports.ToList());
+                Reports = Reports.Where(a => a.UserID == ID);
             }
-            else {
-                if (fecha == null)
-                {
-                    var Reports = db.AccountStatusReport.Where(a => a.UserID == ID);
-                    ViewBag.ID = ID;
-                    return View("Reports", Reports.ToList());
-                }
-                else
-                {
-                    var Reports = db.AccountStatusReport.Where(a => a.UserID == ID && a.dateMonth.Month == fechaArgumentos.Month && a.dateMonth.Year == fechaArgumentos.Year);
-                    ViewBag.ID = ID;
-                    return View("Reports", Reports.ToList());
-                }
-            }
+            ViewBag.ID = ID;
+            return View("Reports", Reports.ToList());
         }
 
         // GET: Movements/Details/5
@@ -77,27 +73,103 @@ namespace Sunvalley_PLSystem.Controllers
 
         // GET: Movements/Create
         [Authorize(Roles = "Administrador")]
-        public ActionResult Create(int id=0)
+        public ActionResult Create(DateTime fechaConArgumentos, int id=0)
         {
             var house = db.Houses.Find(id);
             if (house == null)
             {
                 return RedirectToAction("Index", "Account");
             }
-            ViewBag.houseID = id;
+            ViewBag.house = house;
             SelectList lista = new SelectList(db.Services, "serviceID", "name");
             ViewBag.Services = lista;
-            return View();
+            Movement newMov = new Movement();
+            newMov.transactionDate = fechaConArgumentos;
+            return View(newMov);
+        }
+
+        // POST: Movements/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        //[Authorize(Roles = "Administrador")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Movement movement)
+        {
+            decimal balanceAnterior = 0;
+            if (ModelState.IsValid)
+            {
+                movement.createBy = User.Identity.GetUserName();
+                movement.UserID = User.Identity.GetUserId();
+
+                DateTime rightNow = DateTime.Now;
+                DateTime transactionDate = movement.transactionDate;
+                movement.transactionDate = transactionDate.AddHours(rightNow.Hour).
+                    AddMinutes(rightNow.Minute).AddSeconds(rightNow.Second);
+                if (movement.typeOfMovement == Movement.TypeOfMovements.INCOME)
+                {
+                    Services rent = db.Services.SingleOrDefault(ser => ser.name == "RENT");
+                    if (rent == null || rent.serviceID == 0)
+                    {
+                        rent = new Services();
+                        rent.name = "RENT";
+                        db.Services.Add(rent);
+                        db.SaveChanges();
+                    }
+                    movement.serviceID = rent.serviceID;
+                }
+                else if (movement.typeOfMovement == Movement.TypeOfMovements.CONTRIBUTION)
+                {
+                    Services contri = db.Services.SingleOrDefault(ser => ser.name == Movement.TypeOfMovements.CONTRIBUTION);
+                    if (contri == null || contri.serviceID == 0)
+                    {
+                        contri = new Services();
+                        contri.name = Movement.TypeOfMovements.CONTRIBUTION;
+                        db.Services.Add(contri);
+                        db.SaveChanges();
+                    }
+
+                    movement.serviceID = contri.serviceID;
+                }
+                try
+                {
+                    var movimientosAscendentes = db.Movements.Where(mov => mov.houseID == movement.houseID).
+                        OrderByDescending(mov => mov.transactionDate);
+                    int cant = movimientosAscendentes.Count();
+                    var ultimoMov = movimientosAscendentes.First();
+                    balanceAnterior = ultimoMov.balance;
+                }
+                catch { }
+
+                //Tipos de movimientos que incrementan el balance
+                if (movement.typeOfMovement == Movement.TypeOfMovements.INCOME
+                    ||movement.typeOfMovement == Movement.TypeOfMovements.CONTRIBUTION
+                    || movement.typeOfMovement == Movement.TypeOfMovements.TAX
+                    || movement.typeOfMovement == Movement.TypeOfMovements.OWINGPAY)
+                {
+                    movement.balance = balanceAnterior + movement.amount;
+                }
+                //Tipos de movimientos que restan al balance
+                else if (movement.typeOfMovement == Movement.TypeOfMovements.EXPENSE)
+                {
+                    movement.balance = balanceAnterior - movement.amount;
+                }
+                //movement.transactionDate = DateTime.Now;
+                db.Movements.Add(movement);
+                db.SaveChanges();
+                int id = movement.houseID;
+                //return RedirectToAction("Details", "Houses", new { id = id });
+                return RedirectToAction("Recalculate", new { id = movement.houseID, fechaConArgumentos = movement.transactionDate });
+            }
+
+            ViewBag.houseID = new SelectList(db.Houses, "houseID", "name", movement.houseID);
+            return View(movement);
         }
 
         [HttpPost]
         [Authorize(Roles = "Administrador")]
         public ActionResult Index(DateTime fecha, int houseID, String Accion)
         {
-            //var Movimientos = from movement in db.Movements
-            //                  where (movement.transactionDate >= fechaInicio && movement.transactionDate <= fechaFin && movement.UserID == User.Identity.GetUserId())
-            //                  select movement;
-            //var movements = db.Movements.Where(mov => mov.transactionDate >= fechaInicio && mov.transactionDate <= fechaFin && mov.houseID == houseID);
             if (houseID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -112,11 +184,8 @@ namespace Sunvalley_PLSystem.Controllers
             var reporte = db.AccountStatusReport.FirstOrDefault(r => r.dateMonth.Month == fecha.Month && r.UserID == IdUser);
             if (Accion == "Autorizar")
             {
-
                 if (reporte != null)
                 {
-
-                    //AccountStatusReport Report = db.AccountStatusReport.Find(fecha);
                     db.AccountStatusReport.Remove(reporte);
                     AccountStatusReport Report = new AccountStatusReport();
                     Report.houseID = houseID;
@@ -143,12 +212,10 @@ namespace Sunvalley_PLSystem.Controllers
                         db.Entry(i).State = EntityState.Modified;
                     }
                     db.SaveChanges();
-
                 }
             }
             else
             {
-                //AccountStatusReport Report = db.AccountStatusReport.Where(A=>A.dateMonth.Month==fecha.Month&&A.UserID== IdUser).First();
                 var Reports = db.AccountStatusReport.Where(A => A.dateMonth.Month == fecha.Month && A.UserID == IdUser);
                 if (Reports.Count() > 0)
                 {
@@ -161,14 +228,12 @@ namespace Sunvalley_PLSystem.Controllers
 
                     }
                     db.SaveChanges();
-                    //return View(Movimientos.ToList());
                     ViewBag.Mensaje = "the movements are properly authorized";
                 }
             }
 
             return RedirectToAction("Details", "Houses", new { id = houseID });
         }
-
 
         [Authorize]
         [HttpPost]
@@ -280,7 +345,7 @@ namespace Sunvalley_PLSystem.Controllers
 
         [Authorize]
         [Authorize(Roles = "Administrador")]
-        public ActionResult Recalculate(int id)
+        public ActionResult Recalculate(int id, DateTime fechaConArgumentos)
         {
             decimal balanceAnterior = 0;
             var Movements = db.Movements.Where(m => m.houseID == id).OrderBy(mov => mov.transactionDate);
@@ -305,86 +370,7 @@ namespace Sunvalley_PLSystem.Controllers
                 db.Entry(Movemen).State = EntityState.Modified;
             }
             db.SaveChanges();
-            return RedirectToAction("Details", "Houses", new { id = id });
-        }
-        // POST: Movements/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        //[Authorize(Roles = "Administrador")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Movement movement)
-        {
-            decimal balanceAnterior = 0;
-            if (ModelState.IsValid)
-            {
-                movement.createBy = User.Identity.GetUserName();
-                movement.UserID = User.Identity.GetUserId();
-
-                DateTime rightNow = DateTime.Now;
-                DateTime transactionDate = movement.transactionDate;
-                movement.transactionDate = transactionDate.AddHours(rightNow.Hour).
-                    AddMinutes(rightNow.Minute).AddSeconds(rightNow.Second);
-                if (movement.typeOfMovement == Movement.TypeOfMovements.INCOME)
-                {
-                    Services rent = db.Services.SingleOrDefault(ser => ser.name == "RENT");
-                    if (rent == null || rent.serviceID == 0)
-                    {
-                        rent = new Services();
-                        rent.name = "RENT";
-                        db.Services.Add(rent);
-                        db.SaveChanges();
-                    }
-                    movement.serviceID = rent.serviceID;
-                }
-                else if (movement.typeOfMovement == Movement.TypeOfMovements.CONTRIBUTION)
-                {
-                    Services contri = db.Services.SingleOrDefault(ser => ser.name == Movement.TypeOfMovements.CONTRIBUTION);
-                    if (contri == null || contri.serviceID == 0)
-                    {
-                        contri = new Services();
-                        contri.name = Movement.TypeOfMovements.CONTRIBUTION;
-                        db.Services.Add(contri);
-                        db.SaveChanges();
-                    }
-                    
-                    movement.serviceID = contri.serviceID;
-                }
-                //var balances = from movi in db.Movements
-                //               where movi.houseID == movement.houseID
-                //               orderby movi.transactionDate descending
-                //               select movi;
-                //decimal b = balances.Take(1).s;
-                try {
-                    var movimientosAscendentes = db.Movements.Where(mov => mov.houseID == movement.houseID).OrderByDescending(mov => mov.transactionDate);
-                    //var movimientosAscendentes = db.Movements.Where(mov => mov.houseID == movement.houseID).OrderBy(mov => mov.transactionDate);
-                    int cant = movimientosAscendentes.Count();
-                    var ultimoMov = movimientosAscendentes.First();
-                    balanceAnterior = ultimoMov.balance;
-                }
-                catch { }
-
-                //Tipos de movimientos que incrementan el balance
-                if (movement.typeOfMovement == Movement.TypeOfMovements.INCOME || movement.typeOfMovement == Movement.TypeOfMovements.CONTRIBUTION
-                    || movement.typeOfMovement == Movement.TypeOfMovements.TAX || movement.typeOfMovement == Movement.TypeOfMovements.OWINGPAY)
-                {
-                    movement.balance = balanceAnterior+movement.amount;
-                }
-                //Tipos de movimientos que restan al balance
-                else if (movement.typeOfMovement == Movement.TypeOfMovements.EXPENSE)
-                {
-                    movement.balance = balanceAnterior - movement.amount;
-                }
-                //movement.transactionDate = DateTime.Now;
-                db.Movements.Add(movement);
-                db.SaveChanges();
-                int id = movement.houseID;
-                //return RedirectToAction("Details", "Houses", new { id = id });
-                return RedirectToAction("Recalculate", new { id = movement.houseID });
-            }
-
-            ViewBag.houseID = new SelectList(db.Houses, "houseID", "name", movement.houseID);
-            return View(movement);
+            return RedirectToAction("Details", "Houses", new { id = id, fecha = fechaConArgumentos.Date });
         }
 
         // GET: Movements/Edit/5

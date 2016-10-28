@@ -1,0 +1,76 @@
+﻿@model Sunvalley_PLSystem.Models.House
+
+<div class="panel panel-warning hidden-print" style="width:100%">
+    <div class="panel-heading hidden-print">
+        House Details
+    </div>
+    <div class="panel-body">
+        <table id="Informacion" class="table  table-striped table-hover table-responsive">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApplicationUser.firstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.created)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.area)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.adress)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.cityArea)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.country)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.stateProvince)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.postalCode)
+                </th>
+
+            </tr>
+
+            <tr>
+                <td>
+                    @(Model.ApplicationUser.firstName + " " + Model.ApplicationUser.lastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.created)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.area)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.adress)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.cityArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.country)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.stateProvince)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.postalCode)
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
