@@ -70,5 +70,6 @@
     }
 </div>
 <div>
-    <span class="fa fa-reply"></span>@Html.ActionLink("Back to House's Movements", "Details", "Houses", new { id = Model.houseID }, null)
+    <span class="fa fa-reply"></span>@Html.ActionLink("Back to House's Movements", 
+    "Details", "Houses", new { id = Model.houseID , fecha = Model.transactionDate }, null)
 </div>

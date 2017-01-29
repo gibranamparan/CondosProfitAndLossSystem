@@ -67,7 +67,9 @@
     </div>
 }
 <div>
-    <span class="fa fa-mail-reply hidden-print"></span>@Html.ActionLink("Back to House's Movements", "details", "houses", new { id = Model.houseID },null)
+    <span class="fa fa-mail-reply hidden-print"></span>
+    @Html.ActionLink("Back to House's Movements",
+            "details", "houses", new { id = Model.houseID, fecha = Model.transactionDate }, null)
 </div>
 
 @section Scripts {

@@ -17,14 +17,19 @@
     String CCSP = ViewBag.CCSP;
     String Apellido = ViewBag.Apellido;
 
+    Boolean? firstSearch = ViewBag.firstSearch!=null?true:false;
+
     ;
 }
 
 <h2>Profit And Loss</h2>
 
 <div class="hidden-print">
-    <span class="fa fa-reply hidden-print"></span>
-    @Html.ActionLink("Select another period", "profitAndLossHouse", new { idHouse = idHouse })
+    @if (!firstSearch.Value)
+    {
+        <span class="fa fa-reply hidden-print"></span>
+        @Html.ActionLink("Select another period", "profitAndLossHouse", new { idHouse = idHouse })
+    }
 </div>
 
 <div id="empresa_info" class="row visible-print">
@@ -232,9 +237,9 @@
                     </td>
                     }
                     else {
-                        <td>
-                            $ @ViewBag.Total
-                        </td>
+                    <td>
+                        $ @ViewBag.Total
+                    </td>
                     }
                 </tr>
             </table>
@@ -250,9 +255,9 @@
             <h4 style="text-align:center">PLEASE SELECT PERIOD TO CREATE REPORT</h4>
             <div class="col-md-12">
                 @if (ViewBag.Tipo == "Total")
-            {
-                using (Html.BeginForm("profitAndLossTotal", "Account", FormMethod.Get,new {@class="form-inline"}))
                 {
+                    using (Html.BeginForm("profitAndLossTotal", "Account", FormMethod.Get,new {@class="form-inline"}))
+                    {
                         @Html.Label("Start:")
                         <input type="date" name="fecha1" class="hidden-print form-control">
                         @Html.Label("End:")

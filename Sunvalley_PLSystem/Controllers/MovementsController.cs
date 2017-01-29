@@ -252,7 +252,7 @@ namespace Sunvalley_PLSystem.Controllers
             String IdUser = house.ApplicationUser.Id;
 
             var movements2 = db.Movements.Where(mov => mov.transactionDate.Month == fecha.Month && mov.transactionDate.Year == fecha.Year && mov.houseID == houseID).OrderBy(move => move.transactionDate);
-            var reporte = db.AccountStatusReport.FirstOrDefault(r => r.dateMonth.Month == fecha.Month && r.UserID == IdUser);
+            var reporte = db.AccountStatusReport.FirstOrDefault(r => r.dateMonth.Month == fecha.Month && r.dateMonth.Year == fecha.Year && r.UserID == IdUser && r.houseID == houseID);
             if (reporte == null)
             {
                 AccountStatusReport Report = new AccountStatusReport();
@@ -290,7 +290,7 @@ namespace Sunvalley_PLSystem.Controllers
             db.ReportedMovements.AddRange(movimientosReportados);
             db.SaveChanges();
 
-            return RedirectToAction("Details", "Houses", new { id = houseID });
+            return RedirectToAction("Details", "Houses", new { id = houseID, fecha = fecha });
         }
         
         [Authorize]
@@ -343,9 +343,10 @@ namespace Sunvalley_PLSystem.Controllers
             return View (Reporte);
         }
 
+        private DateTime today = DateTime.Today;
         [Authorize]
         [Authorize(Roles = "Administrador")]
-        public ActionResult Recalculate(int id, DateTime fechaConArgumentos)
+        public ActionResult Recalculate(int id, DateTime? fechaConArgumentos)
         {
             decimal balanceAnterior = 0;
             var Movements = db.Movements.Where(m => m.houseID == id).OrderBy(mov => mov.transactionDate);
@@ -359,18 +360,20 @@ namespace Sunvalley_PLSystem.Controllers
                 catch { }
 
                 if (Movemen.typeOfMovement == Movement.TypeOfMovements.INCOME||Movemen.typeOfMovement == Movement.TypeOfMovements.CONTRIBUTION||
-                    Movemen.typeOfMovement == Movement.TypeOfMovements.TAX || Movemen.typeOfMovement == Movement.TypeOfMovements.OWINGPAY)
+                    Movemen.typeOfMovement == Movement.TypeOfMovements.TAX)
                 {
                     Movemen.balance = balanceAnterior + Movemen.amount;
                 }
-                else if (Movemen.typeOfMovement == Movement.TypeOfMovements.EXPENSE)
+                else if (Movemen.typeOfMovement == Movement.TypeOfMovements.EXPENSE || Movemen.typeOfMovement == Movement.TypeOfMovements.OWINGPAY)
                 {
                     Movemen.balance = balanceAnterior - Movemen.amount;
                 }
                 db.Entry(Movemen).State = EntityState.Modified;
             }
             db.SaveChanges();
-            return RedirectToAction("Details", "Houses", new { id = id, fecha = fechaConArgumentos.Date });
+
+            fechaConArgumentos = fechaConArgumentos == null ? DateTime.Today : fechaConArgumentos;
+            return RedirectToAction("Details", "Houses", new { id = id, fecha = fechaConArgumentos.Value.Date });
         }
 
         // GET: Movements/Edit/5
@@ -410,7 +413,7 @@ namespace Sunvalley_PLSystem.Controllers
             {
                 db.Entry(movement).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Recalculate", new { id = movement.houseID});
+                return RedirectToAction("Recalculate", new { id = movement.houseID, fechaConArgumentos = movement.transactionDate });
             }
             ViewBag.houseID = new SelectList(db.Houses, "houseID", "name", movement.houseID);
             SelectList lista = new SelectList(db.Services, "serviceID", "name");
@@ -443,7 +446,7 @@ namespace Sunvalley_PLSystem.Controllers
             Movement movement = db.Movements.Find(id);
             db.Movements.Remove(movement);
             db.SaveChanges();
-            return RedirectToAction("Recalculate", new { id = movement.houseID});
+            return RedirectToAction("Recalculate", new { id = movement.houseID, fechaConArgumentos = movement.transactionDate });
         }
 
         protected override void Dispose(bool disposing)

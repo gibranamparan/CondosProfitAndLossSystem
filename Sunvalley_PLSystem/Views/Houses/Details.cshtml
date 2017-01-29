@@ -174,7 +174,7 @@
                         }
                                 
                         <td>
-                            @if (item.typeOfMovement == TypeOfMovements.EXPENSE)
+                            @if (item.typeOfMovement == TypeOfMovements.EXPENSE || item.typeOfMovement == TypeOfMovements.OWINGPAY)
                             {
                                 @Html.Raw("$");
                                 @String.Format("{0:n}", item.amount);
@@ -184,7 +184,7 @@
 
                         <td>
                             @if (item.typeOfMovement == TypeOfMovements.INCOME || item.typeOfMovement == TypeOfMovements.CONTRIBUTION
-                                || item.typeOfMovement == TypeOfMovements.TAX || item.typeOfMovement == TypeOfMovements.OWINGPAY)
+                                || item.typeOfMovement == TypeOfMovements.TAX)
                             {
                                 @Html.Raw("$");
                                 @String.Format("{0:n}", item.amount);
