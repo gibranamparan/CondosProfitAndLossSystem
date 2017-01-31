@@ -84,6 +84,12 @@
             <table id="" class="table table-bordered table-hover table-responsive table-striped">
                 <thead>
                     <tr>
+                        @if (idHouse == null || idHouse == 0)
+                        {
+                            <th>
+                                @Html.DisplayNameFor(model => model.house.name)
+                            </th>
+                        }
                         <th>
                             @Html.DisplayNameFor(model => model.services.name)
                         </th>
@@ -119,6 +125,12 @@
                         @foreach (var item in Profit)
                         {
                             <tr>
+                                @if (idHouse == null || idHouse == 0)
+                                {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.house.name)
+                                    </td>
+                                }
                                 <td>
                                     @Html.DisplayFor(modelItem => item.services.name)
                                 </td>
@@ -157,9 +169,12 @@
             <table id="" class="table table-bordered table-hover table-responsive table-striped">
                 <thead>
                     <tr>
-                        <th class="hidden">
-                            @Html.DisplayNameFor(model => model.house.name)
-                        </th>
+                        @if (idHouse == null || idHouse == 0)
+                        {
+                            <th>
+                                @Html.DisplayNameFor(model => model.house.name)
+                            </th>
+                        }
                         <th>
                             @Html.DisplayNameFor(model => model.services.name)
                         </th>
@@ -195,7 +210,12 @@
                 @foreach (var item in Loss)
                 {
                     <tr>
-
+                        @if (idHouse == null || idHouse == 0)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.house.name)
+                            </td>
+                        }
                         <td>
                             @Html.DisplayFor(modelItem => item.services.name)
                         </td>
