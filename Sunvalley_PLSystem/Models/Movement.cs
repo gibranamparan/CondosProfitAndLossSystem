@@ -27,6 +27,7 @@ namespace Sunvalley_PLSystem.Models
         public string description { get; set; }
 
         [Display(Name = "Amount")]
+        [DisplayFormat(DataFormatString = "{0:c}")]
         public decimal amount { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:c}", ApplyFormatInEditMode = true)]

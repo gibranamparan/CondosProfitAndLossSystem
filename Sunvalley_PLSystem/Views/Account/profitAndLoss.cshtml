@@ -45,7 +45,19 @@
 <div id="InfoCliente" class="visible-print">
     <div class="col-md-6">
         <div id="InfoCliente" class="visible-print" style="margin-top:-75px;padding-bottom:20px">
-            @NombreCompleto<br /> @HAD <br />@CCSP .
+            @NombreCompleto
+            @if(!String.IsNullOrEmpty(HAD)){<br /> @HAD}
+            @if(!String.IsNullOrEmpty(CCSP)){<br />@CCSP}
+            @if (ViewBag.fecha1 != null)
+            {
+                <br />
+                @("From: "+((DateTime)ViewBag.fecha1).ToString("MMM/dd/yyyy"))
+            }
+            @if (ViewBag.fecha2 != null)
+            {
+                <br />
+                @("To: " + ((DateTime)ViewBag.fecha2).ToString("MMM/dd/yyyy"))
+            }
         </div>
     </div>
 </div>
@@ -82,9 +94,9 @@
                         <th>
                             @Html.DisplayNameFor(model => model.amount)
                         </th>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.balance)
-                        </th>
+                        </th>*@
                     </tr>
                 </thead>
 
@@ -115,12 +127,13 @@
                                     @Html.DisplayFor(modelItem => item.description)
                                 </td>
                                 <td>
-                                    $ @Html.DisplayFor(modelItem => item.amount)
+                                    @Html.DisplayFor(modelItem => item.amount)
                                 </td>
+                                @*
                                 <td>
                                     @Html.DisplayFor(modelItem => item.balance)
                                 </td>
-
+                                    *@
                             </tr>
                         }
                     </tbody>
@@ -156,11 +169,11 @@
                         </th>
 
                         <th>
-                            $ @Html.DisplayNameFor(model => model.amount)
+                            @Html.DisplayNameFor(model => model.amount)
                         </th>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.balance)
-                        </th>
+                        </th>*@
                     </tr>
                 </thead>
                 @if (!Loss.Any())
@@ -192,12 +205,13 @@
                         </td>
 
                         <td>
-                            $ @Html.DisplayFor(modelItem => item.amount)
+                            @Html.DisplayFor(modelItem => item.amount)
                         </td>
+                        @*
                         <td>
                             @Html.DisplayFor(modelItem => item.balance)
                         </td>
-
+                            *@
                     </tr>
                 }
                 </tbody>
@@ -217,14 +231,14 @@
                     <th> @Html.DisplayName("Income")</th>
 
                     <td>
-                        $ @ViewBag.TotalProfit
+                        @String.Format("{0:C}", ViewBag.TotalProfit)
                     </td>
                 </tr>
                 <tr>
                     <th> @Html.DisplayName("Expense")</th>
 
                     <td>
-                        $ @ViewBag.TotalLoss
+                        @String.Format("{0:C}",@ViewBag.TotalLoss)
                     </td>
                 </tr>
            
@@ -233,12 +247,12 @@
                     @if (ViewBag.Total < 0)
                     {
                     <td style="color:red">
-                        $ @ViewBag.Total
+                        @String.Format("{0:C}",@ViewBag.Total)
                     </td>
                     }
                     else {
                     <td>
-                        $ @ViewBag.Total
+                        @String.Format("{0:C}",@ViewBag.Total)
                     </td>
                     }
                 </tr>
