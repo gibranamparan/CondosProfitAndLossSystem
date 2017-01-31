@@ -28,7 +28,13 @@
     @if (!firstSearch.Value)
     {
         <span class="fa fa-reply hidden-print"></span>
-        @Html.ActionLink("Select another period", "profitAndLossHouse", new { idHouse = idHouse })
+        if (idHouse != null && idHouse != 0) { 
+            @Html.ActionLink("Select another period", "profitAndLossHouse", new { idHouse = idHouse })
+        }
+        else if (!String.IsNullOrEmpty(id))
+        {
+            @Html.ActionLink("Select another period", "profitAndLossTotal", new { id = id })
+        }
     }
 </div>
 
