@@ -17,19 +17,20 @@ namespace Sunvalley_PLSystem.Controllers
 
         // GET: Houses
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(bool status=true)
         {
-
             if (User.IsInRole("Administrador"))
             {
-                var houses = db.Houses.Where(h => h.status==true);
+                var houses = db.Houses.Where(h => h.status==status);
+                ViewBag.housesStatus = status;
                 return View(houses.ToList());
             }
             String userID = User.Identity.GetUserId();
-            var Casas = from usu in db.Houses where usu.Id == userID select usu;
+            var Casas = from house in db.Houses
+                        where house.Id == userID && house.status
+                        select house;
+            ViewBag.housesStatus = status;
             return View(Casas.ToList());
-
-
         }
 
         // GET: Houses/Details/5
@@ -147,10 +148,11 @@ namespace Sunvalley_PLSystem.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "houseID,name,status,created,area,adress,cityArea,country,stateProvince,postalCode,UserID")] House house)
+        public ActionResult Edit([Bind(Include = "houseID,name,status,created,area,adress,cityArea,country,stateProvince,postalCode")] House house, String UserID)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && !String.IsNullOrEmpty(UserID))
             {
+                house.Id = UserID;
                 db.Entry(house).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -175,7 +177,6 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // POST: Houses/Delete/5
-
         [HttpPost, ActionName("Delete")]
         [Authorize(Roles = "Administrador")]
         [ValidateAntiForgeryToken]

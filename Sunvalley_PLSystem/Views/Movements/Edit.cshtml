@@ -7,14 +7,18 @@
     
 }
 
-<h2>Edit</h2>
+<div>
+    <span class="fa fa-mail-reply hidden-print"></span>
+    @Html.ActionLink("Back to House's Movements",
+            "details", "houses", new { id = Model.houseID, fecha = Model.transactionDate }, null)
+</div>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
         <div class="panel panel-warning">
             <div class="panel-heading">
-                <h4>Movement</h4>
+                <h4>Edit Movement</h4>
             </div>
             <div id="" class="panel-body">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -66,11 +70,6 @@
         </div>
     </div>
 }
-<div>
-    <span class="fa fa-mail-reply hidden-print"></span>
-    @Html.ActionLink("Back to House's Movements",
-            "details", "houses", new { id = Model.houseID, fecha = Model.transactionDate }, null)
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

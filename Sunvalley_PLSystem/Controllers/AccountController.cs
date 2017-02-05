@@ -237,6 +237,11 @@ namespace Sunvalley_PLSystem.Controllers
             
             var House = db.Houses.Find(idHouse);
 
+            if (fecha2 != null)
+            {
+                fecha2 = fecha2.Value.AddHours(23).AddMinutes(59).AddSeconds(59);
+            }
+
             if (User.IsInRole("Administrador"))
             {
                 ViewBag.Loss = House.movimientos.Where(m => m.typeOfMovement == Movement.TypeOfMovements.EXPENSE 

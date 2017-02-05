@@ -9,12 +9,12 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="panel-warning">
-            <div id="PanelHeading" class="panel-heading">
-                OWNER
-            </div>
-        <div id="PanelBody" style="padding-left:15px !important;" class="panel-body">
-            <div class="form-horizontal" style="width: 50%">
+    <div class="panel panel-warning">
+        <div id="PanelHeading" class="panel-heading">
+            OWNER
+        </div>
+        <div id="PanelBody" class="panel-body">
+            <div class="form-horizontal col-md-6">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.Id)
 
@@ -88,7 +88,9 @@
                         @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
                     </div>
                 </div>
+            </div>
 
+            <div class="form-horizontal col-md-6">
                 <div class="form-group">
                     @Html.Label("Mobile Phone", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -133,23 +135,25 @@
                     </div>
                 </div>
 
-                @if (User.IsInRole("Administrador")) {
+                @if (User.IsInRole("Administrador"))
+                {
 
-                 <div class="form-group">
-                    @Html.Label("New Password", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-6">
-                        <input class="form-control" data-val="true" data-val-length="The Password must be at least 6 characters long."
-                                data-val-length-max="100" data-val-length-min="6"
-                                id="NewPassword" name="NewPassword"
-                                placeholder="Introduce an strong password." type="password">
-                        <span class="field-validation-valid text-danger" data-valmsg-for="NewPassword" data-valmsg-replace="true"></span>
+                    <div class="form-group">
+                        @Html.Label("New Password", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            <input class="form-control" data-val="true" data-val-length="The Password must be at least 6 characters long."
+                                   data-val-length-max="100" data-val-length-min="6"
+                                   id="NewPassword" name="NewPassword"
+                                   placeholder="Introduce an strong password." type="password">
+                            <span class="field-validation-valid text-danger" data-valmsg-for="NewPassword" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-info" type="button" id="btnGeneratePassword">Generate</button><br />
+                            Show Password: <input type="checkbox" id="showPassword" value=" " />
+                        </div>
                     </div>
-                     <div class="col-md-4">
-                         <button class="btn btn-info" type="button" id="btnGeneratePassword">Generate</button>
-                         Show Password: <input type="checkbox" id="showPassword" value=" " />
-                     </div>
-                </div>
-            }
+                }
+            </div>
             <div class="form-group">
                 <div class="col-md-8 row">
                     <div class="col-md-2">
@@ -158,7 +162,6 @@
                     <p class="col-md-10">An strong password must have 6 characters min. included lower & uppercase and non digit or letter character.</p>
                 </div>
             </div>
-        </div>
         </div>
     </div>
 }

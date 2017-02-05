@@ -12,7 +12,7 @@ namespace Sunvalley_PLSystem.Models
         public int houseID { get; set; }
         [Display(Name ="Home Name")]
         public string name { get; set; }
-        [Display(Name = "Status")]
+        [Display(Name = "Is Active")]
         public Boolean status { get; set; }
         [Display(Name = "Created")]
         public DateTime created { get; set; }
