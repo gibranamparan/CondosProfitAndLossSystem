@@ -103,24 +103,30 @@ namespace Sunvalley_PLSystem.Controllers
                 movement.UserID = User.Identity.GetUserId();
 
                 DateTime rightNow = DateTime.Now;
+                //Se toma la fecha de transaccion introducida y se le agrega la hora de la introduccion del movimiento
                 DateTime transactionDate = movement.transactionDate;
                 movement.transactionDate = transactionDate.AddHours(rightNow.Hour).
                     AddMinutes(rightNow.Minute).AddSeconds(rightNow.Second);
                 if (movement.typeOfMovement == Movement.TypeOfMovements.INCOME)
                 {
-                    Services rent = db.Services.SingleOrDefault(ser => ser.name == "RENT");
+                    String serviceName = "RENT";
+                    Services rent = db.Services.SingleOrDefault(ser => ser.name == serviceName);
+                    //Si es un income de servicio de renta, se busca y si no existe, se crea el servicio
                     if (rent == null || rent.serviceID == 0)
                     {
                         rent = new Services();
-                        rent.name = "RENT";
+                        rent.name = serviceName;
                         db.Services.Add(rent);
                         db.SaveChanges();
                     }
+                    //Se asigna al movimiento
                     movement.serviceID = rent.serviceID;
                 }
                 else if (movement.typeOfMovement == Movement.TypeOfMovements.CONTRIBUTION)
                 {
+                    //Si es un tipo de movimiento de contribucion y servicio del mismo nombre, se busca
                     Services contri = db.Services.SingleOrDefault(ser => ser.name == Movement.TypeOfMovements.CONTRIBUTION);
+                    //Si no existe se crea
                     if (contri == null || contri.serviceID == 0)
                     {
                         contri = new Services();
@@ -128,11 +134,27 @@ namespace Sunvalley_PLSystem.Controllers
                         db.Services.Add(contri);
                         db.SaveChanges();
                     }
-
+                    //Y se asigna al movimiento que se va a crear
                     movement.serviceID = contri.serviceID;
+                }
+                else if( movement.typeOfMovement == Movement.TypeOfMovements.OWINGPAY)
+                {
+                    String serviceName = "Owing Balance";
+                    Services serv = db.Services.SingleOrDefault(ser => ser.name == serviceName);
+                    //Si es un income de servicio de renta, se busca y si no existe, se crea el servicio
+                    if (serv == null || serv.serviceID == 0)
+                    {
+                        serv = new Services();
+                        serv.name = serviceName;
+                        db.Services.Add(serv);
+                        db.SaveChanges();
+                    }
+                    //Se asigna al movimiento
+                    movement.serviceID = serv.serviceID;
                 }
                 try
                 {
+                    //Se determina la cantidad de balance del ultimo movimiento para darle continuidad
                     var movimientosAscendentes = db.Movements.Where(mov => mov.houseID == movement.houseID).
                         OrderByDescending(mov => mov.transactionDate);
                     int cant = movimientosAscendentes.Count();
@@ -154,7 +176,7 @@ namespace Sunvalley_PLSystem.Controllers
                 {
                     movement.balance = balanceAnterior - movement.amount;
                 }
-                //movement.transactionDate = DateTime.Now;
+
                 db.Movements.Add(movement);
                 db.SaveChanges();
                 int id = movement.houseID;
