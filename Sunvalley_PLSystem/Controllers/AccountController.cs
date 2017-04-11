@@ -341,6 +341,7 @@ namespace Sunvalley_PLSystem.Controllers
                 usuario.state = user.state;
                 usuario.mobilePhone = user.mobilePhone;
                 usuario.Email = user.Email;
+                usuario.UserName = user.Email;
                 usuario.Email1 = user.Email1;
                 usuario.Email2 = user.Email2;
                 usuario.postalCode = user.postalCode;
@@ -361,7 +362,7 @@ namespace Sunvalley_PLSystem.Controllers
                 }
 
                 await store.UpdateAsync(usuario);
-                db.SaveChanges();
+                int updatedRegs = db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(user);
