@@ -132,7 +132,7 @@
                         </th>
                         @if (User.IsInRole("Administrador"))
                         {
-                        <th class="hidden-print">
+                        <th class="hidden-print actions">
                             @Html.DisplayName("Actions")
                         </th>
                         }
@@ -198,8 +198,16 @@
                         @if (User.IsInRole("Administrador"))
                         {
                         <td class="hidden-print">
-                            <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", "Movements", new { id = item.movementID }, null) |
-                            |<span class="fa fa-trash-o"></span> @Html.ActionLink("Delete", "Delete", "Movements", new { id = item.movementID }, null)
+                            <a href="@Url.Action("Edit", "Movements", new { id = item.movementID })">
+                                <i class="fa fa-pencil-square-o"></i> Edit
+                            </a><br />
+                            <a href="@Url.Action("Delete", "Movements", new { id = item.movementID })">
+                                <i class="fa fa-trash-o"></i> Delete
+                            </a><br />
+                            <a href="@Url.Action("Details", "Movements", new { id = item.movementID })"
+                                target="_blank" >
+                                <i class="fa fa-print"></i> Print
+                            </a>
                         </td>
                         }
                     </tr>

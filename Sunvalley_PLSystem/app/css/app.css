@@ -150,7 +150,7 @@ div#Filtros form {
     padding-top: 11px !important;
 }
 .actions{
-    width: 23% !important;
+    width: 7em !important;
 }
 .actionsAccount{
  width: 418px !important;
@@ -497,8 +497,8 @@ body {
 }
 .csstransforms3d .aside-toggled .wrapper > section {
   margin-left: 0;
-  -webkit-transform: translate3d(250px, 0, 0);
-  transform: translate3d(250px, 0, 0);
+  /*-webkit-transform: translate3d(250px, 0, 0);
+  transform: translate3d(250px, 0, 0);*/
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;

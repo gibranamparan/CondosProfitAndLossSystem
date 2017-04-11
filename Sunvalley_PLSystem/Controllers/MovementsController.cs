@@ -68,6 +68,16 @@ namespace Sunvalley_PLSystem.Controllers
             {
                 return HttpNotFound();
             }
+            House house = movement.house;
+            String mensaje = db.GeneralInformations.Find(1).InformacionGen;
+            String NombreCompleto = house.ApplicationUser.firstName + " " + house.ApplicationUser.lastName;
+            String HAD = house.name + ", " + house.area + ", " + house.adress;
+            String CCSP = house.cityArea + ", " + house.country + ", " + house.stateProvince + ", " + house.postalCode;
+            ViewBag.HAD = HAD;
+            ViewBag.CCSP = CCSP;
+            ViewBag.NombreCompleto = NombreCompleto;
+            ViewBag.mensaje = mensaje;
+
             return View(movement);
         }
 
