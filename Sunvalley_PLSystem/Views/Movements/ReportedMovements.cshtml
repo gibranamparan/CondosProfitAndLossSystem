@@ -10,15 +10,27 @@
 
     IEnumerable<Sunvalley_PLSystem.Models.ReportedMovements> reportedMovements = Model.ReportedMovements.OrderBy(mov => mov.TransactionDate);
 
+    int fecha = DateTime.Now.Year;
+    if(reportedMovements!=null && reportedMovements.Count() > 0)
+    {
+        fecha = reportedMovements.First().TransactionDate.Year;
+    }
+
     String mensaje = ViewBag.mensaje;
     String Nombre = ViewBag.Nombre;
     String Apellido = ViewBag.Apellido;
     String NombreCompleto = Nombre + " " + Apellido;
     String HAD = ViewBag.HAD;
     String CCSP = ViewBag.CCSP;
+    int houseID = Model.houseID;
 }
 
 <h2>Montly Statement</h2>
+
+<a href="@Url.Action("IndexReport", "Movements", new { fecha = fecha, houseID = houseID })">
+    <i class="fa fa-reply hidden-print"></i> Back monthly statements list
+</a>
+
 <div id="empresa_info" class="row visible-print">
         <div class="col-md-6 pull-right">
             <img id="logo" class="col-md-6" src="~/Imagenes/sunvalley_logo.png" alt="SUN VALLEY SERVICES" />
@@ -104,10 +116,6 @@
             </tr>
 
         </table>
-
-        <div class="hidden-print">
-            <span class="fa fa-reply hidden-print"></span>
-        </div>
     </div>
 </div>
 

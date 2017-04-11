@@ -12,6 +12,9 @@
 <div class="panel-heading">
     <h2>Monthly Statements</h2>
 </div>
+<a href="@Url.Action("Index","Houses")" >
+    <i class="fa fa-reply hidden-print"></i> Back to houses list
+</a>
 @Html.Partial("../Houses/Partial_HouseDetails", house)
 <div class="panel">
     <div class="panel-body">
