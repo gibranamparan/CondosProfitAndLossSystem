@@ -144,9 +144,6 @@
                             </th>
                         }
                         <th>
-                            @Html.DisplayName("ID")
-                        </th>
-                        <th>
                             @Html.DisplayName("Transaction Date")
                         </th>
 
@@ -196,10 +193,6 @@
                                     @Html.DisplayFor(modelItem => item.RegisterBy)
                                 </td>
                             }
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MovementID)
-                            </td>
                             <td>
                                 @item.TransactionDate.ToShortDateString()
                             </td>
