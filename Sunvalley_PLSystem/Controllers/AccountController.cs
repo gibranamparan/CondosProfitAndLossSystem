@@ -340,8 +340,8 @@ namespace Sunvalley_PLSystem.Controllers
                 usuario.country = user.country;
                 usuario.state = user.state;
                 usuario.mobilePhone = user.mobilePhone;
-                usuario.Email = user.Email;
-                usuario.UserName = user.Email;
+                usuario.Email = user.Email.Trim();
+                usuario.UserName = user.Email.Trim();
                 usuario.Email1 = user.Email1;
                 usuario.Email2 = user.Email2;
                 usuario.postalCode = user.postalCode;
@@ -505,7 +505,7 @@ namespace Sunvalley_PLSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, firstName=model.firstName,lastName=model.lastName,createAt=DateTime.Today,
+                var user = new ApplicationUser { UserName = model.Email.Trim(), Email = model.Email.Trim(), firstName=model.firstName,lastName=model.lastName,createAt=DateTime.Today,
                 company=model.company,adress1=model.adress1,adress2=model.adress2,city=model.city,country=model.country,state=model.state,postalCode=model.postalCode,
                 mobilePhone=model.mobilePhone,
                 homePhone=model.homePhone,businesFax=model.businesFax,businessPhone=model.businessPhone, Email1=model.Email1,Email2=model.Email2,status="Activate"};

@@ -48,18 +48,12 @@ namespace Sunvalley_PLSystem.Models
     }
 
     public class LoginViewModel
-
-
-
-{
-       
-
+    {
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
 
-      
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -70,8 +64,6 @@ namespace Sunvalley_PLSystem.Models
 
     public class RegisterViewModel
     {
-        //Yo lo cree Rangel el joto
-//***************************************************************************
         [Required]
         [Display(Name = "First Name")]
         public string firstName { get; set; }
@@ -128,17 +120,16 @@ namespace Sunvalley_PLSystem.Models
         [Display(Name = "Registered UserID")]
         public string registeredUserID { get; set; }
         //***************************************************************************
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-
-       
         [Display(Name = "Email#1")]
         public string Email1 { get; set; }
 
-        
         [Display(Name = "Email#2")]
         public string Email2 { get; set; }
 
