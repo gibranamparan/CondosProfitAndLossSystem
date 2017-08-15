@@ -17,15 +17,18 @@ namespace Sunvalley_PLSystem.Controllers
 
         // GET: Houses
         [Authorize]
-        public ActionResult Index(bool status=true)
+        public ActionResult Index(string userID, bool status=true)
         {
-            if (User.IsInRole("Administrador"))
+            if (User.IsInRole(ApplicationUser.RoleNames.ADMINISTRADOR))
             {
                 var houses = db.Houses.Where(h => h.status==status);
                 ViewBag.housesStatus = status;
-                return View(houses.ToList());
+                if (String.IsNullOrEmpty(userID))
+                    return View(houses.ToList());
+                else
+                    return RedirectToAction("Details", "Account", new { id = userID });
             }
-            String userID = User.Identity.GetUserId();
+            userID = User.Identity.GetUserId();
             var Casas = from house in db.Houses
                         where house.Id == userID && house.status
                         select house;

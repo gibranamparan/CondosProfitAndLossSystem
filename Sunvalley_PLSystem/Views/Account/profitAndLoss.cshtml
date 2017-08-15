@@ -1,11 +1,20 @@
 ﻿@model IEnumerable<Sunvalley_PLSystem.Models.Movement>
 
 @{
-    ViewBag.Title = "profitAndLoss";
     Layout = "~/Views/Shared/_Layout.cshtml";
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Loss = ViewBag.Loss;
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Profit = ViewBag.Profit;
-    IEnumerable<Sunvalley_PLSystem.Models.Movement> Contribution = ViewBag.Contribution;
+
+    bool onlyContributions = ViewBag.onlyContributions == null ? false : ViewBag.onlyContributions;
+
+    ViewBag.Title = onlyContributions?"Contributions":"Profit and Loss";
+
+    IEnumerable<Sunvalley_PLSystem.Models.Movement> Contributions = ViewBag.Contribution;
+    decimal totalContribution = 0;
+    if(Contributions!=null && Contributions.Count() > 0)
+    {
+        totalContribution = Contributions.Sum(con => con.amount);
+    }
 
     Sunvalley_PLSystem.Models.House H = ViewBag.House;
     String id = ViewBag.Id;
@@ -18,33 +27,49 @@
     String Apellido = ViewBag.Apellido;
 
     Boolean? firstSearch = ViewBag.firstSearch!=null?true:false;
-
-    ;
 }
 
-<h2>Profit And Loss</h2>
+@if (onlyContributions)
+{
+    <h2>Contributions Report</h2>
+}
+else
+{
+    <h2>Profit And Loss</h2>
+}
 
-<a href="@Url.Action("Index","Houses")">
-    <i class="fa fa-reply hidden-print"></i> Back to houses list
-</a>
-<div class="hidden-print">
+@if (User.IsInRole(Sunvalley_PLSystem.Models.ApplicationUser.RoleNames.ADMINISTRADOR))
+{
+    <a href="@Url.Action("Index","Houses", new { userID = H!=null?H.Id:id })" class="hidden-print">
+        <i class="fa fa-reply hidden-print"></i> Back to houses list
+    </a>
+}
+else
+{
+    <a href="@Url.Action("Index","Houses")" class="hidden-print">
+        <i class="fa fa-reply hidden-print"></i> Back to houses list
+    </a>
+}
+<span class="hidden-print">
     @if (!firstSearch.Value)
     {
+        <span>|</span>
         if (idHouse != null && idHouse != 0)
         {
-            <a href="@Url.Action("profitAndLossHouse","Account", new { idHouse = idHouse })">
+            <a href="@Url.Action("profitAndLossHouse","Account", new { idHouse = idHouse, onlyContributions = onlyContributions })">
                 <i class="fa fa-reply hidden-print"></i> Select another period
             </a>
         }
         else if (!String.IsNullOrEmpty(id))
         {
-            <a href="@Url.Action("profitAndLossHouse","Account", new { id = id })">
+            <a href="@Url.Action("profitAndLossTotal","Account", new { id = id , onlyContributions = onlyContributions})">
                 <i class="fa fa-reply hidden-print"></i> Select another period
             </a>
         }
     }
-</div>
+</span>
 
+@*Datos de Encabezado de reporte*@
 <div id="empresa_info" class="row visible-print">
     <div class="col-md-6 pull-right">
         <img id="logo" class="col-md-6" src="~/Imagenes/sunvalley_logo.png" alt="SUN VALLEY SERVICES" />
@@ -76,16 +101,95 @@
 </div>
 
 @if (H != null) { //Si este reporte es por casa
-    //Muestro los detalles la casa sobre la que estoy haciendo el reporte
+    //Muestro los detalles la casa sobre la que se está haciendo el reporte
 @Html.Partial("../Houses/Partial_HouseDetails",H)
 }
 
 @if (Model != null)
 {
-    @*Profit*@
-    <div class="panel panel-warning" style="background-color:white; width:100%">
+    <div class="hidden-print">
+        <strong>From: </strong><span>@(((DateTime)ViewBag.fecha1).ToString("MMM/dd/yyyy"))</span> 
+        <strong>To: </strong><span>@(((DateTime)ViewBag.fecha2).ToString("MMM/dd/yyyy"))</span>
+    </div>
+
+    if (onlyContributions) { 
+    @*Contributions*@
+    <div id="pnlContributions" class="panel panel-warning" style="background-color:white; width:100%">
         <div class="panel-heading">
-            Income
+            <span>Contributions</span>
+        </div>
+        <div class="panel-body">
+            <table id="" class="table table-bordered table-hover table-responsive table-striped">
+                <thead>
+                    <tr>
+                        @if (idHouse == null || idHouse == 0)
+                        {
+                            <th>
+                                @Html.DisplayNameFor(model => model.house.name)
+                            </th>
+                        }
+                        <th>
+                            @Html.DisplayNameFor(model => model.transactionDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.amount)
+                        </th>
+                    </tr>
+                </thead>
+
+                @if (!Profit.Any())
+                {
+                    <tbody class="hidden-print">
+                        <tr><td>No movements were found in this period.</td></tr>
+                    </tbody>
+                }
+                else
+                {
+
+                    <tbody>
+                        @foreach (var item in Contributions)
+                        {
+                            <tr>
+                                @if (idHouse == null || idHouse == 0)
+                                {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.house.name)
+                                    </td>
+                                }
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.transactionDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.amount)
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td style="text-align:right" colspan="@(idHouse == null || idHouse == 0 ? 3:2)">
+                                <strong>Total</strong>
+                            </td>
+                            <td>@totalContribution.ToString("C")</td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+    }else { 
+
+    @*Profit*@
+    <div id="pnlIncome" class="panel panel-warning" style="background-color:white; width:100%">
+        <div class="panel-heading">
+            <span>Income</span>
+            <button class="btn btn-info pull-right hidden-print">
+                <i class="fa fa-print"></i> <span onclick="printPanelIncome()">Print</span>
+            </button>
         </div>
         <div class="panel-body">
             <table id="" class="table table-bordered table-hover table-responsive table-striped">
@@ -113,9 +217,6 @@
                         <th>
                             @Html.DisplayNameFor(model => model.amount)
                         </th>
-                        @*<th>
-                            @Html.DisplayNameFor(model => model.balance)
-                        </th>*@
                     </tr>
                 </thead>
 
@@ -154,11 +255,6 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.amount)
                                 </td>
-                                @*
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.balance)
-                                </td>
-                                    *@
                             </tr>
                         }
                     </tbody>
@@ -168,9 +264,12 @@
     </div>
     
     @*loss*@
-    <div class="panel panel-warning" style="background-color:white">
+    <div id="pnlExpenses" class="panel panel-warning" style="background-color:white">
         <div class="panel-heading">
-            Expenses
+            <span>Expenses</span>
+            <button class="btn btn-info pull-right hidden-print">
+                <i class="fa fa-print"></i> <span onclick="printPanelExpenses()">Print</span>
+            </button>
         </div>
         <div class="panel-body">
             <table id="" class="table table-bordered table-hover table-responsive table-striped">
@@ -240,11 +339,6 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.amount)
                         </td>
-                        @*
-                        <td>
-                            @Html.DisplayFor(modelItem => item.balance)
-                        </td>
-                            *@
                     </tr>
                 }
                 </tbody>
@@ -254,7 +348,7 @@
         </div>
     
     @*Total*@
-    <div class="panel panel-warning" style="background-color:white">
+    <div id="pnlTotals" class="panel panel-warning" style="background-color:white">
         <div class="panel-heading">
             Totals
         </div>
@@ -293,45 +387,77 @@
         </div>
 </div>
     }
-    else {
+}
+else
+{
+    @*Formato de seleccion de fechas del reporte*@
     <div class="panel panel panel-warning">
         <div class="panel-heading hidden-print">
-            Profit and loss Report
+            PLEASE SELECT PERIOD TO CREATE REPORT
         </div>
         <div class="panel-body">
-            <h4 style="text-align:center">PLEASE SELECT PERIOD TO CREATE REPORT</h4>
             <div class="col-md-12">
-                @if (ViewBag.Tipo == "Total")
-                {
-                    using (Html.BeginForm("profitAndLossTotal", "Account", FormMethod.Get,new {@class="form-inline"}))
+                    @Html.Hidden("onlyContributions", onlyContributions)
+                    @if (ViewBag.Tipo == "Total")
                     {
-                        @Html.Label("Start:")
-                        <input type="date" name="fecha1" class="hidden-print form-control">
-                        @Html.Label("End:")
-                        <input type="date" name="fecha2" class="hidden-print form-control">
-                        @Html.Hidden("id", id)
-                        <input type="submit" value="Show" class="hidden-print btn btn-default" />
+                        using (Html.BeginForm("profitAndLossTotal", "Account", FormMethod.Get,new {@class="form-inline"}))
+                        {
+                            @Html.Hidden("onlyContributions", onlyContributions)
+                            @Html.Label("Start:")
+                            <input type="date" name="fecha1" class="hidden-print form-control">
+                            @Html.Label("End:")
+                            <input type="date" name="fecha2" class="hidden-print form-control">
+                            @Html.Hidden("id", id)
+                            <input type="submit" value="Show" class="hidden-print btn btn-default" />
+                        }
                     }
-                }
-                else
-                {
-                    using (Html.BeginForm("profitAndLossHouse", "Account", FormMethod.Get, new { @class = "form-inline" }))
+                    else
                     {
-                        @Html.Label("Start:")
-                        <input type="date" name="fecha1" class="hidden-print form-control">
-                        @Html.Label("End:")
-                        <input type="date" name="fecha2" class="hidden-print form-control">
-                        @Html.Hidden("idHouse", idHouse)
-                        <input type="submit" value="Show" class="hidden-print btn btn-default" />
+                        using (Html.BeginForm("profitAndLossHouse", "Account", FormMethod.Get, new { @class = "form-inline" }))
+                        {
+                            @Html.Hidden("onlyContributions", onlyContributions)
+                                @Html.Label("Start:")
+                                <input type="date" name="fecha1" class="hidden-print form-control">
+                                @Html.Label("End:")
+                                <input type="date" name="fecha2" class="hidden-print form-control">
+                                @Html.Hidden("idHouse", idHouse)
+                                <input type="submit" value="Show" class="hidden-print btn btn-default" />
+                        }
                     }
-                }
             </div>
         </div>
     </div>
     }
 
-@if ((Profit.Count() + Loss.Count() + Contribution.Count()) > 0) { 
+@if ((Profit.Count() + Loss.Count()) > 0) { 
     <input type="button" class="dt-button-print hidden-print btn btn-primary"
            onclick="window.print()"
            value="Print Report" />
+}
+
+@section Scripts{
+<script>
+    @*Funciones para imprimir cada uno de los paneles de forma independiente*@
+    function printPanelIncome() {
+        var otherPanelID = "pnlExpenses";
+        var pnlToPrint = "pnlIncome";
+        printAllBut(otherPanelID, pnlToPrint);
+        return 0;
+    }
+    function printPanelExpenses() {
+        var otherPanelID = "pnlIncome";
+        var pnlToPrint = "pnlExpenses";
+        printAllBut(otherPanelID, pnlToPrint);
+        return 0;
+    }
+    function printAllBut(otherPanelID, pnlToPrint) {
+        $("#" + otherPanelID).addClass("hidden-print");
+        $("#" + pnlToPrint).removeClass("hidden-print");
+
+        $("#pnlTotals").addClass("hidden-print");
+        window.print();
+        $("#pnlTotals").removeClass("hidden-print");
+    }
+</script>    
+
 }

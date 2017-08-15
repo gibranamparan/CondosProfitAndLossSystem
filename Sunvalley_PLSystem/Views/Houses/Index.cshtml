@@ -86,20 +86,27 @@
                                 if (User.IsInRole("Administrador"))
                                 {
                                     <td class="hidden-print">
-
-                                        <span class="fa fa-pencil-square-o"></span> @Html.ActionLink("Edit", "Edit", new { id = item.houseID }, null) |
-                                        <span class="fa fa-reorder"></span> @Html.ActionLink("Movements", "Details", new { id = item.houseID }, null) |
-                                        <span class="fa fa-bar-chart"></span> @Html.ActionLink("Profit and Loss Report", "profitAndLossHouse", "Account", new { idHouse = item.houseID }, null)
+                                        <a href="@Url.Action("Edit", "Houses", new { id = item.houseID })">
+                                            <span class="fa fa-pencil-square-o"></span><span>Edit</span>
+                                        </a><br />
+                                        <a href="@Url.Action("Details", "Houses", new { id = item.houseID })">
+                                            <span class="fa fa-reorder"></span><span>Movements</span>
+                                        </a><br />
+                                        <a href="@Url.Action("profitAndLossHouse", "Account", new { idHouse = item.houseID })">
+                                            <span class="fa fa-bar-chart"></span><span>Profit and Loss Report</span>
+                                        </a>
                                     </td>
 
                                 }
                                 if (User.IsInRole("Cliente"))
                                 {
                                     <td class="hidden-print">
-                                        @*<span class="fa fa-reorder hidden-print"></span>@Html.ActionLink("Movements", "Details", new { id = item.houseID }, null)*@
-                                        <span class="fa fa-reorder hidden-print"></span> @Html.ActionLink("Monthly Statements", "IndexReport", "Movements", new { houseID = item.houseID }, null)<br />
-                                        <span class="fa fa-bar-chart"></span> @Html.ActionLink("Profit and Loss Report", "profitAndLossHouse", "Account", new { idHouse = item.houseID }, null)
-
+                                        <a href="@Url.Action("IndexReport", "Movements", new { houseID = item.houseID })">
+                                            <span class="fa fa-reorder hidden-print"></span><span>Monthly Statements</span>
+                                        </a><br />
+                                        <a href="@Url.Action("profitAndLossHouse", "Account", new { idHouse = item.houseID })">
+                                            <span class="fa fa-bar-chart"></span><span>Profit and Loss Report</span>
+                                        </a>
                                     </td>
 
                                 }

@@ -57,7 +57,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Users
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = ApplicationUser.RoleNames.ADMINISTRADOR)]
         public ActionResult Index(String status)
         {
             var allUsers = UserManager.Users.ToList();//Get all users
@@ -100,7 +100,7 @@ namespace Sunvalley_PLSystem.Controllers
             return View(Users);
         }
 
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = ApplicationUser.RoleNames.ADMINISTRADOR)]
         public ActionResult activateOrDiseable(String id)
         {
             //ApplicationUser user = new ApplicationUser();
@@ -131,7 +131,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Houses/Delete/5
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = ApplicationUser.RoleNames.ADMINISTRADOR)]
         public ActionResult Delete(String id)
         {
             if (id == null)
@@ -149,7 +149,7 @@ namespace Sunvalley_PLSystem.Controllers
         // POST: Houses/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = ApplicationUser.RoleNames.ADMINISTRADOR)]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(String id)
         {
@@ -158,29 +158,15 @@ namespace Sunvalley_PLSystem.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        // GET: Houses/Edit/5
-        [Authorize]
-        public ActionResult Edit(String id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ApplicationUser user = UserManager.FindById(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
 
         [Authorize]
-        public ActionResult profitAndLossTotal(String id,DateTime? fecha1,DateTime? fecha2)
+        public ActionResult profitAndLossTotal(String id,DateTime? fecha1,DateTime? fecha2, bool onlyContributions = false)
         {
             String mensaje = db.GeneralInformations.Find(1).InformacionGen;
             var owner = db.Users.Find(id);
             ViewBag.NombreCompleto = owner.firstName + " " + owner.lastName;
             ViewBag.mensaje = mensaje;
+            ViewBag.onlyContributions = onlyContributions;
             if (fecha1 == null && fecha2 == null)
             {
                 List<Movement> m = new List<Movement>();
@@ -223,7 +209,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         [Authorize]
-        public ActionResult profitAndLossHouse(int idHouse,DateTime? fecha1,DateTime? fecha2)
+        public ActionResult profitAndLossHouse(int idHouse,DateTime? fecha1,DateTime? fecha2, bool onlyContributions = false)
         {
            
             String mensaje = db.GeneralInformations.Find(1).InformacionGen;
@@ -234,7 +220,8 @@ namespace Sunvalley_PLSystem.Controllers
             ViewBag.CCSP = CCSP;
             ViewBag.NombreCompleto = NombreCompleto;
             ViewBag.mensaje = mensaje;
-            
+            ViewBag.onlyContributions = onlyContributions;
+
             var House = db.Houses.Find(idHouse);
 
             if (fecha2 != null)
@@ -317,18 +304,15 @@ namespace Sunvalley_PLSystem.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = ApplicationUser.RoleNames.ADMINISTRADOR)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(ApplicationUser user, String NewPassword)
+        public async Task<ActionResult> Edit(ApplicationUser user, String NewPassword, String ConfirmPassword)
         {
-
-
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && NewPassword == ConfirmPassword)
             {
                 ApplicationDbContext context = new ApplicationDbContext();
                 UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(context);
-
-                //var usuario = db.Users.Find(user.Id);
+                
                 var usuario = store.FindByIdAsync(user.Id).Result;
                 usuario.firstName = user.firstName;
                 usuario.lastName = user.lastName;
@@ -342,31 +326,47 @@ namespace Sunvalley_PLSystem.Controllers
                 usuario.mobilePhone = user.mobilePhone;
                 usuario.Email = user.Email.Trim();
                 usuario.UserName = user.Email.Trim();
-                usuario.Email1 = user.Email1;
-                usuario.Email2 = user.Email2;
+                usuario.otrosEmail = user.otrosEmail;
                 usuario.postalCode = user.postalCode;
                 usuario.businesFax = user.businesFax;
 
-                //db.Entry(usuario).State = EntityState.Modified;
-
                 //Si es administrador y se introdujo nuevo password
-
-
                 if (User.IsInRole ("Administrador")&& !String.IsNullOrEmpty(NewPassword))
                 {
                     UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(store);
                     //String userId = User.Identity.GetUserId();//"<YourLogicAssignsRequestedUserId>";
                     String hashedNewPassword = UserManager.PasswordHasher.HashPassword(NewPassword);
                     await store.SetPasswordHashAsync(usuario, hashedNewPassword);
-
                 }
 
                 await store.UpdateAsync(usuario);
                 int updatedRegs = db.SaveChanges();
                 return RedirectToAction("Index");
+            }else if (NewPassword != ConfirmPassword)
+            {
+                ModelState.AddModelError("", "Password was not confirmed correctly.");
+            }
+            ViewBag.roleName = UserManager.GetRoles(user.Id).FirstOrDefault();
+            return View(user);
+        }
+
+        // GET: Houses/Edit/5
+        [Authorize(Roles = ApplicationUser.RoleNames.ADMINISTRADOR)]
+        public ActionResult Edit(String id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser user = UserManager.FindById(id);
+            ViewBag.roleName = UserManager.GetRoles(user.Id).FirstOrDefault();
+            if (user == null)
+            {
+                return HttpNotFound();
             }
             return View(user);
         }
+
         // GET: Houses/Details/5
         [Authorize]
         public ActionResult Details(String id)
@@ -485,7 +485,7 @@ namespace Sunvalley_PLSystem.Controllers
 
         //
         // GET: /Account/Register
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = ApplicationUser.RoleNames.ADMINISTRADOR)]
         public ActionResult Register()
         {
 
@@ -499,22 +499,17 @@ namespace Sunvalley_PLSystem.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = ApplicationUser.RoleNames.ADMINISTRADOR)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model,string UserRoles)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email.Trim(), Email = model.Email.Trim(), firstName=model.firstName,lastName=model.lastName,createAt=DateTime.Today,
-                company=model.company,adress1=model.adress1,adress2=model.adress2,city=model.city,country=model.country,state=model.state,postalCode=model.postalCode,
-                mobilePhone=model.mobilePhone,
-                homePhone=model.homePhone,businesFax=model.businesFax,businessPhone=model.businessPhone, Email1=model.Email1,Email2=model.Email2,status="Activate"};
+                var user = new ApplicationUser(model);
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
-
-  
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -524,14 +519,9 @@ namespace Sunvalley_PLSystem.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     ////// aqui se utiliza el rol que recive  USER ROLES en el constructor y se hace una condicion que si es uno es admin.
                     if (UserRoles == "1")
-                    {
                         UserManager.AddToRole(user.Id, "Administrador");
-                    }
-                    else {
+                    else
                         UserManager.AddToRole(user.Id, "Cliente");
-                    }
-
-
 
                     //string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account",

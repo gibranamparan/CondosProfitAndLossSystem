@@ -81,10 +81,10 @@ namespace Sunvalley_PLSystem.Models
         [Display(Name = "Company")]
         public string company { get; set; }
 
-        [Display(Name = "Adress1")]
+        [Display(Name = "Address1")]
         public string adress1 { get; set; }
 
-        [Display(Name = "Adress2")]
+        [Display(Name = "Address2")]
         public string adress2 { get; set; }
 
         [Display(Name = "City")]
@@ -123,15 +123,12 @@ namespace Sunvalley_PLSystem.Models
 
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Email for Login")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Display(Name = "Email#1")]
-        public string Email1 { get; set; }
-
-        [Display(Name = "Email#2")]
-        public string Email2 { get; set; }
+        [Display(Name = "Other Emails")]
+        public string otrosEmails { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -141,7 +138,7 @@ namespace Sunvalley_PLSystem.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
 

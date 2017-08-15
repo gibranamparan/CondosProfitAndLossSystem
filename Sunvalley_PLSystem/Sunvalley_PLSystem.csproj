@@ -236,6 +236,14 @@
     <Compile Include="Migrations\201607012116222_deleted_field_ordenReportedMovement.Designer.cs">
       <DependentUpon>201607012116222_deleted_field_ordenReportedMovement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708122229500_fixEmails1.cs" />
+    <Compile Include="Migrations\201708122229500_fixEmails1.Designer.cs">
+      <DependentUpon>201708122229500_fixEmails1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708130342523_fixEmails2.cs" />
+    <Compile Include="Migrations\201708130342523_fixEmails2.Designer.cs">
+      <DependentUpon>201708130342523_fixEmails2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountStatusReport.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -315,9 +323,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Estilos.css" />
+    <Content Include="Content\icomoon.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\icomoon.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Imagenes\Sun-Valley-Banner.jpg" />
@@ -334,6 +344,9 @@
     <Content Include="app\img\landing\clients\client-logos.psd" />
     <Content Include="app\img\landing\header-background.psd" />
     <Content Include="app\img\landing\mobile-app.psd" />
+    <Content Include="fonts\icomoon.eot" />
+    <Content Include="fonts\icomoon.ttf" />
+    <Content Include="fonts\icomoon.woff" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\Sun.pubxml" />
     <None Include="Properties\PublishProfiles\suns.pubxml" />
@@ -899,6 +912,15 @@
     <EmbeddedResource Include="Migrations\201607012116222_deleted_field_ordenReportedMovement.resx">
       <DependentUpon>201607012116222_deleted_field_ordenReportedMovement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708122229500_fixEmails1.resx">
+      <DependentUpon>201708122229500_fixEmails1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708130342523_fixEmails2.resx">
+      <DependentUpon>201708130342523_fixEmails2.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

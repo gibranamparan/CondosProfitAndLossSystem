@@ -12,6 +12,29 @@ namespace Sunvalley_PLSystem.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser() { }
+        public ApplicationUser(RegisterViewModel model)
+        {
+            this.UserName = model.Email.Trim();
+            this.Email = model.Email.Trim();
+            this.firstName = model.firstName;
+            this.lastName = model.lastName;
+            this.createAt = DateTime.Today;
+            this.company = model.company;
+            this.adress1 = model.adress1;
+            this.adress2 = model.adress2;
+            this.city = model.city;
+            this.country = model.country;
+            this.state = model.state;
+            this.postalCode = model.postalCode;
+            this.mobilePhone = model.mobilePhone;
+            this.homePhone = model.homePhone;
+            this.businesFax = model.businesFax;
+            this.businessPhone = model.businessPhone;
+            this.otrosEmail = model.otrosEmails;
+            this.status = "Activate";
+        }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -20,7 +43,7 @@ namespace Sunvalley_PLSystem.Models
             return userIdentity;
         }
 
-        [Display(Name="Owner Name")]
+        [Display(Name="First Name")]
         public string firstName { get; set; }
         [Display(Name = "Last Name")]
         public string lastName { get; set; }
@@ -62,11 +85,8 @@ namespace Sunvalley_PLSystem.Models
         [Display(Name = "MobilePhone")]
         public string mobilePhone { get; set; }
 
-        [Display(Name = "E-mail")]
-        public string Email1 { get; set; }
-
-        [Display(Name = "E-mail2")]
-        public string Email2 { get; set; }
+        [Display(Name = "Other Emails")]
+        public string otrosEmail { get; set; }
 
         [Display(Name = "Status")]
         public string status { get; set; }
@@ -74,7 +94,11 @@ namespace Sunvalley_PLSystem.Models
         public virtual ICollection<Movement> movimientos { get; set; }
         public virtual ICollection<House> Houses { get; set; }
 
-
+        public static class RoleNames
+        {
+            public const string ADMINISTRADOR = "Administrador";
+            public const string CLIENTE = "Cliente";
+        }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

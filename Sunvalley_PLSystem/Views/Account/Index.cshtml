@@ -71,11 +71,18 @@
                         <td class="function-cell hidden-print">
                             @if (item.status == "Activate")
                             {
-                                <span class="fa fa-pencil-square-o"></span>@Html.ActionLink("Edit", "Edit", new { id = item.registeredUserID })
-                                <span class="fa fa-reorder"></span>@Html.ActionLink("Houses", "Details", new { id = item.registeredUserID })
-                                <span class="fa fa-trash"></span>@Html.ActionLink("Delete", "Delete", new { id = item.registeredUserID })
-                                <span class="fa fa-file-text"></span>@Html.ActionLink("Report", "profitAndLossTotal", new { id = item.registeredUserID })
-                                <span class="fa fa-ban"></span>@Html.ActionLink("Disable", "activateOrDiseable", new { id = item.registeredUserID })
+                                <a href="@Url.Action("Edit", new { id = item.registeredUserID })">
+                                    <span class="fa fa-pencil-square-o"></span><span>Edit</span>
+                                </a><span>|</span>
+                                <a href="@Url.Action("Details", "Account", new { id = item.registeredUserID })">
+                                    <span class="fa fa-reorder"></span><span>Houses</span>
+                                </a><span>|</span>
+                                <a href="@Url.Action("profitAndLossTotal", new { id = item.registeredUserID })">
+                                    <span class="fa fa-file-text"></span><span>Report</span>
+                                </a><span>|</span>
+                                <a href="@Url.Action("profitAndLossTotal", new { id = item.registeredUserID, onlyContributions= true })">
+                                    <span class="fa fa-file-text"></span><span>Contributions Report</span>
+                                </a>
                             }
                             else
                             {

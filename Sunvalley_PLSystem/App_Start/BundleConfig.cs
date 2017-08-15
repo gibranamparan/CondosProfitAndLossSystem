@@ -46,6 +46,9 @@ namespace Sunvalley_PLSystem
                       "~/vendor/animo/animate_animo.css",
                       "~/vendor/csspinner/csspinner.min.css"));
 
+            bundles.Add(new StyleBundle("~/Content/icons").Include(
+                      "~/Content/icomoon.css"));
+
             /*Scripts*/
             bundles.Add(new ScriptBundle("~/appScript").Include(
                       "~/app/js/app.js", "~/app/js/pages.js"));
