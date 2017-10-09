@@ -13,6 +13,14 @@ using System.Collections.Generic;
 using System.Net;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data;
+using Sunvalley_PLSystem.GeneralTools;
+using OfficeOpenXml;
+using ProfitAndLossTotalConcepts = Sunvalley_PLSystem.Models.ApplicationUser.ProfitAndLossReport.ProfitAndLossTotals.TotalConcepts;
+using static Sunvalley_PLSystem.Models.ApplicationUser.ProfitAndLossReport;
+using static Sunvalley_PLSystem.GeneralTools.ExcelTools;
+using OfficeOpenXml.Style;
+using static Sunvalley_PLSystem.Models.House;
 
 namespace Sunvalley_PLSystem.Controllers
 {
@@ -175,43 +183,128 @@ namespace Sunvalley_PLSystem.Controllers
                 ViewBag.Contribution = m;
                 ViewBag.Tipo = "Total";
                 ViewBag.firstSearch = true;
+                ViewBag.Id = id;
                 return View("profitAndLoss");
             }
             else {
                 ViewBag.fecha1 = fecha1;
                 ViewBag.fecha2 = fecha2;
+                
                 var listHouses = db.Houses.Where(h => h.Id == id);
                 List<Movement> listMovement = new List<Movement>();
-                foreach (var h in listHouses.ToList())
-                {
-                    listMovement.AddRange(h.movimientos);
-                }
-                ViewBag.Loss = listMovement.Where(m => m.typeOfMovement == Movement.TypeOfMovements.EXPENSE &&
-                    m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
-                ViewBag.Profit = listMovement.Where(m => (m.typeOfMovement == Movement.TypeOfMovements.INCOME || m.typeOfMovement == Movement.TypeOfMovements.TAX)
-                    && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
-                ViewBag.Contribution = listMovement.Where(m => m.typeOfMovement == Movement.TypeOfMovements.CONTRIBUTION && 
-                    m.transactionDate >= fecha1 && m.transactionDate <= fecha2);
+                var profitAndLossReport = owner.generateProfitAndLossReport(fecha1.Value, fecha2.Value);
+                ViewBag.Loss = profitAndLossReport.lossReport;
+                ViewBag.Profit = profitAndLossReport.profitReport;
+                ViewBag.Contribution = profitAndLossReport.contributionReport;
+                ViewBag.TotalLoss = profitAndLossReport.totals.FirstOrDefault(r => r.concept == ProfitAndLossTotalConcepts.TotalLoss).total;
+                ViewBag.TotalProfit = profitAndLossReport.totals.FirstOrDefault(r => r.concept == ProfitAndLossTotalConcepts.TotalProfit).total;
+                ViewBag.TotalContribution = profitAndLossReport.totals.FirstOrDefault(r => r.concept == ProfitAndLossTotalConcepts.TotalContribution).total;
+                ViewBag.Total = profitAndLossReport.totals.FirstOrDefault(r => r.concept == ProfitAndLossTotalConcepts.Total).total;
 
-                ViewBag.TotalLoss = listMovement.Where(m => m.typeOfMovement == Movement.TypeOfMovements.EXPENSE &&
-                    m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
-                ViewBag.TotalProfit = listMovement.Where(m => (m.typeOfMovement == Movement.TypeOfMovements.INCOME || m.typeOfMovement == Movement.TypeOfMovements.TAX)
-                    && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
-                ViewBag.TotalContribution = listMovement.Where(m => m.typeOfMovement == Movement.TypeOfMovements.CONTRIBUTION
-                    && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
-
-                ViewBag.Total = listMovement.Where(m => m.typeOfMovement ==  Movement.TypeOfMovements.INCOME && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).
-                    Sum(m => m.amount) - listMovement.Where(m => m.typeOfMovement == Movement.TypeOfMovements.EXPENSE && m.transactionDate >= fecha1 && m.transactionDate <= fecha2).Sum(m => m.amount);
                 ViewBag.Id = id;
                 return View("profitAndLoss", listMovement.ToList());
             }
+        }
 
+
+        [Authorize]
+        public FileResult ProfitAndLossToExcel(String id, DateTime? fecha1, DateTime? fecha2, bool onlyContributions = false, int houseID = 0)
+        {
+            House house  = null;
+            ApplicationUser owner;
+            //Re-Create the report
+            if (houseID == 0) //If house is not specified, just 
+                owner = db.Users.Find(id);
+            else //If house is specified, the owner is find from it
+            {
+                house = db.Houses.Find(houseID);
+                owner = house.ApplicationUser;
+            }
+            ApplicationUser.ProfitAndLossReport profitAndLossReport = owner.generateProfitAndLossReport(fecha1.Value, fecha2.Value, houseID);
+
+            //Pre-processed to be exported
+            List<VMProfitAndLossRow> vmProfitList = VMProfitAndLossRow.listToVMMovements(profitAndLossReport.profitReport.ToList());
+            DataTable dtProfit = ExcelTools.listToDatatable<VMProfitAndLossRow>(vmProfitList);
+
+            List<VMProfitAndLossRow> vmLossList = VMProfitAndLossRow.listToVMMovements(profitAndLossReport.lossReport.ToList());
+            DataTable dtLoss = ExcelTools.listToDatatable<VMProfitAndLossRow>(vmLossList);
+
+            List<VMProfitAndLossRow> vmContribs = VMProfitAndLossRow.listToVMMovements(profitAndLossReport.contributionReport.ToList());
+            DataTable dtContribs = ExcelTools.listToDatatable<VMProfitAndLossRow>(vmContribs);
+
+            List<TableToExportExcel> datatables = new List<TableToExportExcel>();
+
+            if (house != null) //If house was specified, house data is added to the Excel File
+            {
+                //Getting house data to exportr
+                VMHouse vmHouse = house.getVM();
+                var houseList = new List<VMHouse>();
+                houseList.Add(vmHouse);
+                DataTable dtHOuse = ExcelTools.listToDatatable<VMHouse>(houseList);
+                datatables.Add(new TableToExportExcel(dtHOuse, "House"));
+            }
+
+            if (onlyContributions)
+                datatables.Add(new TableToExportExcel(dtContribs, "Contributions"));
+            else { 
+                datatables.Add(new TableToExportExcel(dtProfit,"Income"));
+                datatables.Add(new TableToExportExcel(dtLoss, "Loss"));
+            }
+
+            //Exported
+            ExcelPackage package = ExcelTools.exportToExcel(datatables, onlyContributions? "Contributions" : "Profit and Loss");
+            var reportTotals = profitAndLossReport.totals;
+            ExcelWorksheet worksheet = package.Workbook.Worksheets.ElementAt(0);
+            int startRow = worksheet.Dimension.End.Row+2;
+
+            worksheet.Cells["A" + (startRow)].Value = "Totals";
+            worksheet.Cells["A" + (startRow)].Style.Font.Size = 20;
+            startRow++;
+            int counter = startRow;
+            foreach (var item in reportTotals)
+            {
+                if (onlyContributions && item.concept == ProfitAndLossTotalConcepts.TotalContribution
+                    || !onlyContributions && (item.concept != ProfitAndLossTotalConcepts.TotalContribution)) { 
+                    worksheet.Cells["A" + counter].Value = item.conceptName;
+                    worksheet.Cells["B" + counter].Value = item.total;
+                    counter++;
+                }
+            }
+            // format cells - add borders  
+            using (ExcelRange r = worksheet.Cells[startRow, 1, counter-1, 2])
+            {
+                r.Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                r.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                r.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                r.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+
+                r.Style.Border.Top.Color.SetColor(System.Drawing.Color.Black);
+                r.Style.Border.Bottom.Color.SetColor(System.Drawing.Color.Black);
+                r.Style.Border.Left.Color.SetColor(System.Drawing.Color.Black);
+                r.Style.Border.Right.Color.SetColor(System.Drawing.Color.Black);
+            }
+            worksheet.InsertRow(1, 2);
+            worksheet.Cells["A1"].Value = "From";
+            worksheet.Cells["B1"].Value = fecha1.Value.ToString("dd/MMM/yyyy");
+            worksheet.Cells["C1"].Value = "To";
+            worksheet.Cells["D1"].Value = fecha2.Value.ToString("dd/MMM/yyyy");
+            worksheet.Cells["A1"].Style.Font.Bold = true;
+            worksheet.Cells["C1"].Style.Font.Bold = true;
+
+            if(house == null) //House not specified, owner name is added in the header of the file
+            {
+                worksheet.Cells["E1"].Value = "Owner";
+                worksheet.Cells["E1"].Style.Font.Bold = true;
+                worksheet.Cells["F1"].Value = owner.OwnerName;
+            }
+
+            byte[] bytesFile = package.GetAsByteArray();
+            return File(bytesFile, ExcelTools.EXCEL_MIME_TYPE,profitAndLossReport.ToString(onlyContributions)+ExcelTools.EXCEL_FORMAT);
         }
 
         [Authorize]
         public ActionResult profitAndLossHouse(int idHouse,DateTime? fecha1,DateTime? fecha2, bool onlyContributions = false)
         {
-           
             String mensaje = db.GeneralInformations.Find(1).InformacionGen;
             String NombreCompleto = db.Houses.Find(idHouse).ApplicationUser.firstName + " " + db.Houses.Find(idHouse).ApplicationUser.lastName;
             String HAD = db.Houses.Find(idHouse).name + ", " + db.Houses.Find(idHouse).area + ", " + db.Houses.Find(idHouse).adress;
@@ -229,7 +322,7 @@ namespace Sunvalley_PLSystem.Controllers
                 fecha2 = fecha2.Value.AddHours(23).AddMinutes(59).AddSeconds(59);
             }
 
-            if (User.IsInRole("Administrador"))
+            if (User.IsInRole(ApplicationUser.RoleNames.ADMINISTRADOR))
             {
                 ViewBag.Loss = House.movimientos.Where(m => m.typeOfMovement == Movement.TypeOfMovements.EXPENSE 
                     && m.transactionDate >= fecha1 && m.transactionDate <= fecha2);

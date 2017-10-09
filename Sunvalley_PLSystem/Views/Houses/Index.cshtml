@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Sunvalley_PLSystem.Models.House>
+﻿@using Sunvalley_PLSystem.Models
+@model IEnumerable<Sunvalley_PLSystem.Models.House>
 
 @{
     ViewBag.Title = "Index";
@@ -81,36 +82,33 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.postalCode)
                             </td>
-                            @if (Request.IsAuthenticated)
-                            {
-                                if (User.IsInRole("Administrador"))
-                                {
-                                    <td class="hidden-print">
+                            <td class="hidden-print">
+                                    @if (User.IsInRole(ApplicationUser.RoleNames.ADMINISTRADOR))
+                                    {
                                         <a href="@Url.Action("Edit", "Houses", new { id = item.houseID })">
                                             <span class="fa fa-pencil-square-o"></span><span>Edit</span>
                                         </a><br />
                                         <a href="@Url.Action("Details", "Houses", new { id = item.houseID })">
                                             <span class="fa fa-reorder"></span><span>Movements</span>
                                         </a><br />
-                                        <a href="@Url.Action("profitAndLossHouse", "Account", new { idHouse = item.houseID })">
-                                            <span class="fa fa-bar-chart"></span><span>Profit and Loss Report</span>
-                                        </a>
-                                    </td>
-
-                                }
-                                if (User.IsInRole("Cliente"))
-                                {
-                                    <td class="hidden-print">
+                                    }
+                                    @if(User.IsInRole(ApplicationUser.RoleNames.CLIENTE))
+                                    {
                                         <a href="@Url.Action("IndexReport", "Movements", new { houseID = item.houseID })">
                                             <span class="fa fa-reorder hidden-print"></span><span>Monthly Statements</span>
                                         </a><br />
+                                    }
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
                                         <a href="@Url.Action("profitAndLossHouse", "Account", new { idHouse = item.houseID })">
                                             <span class="fa fa-bar-chart"></span><span>Profit and Loss Report</span>
+                                        </a><br />
+                                        <a href="@Url.Action("profitAndLossHouse", "Account", new { idHouse = item.houseID,
+                                                                                   onlyContributions=true })">
+                                            <span class="fa fa-bar-chart"></span><span>Contributions Report</span>
                                         </a>
-                                    </td>
-
-                                }
-                            }
+                                    }
+                            </td>
                         </tr>
                     }
                 </tbody>

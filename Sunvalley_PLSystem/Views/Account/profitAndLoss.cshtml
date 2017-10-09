@@ -4,7 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Loss = ViewBag.Loss;
     IEnumerable<Sunvalley_PLSystem.Models.Movement> Profit = ViewBag.Profit;
-
+    DateTime fecha1 = ViewBag.fecha1==null?DateTime.Now: (DateTime)ViewBag.fecha1;
+    DateTime fecha2 = ViewBag.fecha2 == null ? DateTime.Now : (DateTime)ViewBag.fecha2;
     bool onlyContributions = ViewBag.onlyContributions == null ? false : ViewBag.onlyContributions;
 
     ViewBag.Title = onlyContributions?"Contributions":"Profit and Loss";
@@ -89,12 +90,12 @@ else
             @if (ViewBag.fecha1 != null)
             {
                 <br />
-                @("From: "+((DateTime)ViewBag.fecha1).ToString("MMM/dd/yyyy"))
+                @("From: "+fecha1.ToString("MMM/dd/yyyy"))
             }
             @if (ViewBag.fecha2 != null)
             {
                 <br />
-                @("To: " + ((DateTime)ViewBag.fecha2).ToString("MMM/dd/yyyy"))
+                @("To: " + fecha2.ToString("MMM/dd/yyyy"))
             }
         </div>
     </div>
@@ -108,8 +109,8 @@ else
 @if (Model != null)
 {
     <div class="hidden-print">
-        <strong>From: </strong><span>@(((DateTime)ViewBag.fecha1).ToString("MMM/dd/yyyy"))</span> 
-        <strong>To: </strong><span>@(((DateTime)ViewBag.fecha2).ToString("MMM/dd/yyyy"))</span>
+        <strong>From: </strong><span>@(fecha1.ToString("MMM/dd/yyyy"))</span> 
+        <strong>To: </strong><span>@(fecha2.ToString("MMM/dd/yyyy"))</span>
     </div>
 
     if (onlyContributions) { 
@@ -429,10 +430,15 @@ else
     </div>
     }
 
-@if ((Profit.Count() + Loss.Count()) > 0) { 
-    <input type="button" class="dt-button-print hidden-print btn btn-primary"
-           onclick="window.print()"
-           value="Print Report" />
+@if ((Profit.Count() + Loss.Count()) > 0 || onlyContributions && Contributions.Count() > 0) {
+    <button type="button" class="dt-button-print hidden-print btn btn-primary"
+            onclick="window.print()">
+            <i class="fa fa-print"></i> <span>Print Report</span>
+    </button>
+    <a href='@Url.Action("ProfitAndLossToExcel","Account", new { id = id, fecha1 = fecha1, fecha2 = fecha2 , onlyContributions = onlyContributions, houseID = idHouse})'
+        class="dt-button-print hidden-print btn btn-success">
+        <i class="fa fa-file-excel-o"></i> <span>Export To Excel</span>
+    </a>
 }
 
 @section Scripts{
@@ -457,6 +463,7 @@ else
         $("#pnlTotals").addClass("hidden-print");
         window.print();
         $("#pnlTotals").removeClass("hidden-print");
+        $("#" + otherPanelID).removeClass("hidden-print");
     }
 </script>    
 

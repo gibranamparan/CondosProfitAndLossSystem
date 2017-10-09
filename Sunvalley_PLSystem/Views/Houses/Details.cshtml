@@ -43,7 +43,7 @@
 <div class="panel-group">
     <div class="panel panel-warning">
         <div id="PanelHeading" class="panel-heading hidden-print">
-            Movements of house
+            Movements of House
         </div>
         <div class="panel-body">
             @if (User.IsInRole("Administrador"))
@@ -218,7 +218,15 @@
     </div>
 </div>
 <div class="hidden-print">
-    <input type="button" class="hidden-print  btn btn-primary"
-            onclick="window.print()"
-            value="Print Monthly Statement" />
+    <button type="button" class="btn btn-primary"
+            onClick="window.print()">
+        <i class="fa fa-print"></i> <span>Print Monthly Statement</span>
+    </button>
+    @if (m.Count() > 0) { 
+        <a href="@Url.Action("HouseMovementsToExcel",new { houseID = Model.houseID, fecha = fechaConArgumentos })" 
+            type="button" class="btn btn-success">
+            <i class="fa fa-file-excel-o"></i> <span>Export To Excel</span>
+        </a>
+    }
+
 </div>

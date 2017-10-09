@@ -8,6 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using Sunvalley_PLSystem.Models;
 using Microsoft.AspNet.Identity;
+using Sunvalley_PLSystem.GeneralTools;
+using static Sunvalley_PLSystem.Models.ReportedMovements;
+using OfficeOpenXml;
+using static Sunvalley_PLSystem.GeneralTools.ExcelTools;
+using static Sunvalley_PLSystem.Models.House;
 
 namespace Sunvalley_PLSystem.Controllers
 {
@@ -17,7 +22,7 @@ namespace Sunvalley_PLSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Movements
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = ApplicationUser.RoleNames.ADMINISTRADOR)]
         public ActionResult Index()
         {
 
@@ -48,7 +53,7 @@ namespace Sunvalley_PLSystem.Controllers
             }
 
             var Reports = db.AccountStatusReport.Where(a=> a.dateMonth.Year == fechaArgumentos.Year && a.houseID == houseID);
-            if (!User.IsInRole("Administrador"))
+            if (!User.IsInRole(ApplicationUser.RoleNames.ADMINISTRADOR))
             {
                 Reports = Reports.Where(a => a.UserID == ID);
             }
@@ -82,7 +87,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         // GET: Movements/Create
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = ApplicationUser.RoleNames.ADMINISTRADOR)]
         public ActionResult Create(DateTime fechaConArgumentos, int id=0)
         {
             var house = db.Houses.Find(id);
@@ -199,7 +204,7 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = ApplicationUser.RoleNames.ADMINISTRADOR)]
         public ActionResult Index(DateTime fecha, int houseID, String Accion)
         {
             if (houseID == null)
@@ -269,7 +274,7 @@ namespace Sunvalley_PLSystem.Controllers
 
         [Authorize]
         [HttpPost]
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = ApplicationUser.RoleNames.ADMINISTRADOR)]
         public ActionResult generarReporte(int houseID, DateTime fecha)
         {
             if (houseID == null)
@@ -327,7 +332,7 @@ namespace Sunvalley_PLSystem.Controllers
         
         [Authorize]
         [HttpPost]
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = ApplicationUser.RoleNames.ADMINISTRADOR)]
         public ActionResult eliminarReporte(int houseID, DateTime fecha)
         {
 
@@ -357,7 +362,8 @@ namespace Sunvalley_PLSystem.Controllers
         }
 
         [Authorize]
-        public ActionResult ReportedMovements(int accountStatusReportID) {
+        public ActionResult ReportedMovements(int accountStatusReportID)
+        {
 
 
             String mensaje = db.GeneralInformations.Find(1).InformacionGen;
@@ -372,7 +378,36 @@ namespace Sunvalley_PLSystem.Controllers
             ViewBag.Apellido = Apellido;
             var Reporte = db.AccountStatusReport.Find(accountStatusReportID);
 
-            return View (Reporte);
+            return View(Reporte);
+        }
+
+        [Authorize]
+        public FileResult ReportedMovementsToExcel(int accountStatusReportID)
+        {
+            AccountStatusReport Reporte = db.AccountStatusReport.Find(accountStatusReportID);
+            List<TableToExportExcel> datatables = new List<TableToExportExcel>();
+
+            //Getting house data to exportr
+            VMHouse vmHouse = Reporte.house.getVM();
+            var houseList = new List<VMHouse>();
+            houseList.Add(vmHouse);
+            DataTable dtHOuse = ExcelTools.listToDatatable<VMHouse>(houseList);
+
+            //Exporting movements data
+            List<VMReportedMovementes> vmReporte = VMReportedMovementes.listToVMReportedMovements(Reporte.ReportedMovements.ToList());
+            DataTable dtReporte = ExcelTools.listToDatatable<VMReportedMovementes>(vmReporte);
+
+            //Generating excel
+            string heading = "Monthly Statement " + Reporte.dateMonth.ToString("MMMM-yyyy");
+            datatables.Add(new TableToExportExcel(dtHOuse,"House"));
+            datatables.Add(new TableToExportExcel(dtReporte, heading));
+            ExcelPackage package = ExcelTools.exportToExcel(datatables, heading);
+            byte[] bytesFile = package.GetAsByteArray();
+
+            //Preparing download file
+            string usrName = Reporte.house.ApplicationUser.UserName;
+            usrName = usrName.Substring(0, usrName.IndexOf('@'));
+            return File(bytesFile, ExcelTools.EXCEL_MIME_TYPE,String.Format("{0}_{1}_{2}{3}",heading,usrName,Reporte.house.name,ExcelTools.EXCEL_FORMAT));
         }
 
         private DateTime today = DateTime.Today;

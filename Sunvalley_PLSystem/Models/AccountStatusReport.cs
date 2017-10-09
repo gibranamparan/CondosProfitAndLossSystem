@@ -16,15 +16,12 @@ namespace Sunvalley_PLSystem.Models
 
         public int houseID { get; set; }
         public virtual House house { get; set; }
-
+        
         public virtual String UserID { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
 
         public virtual ICollection<ReportedMovements> ReportedMovements { get; set; }
-
-
-
 
     }
 }

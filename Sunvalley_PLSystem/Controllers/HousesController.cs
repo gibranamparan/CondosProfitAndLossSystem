@@ -8,6 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using Sunvalley_PLSystem.Models;
 using Microsoft.AspNet.Identity;
+using static Sunvalley_PLSystem.GeneralTools.ExcelTools;
+using Sunvalley_PLSystem.GeneralTools;
+using static Sunvalley_PLSystem.Models.House;
+using static Sunvalley_PLSystem.Models.ReportedMovements;
+using OfficeOpenXml;
 
 namespace Sunvalley_PLSystem.Controllers
 {
@@ -80,11 +85,63 @@ namespace Sunvalley_PLSystem.Controllers
             }
 
             ViewBag.fechaConArgumentos = fechaConArgumentos;
+
             if (house == null)
             {
                 return HttpNotFound();
             }
             return View(house);
+        }
+
+
+        [Authorize]
+        public FileResult HouseMovementsToExcel(int houseID, DateTime? fecha)
+        {
+            House house = db.Houses.Find(houseID);
+            DateTime fechaConArgumentos = new DateTime();
+            if (fecha == null)
+            {
+                //Si no viene fecha, se establece por defecto el mes actual
+                fechaConArgumentos = DateTime.Now;
+                fechaConArgumentos = new DateTime(fechaConArgumentos.Year, fechaConArgumentos.Month, 1);
+            }
+            else
+            {
+                //Si dentro de la transaccion viene con fecha, se ignora la hora
+                fechaConArgumentos = fecha.Value;
+            }
+
+            //Getting data to export
+            List<Movement> movimientos = new List<Movement>();
+            if (User.IsInRole(ApplicationUser.RoleNames.ADMINISTRADOR))
+                movimientos = db.Movements.Where(mov => mov.houseID == houseID && mov.transactionDate.Month == fechaConArgumentos.Month 
+                && mov.transactionDate.Year == fechaConArgumentos.Year).OrderBy(move => move.transactionDate).ToList();
+            else
+                movimientos = db.Movements.Where(mov => mov.houseID == houseID && mov.state == true && mov.transactionDate.Year == fechaConArgumentos.Year
+                && mov.transactionDate.Month == fechaConArgumentos.Month).OrderBy(move => move.transactionDate).ToList();
+
+            //Preparing data to introduce to excel
+            List<VMReportedMovementes> vmMovementes = ReportedMovements.VMReportedMovementes.listToVMReportedMovements(movimientos);
+            DataTable dtMovementes = ExcelTools.listToDatatable<VMReportedMovementes>(vmMovementes);
+            List<TableToExportExcel> datatables = new List<TableToExportExcel>();
+
+            //Getting house data to introduce in excel
+            VMHouse vmHouse = house.getVM();
+            var houseList = new List<VMHouse>();
+            houseList.Add(vmHouse);
+            DataTable dtHOuse = ExcelTools.listToDatatable<VMHouse>(houseList);
+                        
+            //Generating excel
+            string heading = "Monthly Statement " + fecha.Value.ToString("MMMM-yyyy");
+            datatables.Add(new TableToExportExcel(dtHOuse, "House"));
+            datatables.Add(new TableToExportExcel(dtMovementes, "Movements of House" + fecha.Value.ToString("MMMM-yyyy")));
+            ExcelPackage package = ExcelTools.exportToExcel(datatables, heading);
+            byte[] bytesFile = package.GetAsByteArray();
+
+            //Preparing download file
+            string usrName = house.ApplicationUser.UserName;
+            usrName = usrName.Substring(0, usrName.IndexOf('@'));
+            return File(bytesFile, ExcelTools.EXCEL_MIME_TYPE, String.Format("{0}_{1}_{2}{3}", heading, usrName, house.name, ExcelTools.EXCEL_FORMAT));
         }
 
         // GET: Houses/Create
